@@ -35,8 +35,8 @@ Controller back{Serial2, settings.controllerHardware.enableBackLeft, settings.co
 #endif
 
 #ifdef VESC_CONTROLLER
-VescController one{Serial1, settings.controllerHardware.enableOne};
-VescController two{Serial2, settings.controllerHardware.enableTwo};
+VescController one{Serial1, settings.controllerHardware.enableOne, settings.controllerHardware.invertOne};
+VescController two{Serial2, settings.controllerHardware.enableTwo, settings.controllerHardware.invertTwo};
 #endif
 
 struct {

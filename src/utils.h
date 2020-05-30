@@ -279,7 +279,7 @@ void sendCommands()
     SetSerialPort(&controller.serial.get());
     SetDebugSerialPort(NULL);
 
-    float current = mapfloat(controller.pwm, -1000, 1000, -settings.limits.iMotMax, settings.limits.iMotMax);
+    float current = mapfloat(controller.pwm * (controller.invert ? -1. : 1.), -1000, 1000, -settings.limits.iMotMax, settings.limits.iMotMax);
 
     Serial.println(String{"New current "} + current);
 

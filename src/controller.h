@@ -35,13 +35,14 @@ struct Controller {
 
 #ifdef VESC_CONTROLLER
 struct VescController {
-  VescController(HardwareSerial &serial, bool &enable) :
-        serial{serial}, enable{enable}
+  VescController(HardwareSerial &serial, bool &enable, bool &invert) :
+        serial{serial}, enable{enable}, invert{invert}
     {
     }
 
     std::reference_wrapper<HardwareSerial> serial;
     bool &enable;
+    bool &invert;
 
     bldcMeasure values;
 

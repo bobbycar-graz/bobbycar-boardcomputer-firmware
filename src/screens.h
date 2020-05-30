@@ -103,8 +103,8 @@ union X {
     FrontRightMotorFeedbackDebugMenu frontRightMotorFeedbackDebugMenu;
     BackLeftMotorFeedbackDebugMenu backLeftMotorFeedbackDebugMenu;
     BackRightMotorFeedbackDebugMenu backRightMotorFeedbackDebugMenu;
-    BoardcomputerHardwareSettingsMenu boardcomputerHardwareSettingsMenu;
 #endif
+    BoardcomputerHardwareSettingsMenu boardcomputerHardwareSettingsMenu;
     PresetsMenu presetsMenu;
 
 #ifdef GLUMP_CONTROLLER
@@ -232,8 +232,10 @@ template<> decltype(displays.bmsMenu)                                          &
 #endif
 #ifdef GLUMP_CONTROLLER
 template<> decltype(displays.buzzerMenu)                                       &getRefByType<decltype(displays.buzzerMenu)>()                                       { return displays.buzzerMenu; }
+#endif
 template<> decltype(displays.boardcomputerHardwareSettingsMenu)                &getRefByType<decltype(displays.boardcomputerHardwareSettingsMenu)>()                { return displays.boardcomputerHardwareSettingsMenu; }
 template<> decltype(displays.controllerHardwareSettingsMenu)                   &getRefByType<decltype(displays.controllerHardwareSettingsMenu)>()                   { return displays.controllerHardwareSettingsMenu; }
+#ifdef GLUMP_CONTROLLER
 template<> decltype(displays.frontCommandDebugMenu)                            &getRefByType<decltype(displays.frontCommandDebugMenu)>()                            { return displays.frontCommandDebugMenu; }
 template<> decltype(displays.backCommandDebugMenu)                             &getRefByType<decltype(displays.backCommandDebugMenu)>()                             { return displays.backCommandDebugMenu; }
 #endif
