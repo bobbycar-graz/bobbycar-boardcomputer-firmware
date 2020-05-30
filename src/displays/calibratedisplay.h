@@ -37,6 +37,7 @@ public:
 
 private:
     const bool m_bootup{false};
+    bool saved{false};
     ModeInterface *m_oldMode;
     IgnoreInputMode m_mode{
       0,
@@ -57,6 +58,8 @@ private:
         ProgressBar{20, 200, 200, 10, 0, 1000},
         ProgressBar{20, 230, 200, 10, 0, 1000}
     }};
+
+    Label savedLabel{25, 50};
 };
 
 CalibrateDisplay::CalibrateDisplay(bool bootup) :
@@ -82,15 +85,24 @@ void CalibrateDisplay::initScreen()
 
     tft.setTextColor(TFT_WHITE, TFT_BLACK);
 
-    for (auto &label : m_labels)
+    if (!saved) {
+      for (auto &label : m_labels)
         label.start();
 
-    for (auto &progressBar : m_progressBars)
+      for (auto &progressBar : m_progressBars)
         progressBar.start();
+    }
+
+    savedLabel.start();
 }
 
 void CalibrateDisplay::redraw()
 {
+    if (saved) {
+        savedLabel.redraw(String{"Saved"});
+        return;
+    }
+
     m_labels[0].redraw(String{gas});
     m_labels[1].redraw(String{raw_gas});
 
@@ -127,7 +139,18 @@ void CalibrateDisplay::triggered()
         switchScreen<BoardcomputerHardwareSettingsMenu>();
 #endif
 #ifdef VESC_CONTROLLER
-    switchScreen<StatusDisplay>();
+    if (saved) {
+        switchScreen<BoardcomputerHardwareSettingsMenu>();
+        return;
+    }
+
+    settings.boardcomputerHardware.gasMax = raw_gas * 0.9;
+    settings.boardcomputerHardware.bremsMax = raw_brems * 0.9;
+    saveSettings();
+
+    saved = true;
+
+    initScreen();
 #endif
 }
 }
