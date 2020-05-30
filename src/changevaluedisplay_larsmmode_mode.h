@@ -9,6 +9,7 @@
 #include "texts.h"
 #include "modes/larsmmode.h"
 
+#ifdef GLUMP_CONTROLLER
 namespace {
 template<>
 class ChangeValueDisplay<LarsmModeMode> :
@@ -63,3 +64,4 @@ void ChangeValueDisplay<LarsmModeMode>::itemPressed(int index)
     triggered();
 }
 }
+#endif

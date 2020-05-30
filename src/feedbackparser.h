@@ -7,6 +7,7 @@
 
 #include "bobbycar-protocol/protocol.h"
 
+#ifdef GLUMP_CONTROLLER
 namespace {
 class FeedbackParser
 {
@@ -84,3 +85,4 @@ private:
     Feedback &m_feedback, m_newFeedback;
 };
 }
+#endif

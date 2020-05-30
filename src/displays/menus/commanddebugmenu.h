@@ -10,6 +10,7 @@
 #include "texts.h"
 #include "debugtexthelpers.h"
 
+#ifdef GLUMP_CONTROLLER
 namespace {
 class DebugMenu;
 }
@@ -32,3 +33,4 @@ class CommandDebugMenu :
 class FrontCommandDebugMenu : public CommandDebugMenu<TEXT_FRONTCOMMAND, FrontTexts> {};
 class BackCommandDebugMenu : public CommandDebugMenu<TEXT_BACKCOMMAND, BackTexts> {};
 }
+#endif

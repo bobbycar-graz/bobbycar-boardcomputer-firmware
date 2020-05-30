@@ -29,8 +29,15 @@ char deviceName[32];
 Settings settings;
 SettingsSaver settingsSaver;
 
+#ifdef GLUMP_CONTROLLER
 Controller front{Serial1, settings.controllerHardware.enableFrontLeft, settings.controllerHardware.enableFrontRight, settings.controllerHardware.invertFrontLeft, settings.controllerHardware.invertFrontRight};
 Controller back{Serial2, settings.controllerHardware.enableBackLeft, settings.controllerHardware.enableBackRight, settings.controllerHardware.invertBackLeft, settings.controllerHardware.invertBackRight};
+#endif
+
+#ifdef VESC_CONTROLLER
+VescController one{Serial1, settings.controllerHardware.enableOne};
+VescController two{Serial2, settings.controllerHardware.enableTwo};
+#endif
 
 struct {
     unsigned long lastTime = millis();

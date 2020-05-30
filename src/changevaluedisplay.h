@@ -137,8 +137,10 @@ void ChangeValueDisplay<Tvalue>::confirm()
 
 #include "changevaluedisplay_bool.h"
 #include "changevaluedisplay_bluetoothmode.h"
+#ifdef GLUMP_CONTROLLER
 #include "changevaluedisplay_controlmode.h"
 #include "changevaluedisplay_controltype.h"
 #include "changevaluedisplay_larsmmode_mode.h"
+#endif
 #include "changevaluedisplay_wifi_mode_t.h"
 #include "changevaluedisplay_wifi_power_t.h"

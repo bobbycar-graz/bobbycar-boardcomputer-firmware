@@ -10,6 +10,7 @@
 #include "texts.h"
 #include "debugtexthelpers.h"
 
+#ifdef GLUMP_CONTROLLER
 namespace {
 class DebugMenu;
 }
@@ -39,3 +40,4 @@ class FrontRightMotorStateDebugMenu : public MotorStateDebugMenu<TEXT_FRONTRIGHT
 class BackLeftMotorStateDebugMenu : public MotorStateDebugMenu<TEXT_BACKLEFTCOMMAND, BackTexts::LeftCommand> {};
 class BackRightMotorStateDebugMenu : public MotorStateDebugMenu<TEXT_BACKRIGHTCOMMAND, BackTexts::RightCommand> {};
 }
+#endif

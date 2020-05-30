@@ -7,7 +7,9 @@
 #include "bluetoothmode.h"
 
 namespace {
+#ifdef GLUMP_CONTROLLER
 enum class LarsmModeMode : uint8_t { Mode1, Mode2, Mode3, Mode4 };
+#endif
 
 struct Settings
 {
@@ -32,12 +34,19 @@ struct Settings
     } limits;
 
     struct ControllerHardware {
+#ifdef GLUMP_CONTROLLER
         bool enableFrontLeft, enableFrontRight, enableBackLeft, enableBackRight;
         bool invertFrontLeft, invertFrontRight, invertBackLeft, invertBackRight;
+        bool swapFrontBack;
+#endif
+
+#ifdef VESC_CONTROLLER
+        bool enableOne, enableTwo;
+        bool invertOne, invertTwo;
+#endif
 
         int16_t wheelDiameter; // in mm
         int16_t numMagnetPoles; // virtual RPM per one real RPM
-        bool swapFrontBack;
     } controllerHardware;
 
     struct BoardcomputerHardware {
@@ -50,8 +59,10 @@ struct Settings
     } boardcomputerHardware;
 
     struct DefaultMode {
+#ifdef GLUMP_CONTROLLER
         ControlType ctrlTyp;
         ControlMode ctrlMod;
+#endif
         bool enableSmoothing;
         int16_t smoothing;
         int16_t frontPercentage;
@@ -64,15 +75,18 @@ struct Settings
     } defaultMode;
 
     struct TempomatMode {
+#ifdef GLUMP_CONTROLLER
         ControlType ctrlTyp;
         ControlMode ctrlMod;
+#endif
     } tempomatMode;
 
+#ifdef GLUMP_CONTROLLER
     struct LarsmMode {
         LarsmModeMode mode;
         uint8_t iterations;
     } larsmMode;
-
+#endif
 
     template<typename T>
     void executeForEverySetting(T &&callable);
@@ -99,6 +113,7 @@ void Settings::executeForEverySetting(T &&callable)
     callable("fieldWeakMax", limits.fieldWeakMax);
     callable("phaseAdvMax", limits.phaseAdvMax);
 
+#ifdef GLUMP_CONTROLLER
     callable("enableFrontLeft", controllerHardware.enableFrontLeft);
     callable("enableFrontRigh", controllerHardware.enableFrontRight);
     callable("enableBackLeft", controllerHardware.enableBackLeft);
@@ -110,6 +125,12 @@ void Settings::executeForEverySetting(T &&callable)
     callable("invertBackRight", controllerHardware.invertBackRight);
 
     callable("swapFrontBack", controllerHardware.swapFrontBack);
+#endif
+
+#ifdef VESC_CONTROLLER
+    callable("enableOne", controllerHardware.enableOne);
+    callable("enableTwo", controllerHardware.enableTwo);
+#endif
 
     callable("sampleCount", boardcomputerHardware.sampleCount);
     callable("gasMin", boardcomputerHardware.gasMin);
@@ -126,6 +147,7 @@ void Settings::executeForEverySetting(T &&callable)
 #endif
     callable("swapScreenBytes", boardcomputerHardware.swapScreenBytes);
 
+#ifdef GLUMP_CONTROLLER
     callable("default.ctrlTyp", defaultMode.ctrlTyp);
     callable("default.ctrlMod", defaultMode.ctrlMod);
     callable("default.enableS", defaultMode.enableSmoothing);
@@ -143,5 +165,6 @@ void Settings::executeForEverySetting(T &&callable)
 
     callable("larsm.mode", larsmMode.mode);
     callable("larsm.iters", larsmMode.iterations);
+#endif
 }
 }

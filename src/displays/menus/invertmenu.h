@@ -21,10 +21,16 @@ class InvertMenu :
     public StaticText<TEXT_SETINVERTED>,
     public BackActionInterface<SwitchScreenAction<ControllerHardwareSettingsMenu>>,
     public StaticMenuDefinition<
+#ifdef GLUMP_CONTROLLER
         makeComponent<MenuItem, StaticText<TEXT_INVERTFRONTLEFT>,  ToggleBoolAction, CheckboxIcon, FrontLeftInvertedAccessor>,
         makeComponent<MenuItem, StaticText<TEXT_INVERTFRONTRIGHT>, ToggleBoolAction, CheckboxIcon, FrontRightInvertedAccessor>,
         makeComponent<MenuItem, StaticText<TEXT_INVERTBACKLEFT>,   ToggleBoolAction, CheckboxIcon, BackLeftInvertedAccessor>,
         makeComponent<MenuItem, StaticText<TEXT_INVERTBACKRIGHT>,  ToggleBoolAction, CheckboxIcon, BackRightInvertedAccessor>,
+#endif
+#ifdef VESC_CONTROLLER
+        makeComponent<MenuItem, StaticText<TEXT_INVERTFRONTLEFT>,  ToggleBoolAction, CheckboxIcon, OneInvertedAccessor>,
+        makeComponent<MenuItem, StaticText<TEXT_INVERTFRONTRIGHT>, ToggleBoolAction, CheckboxIcon, TwoInvertedAccessor>,
+#endif
         makeComponent<MenuItem, StaticText<TEXT_BACK>,             SwitchScreenAction<ControllerHardwareSettingsMenu>, StaticMenuItemIcon<&icons::back>>
     >
 {};

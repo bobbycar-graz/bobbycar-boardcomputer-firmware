@@ -8,6 +8,7 @@
 #include "icons/back.h"
 #include "texts.h"
 
+#ifdef GLUMP_CONTROLLER
 namespace {
 template<>
 class ChangeValueDisplay<ControlMode> :
@@ -62,3 +63,4 @@ void ChangeValueDisplay<ControlMode>::itemPressed(int index)
     triggered();
 }
 }
+#endif

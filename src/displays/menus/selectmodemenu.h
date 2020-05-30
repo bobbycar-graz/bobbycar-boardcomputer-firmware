@@ -14,6 +14,7 @@
 #include "modes/larsmmode.h"
 #include "modes/gametrakmode.h"
 
+#ifdef GLUMP_CONTROLLER
 namespace {
 class MainMenu;
 }
@@ -69,3 +70,4 @@ void SelectModeMenu::start()
     }
 }
 }
+#endif

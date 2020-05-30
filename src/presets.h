@@ -20,6 +20,7 @@ constexpr Settings::Limits kidsLimits {
 };
 
 constexpr Settings::ControllerHardware defaultControllerHardware {
+  #ifdef GLUMP_CONTROLLER
     .enableFrontLeft = true,
     .enableFrontRight = true,
     .enableBackLeft = true,
@@ -30,12 +31,23 @@ constexpr Settings::ControllerHardware defaultControllerHardware {
     .invertBackLeft = false,
     .invertBackRight = true,
 
+    .swapFrontBack = false,
+  #endif
+
+#ifdef VESC_CONTROLLER
+    .enableOne = true,
+    .enableTwo = true,
+
+    .invertOne = true,
+    .invertTwo = true,
+#endif
+
     .wheelDiameter = 165,
     .numMagnetPoles = 15,
-    .swapFrontBack = false
 };
 
 constexpr Settings::ControllerHardware mosfetsOffControllerHardware {
+  #ifdef GLUMP_CONTROLLER
     .enableFrontLeft = false,
     .enableFrontRight = false,
     .enableBackLeft = false,
@@ -46,11 +58,22 @@ constexpr Settings::ControllerHardware mosfetsOffControllerHardware {
     .invertBackLeft = false,
     .invertBackRight = true,
 
+    .swapFrontBack = false,
+  #endif
+
+#ifdef VESC_CONTROLLER
+    .enableOne = false,
+    .enableTwo = false,
+
+    .invertOne = false,
+    .invertTwo = false,
+#endif
+
     .wheelDiameter = 165,
     .numMagnetPoles = 15,
-    .swapFrontBack = false
 };
 
+#ifdef GLUMP_CONTROLLER
 constexpr Settings::ControllerHardware spinnerControllerHardware {
     .enableFrontLeft = true,
     .enableFrontRight = true,
@@ -62,10 +85,12 @@ constexpr Settings::ControllerHardware spinnerControllerHardware {
     .invertBackLeft = false,
     .invertBackRight = false,
 
+    .swapFrontBack = false,
+
     .wheelDiameter = 165,
     .numMagnetPoles = 15,
-    .swapFrontBack = false
 };
+#endif
 
 constexpr Settings::BoardcomputerHardware defaultBoardcomputerHardware {
     .sampleCount = 100,
@@ -85,8 +110,10 @@ constexpr Settings::BoardcomputerHardware defaultBoardcomputerHardware {
 };
 
 constexpr Settings::DefaultMode defaultDefaultMode {
+#ifdef GLUMP_CONTROLLER
     .ctrlTyp = ControlType::FieldOrientedControl,
     .ctrlMod = ControlMode::Torque,
+#endif
     .enableSmoothing = true,
     .smoothing = 20,
     .frontPercentage = 100,
@@ -98,6 +125,7 @@ constexpr Settings::DefaultMode defaultDefaultMode {
     .brems2_wert = 750
 };
 
+#ifdef GLUMP_CONTROLLER
 constexpr Settings::TempomatMode defaultTempomatMode {
     .ctrlTyp = ControlType::FieldOrientedControl,
     .ctrlMod = ControlMode::Speed
@@ -107,6 +135,7 @@ constexpr Settings::LarsmMode defaultLarsmMode {
     .mode = LarsmModeMode::Mode4,
     .iterations = 100
 };
+#endif
 
 constexpr Settings defaultSettings{
 #ifdef FEATURE_BMS
@@ -122,7 +151,10 @@ constexpr Settings defaultSettings{
     .controllerHardware = defaultControllerHardware,
     .boardcomputerHardware = defaultBoardcomputerHardware,
     .defaultMode = defaultDefaultMode,
+
+#ifdef GLUMP_CONTROLLER
     .tempomatMode = defaultTempomatMode,
     .larsmMode = defaultLarsmMode
+#endif
 };
 }

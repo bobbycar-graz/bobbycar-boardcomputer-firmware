@@ -38,7 +38,13 @@ public:
 private:
     const bool m_bootup{false};
     ModeInterface *m_oldMode;
-    IgnoreInputMode m_mode{0, ControlType::FieldOrientedControl, ControlMode::Torque};
+    IgnoreInputMode m_mode{
+      0,
+#ifdef GLUMP_CONTROLLER
+      ControlType::FieldOrientedControl,
+      ControlMode::Torque
+#endif
+    };
 
     std::array<Label, 4> m_labels {{
         Label{25, 50}, // 100, 23
@@ -104,14 +110,24 @@ void CalibrateDisplay::stop()
 void CalibrateDisplay::back()
 {
     if (!m_bootup)
+#ifdef GLUMP_CONTROLLER
         switchScreen<BoardcomputerHardwareSettingsMenu>();
+#endif
+#ifdef VESC_CONTROLLER
+        switchScreen<StatusDisplay>();
+#endif
 }
 
 void CalibrateDisplay::triggered()
 {
+#ifdef GLUMP_CONTROLLER
     if (m_bootup)
         switchScreen<StatusDisplay>();
     else
         switchScreen<BoardcomputerHardwareSettingsMenu>();
+#endif
+#ifdef VESC_CONTROLLER
+    switchScreen<StatusDisplay>();
+#endif
 }
 }

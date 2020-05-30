@@ -18,6 +18,7 @@ class ModesSettingsMenu;
 }
 
 namespace {
+#ifdef GLUMP_CONTROLLER
 using DefaultModeCtrlTypChangeDisplay = makeComponent<
     ChangeValueDisplay<ControlType>,
     StaticText<TEXT_SETCONTROLTYPE>,
@@ -32,6 +33,7 @@ using DefaultModeCtrlModChangeDisplay = makeComponent<
     BackActionInterface<SwitchScreenAction<DefaultModeSettingsMenu>>,
     SwitchScreenAction<DefaultModeSettingsMenu>
 >;
+#endif
 using DefaultModeSmoothingChangeDisplay = makeComponent<
     ChangeValueDisplay<int16_t>,
     StaticText<TEXT_SETSMOOTHING>,
@@ -39,6 +41,7 @@ using DefaultModeSmoothingChangeDisplay = makeComponent<
     BackActionInterface<SwitchScreenAction<DefaultModeSettingsMenu>>,
     SwitchScreenAction<DefaultModeSettingsMenu>
 >;
+#ifdef GLUMP_CONTROLLER
 using DefaultModeFrontPercentageChangeDisplay = makeComponent<
     ChangeValueDisplay<int16_t>,
     StaticText<TEXT_SETFRONTPERCENTAGE>,
@@ -53,6 +56,7 @@ using DefaultModeBackPercentageChangeDisplay = makeComponent<
     BackActionInterface<SwitchScreenAction<DefaultModeSettingsMenu>>,
     SwitchScreenAction<DefaultModeSettingsMenu>
 >;
+#endif
 using DefaultModeAddSchwelleChangeDisplay = makeComponent<
     ChangeValueDisplay<int16_t>,
     StaticText<TEXT_SETADDSCHWELLE>,
@@ -94,12 +98,16 @@ class DefaultModeSettingsMenu :
     public StaticText<TEXT_DEFAULTMODESETTIGNS>,
     public BackActionInterface<SwitchScreenAction<ModesSettingsMenu>>,
     public StaticMenuDefinition<
+#ifdef GLUMP_CONTROLLER
         makeComponent<MenuItem, StaticText<TEXT_SETCONTROLTYPE>,     SwitchScreenAction<DefaultModeCtrlTypChangeDisplay>>,
         makeComponent<MenuItem, StaticText<TEXT_SETCONTROLMODE>,     SwitchScreenAction<DefaultModeCtrlModChangeDisplay>>,
+#endif
         makeComponent<MenuItem, StaticText<TEXT_ENABLESMOOTHING>,     ToggleBoolAction, CheckboxIcon, DefaultModeEnableSmoothingAccessor>,
         makeComponent<MenuItem, StaticText<TEXT_SETSMOOTHING>,       SwitchScreenAction<DefaultModeSmoothingChangeDisplay>>,
+#ifdef GLUMP_CONTROLLER
         makeComponent<MenuItem, StaticText<TEXT_SETFRONTPERCENTAGE>, SwitchScreenAction<DefaultModeFrontPercentageChangeDisplay>>,
         makeComponent<MenuItem, StaticText<TEXT_SETBACKPERCENTAGE>,  SwitchScreenAction<DefaultModeBackPercentageChangeDisplay>>,
+#endif
         makeComponent<MenuItem, StaticText<TEXT_SETADDSCHWELLE>,     SwitchScreenAction<DefaultModeAddSchwelleChangeDisplay>>,
         makeComponent<MenuItem, StaticText<TEXT_SETGAS1WERT>,        SwitchScreenAction<DefaultModeGas1WertChangeDisplay>>,
         makeComponent<MenuItem, StaticText<TEXT_SETGAS2WERT>,        SwitchScreenAction<DefaultModeGas2WertChangeDisplay>>,

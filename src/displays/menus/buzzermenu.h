@@ -13,6 +13,7 @@
 #include "globals.h"
 #include "settingsaccessors.h"
 
+#ifdef GLUMP_CONTROLLER
 namespace {
 class BuzzerMenu;
 class SettingsMenu;
@@ -102,3 +103,4 @@ class BuzzerMenu :
     >
 {};
 }
+#endif

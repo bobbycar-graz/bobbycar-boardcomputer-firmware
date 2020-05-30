@@ -33,6 +33,7 @@ struct NMotMaxRpmAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &g
 struct FieldWeakMaxAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.limits.fieldWeakMax; } };
 struct PhaseAdvMaxAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.limits.phaseAdvMax; } };
 
+#ifdef GLUMP_CONTROLLER
 struct FrontLeftEnabledAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.controllerHardware.enableFrontLeft; } };
 struct FrontRightEnabledAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.controllerHardware.enableFrontRight; } };
 struct BackLeftEnabledAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.controllerHardware.enableBackLeft; } };
@@ -42,6 +43,14 @@ struct FrontLeftInvertedAccessor : public RefAccessorSaveSettings<bool> { bool &
 struct FrontRightInvertedAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.controllerHardware.invertFrontRight; } };
 struct BackLeftInvertedAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.controllerHardware.invertBackLeft; } };
 struct BackRightInvertedAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.controllerHardware.invertBackRight; } };
+#endif
+#ifdef VESC_CONTROLLER
+struct OneEnabledAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.controllerHardware.enableOne; } };
+struct TwoEnabledAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.controllerHardware.enableTwo; } };
+
+struct OneInvertedAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.controllerHardware.invertOne; } };
+struct TwoInvertedAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.controllerHardware.invertTwo; } };
+#endif
 
 struct WheelDiameterMmAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.controllerHardware.wheelDiameter; } };
 struct WheelDiameterInchAccessor : public virtual AccessorInterface<float>
@@ -50,10 +59,13 @@ struct WheelDiameterInchAccessor : public virtual AccessorInterface<float>
     void setValue(float value) override { settings.controllerHardware.wheelDiameter = convertFromInch(value); saveSettings(); }
 };
 struct NumMagnetPolesAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.controllerHardware.numMagnetPoles; } };
+
+#ifdef GLUMP_CONTROLLER
 struct SwapFrontBackAccessor : public RefAccessorSaveSettings<bool> {
     bool &getRef() const override { return settings.controllerHardware.swapFrontBack; }
     void setValue(bool value) override { RefAccessorSaveSettings<bool>::setValue(value); updateSwapFrontBack(); };
 };
+#endif
 
 struct SampleCountAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.boardcomputerHardware.sampleCount; } };
 struct GasMinAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.boardcomputerHardware.gasMin; } };
@@ -70,8 +82,10 @@ struct GametrakDistMaxAccessor : public RefAccessorSaveSettings<int16_t> { int16
 #endif
 struct SwapScreenBytesAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.boardcomputerHardware.swapScreenBytes; } };
 
+#ifdef GLUMP_CONTROLLER
 struct DefaultModeCtrlTypAccessor : public RefAccessorSaveSettings<ControlType> { ControlType &getRef() const override { return settings.defaultMode.ctrlTyp; } };
 struct DefaultModeCtrlModAccessor : public RefAccessorSaveSettings<ControlMode> { ControlMode &getRef() const override { return settings.defaultMode.ctrlMod; } };
+#endif
 struct DefaultModeEnableSmoothingAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.defaultMode.enableSmoothing; } };
 struct DefaultModeSmoothingAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.defaultMode.smoothing; } };
 struct DefaultModeFrontPercentageAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.defaultMode.frontPercentage; } };
@@ -82,9 +96,11 @@ struct DefaultModeGas2WertAccessor : public RefAccessorSaveSettings<int16_t> { i
 struct DefaultModeBrems1WertAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.defaultMode.brems1_wert; } };
 struct DefaultModeBrems2WertAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.defaultMode.brems2_wert; } };
 
+#ifdef GLUMP_CONTROLLER
 struct TempomatModeCtrlTypAccessor : public RefAccessorSaveSettings<ControlType> { ControlType &getRef() const override { return settings.tempomatMode.ctrlTyp; } };
 struct TempomatModeCtrlModAccessor : public RefAccessorSaveSettings<ControlMode> { ControlMode &getRef() const override { return settings.tempomatMode.ctrlMod; } };
 
 struct LarsmModeModeAccessor : public RefAccessorSaveSettings<LarsmModeMode> { LarsmModeMode &getRef() const override { return settings.larsmMode.mode; } };
 struct LarsmModeIterationsAccessor : public RefAccessorSaveSettings<uint8_t> { uint8_t &getRef() const override { return settings.larsmMode.iterations; } };
+#endif
 }

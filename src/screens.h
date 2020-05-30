@@ -61,26 +61,35 @@ union X {
 #ifdef FEATURE_BMS
     BmsMenu bmsMenu;
 #endif
+#ifdef GLUMP_CONTROLLER
     BuzzerMenu buzzerMenu;
     FrontCommandDebugMenu frontCommandDebugMenu;
     BackCommandDebugMenu backCommandDebugMenu;
+#endif
     ControllerHardwareSettingsMenu controllerHardwareSettingsMenu;
     DebugMenu debugMenu;
     DefaultModeSettingsMenu defaultModeSettingsMenu;
     DemosMenu demosMenu;
     DynamicDebugMenu dynamicDebugMenu;
     EnableMenu enableMenu;
+#ifdef GLUMP_CONTROLLER
     FrontFeedbackDebugMenu frontFeedbackDebugMenu;
     BackFeedbackDebugMenu backFeedbackDebugMenu;
+#endif
 #ifdef FEATURE_GAMETRAK
     GametrakModeSettingsMenu gametrakModeSettingsMenu;
 #endif
     GenericWifiSettingsMenu genericWifiSettingsMenu;
     GraphsMenu graphsMenu;
     InvertMenu invertMenu;
+
+#ifdef GLUMP_CONTROLLER
     LarsmModeSettingsMenu larsmModeSettingsMenu;
+#endif
+
     LimitsSettingsMenu limitsSettingsMenu;
     MainMenu mainMenu;
+#ifdef GLUMP_CONTROLLER
     TempomatModeSettingsMenu tempomatModeSettingsMenu;
     ModesSettingsMenu modesSettingsMenu;
 #ifdef FEATURE_MOSFETS
@@ -95,8 +104,13 @@ union X {
     BackLeftMotorFeedbackDebugMenu backLeftMotorFeedbackDebugMenu;
     BackRightMotorFeedbackDebugMenu backRightMotorFeedbackDebugMenu;
     BoardcomputerHardwareSettingsMenu boardcomputerHardwareSettingsMenu;
+#endif
     PresetsMenu presetsMenu;
+
+#ifdef GLUMP_CONTROLLER
     SelectModeMenu selectModeMenu;
+#endif
+
     SettingsMenu settingsMenu;
     StationWifiSettingsMenu stationWifiSettingsMenu;
     WifiScanMenu wifiScanMenu;
@@ -114,7 +128,9 @@ union X {
     Lockscreen lockScreen;
     MetersDisplay metersDisplay;
     PingPongDisplay pingPongDisplay;
+#ifdef GLUMP_CONTROLLER
     PoweroffDisplay poweroffDisplay;
+#endif
     SpiroDisplay spiroDisplay;
     StarfieldDisplay starFieldDisplay;
     StatusDisplay statusDisplay;
@@ -124,6 +140,7 @@ union X {
 
     BluetoothModeChangeDisplay bluetoothModeChangeDisplay;
 
+#ifdef GLUMP_CONTROLLER
     FrontFreqChangeScreen changeFrontFreq;
     FrontPatternChangeScreen changeFrontPattern;
     BackFreqChangeScreen changeBackFreq;
@@ -132,6 +149,7 @@ union X {
     ReverseBeepFreq1ChangeScreen changeReverseBeepFreq1;
     ReverseBeepDuration0ChangeScreen changeReverseBeepDuration0;
     ReverseBeepDuration1ChangeScreen changeReverseBeepDuration1;
+#endif
 
     IMotMaxChangeScreen changeIMotMax;
     IDcMaxChangeScreen changeIDcMax;
@@ -144,22 +162,28 @@ union X {
     WheelDiameterInchChangeScreen wheelDiameterInchChangeScreen;
     NumMagnetPolesChangeScreen numMagnetPolesChangeScreen;
 
+#ifdef GLUMP_CONTROLLER
     DefaultModeCtrlTypChangeDisplay changeDefaultModeCtrlTyp;
     DefaultModeCtrlModChangeDisplay changeDefaultModeCtrlMod;
+#endif
     DefaultModeSmoothingChangeDisplay changeDefaultModeSmoothing;
+#ifdef GLUMP_CONTROLLER
     DefaultModeFrontPercentageChangeDisplay changeDefaultModeFrontPercentage;
     DefaultModeBackPercentageChangeDisplay changeDefaultModeBackPercentage;
+#endif
     DefaultModeAddSchwelleChangeDisplay changeDefaultModeAddSchwelle;
     DefaultModeGas1WertChangeDisplay changeDefaultModeGas1Wert;
     DefaultModeGas2WertChangeDisplay changeDefaultModeGas2Wert;
     DefaultModeBrems1WertChangeDisplay changeDefaultModeBrems1Wert;
     DefaultModeBrems2WertChangeDisplay changeDefaultModeBrems2Wert;
 
+#ifdef GLUMP_CONTROLLER
     TempomatModeCtrlTypChangeScreen changeManualModeCtrlTyp;
     TempomatModeCtrlModChangeScreen changeManualModeCtrlMod;
 
     LarsmModeModeChangeDisplay larsmModeModeChangeDisplay;
     LarsmModeIterationsChangeDisplay larsmModeIterationsChangeDisplay;
+#endif
 
     SampleCountChangeScreen sampleCountChangeScreen;
     GasMinChangeScreen changeGasMin;
@@ -184,15 +208,19 @@ union X {
     AvgSpeedKmhGraphDisplay avgSpeedKmhGraphDisplay;
     SumCurrentGraphDisplay sumCurrentGraphDisplay;
     SumAbsoluteCurrentGraphDisplay sumAbsoluteCurrentGraphDisplay;
+#ifdef GLUMP_CONTROLLER
     FrontVoltageGraphDisplay frontVoltageGraphDisplay;
     BackVoltageGraphDisplay backVoltageGraphDisplay;
+#endif
 #ifdef FEATURE_BMS
     BmsVoltageGraphDisplay bmsVoltageGraphDisplay;
     BmsCurrentGraphDisplay bmsCurrentGraphDisplay;
     BmsPowerGraphDisplay bmsPowerGraphDisplay;
     SumCurrentsComparisonGraphDisplay sumCurrentsComparisonGraphDisplay;
 #endif
+#ifdef GLUMP_CONTROLLER
     MotorCurrentsGraphDisplay motorCurrentsGraphDisplay;
+#endif
 } displays;
 
 template<typename T> T &getRefByType() = delete;
@@ -202,27 +230,35 @@ template<> decltype(displays.bluetoothSettingsMenu)                            &
 #ifdef FEATURE_BMS
 template<> decltype(displays.bmsMenu)                                          &getRefByType<decltype(displays.bmsMenu)>()                                          { return displays.bmsMenu; }
 #endif
+#ifdef GLUMP_CONTROLLER
 template<> decltype(displays.buzzerMenu)                                       &getRefByType<decltype(displays.buzzerMenu)>()                                       { return displays.buzzerMenu; }
 template<> decltype(displays.boardcomputerHardwareSettingsMenu)                &getRefByType<decltype(displays.boardcomputerHardwareSettingsMenu)>()                { return displays.boardcomputerHardwareSettingsMenu; }
 template<> decltype(displays.controllerHardwareSettingsMenu)                   &getRefByType<decltype(displays.controllerHardwareSettingsMenu)>()                   { return displays.controllerHardwareSettingsMenu; }
 template<> decltype(displays.frontCommandDebugMenu)                            &getRefByType<decltype(displays.frontCommandDebugMenu)>()                            { return displays.frontCommandDebugMenu; }
 template<> decltype(displays.backCommandDebugMenu)                             &getRefByType<decltype(displays.backCommandDebugMenu)>()                             { return displays.backCommandDebugMenu; }
+#endif
 template<> decltype(displays.debugMenu)                                        &getRefByType<decltype(displays.debugMenu)>()                                        { return displays.debugMenu; }
 template<> decltype(displays.defaultModeSettingsMenu)                          &getRefByType<decltype(displays.defaultModeSettingsMenu)>()                          { return displays.defaultModeSettingsMenu; }
 template<> decltype(displays.demosMenu)                                        &getRefByType<decltype(displays.demosMenu)>()                                        { return displays.demosMenu; }
 template<> decltype(displays.dynamicDebugMenu)                                 &getRefByType<decltype(displays.dynamicDebugMenu)>()                                 { return displays.dynamicDebugMenu; }
 template<> decltype(displays.enableMenu)                                       &getRefByType<decltype(displays.enableMenu)>()                                       { return displays.enableMenu; }
+#ifdef GLUMP_CONTROLLER
 template<> decltype(displays.frontFeedbackDebugMenu)                           &getRefByType<decltype(displays.frontFeedbackDebugMenu)>()                           { return displays.frontFeedbackDebugMenu; }
 template<> decltype(displays.backFeedbackDebugMenu)                            &getRefByType<decltype(displays.backFeedbackDebugMenu)>()                            { return displays.backFeedbackDebugMenu; }
+#endif
+
 #ifdef FEATURE_GAMETRAK
 template<> decltype(displays.gametrakModeSettingsMenu)                         &getRefByType<decltype(displays.gametrakModeSettingsMenu)>()                         { return displays.gametrakModeSettingsMenu; }
 #endif
 template<> decltype(displays.genericWifiSettingsMenu)                          &getRefByType<decltype(displays.genericWifiSettingsMenu)>()                          { return displays.genericWifiSettingsMenu; }
 template<> decltype(displays.graphsMenu)                                       &getRefByType<decltype(displays.graphsMenu)>()                                       { return displays.graphsMenu; }
 template<> decltype(displays.invertMenu)                                       &getRefByType<decltype(displays.invertMenu)>()                                       { return displays.invertMenu; }
+#ifdef GLUMP_CONTROLLER
 template<> decltype(displays.larsmModeSettingsMenu)                            &getRefByType<decltype(displays.larsmModeSettingsMenu)>()                            { return displays.larsmModeSettingsMenu; }
+#endif
 template<> decltype(displays.limitsSettingsMenu)                               &getRefByType<decltype(displays.limitsSettingsMenu)>()                               { return displays.limitsSettingsMenu; }
 template<> decltype(displays.mainMenu)                                         &getRefByType<decltype(displays.mainMenu)>()                                         { return displays.mainMenu; }
+#ifdef GLUMP_CONTROLLER
 template<> decltype(displays.tempomatModeSettingsMenu)                         &getRefByType<decltype(displays.tempomatModeSettingsMenu)>()                         { return displays.tempomatModeSettingsMenu; }
 template<> decltype(displays.modesSettingsMenu)                                &getRefByType<decltype(displays.modesSettingsMenu)>()                                { return displays.modesSettingsMenu; }
 #ifdef FEATURE_MOSFETS
@@ -236,8 +272,11 @@ template<> decltype(displays.frontLeftMotorFeedbackDebugMenu)                  &
 template<> decltype(displays.frontRightMotorFeedbackDebugMenu)                 &getRefByType<decltype(displays.frontRightMotorFeedbackDebugMenu)>()                 { return displays.frontRightMotorFeedbackDebugMenu; }
 template<> decltype(displays.backLeftMotorFeedbackDebugMenu)                   &getRefByType<decltype(displays.backLeftMotorFeedbackDebugMenu)>()                   { return displays.backLeftMotorFeedbackDebugMenu; }
 template<> decltype(displays.backRightMotorFeedbackDebugMenu)                  &getRefByType<decltype(displays.backRightMotorFeedbackDebugMenu)>()                  { return displays.backRightMotorFeedbackDebugMenu; }
+#endif
 template<> decltype(displays.presetsMenu)                                      &getRefByType<decltype(displays.presetsMenu)>()                                      { return displays.presetsMenu; }
+#ifdef GLUMP_CONTROLLER
 template<> decltype(displays.selectModeMenu)                                   &getRefByType<decltype(displays.selectModeMenu)>()                                   { return displays.selectModeMenu; }
+#endif
 template<> decltype(displays.settingsMenu)                                     &getRefByType<decltype(displays.settingsMenu)>()                                     { return displays.settingsMenu; }
 template<> decltype(displays.stationWifiSettingsMenu)                          &getRefByType<decltype(displays.stationWifiSettingsMenu)>()                          { return displays.stationWifiSettingsMenu; }
 template<> decltype(displays.wifiScanMenu)                                     &getRefByType<decltype(displays.wifiScanMenu)>()                                     { return displays.wifiScanMenu; }
@@ -255,7 +294,9 @@ template<> decltype(displays.gametrakCalibrateDisplay)                         &
 template<> decltype(displays.lockScreen)                                       &getRefByType<decltype(displays.lockScreen)>()                                       { return displays.lockScreen; }
 template<> decltype(displays.metersDisplay)                                    &getRefByType<decltype(displays.metersDisplay)>()                                    { return displays.metersDisplay; }
 template<> decltype(displays.pingPongDisplay)                                  &getRefByType<decltype(displays.pingPongDisplay)>()                                  { return displays.pingPongDisplay; }
+#ifdef GLUMP_CONTROLLER
 template<> decltype(displays.poweroffDisplay)                                  &getRefByType<decltype(displays.poweroffDisplay)>()                                  { return displays.poweroffDisplay; }
+#endif
 template<> decltype(displays.spiroDisplay)                                     &getRefByType<decltype(displays.spiroDisplay)>()                                     { return displays.spiroDisplay; }
 template<> decltype(displays.starFieldDisplay)                                 &getRefByType<decltype(displays.starFieldDisplay)>()                                 { return displays.starFieldDisplay; }
 template<> decltype(displays.statusDisplay)                                    &getRefByType<decltype(displays.statusDisplay)>()                                    { return displays.statusDisplay; }
@@ -265,6 +306,7 @@ template<> decltype(displays.updateDisplay)                                    &
 
 template<> decltype(displays.bluetoothModeChangeDisplay)                       &getRefByType<decltype(displays.bluetoothModeChangeDisplay)>()                       { return displays.bluetoothModeChangeDisplay; }
 
+#ifdef GLUMP_CONTROLLER
 template<> decltype(displays.changeFrontFreq)                                  &getRefByType<decltype(displays.changeFrontFreq)>()                                  { return displays.changeFrontFreq; }
 template<> decltype(displays.changeFrontPattern)                               &getRefByType<decltype(displays.changeFrontPattern)>()                               { return displays.changeFrontPattern; }
 template<> decltype(displays.changeBackFreq)                                   &getRefByType<decltype(displays.changeBackFreq)>()                                   { return displays.changeBackFreq; }
@@ -273,6 +315,7 @@ template<> decltype(displays.changeReverseBeepFreq0)                           &
 template<> decltype(displays.changeReverseBeepFreq1)                           &getRefByType<decltype(displays.changeReverseBeepFreq1)>()                           { return displays.changeReverseBeepFreq1; }
 template<> decltype(displays.changeReverseBeepDuration0)                       &getRefByType<decltype(displays.changeReverseBeepDuration0)>()                       { return displays.changeReverseBeepDuration0; }
 template<> decltype(displays.changeReverseBeepDuration1)                       &getRefByType<decltype(displays.changeReverseBeepDuration1)>()                       { return displays.changeReverseBeepDuration1; }
+#endif
 
 template<> decltype(displays.changeIMotMax)                                    &getRefByType<decltype(displays.changeIMotMax)>()                                    { return displays.changeIMotMax; }
 template<> decltype(displays.changeIDcMax)                                     &getRefByType<decltype(displays.changeIDcMax)>()                                     { return displays.changeIDcMax; }
@@ -285,6 +328,7 @@ template<> decltype(displays.wheelDiameterMmChangeScreen)                      &
 template<> decltype(displays.wheelDiameterInchChangeScreen)                    &getRefByType<decltype(displays.wheelDiameterInchChangeScreen)>()                    { return displays.wheelDiameterInchChangeScreen; }
 template<> decltype(displays.numMagnetPolesChangeScreen)                       &getRefByType<decltype(displays.numMagnetPolesChangeScreen)>()                       { return displays.numMagnetPolesChangeScreen; }
 
+#ifdef GLUMP_CONTROLLER
 template<> decltype(displays.changeDefaultModeCtrlTyp)                         &getRefByType<decltype(displays.changeDefaultModeCtrlTyp)>()                         { return displays.changeDefaultModeCtrlTyp; }
 template<> decltype(displays.changeDefaultModeCtrlMod)                         &getRefByType<decltype(displays.changeDefaultModeCtrlMod)>()                         { return displays.changeDefaultModeCtrlMod; }
 template<> decltype(displays.changeDefaultModeSmoothing)                       &getRefByType<decltype(displays.changeDefaultModeSmoothing)>()                       { return displays.changeDefaultModeSmoothing; }
@@ -301,7 +345,7 @@ template<> decltype(displays.changeManualModeCtrlMod)                          &
 
 template<> decltype(displays.larsmModeModeChangeDisplay)                       &getRefByType<decltype(displays.larsmModeModeChangeDisplay)>()                       { return displays.larsmModeModeChangeDisplay; }
 template<> decltype(displays.larsmModeIterationsChangeDisplay)                 &getRefByType<decltype(displays.larsmModeIterationsChangeDisplay)>()                 { return displays.larsmModeIterationsChangeDisplay; }
-
+#endif
 template<> decltype(displays.sampleCountChangeScreen)                          &getRefByType<decltype(displays.sampleCountChangeScreen)>()                          { return displays.sampleCountChangeScreen; }
 template<> decltype(displays.changeGasMin)                                     &getRefByType<decltype(displays.changeGasMin)>()                                     { return displays.changeGasMin; }
 template<> decltype(displays.changeGasMax)                                     &getRefByType<decltype(displays.changeGasMax)>()                                     { return displays.changeGasMax; }
@@ -325,15 +369,19 @@ template<> decltype(displays.avgSpeedGraphDisplay)                             &
 template<> decltype(displays.avgSpeedKmhGraphDisplay)                          &getRefByType<decltype(displays.avgSpeedKmhGraphDisplay)>()                          { return displays.avgSpeedKmhGraphDisplay; }
 template<> decltype(displays.sumCurrentGraphDisplay)                           &getRefByType<decltype(displays.sumCurrentGraphDisplay)>()                           { return displays.sumCurrentGraphDisplay; }
 template<> decltype(displays.sumAbsoluteCurrentGraphDisplay)                   &getRefByType<decltype(displays.sumAbsoluteCurrentGraphDisplay)>()                   { return displays.sumAbsoluteCurrentGraphDisplay; }
+#ifdef GLUMP_CONTROLLER
 template<> decltype(displays.frontVoltageGraphDisplay)                         &getRefByType<decltype(displays.frontVoltageGraphDisplay)>()                         { return displays.frontVoltageGraphDisplay; }
 template<> decltype(displays.backVoltageGraphDisplay)                          &getRefByType<decltype(displays.backVoltageGraphDisplay)>()                          { return displays.backVoltageGraphDisplay; }
+#endif
 #ifdef FEATURE_BMS
 template<> decltype(displays.bmsVoltageGraphDisplay)                           &getRefByType<decltype(displays.bmsVoltageGraphDisplay)>()                           { return displays.bmsVoltageGraphDisplay; }
 template<> decltype(displays.bmsCurrentGraphDisplay)                           &getRefByType<decltype(displays.bmsCurrentGraphDisplay)>()                           { return displays.bmsCurrentGraphDisplay; }
 template<> decltype(displays.bmsPowerGraphDisplay)                             &getRefByType<decltype(displays.bmsPowerGraphDisplay)>()                             { return displays.bmsPowerGraphDisplay; }
 template<> decltype(displays.sumCurrentsComparisonGraphDisplay)                &getRefByType<decltype(displays.sumCurrentsComparisonGraphDisplay)>()                { return displays.sumCurrentsComparisonGraphDisplay; }
 #endif
+#ifdef GLUMP_CONTROLLER
 template<> decltype(displays.motorCurrentsGraphDisplay)                        &getRefByType<decltype(displays.motorCurrentsGraphDisplay)>()                        { return displays.motorCurrentsGraphDisplay; }
+#endif
 
 
 void deconstructScreen()

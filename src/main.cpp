@@ -72,7 +72,9 @@ void setup()
     if (settingsSaver.init())
         loadSettings();
 
+#ifdef GLUMP_CONTROLLER
     updateSwapFrontBack();
+#endif
 
     {
         uint8_t macAddress[6];
@@ -107,16 +109,26 @@ void setup()
     } else if (settings.bluetoothMode == BluetoothMode::Slave)
         BluetoothBeginAction{}.triggered();
 
+#ifdef GLUMP_CONTROLLER
     front.serial.get().begin(38400, SERIAL_8N1, PINS_RX1, PINS_TX1);
     back.serial.get().begin(38400, SERIAL_8N1, PINS_RX2, PINS_TX2);
+#endif
+
+#ifdef VESC_CONTROLLER
+    one.serial.get().begin(57600, SERIAL_8N1, PINS_RX1, PINS_TX1);
+    two.serial.get().begin(57600, SERIAL_8N1, PINS_RX2, PINS_TX2);
+    Serial.println("vesc begin");
+#endif
 
     raw_gas = 0;
     raw_brems = 0;
     gas = 0;
     brems = 0;
 
+#ifdef GLUMP_CONTROLLER
     for (Controller &controller : controllers())
         controller.command.buzzer = {};
+#endif
 
     currentMode = &modes::defaultMode;
 
@@ -194,8 +206,15 @@ void loop()
         performance.lastTime = now;
     }
 
+#ifdef GLUMP_CONTROLLER
     for (Controller &controller : controllers())
         controller.parser.update();
+#endif
+
+#ifdef VESC_CONTROLLER
+    for (VescController &controller : controllers())
+        controller.update();
+#endif
 
     handleSerial();
 

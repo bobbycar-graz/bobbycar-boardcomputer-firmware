@@ -75,6 +75,7 @@ void DefaultMode::update()
     lastPwm = pwm;
     lastTime = now;
 
+#ifdef GLUMP_CONTROLLER
     for (Controller &controller : controllers())
         for (MotorState &motor : motorsInController(controller))
         {
@@ -82,8 +83,18 @@ void DefaultMode::update()
             motor.ctrlMod = settings.defaultMode.ctrlMod;
             motor.pwm = pwm / 100. * (&controller == &front ? settings.defaultMode.frontPercentage : settings.defaultMode.backPercentage);
         }
+#endif
 
+#ifdef VESC_CONTROLLER
+    for (VescController &controller : controllers()) {
+        controller.pwm = pwm;
+      Serial.println(String{"new pwm "} + pwm);
+    }
+#endif
+
+#ifdef GLUMP_CONTROLLER
     fixCommonParams();
+#endif
 
     sendCommands();
 }

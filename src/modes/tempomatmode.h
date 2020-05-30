@@ -42,7 +42,7 @@ void TempomatMode::update()
     }
 
     pwm += (gas/1000.) - (brems/1000.);
-
+#ifdef GLUMP_CONTROLLER
     for (MotorState &motor : motors())
     {
         motor.ctrlTyp = settings.tempomatMode.ctrlTyp;
@@ -51,6 +51,13 @@ void TempomatMode::update()
     }
 
     fixCommonParams();
+#endif
+
+#ifdef VESC_CONTROLLER
+    for (VescController &controller : controllers()) {
+      controller.pwm = pwm;
+    }
+#endif
 
     sendCommands();
 }

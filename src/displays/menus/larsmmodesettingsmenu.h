@@ -10,6 +10,7 @@
 #include "texts.h"
 #include "settingsaccessors.h"
 
+#ifdef GLUMP_CONTROLLER
 namespace {
 class LarsmModeSettingsMenu;
 class ModesSettingsMenu;
@@ -42,3 +43,4 @@ class LarsmModeSettingsMenu :
     >
 {};
 }
+#endif

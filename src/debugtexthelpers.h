@@ -4,6 +4,7 @@
 #include "globals.h"
 #include "utils.h"
 
+#ifdef GLUMP_CONTROLLER
 namespace {
 template<Controller &controller>
 struct ControllerTexts
@@ -88,3 +89,4 @@ struct ControllerTexts
 using FrontTexts = ControllerTexts<front>;
 using BackTexts = ControllerTexts<back>;
 }
+#endif

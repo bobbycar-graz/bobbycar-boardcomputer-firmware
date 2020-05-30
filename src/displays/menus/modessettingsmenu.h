@@ -10,7 +10,9 @@
 namespace {
 class DefaultModeSettingsMenu;
 class TempomatModeSettingsMenu;
+#ifdef GLUMP_CONTROLLER
 class LarsmModeSettingsMenu;
+#endif
 class GametrakModeSettingsMenu;
 class SettingsMenu;
 }
@@ -23,7 +25,9 @@ class ModesSettingsMenu :
     public StaticMenuDefinition<
         makeComponent<MenuItem, StaticText<TEXT_DEFAULTMODESETTIGNS>,   SwitchScreenAction<DefaultModeSettingsMenu>>,
         makeComponent<MenuItem, StaticText<TEXT_TEMPOMATMODESETTINGS>,  SwitchScreenAction<TempomatModeSettingsMenu>>,
+#ifdef GLUMP_CONTROLLER
         makeComponent<MenuItem, StaticText<TEXT_LARSMMODESETTINGS>,     SwitchScreenAction<LarsmModeSettingsMenu>>,
+#endif
 #ifdef FEATURE_GAMETRAK
         makeComponent<MenuItem, StaticText<TEXT_GAMETRAKMODESETTINGS>,  SwitchScreenAction<GametrakModeSettingsMenu>>,
 #endif

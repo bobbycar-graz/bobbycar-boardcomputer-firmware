@@ -68,6 +68,7 @@ template<> struct nvsGetterHelper<bool> { static esp_err_t nvs_get(nvs_handle ha
             *out_value = tempValue;
         return err;
     }};
+#ifdef GLUMP_CONTROLLER
 template<> struct nvsGetterHelper<ControlType> { static esp_err_t nvs_get(nvs_handle handle, const char* key, ControlType* out_value)
     {
         uint8_t tempValue;
@@ -92,6 +93,7 @@ template<> struct nvsGetterHelper<LarsmModeMode> { static esp_err_t nvs_get(nvs_
             *out_value = LarsmModeMode(tempValue);
         return err;
     }};
+#endif
 template<> struct nvsGetterHelper<BluetoothMode> { static esp_err_t nvs_get(nvs_handle handle, const char* key, BluetoothMode* out_value)
     {
         uint8_t tempValue;
@@ -126,6 +128,7 @@ template<> struct nvsSetterHelper<uint16_t> { static constexpr auto nvs_set = &n
 template<> struct nvsSetterHelper<int32_t> { static constexpr auto nvs_set = &nvs_set_i32; };
 template<> struct nvsSetterHelper<uint32_t> { static constexpr auto nvs_set = &nvs_set_u32; };
 template<> struct nvsSetterHelper<bool> { static constexpr auto nvs_set = &nvs_set_u8; };
+#ifdef GLUMP_CONTROLLER
 template<> struct nvsSetterHelper<ControlType> { static esp_err_t nvs_set(nvs_handle handle, const char* key, ControlType value)
     {
         return nvs_set_u8(handle, key, uint8_t(value));
@@ -138,6 +141,7 @@ template<> struct nvsSetterHelper<LarsmModeMode> { static esp_err_t nvs_set(nvs_
     {
         return nvs_set_u8(handle, key, uint8_t(value));
     }};
+#endif
 template<> struct nvsSetterHelper<BluetoothMode> { static esp_err_t nvs_set(nvs_handle handle, const char* key, BluetoothMode value)
     {
         return nvs_set_u8(handle, key, uint8_t(value));

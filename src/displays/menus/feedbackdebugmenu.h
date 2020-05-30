@@ -11,6 +11,7 @@
 #include "debugtexthelpers.h"
 #include "debugcolorhelpers.h"
 
+#ifdef GLUMP_CONTROLLER
 namespace {
 class DebugMenu;
 }
@@ -33,3 +34,4 @@ class FeedbackDebugMenu :
 
 class FrontFeedbackDebugMenu : public FeedbackDebugMenu<TEXT_FRONTFEEDBACK, FrontTexts, FrontFeedbackColor> {};
 class BackFeedbackDebugMenu : public FeedbackDebugMenu<TEXT_BACKFEEDBACK, BackTexts, FrontFeedbackColor> {}; }
+#endif

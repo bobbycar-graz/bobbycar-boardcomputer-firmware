@@ -2,13 +2,19 @@
 
 #include <functional>
 
+#include <Arduino.h>
+#include <WString.h>
+
 #include "bobbycar-protocol/protocol.h"
 
 #include "feedbackparser.h"
+#include "VescUartControl-VESC6/VescUart.h"
 
 class HardwareSerial;
 
 namespace {
+#ifdef GLUMP_CONTROLLER
+
 struct Controller {
     Controller(HardwareSerial &serial, bool &enableLeft, bool &enableRight, bool &invertLeft, bool &invertRight) :
         serial{serial}, enableLeft{enableLeft}, enableRight{enableRight}, invertLeft{invertLeft}, invertRight{invertRight}
@@ -25,4 +31,37 @@ struct Controller {
 
     FeedbackParser parser{serial, feedbackValid, feedback};
 };
+#endif
+
+#ifdef VESC_CONTROLLER
+struct VescController {
+  VescController(HardwareSerial &serial, bool &enable) :
+        serial{serial}, enable{enable}
+    {
+    }
+
+    std::reference_wrapper<HardwareSerial> serial;
+    bool &enable;
+
+    bldcMeasure values;
+
+    float pwm = 0;
+
+//    Command command{};
+//
+//    bool feedbackValid{};
+//    Feedback feedback{};
+//
+//    FeedbackParser parser{serial, feedbackValid, feedback};
+
+    void update() {
+      SetSerialPort(&serial.get());
+      SetDebugSerialPort(NULL);
+
+      VescUartGetValue(values);
+
+      Serial.println(String{"Duty now "} + values.dutyNow);
+    }
+};
+#endif
 }

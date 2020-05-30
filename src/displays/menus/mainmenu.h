@@ -38,7 +38,9 @@ class MainMenu :
     public BackActionInterface<SwitchScreenAction<StatusDisplay>>,
     public StaticMenuDefinition<
         makeComponent<MenuItem, StaticText<TEXT_STATUS>,      SwitchScreenAction<StatusDisplay>, StaticMenuItemIcon<&icons::back>>,
+#ifdef GLUMP_CONTROLLER
         makeComponent<MenuItem, StaticText<TEXT_SELECTMODE>,  SwitchScreenAction<SelectModeMenu>, StaticMenuItemIcon<&icons::modes>>,
+#endif
         makeComponent<MenuItem, StaticText<TEXT_PRESETS>,     SwitchScreenAction<PresetsMenu>, StaticMenuItemIcon<&icons::presets>>,
         makeComponent<MenuItem, StaticText<TEXT_GRAPHS>,      SwitchScreenAction<GraphsMenu>, StaticMenuItemIcon<&icons::graph>>,
 #ifdef FEATURE_BMS
@@ -50,7 +52,9 @@ class MainMenu :
         makeComponent<MenuItem, StaticText<TEXT_MOSFETS>,     SwitchScreenAction<MosfetsMenu>, StaticMenuItemIcon<&icons::lock>>, // TODO icon
 #endif
         makeComponent<MenuItem, StaticText<TEXT_DEMOS>,       SwitchScreenAction<DemosMenu>, StaticMenuItemIcon<&icons::demos>>,
+#ifdef GLUMP_CONTROLLER
         makeComponent<MenuItem, StaticText<TEXT_POWEROFF>,    SwitchScreenAction<PoweroffDisplay>, StaticMenuItemIcon<&icons::poweroff>>,
+#endif
         makeComponent<MenuItem, StaticText<TEXT_REBOOT>,      RebootAction, StaticMenuItemIcon<&icons::reboot>>,
         makeComponent<MenuItem, StaticText<TEXT_DEBUG>,       SwitchScreenAction<DebugMenu>>
     >

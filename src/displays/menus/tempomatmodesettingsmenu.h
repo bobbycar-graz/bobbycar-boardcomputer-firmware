@@ -10,6 +10,7 @@
 #include "texts.h"
 #include "settingsaccessors.h"
 
+#ifdef GLUMP_CONTROLLER
 namespace {
 class TempomatModeSettingsMenu;
 class ModesSettingsMenu;
@@ -42,3 +43,4 @@ class TempomatModeSettingsMenu :
     >
 {};
 }
+#endif

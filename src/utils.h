@@ -8,6 +8,7 @@
 
 #include "display.h"
 #include "globals.h"
+#include "VescUartControl-VESC6/VescUart.h"
 
 namespace {
 bool currentlyReverseBeeping;
@@ -63,10 +64,12 @@ float fixBoardTemp(int16_t value)
     return value/10.;
 }
 
+#ifdef GLUMP_CONTROLLER
 String hallString(const MotorFeedback &motor)
 {
     return String{} + (motor.hallA ? '1' : '0') + (motor.hallB ? '1' : '0') + (motor.hallC ? '1' : '0');
 }
+#endif
 
 template<typename T>
 String toString(T value)
@@ -80,6 +83,7 @@ String toString<bool>(bool value)
     return value ? "true" : "false";
 }
 
+#ifdef GLUMP_CONTROLLER
 template<>
 String toString<ControlType>(ControlType value)
 {
@@ -104,6 +108,7 @@ String toString<ControlMode>(ControlMode value)
     }
     return String("Unknown: ") + int(value);
 }
+#endif
 
 template<>
 String toString<wl_status_t>(wl_status_t value)
@@ -138,6 +143,7 @@ String toString<ota_error_t>(ota_error_t value)
     return String("Unknown: ") + int(value);
 }
 
+#ifdef GLUMP_CONTROLLER
 std::array<std::reference_wrapper<Controller>, 2> controllers()
 {
     return {front, back};
@@ -245,24 +251,43 @@ void sendCommands()
     }
 }
 
-template<typename T, typename... Args>
-void switchScreen(Args&&... args);
-
 void updateSwapFrontBack()
 {
     front.serial = settings.controllerHardware.swapFrontBack ? Serial2 : Serial1;
     back.serial = settings.controllerHardware.swapFrontBack ? Serial1 : Serial2;
 }
+#endif
 
-void loadSettings()
+#ifdef VESC_CONTROLLER
+
+std::array<std::reference_wrapper<VescController>, 2> controllers()
 {
-    settingsSaver.load(settings);
+  return {one, two};
 }
 
-void saveSettings()
-{
-    settingsSaver.save(settings);
+float mapfloat(float x, float in_min, float in_max, float out_min, float out_max) {
+  float r = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+  if (r < out_min)r = out_min;
+  if (r > out_max)r = out_max;
+  return r;
 }
+
+void sendCommands()
+{
+  for (VescController &controller : controllers())
+  {
+    SetSerialPort(&controller.serial.get());
+    SetDebugSerialPort(NULL);
+
+    float current = mapfloat(controller.pwm, -1000, 1000, -settings.limits.iMotMax, settings.limits.iMotMax);
+
+    Serial.println(String{"New current "} + current);
+
+    VescUartSetCurrent(current);
+  }
+}
+
+#endif
 
 void updateAccumulators()
 {
@@ -271,6 +296,7 @@ void updateAccumulators()
     sumAbsoluteCurrent = 0.f;
     uint8_t count{0};
 
+#ifdef GLUMP_CONTROLLER
     for (const Controller &controller : controllers())
     {
         if (!controller.feedbackValid)
@@ -290,6 +316,17 @@ void updateAccumulators()
 
         count +=2;
     }
+#endif
+
+#ifdef VESC_CONTROLLER
+    for (VescController &controller : controllers()) {
+        avgSpeed += controller.values.rpm;
+        sumCurrent += controller.values.avgMotorCurrent;
+        sumAbsoluteCurrent += std::abs(controller.values.avgMotorCurrent);
+
+        count += 2;
+    }
+#endif
 
     if (count)
         avgSpeed /= count;
@@ -298,6 +335,20 @@ void updateAccumulators()
     sumAbsoluteCurrent = fixCurrent(sumAbsoluteCurrent);
 
     avgSpeedKmh = convertToKmh(avgSpeed);
+}
+
+
+template<typename T, typename... Args>
+void switchScreen(Args&&... args);
+
+void loadSettings()
+{
+    settingsSaver.load(settings);
+}
+
+void saveSettings()
+{
+    settingsSaver.save(settings);
 }
 
 void readPotis()

@@ -7,6 +7,7 @@
 #include "globals.h"
 #include "texts.h"
 
+#ifdef GLUMP_CONTROLLER
 namespace {
 class MainMenu;
 }
@@ -60,3 +61,4 @@ void PoweroffDisplay::stop()
         controller.command.poweroff = false;
 }
 }
+#endif

@@ -6,6 +6,7 @@
 
 #include "bobbycar-protocol/protocol.h"
 
+#ifdef GLUMP_CONTROLLER
 namespace {
 class LarsmMode : public ModeInterface
 {
@@ -108,3 +109,4 @@ void LarsmMode::update()
     sendCommands();
 }
 }
+#endif

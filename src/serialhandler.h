@@ -39,6 +39,7 @@ void handleSerial()
         case 'I':
             tft.init();
             break;
+#ifdef GLUMP_CONTROLLER
         case 'p':
         case 'P':
         {
@@ -55,6 +56,7 @@ void handleSerial()
                 controller.command.led = !firstLed;
             break;
         }
+#endif
         case 'r':
         case 'R':
             loadSettings();
@@ -63,6 +65,7 @@ void handleSerial()
         case 'S':
             saveSettings();
             break;
+#ifdef GLUMP_CONTROLLER
         case '0':
         case '1':
         case '2':
@@ -76,6 +79,7 @@ void handleSerial()
             for (Controller &controller : controllers())
                 controller.command.buzzer.freq = c-'0';
             break;
+#endif
         case 'A':
             InputDispatcher::rotate(-1);
             break;
