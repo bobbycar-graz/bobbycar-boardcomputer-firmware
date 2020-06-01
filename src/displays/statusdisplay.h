@@ -168,17 +168,11 @@ void StatusDisplay::initScreen()
     m_labelLimit0.start();
     tft.drawString("IP:", 0, bottomLines[1]);
     m_labelIpAddress.start();
-<<<<<<< HEAD
+#ifdef GLUMP_CONTROLLER
     tft.drawString("Limit1:", 160, bottomLines[1]);
     m_labelLimit1.start();
-    tft.drawString("Performance:", 0, bottomLines[2]);
-=======
-#ifdef GLUMP_CONTROLLER
-    tft.drawString("Limit1:", 160, 281);
-    m_labelLimit1.start();
 #endif
-    tft.drawString("Performance:", 0, 296);
->>>>>>> b343056... vesc control
+    tft.drawString("Performance:", 0, bottomLines[2]);
     m_labelPerformance.start();
     tft.drawString("Mode:", 125, bottomLines[2]);
     m_labelMode.start();

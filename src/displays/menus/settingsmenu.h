@@ -32,7 +32,6 @@ class MainMenu;
 }
 
 namespace {
-#ifdef GLUMP_CONTROLLER
 class SettingsMenu;
 using BluetoothModeChangeDisplay = makeComponent<
     ChangeValueDisplay<BluetoothMode>,
@@ -42,6 +41,7 @@ using BluetoothModeChangeDisplay = makeComponent<
     SwitchScreenAction<SettingsMenu>
 >;
 
+#ifdef GLUMP_CONTROLLER
 struct FrontLedAccessor : public RefAccessor<bool> { bool &getRef() const override { return front.command.led; } };
 struct BackLedAccessor : public RefAccessor<bool> { bool &getRef() const override { return back.command.led; } };
 #endif
@@ -59,7 +59,6 @@ class SettingsMenu :
 #endif
         makeComponent<MenuItem, StaticText<TEXT_CONTROLLERHARDWARESETTINGS>,    SwitchScreenAction<ControllerHardwareSettingsMenu>, StaticMenuItemIcon<&icons::hardware>>,
         makeComponent<MenuItem, StaticText<TEXT_BOARDCOMPUTERHARDWARESETTINGS>, SwitchScreenAction<BoardcomputerHardwareSettingsMenu>, StaticMenuItemIcon<&icons::hardware>>,
-#endif
         makeComponent<MenuItem, StaticText<TEXT_BLUETOOTHMODE>,                 SwitchScreenAction<BluetoothModeChangeDisplay>>,
 #ifdef FEATURE_BMS
         makeComponent<MenuItem, StaticText<TEXT_AUTOCONNECTBMS>,                ToggleBoolAction, CheckboxIcon, AutoConnectBmsAccessor>,
