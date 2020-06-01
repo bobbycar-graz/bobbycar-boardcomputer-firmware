@@ -61,7 +61,7 @@ int ReceiveUartMessage(uint8_t* payloadReceived, int num) {
 	bool messageRead = false;
 	uint8_t messageReceived[256];
 	int lenPayload = 0;
-	SerialType* serial;
+    SerialType* serial = nullptr;
 
 
 	switch (num) {
@@ -195,7 +195,7 @@ int PackSendPayload(uint8_t* payload, int lenPay, int num) {
 	messageSend[count++] = (uint8_t)(crcPayload >> 8);
 	messageSend[count++] = (uint8_t)(crcPayload & 0xFF);
 	messageSend[count++] = 3;
-	messageSend[count] = NULL;
+    messageSend[count] = 0;
 
 if(debugSerialPort!=NULL){
 	debugSerialPort->print("UART package send: "); SerialPrint(messageSend, count);
@@ -203,7 +203,7 @@ if(debugSerialPort!=NULL){
 } // DEBUG
 
 
-	SerialType *serial;
+    SerialType *serial = nullptr;
 
 	switch (num) {
 		case 0:
