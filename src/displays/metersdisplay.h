@@ -27,13 +27,6 @@ public:
     void rotate(int offset) override;
 
 private: 
-    class BoardStatus
-    {
-        public:
-        void redraw(const Controller &controller);
-        int batv;
-        int temper;
-    };
     //  Draw the analogue meter on the screen
     void analogMeter();
 
@@ -89,13 +82,13 @@ void MetersDisplay::redraw()
         iter++;
         iter->value = {controllers.back.feedback.batVoltage/100};
         iter++;
-        iter->value = {controllers.front.feedback.left.current/-10};
+        iter->value = {(int)(fixCurrent(controllers.front.feedback.left.current)*10)};
         iter++;
-        iter->value = {controllers.front.feedback.right.current/-10};
+        iter->value = {(int)(fixCurrent(controllers.front.feedback.right.current)*10)};
         iter++;
-        iter->value = {controllers.back.feedback.left.current/-10};
+        iter->value = {(int)(fixCurrent(controllers.back.feedback.left.current)*10)};
         iter++;
-        iter->value = {controllers.back.feedback.right.current/-10};
+        iter->value = {(int)(fixCurrent(controllers.back.feedback.right.current)*10)};
         tft.setTextColor(TFT_WHITE, TFT_BLACK);
         tft.setTextFont(2);
         tft.drawString(String(controllers.front.feedback.boardTemp/10), 55, 128);
@@ -129,14 +122,6 @@ void MetersDisplay::redraw()
     
 
     plotNeedle(avgSpeedKmh);
-}
-void MetersDisplay::BoardStatus::redraw(const Controller &controller)
-{
-    if(controller.feedbackValid)
-    {
-        batv = (int) controller.feedback.batVoltage;
-        temper = (int) controller.feedback.boardTemp;
-    }
 }
 void MetersDisplay::rotate(int offset)
 {
