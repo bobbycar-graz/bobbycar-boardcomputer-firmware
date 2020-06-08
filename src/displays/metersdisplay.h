@@ -26,7 +26,14 @@ public:
 
     void rotate(int offset) override;
 
-private:
+private: 
+    class BoardStatus
+    {
+        public:
+        void redraw(const Controller &controller);
+        int batv;
+        int temper;
+    };
     //  Draw the analogue meter on the screen
     void analogMeter();
 
@@ -61,27 +68,54 @@ void MetersDisplay::initScreen()
 
     // Draw 6 linear meters
     byte d = 40;
-    plotLinear("A0", 0, 160);
-    plotLinear("A1", 1 * d, 160);
-    plotLinear("A2", 2 * d, 160);
-    plotLinear("A3", 3 * d, 160);
-    plotLinear("A4", 4 * d, 160);
-    plotLinear("A5", 5 * d, 160);
+    plotLinear("Gas", 0, 160);
+    plotLinear("Brems", 1 * d, 160);
+    plotLinear("Bat %", 2 * d, 160);
+    plotLinear("Amp", 3 * d, 160);
+    plotLinear("T", 4 * d, 160);
+    plotLinear("speed", 5 * d, 160);
 }
-
 void MetersDisplay::redraw()
 {
     d += 4; if (d >= 360) d = 0;
 
     // Create a Sine wave for testing
-    for (auto iter = std::begin(values); iter != std::end(values); iter++)
-        iter->value = 50 + 50 * sin((d + (std::distance(std::begin(values), iter) * 60)) * 0.0174532925);
-
+    //for (auto iter = std::begin(values); iter != std::end(values); iter++)
+    auto iter = std::begin(values);
+    iter->value = {(int)gas/10};
+    iter++;
+    iter->value = {(int)brems/10};
+    iter++;
+    if(front.feedbackValid)
+    {
+        iter->value = {(int)((front.feedback.batVoltage/100)-36)*7};
+        iter++;
+        iter->value = {(int)sumCurrent};
+        iter++;
+        iter->value = {(int)front.feedback.boardTemp/10};
+        iter++;
+        iter->value = {(int)(front.feedback.left.speed-front.feedback.right.speed)/15};
+    }
+    else
+    {
+        iter->value = {(int)0};
+        iter++;
+        iter->value = {(int)0};
+    }
+    
     plotPointer();
+    
 
     plotNeedle(avgSpeedKmh);
 }
-
+void MetersDisplay::BoardStatus::redraw(const Controller &controller)
+{
+    if(controller.feedbackValid)
+    {
+        batv = (int) controller.feedback.batVoltage;
+        temper = (int) controller.feedback.boardTemp;
+    }
+}
 void MetersDisplay::rotate(int offset)
 {
     if (offset < 0)
