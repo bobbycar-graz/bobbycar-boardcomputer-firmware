@@ -65,42 +65,64 @@ void MetersDisplay::initScreen()
     tft.fillScreen(TFT_BLACK);
 
     analogMeter(); // Draw analogue meter
-
+    tft.setTextColor(TFT_WHITE);
+    tft.drawString("T front:", 0, 128);
+    tft.drawString("T back:", 0, 143);
+    tft.setTextFont(4);
+    tft.drawString("I:", 120, 133);
     // Draw 6 linear meters
     byte d = 40;
-    plotLinear("Gas", 0, 160);
-    plotLinear("Brems", 1 * d, 160);
-    plotLinear("Bat %", 2 * d, 160);
-    plotLinear("Amp", 3 * d, 160);
-    plotLinear("T", 4 * d, 160);
-    plotLinear("speed", 5 * d, 160);
+    plotLinear("V f", 0, 160);
+    plotLinear("V b", 1 * d, 160);
+    plotLinear("A1", 2 * d, 160);
+    plotLinear("A2", 3 * d, 160);
+    plotLinear("A3", 4 * d, 160);
+    plotLinear("A4", 5 * d, 160);
 }
 void MetersDisplay::redraw()
 {
     d += 4; if (d >= 360) d = 0;
-
-    // Create a Sine wave for testing
-    //for (auto iter = std::begin(values); iter != std::end(values); iter++)
     auto iter = std::begin(values);
-    iter->value = {(int)gas/10};
-    iter++;
-    iter->value = {(int)brems/10};
-    iter++;
-    if(front.feedbackValid)
+    if(controllers.front.feedbackValid && controllers.back.feedbackValid)
     {
-        iter->value = {(int)((front.feedback.batVoltage/100)-36)*7};
+        iter->value = {controllers.front.feedback.batVoltage/100};
         iter++;
-        iter->value = {(int)sumCurrent};
+        iter->value = {controllers.back.feedback.batVoltage/100};
         iter++;
-        iter->value = {(int)front.feedback.boardTemp/10};
+        iter->value = {controllers.front.feedback.left.current/-10};
         iter++;
-        iter->value = {(int)(front.feedback.left.speed-front.feedback.right.speed)/15};
+        iter->value = {controllers.front.feedback.right.current/-10};
+        iter++;
+        iter->value = {controllers.back.feedback.left.current/-10};
+        iter++;
+        iter->value = {controllers.back.feedback.right.current/-10};
+        tft.setTextColor(TFT_WHITE, TFT_BLACK);
+        tft.setTextFont(2);
+        tft.drawString(String(controllers.front.feedback.boardTemp/10), 55, 128);
+        tft.drawString(String(controllers.back.feedback.boardTemp/10), 55, 143);
+        tft.setTextFont(4);
+        tft.drawString(String(sumCurrent), 150, 133);
     }
     else
     {
         iter->value = {(int)0};
         iter++;
         iter->value = {(int)0};
+        iter++;
+        iter->value = {(int)0};
+        iter++;
+        iter->value = {(int)0};
+        iter++;
+        iter->value = {(int)0};
+        iter++;
+        iter->value = {(int)0};
+        iter++;
+        tft.setTextColor(TFT_WHITE, TFT_BLACK);
+        tft.setTextFont(2);
+        tft.drawString("N/A", 55, 128);
+        tft.drawString("N/A", 55, 143);
+        tft.setTextFont(4);
+        tft.drawString("N/A", 150, 133);
     }
     
     plotPointer();
