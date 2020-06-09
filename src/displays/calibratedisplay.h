@@ -3,7 +3,7 @@
 #include <array>
 
 #include <WString.h>
-
+#include "settings.h"
 #include "demodisplay.h"
 #include "actions/switchscreenaction.h"
 #include "globals.h"
@@ -36,6 +36,10 @@ public:
     void triggered() override;
 
 private:
+    int gasmaxwert = 0;
+    int gasminwert = 4000;
+    int bremsmaxwert = 0;
+    int bremsminwert = 4000;
     const bool m_bootup{false};
     ModeInterface *m_oldMode;
     IgnoreInputMode m_mode{0, ControlType::FieldOrientedControl, ControlMode::Torque};
@@ -85,14 +89,40 @@ void CalibrateDisplay::initScreen()
 
 void CalibrateDisplay::redraw()
 {
+    if(raw_gas + 150 < gasminwert)
+    {
+        gasminwert = raw_gas +150;
+    }
+    if(raw_gas - 150 > gasmaxwert)
+    {
+        gasmaxwert = raw_gas - 150;
+    }
+    if(raw_brems + 150 < bremsminwert)
+    {
+        bremsminwert = raw_brems + 150;
+    }
+    if(raw_brems - 150 > bremsmaxwert)
+    {
+        bremsmaxwert = raw_brems - 150;
+    }
     m_labels[0].redraw(String{gas});
     m_labels[1].redraw(String{raw_gas});
 
     m_labels[2].redraw(String{brems});
     m_labels[3].redraw(String{raw_brems});
-
+    settings.boardcomputerHardware.bremsMax = bremsmaxwert;
+    settings.boardcomputerHardware.bremsMin = bremsminwert;
+    settings.boardcomputerHardware.gasMax = gasmaxwert;
+    settings.boardcomputerHardware.gasMin = gasminwert;
+    
     m_progressBars[0].redraw(gas);
     m_progressBars[1].redraw(brems);
+    tft.setTextColor(TFT_WHITE, TFT_BLACK);
+    tft.setTextFont(4);
+    tft.drawString(String(gasminwert), 150, 50);
+    tft.drawString(String(gasmaxwert), 150, 70);
+    tft.drawString(String(bremsminwert), 150, 90);
+    tft.drawString(String(bremsmaxwert), 150, 110);
 }
 
 void CalibrateDisplay::stop()
