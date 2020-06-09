@@ -114,7 +114,7 @@ void CalibrateDisplay::redraw()
     settings.boardcomputerHardware.bremsMin = bremsminwert;
     settings.boardcomputerHardware.gasMax = gasmaxwert;
     settings.boardcomputerHardware.gasMin = gasminwert;
-    
+    saveSettings();
     m_progressBars[0].redraw(gas);
     m_progressBars[1].redraw(brems);
     tft.setTextColor(TFT_WHITE, TFT_BLACK);
