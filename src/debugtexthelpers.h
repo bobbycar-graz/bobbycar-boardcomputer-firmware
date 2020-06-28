@@ -65,6 +65,7 @@ private:
         struct CurrentFixedText : public virtual TextInterface { public: String text() const override { auto line = String{"current: "}; if (controller::get().feedbackValid) line += toString(fixCurrent(MotorFeedbackGetter::get().current)) + 'A'; return line; } };
         struct ChopsText : public virtual TextInterface { public: String text() const override { auto line = String{"chops: "}; if (controller::get().feedbackValid) line += toString(MotorFeedbackGetter::get().chops); return line; } };
         struct HallText : public virtual TextInterface { public: String text() const override { auto line = String{"hall: "}; if (controller::get().feedbackValid) line += hallString(MotorFeedbackGetter::get()); return line; } };
+        struct AngleDeltaText : public virtual TextInterface { public: String text() const override { auto line = String{"angleDelta: "}; if (controller::get().feedbackValid) line += toString(MotorFeedbackGetter::get().angleDelta); return line; } };
     };
 
 public:

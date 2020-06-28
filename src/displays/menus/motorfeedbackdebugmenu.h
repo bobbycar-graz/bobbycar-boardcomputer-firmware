@@ -30,7 +30,8 @@ class MotorFeedbackDebugMenu :
         makeComponent<MenuItem, typename Ttexts::CurrentFixedText, ColorInterface<TFT_DARKGREY>, DummyAction>,
         makeComponent<MenuItem, typename Ttexts::ChopsText,        ColorInterface<TFT_DARKGREY>, DummyAction>,
         makeComponent<MenuItem, typename Ttexts::HallText,         ColorInterface<TFT_DARKGREY>, DummyAction>,
-        makeComponent<MenuItem, StaticText<TEXT_BACK>,                             SwitchScreenAction<DebugMenu>, StaticMenuItemIcon<&icons::back>>
+        makeComponent<MenuItem, typename Ttexts::AngleDeltaText,   ColorInterface<TFT_DARKGREY>, DummyAction>,
+        makeComponent<MenuItem, StaticText<TEXT_BACK>,                                           SwitchScreenAction<DebugMenu>, StaticMenuItemIcon<&icons::back>>
     >
 {};
 
