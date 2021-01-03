@@ -26,28 +26,28 @@ class AboutMenu :
 public:
     AboutMenu()
     {
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_VERSION>,                                   DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<nullptr>,                                        DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_ESPINFO>,                                   DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspHeapSizeText,              StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspFreeHeapText,              StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspMinFreeHeapText,           StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspMaxAllocHeapText,          StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspPsramSizeText,             StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspFreePsramText,             StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspMinFreePsramText,          StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspMaxAllocPsramText,         StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspChipRevisionText,          StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspCpuFreqMHzText,            StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspCycleCountText,            StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspSdkVersionText,            StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspFlashChipSizeText,         StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspFlashChipSpeedText,        StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspFlashChipModeText,         StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspSketchSizeText,            StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspSketchMd5Text,             StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, EspFreeSketchSpaceText,       StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,        SwitchScreenAction<SettingsMenu>, StaticMenuItemIcon<&icons::back>>>();
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_VERSION>>());
+        constructMenuItem<NewMenuItem>();
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_ESPINFO>>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspHeapSizeText>(),        std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspFreeHeapText>(),        std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspMinFreeHeapText>(),     std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspMaxAllocHeapText>(),    std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspPsramSizeText>(),       std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspFreePsramText>(),       std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspMinFreePsramText>(),    std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspMaxAllocPsramText>(),   std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspChipRevisionText>(),    std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspCpuFreqMHzText>(),      std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspCycleCountText>(),      std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspSdkVersionText>(),      std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspFlashChipSizeText>(),   std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspFlashChipSpeedText>(),  std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspFlashChipModeText>(),   std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspSketchSizeText>(),      std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspSketchMd5Text>(),       std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<EspFreeSketchSpaceText>(), std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_BACK>>(),  std::make_unique<SwitchScreenAction<SettingsMenu>>(), std::make_unique<StaticMenuItemIcon<&icons::back>>());
     }
 };
 } // namespace

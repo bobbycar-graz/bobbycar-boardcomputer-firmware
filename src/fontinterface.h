@@ -15,7 +15,26 @@ public:
     int font() const override { return TFont; }
 };
 
-using DefaultFont = StaticFont<4>;
+class ConstantFont : public virtual FontInterface
+{
+public:
+    ConstantFont(int font) :
+        m_font{font}
+    {}
+
+    int font() const override { return m_font; }
+
+private:
+    const int m_font;
+};
+
+class DefaultFont : public ConstantFont
+{
+public:
+    DefaultFont() :
+        ConstantFont(4)
+    {}
+};
 
 class ChangeableFont : public virtual FontInterface
 {

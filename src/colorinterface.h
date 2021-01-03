@@ -8,17 +8,34 @@ public:
     virtual int color() const { return TFT_WHITE; };
 };
 
-template<int TColor>
-class StaticColor : public virtual ColorInterface
+class ConstantColor : public virtual ColorInterface
 {
 public:
-    static constexpr int STATIC_COLOR = TColor;
+    ConstantColor(int color) :
+        m_color{color}
+    {}
 
-    int color() const override { return TColor; }
+    int color() const override { return m_color; }
+
+private:
+    const int m_color;
 };
 
-using DefaultColor = StaticColor<TFT_WHITE>;
-using DisabledColor = StaticColor<TFT_DARKGREY>;
+class DefaultColor : public ConstantColor
+{
+public:
+    DefaultColor() :
+        ConstantColor(TFT_WHITE)
+    {}
+};
+
+class DisabledColor : public ConstantColor
+{
+public:
+    DisabledColor() :
+        ConstantColor(TFT_DARKGREY)
+    {}
+};
 
 class ChangeableColor : public virtual ColorInterface
 {

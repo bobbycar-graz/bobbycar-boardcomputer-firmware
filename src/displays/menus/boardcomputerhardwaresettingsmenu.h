@@ -143,34 +143,34 @@ class BoardcomputerHardwareSettingsMenu :
 public:
     BoardcomputerHardwareSettingsMenu()
     {
-        constructMenuItem<makeComponent<MenuItem, GasText,                             DisabledColor, StaticFont<2>, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, BremsText,                           DisabledColor, StaticFont<2>, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CALIBRATE>,          SwitchScreenAction<CalibrateDisplay>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETSAMPLECOUNT>,     SwitchScreenAction<SampleCountChangeScreen>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETGASMIN>,          SwitchScreenAction<GasMinChangeScreen>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETGASMAX>,          SwitchScreenAction<GasMaxChangeScreen>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETBREMSMIN>,        SwitchScreenAction<BremsMinChangeScreen>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETBREMSMAX>,        SwitchScreenAction<BremsMaxChangeScreen>>>();
+        constructMenuItem<NewMenuItem>(std::make_unique<GasText>(),                             std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<BremsText>(),                           std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_CALIBRATE>>(),          std::make_unique<SwitchScreenAction<CalibrateDisplay>>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_SETSAMPLECOUNT>>(),     std::make_unique<SwitchScreenAction<SampleCountChangeScreen>>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_SETGASMIN>>(),          std::make_unique<SwitchScreenAction<GasMinChangeScreen>>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_SETGASMAX>>(),          std::make_unique<SwitchScreenAction<GasMaxChangeScreen>>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_SETBREMSMIN>>(),        std::make_unique<SwitchScreenAction<BremsMinChangeScreen>>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_SETBREMSMAX>>(),        std::make_unique<SwitchScreenAction<BremsMaxChangeScreen>>());
 #if defined(FEATURE_DPAD) || defined(FEATURE_DPAD_3WIRESW) || defined(FEATURE_DPAD_5WIRESW)
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETDPADDEBOUNCE>,    SwitchScreenAction<DPadDebounceChangeScreen>>>();
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_SETDPADDEBOUNCE>>(),    std::make_unique<SwitchScreenAction<DPadDebounceChangeScreen>>());
 #endif
 #ifdef FEATURE_GAMETRAK
-        constructMenuItem<makeComponent<MenuItem, StaticText<nullptr>,                 DummyAction>,
-        constructMenuItem<makeComponent<MenuItem, GametrakXText,                       DisabledColor, StaticFont<2>, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, GametrakYText,                       DisabledColor, StaticFont<2>, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, GametrakDistText,                    DisabledColor, StaticFont<2>, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_GAMETRAKCALIBRATE>,  SwitchScreenAction<GametrakCalibrateDisplay>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETGAMETRAKXMIN>,    SwitchScreenAction<GametrakXMinChangeScreen>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETGAMETRAKXMAX>,    SwitchScreenAction<GametrakXMaxChangeScreen>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETGAMETRAKYMIN>,    SwitchScreenAction<GametrakYMinChangeScreen>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETGAMETRAKYMAX>,    SwitchScreenAction<GametrakYMaxChangeScreen>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETGAMETRAKDISTMIN>, SwitchScreenAction<GametrakDistMinChangeScreen>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETGAMETRAKDISTMAX>, SwitchScreenAction<GametrakDistMaxChangeScreen>>>();
+        constructMenuItem<NewMenuItem>(),
+        constructMenuItem<NewMenuItem>(std::make_unique<GametrakXText>(),                       std::make_unique<DisabledColor>(), std::make_unique<ConstantFont>(2));
+        constructMenuItem<NewMenuItem>(std::make_unique<GametrakYText>(),                       std::make_unique<DisabledColor>(), std::make_unique<ConstantFont>(2));
+        constructMenuItem<NewMenuItem>(std::make_unique<GametrakDistText>(),                    std::make_unique<DisabledColor>(), std::make_unique<ConstantFont>(2));
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_GAMETRAKCALIBRATE>>(),  std::make_unique<SwitchScreenAction<GametrakCalibrateDisplay>>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_SETGAMETRAKXMIN>>(),    std::make_unique<SwitchScreenAction<GametrakXMinChangeScreen>>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_SETGAMETRAKXMAX>>(),    std::make_unique<SwitchScreenAction<GametrakXMaxChangeScreen>>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_SETGAMETRAKYMIN>>(),    std::make_unique<SwitchScreenAction<GametrakYMinChangeScreen>>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_SETGAMETRAKYMAX>>(),    std::make_unique<SwitchScreenAction<GametrakYMaxChangeScreen>>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_SETGAMETRAKDISTMIN>>(), std::make_unique<SwitchScreenAction<GametrakDistMinChangeScreen>>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_SETGAMETRAKDISTMAX>>(), std::make_unique<SwitchScreenAction<GametrakDistMaxChangeScreen>>());
 #endif
-        constructMenuItem<makeComponent<MenuItem, StaticText<nullptr>,                 DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SWAPSCREENBYTES>,    ToggleBoolAction, CheckboxIcon, SwapScreenBytesAccessor>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_TIMERS>,             SwitchScreenAction<TimersMenu>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,               SwitchScreenAction<SettingsMenu>, StaticMenuItemIcon<&icons::back>>>();
+        constructMenuItem<NewMenuItem>();
+        //constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_SWAPSCREENBYTES>>(),    std::make_unique<ToggleBoolAction>(std::make_unique<SwapScreenBytesAccessor>()), std::make_unique<CheckboxIcon>(std::make_unique<SwapScreenBytesAccessor>())); // TODO feedc0de
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_TIMERS>>(),             std::make_unique<SwitchScreenAction<TimersMenu>>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_BACK>>(),               std::make_unique<SwitchScreenAction<SettingsMenu>>(), std::make_unique<StaticMenuItemIcon<&icons::back>>());
     }
 };
 } // namespace

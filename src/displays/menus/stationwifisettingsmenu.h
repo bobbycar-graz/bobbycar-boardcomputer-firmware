@@ -33,28 +33,28 @@ class StationWifiSettingsMenu :
 public:
     StationWifiSettingsMenu()
     {
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_WIFIRECONNECT>,           WifiReconnectAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_WIFIDISCONNECT>,          WifiDisconnectAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiIsConnectedText,                      StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_WIFICHANGEAUTOCONNECT>,   ToggleBoolAction, CheckboxIcon, WifiAutoConnectAccessor>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_WIFICHANGEAUTORECONNECT>, ToggleBoolAction, CheckboxIcon, WifiAutoReconnectAccessor>>();
-        constructMenuItem<makeComponent<MenuItem, WifiLocalIpText,                          StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiMacAddressText,                       StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiSubnetMaskText,                       StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiGatewayIpText,                        StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiDnsIpText,                            StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiBroadcastIpText,                      StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiNetworkIdText,                        StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiSubnetCIDRText,                       StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_WIFIENABLEIPV6>,          WifiEnableIpV6Action>>();
-        constructMenuItem<makeComponent<MenuItem, WifiLocalIpV6Text,                        StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiHostnameText,                         StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiStatusText,                           StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiSsidText,                             StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiPskText,                              StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiBssidText,                            StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiRssiText,                             StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                    SwitchScreenAction<WifiSettingsMenu>, StaticMenuItemIcon<&icons::back>>>();
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_WIFIRECONNECT>>(),           std::make_unique<WifiReconnectAction>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_WIFIDISCONNECT>>(),          std::make_unique<WifiDisconnectAction>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiIsConnectedText>(),                      std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        //constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_WIFICHANGEAUTOCONNECT>>(),   std::make_unique<ToggleBoolAction>(std::make_unique<WifiAutoConnectAccessor>()), std::make_unique<CheckboxIcon>(std::make_unique<WifiAutoConnectAccessor>())); // TODO feedc0de
+        //constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_WIFICHANGEAUTORECONNECT>>(), std::make_unique<ToggleBoolAction>(std::make_unique<WifiAutoReconnectAccessor>()), std::make_unique<CheckboxIcon>(std::make_unique<WifiAutoReconnectAccessor>())); // TODO feedc0de
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiLocalIpText>(),                          std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiMacAddressText>(),                       std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiSubnetMaskText>(),                       std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiGatewayIpText>(),                        std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiDnsIpText>(),                            std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiBroadcastIpText>(),                      std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiNetworkIdText>(),                        std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiSubnetCIDRText>(),                       std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_WIFIENABLEIPV6>>(),          std::make_unique<WifiEnableIpV6Action>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiLocalIpV6Text>(),                        std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiHostnameText>(),                         std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiStatusText>(),                           std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiSsidText>(),                             std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiPskText>(),                              std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiBssidText>(),                            std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiRssiText>(),                             std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_BACK>>(),                    std::make_unique<SwitchScreenAction<WifiSettingsMenu>>(), std::make_unique<StaticMenuItemIcon<&icons::back>>());
     }
 };
 } // namespace

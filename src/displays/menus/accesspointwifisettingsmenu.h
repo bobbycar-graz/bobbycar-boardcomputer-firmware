@@ -27,19 +27,19 @@ class AccessPointWifiSettingsMenu :
 public:
     AccessPointWifiSettingsMenu()
     {
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_WIFISOFTAP>,                  WifiSoftApAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_WIFISOFTAPDISCONNECT>,        WifiSoftApDisconnectAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_WIFISOFTAPDISCONNECTWIFIOFF>, WifiSoftApDisconnectWifioffAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiSoftApGetStationNumText,                  StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiSoftApIpText,                             StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiSoftApBroadcastIpText,                    StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiSoftApNetworkIdText,                      StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiSoftApSubnetCidrText,                     StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_WIFISOFTAPENABLEIPV6>,        WifiSoftApEnableIpV6Action>>();
-        constructMenuItem<makeComponent<MenuItem, WifiSoftApIpV6Text,                           StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiSoftApHostnameText,                       StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, WifiSoftApMacAddressText,                     StaticFont<2>, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                        SwitchScreenAction<WifiSettingsMenu>, StaticMenuItemIcon<&icons::back>>>();
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_WIFISOFTAP>>(),                  std::make_unique<WifiSoftApAction>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_WIFISOFTAPDISCONNECT>>(),        std::make_unique<WifiSoftApDisconnectAction>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_WIFISOFTAPDISCONNECTWIFIOFF>>(), std::make_unique<WifiSoftApDisconnectWifioffAction>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiSoftApGetStationNumText>(),                  std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiSoftApIpText>(),                             std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiSoftApBroadcastIpText>(),                    std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiSoftApNetworkIdText>(),                      std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiSoftApSubnetCidrText>(),                     std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_WIFISOFTAPENABLEIPV6>>(),        std::make_unique<WifiSoftApEnableIpV6Action>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiSoftApIpV6Text>(),                           std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiSoftApHostnameText>(),                       std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<WifiSoftApMacAddressText>(),                     std::make_unique<ConstantFont>(2), std::make_unique<DisabledColor>());
+        constructMenuItem<NewMenuItem>(std::make_unique<StaticText<TEXT_BACK>>(),                        std::make_unique<SwitchScreenAction<WifiSettingsMenu>>(), std::make_unique<StaticMenuItemIcon<&icons::back>>());
     }
 };
 } // namespace
