@@ -92,6 +92,7 @@ using namespace std::chrono_literals;
 #ifdef FEATURE_CLOUD
 #include "cloud.h"
 #endif
+#include "wifi_bobbycar.h"
 
 namespace {
 ModeInterface *lastMode{};
@@ -173,12 +174,6 @@ extern "C" void app_main()
     }
     printMemoryStats("loadSettings()");
 
-#ifdef FEATURE_SERIAL
-    bootLabel.redraw("swap front back");
-    updateSwapFrontBack();
-    printMemoryStats("swapFronBack()");
-#endif
-
     bootLabel.redraw("deviceName");
     if (const auto result = wifi_stack::get_default_mac_addr())
         std::sprintf(deviceName, STRING(DEVICE_PREFIX) "_%02hhx%02hhx%02hhx", result->at(3), result->at(4), result->at(5));
@@ -186,40 +181,15 @@ extern "C" void app_main()
         ESP_LOGE("MAIN", "get_default_mac_addr() failed: %.*s", result.error().size(), result.error().data());
     printMemoryStats("deviceName");
 
-    //bootLabel.redraw("setHostname");
-    //if (!WiFi.setHostname(deviceName))
-    //{
-        //Serial.println("Could not setHostname");
-    //}
-    //printMemoryStats("setHostname()");
+    bootLabel.redraw("wifi");
+    wifi_begin();
+    printMemoryStats("wifi_begin()");
 
-    //bootLabel.redraw("softAPsetHostname");
-    //if (!WiFi.softAPsetHostname(deviceName))
-    //{
-        //Serial.println("Could not softAPsetHostname");
-    //}
-    //printMemoryStats("softAPsetHostname()");
-
-    //bootLabel.redraw("WiFi mode");
-    //if (!WiFi.mode(settings.wifiSettings.autoWifiMode))
-    //{
-        //Serial.println("Could not set mode to WIFI_AP_STA");
-    //}
-    //printMemoryStats("WiFi.mode()");
-
-    //if (settings.wifiSettings.autoEnableAp)
-    //{
-        //bootLabel.redraw("WiFi softAp");
-        //WifiSoftApAction{}.triggered();
-        //printMemoryStats("WifiSoftApAction()");
-    //}
-
-    //bootLabel.redraw("WiFi begin");
-    //if (!WiFi.begin("realraum", "r3alraum"))
-    //{
-        //Serial.println("Could not begin WiFi");
-    //}
-    //printMemoryStats("WiFi.begin()");
+#ifdef FEATURE_SERIAL
+    bootLabel.redraw("swap front back");
+    updateSwapFrontBack();
+    printMemoryStats("swapFronBack()");
+#endif
 
 #ifdef FEATURE_BLUETOOTH
     if (settings.bluetoothSettings.autoBluetoothMode == BluetoothMode::Master)
@@ -304,6 +274,8 @@ extern "C" void app_main()
         //printMemoryStats("loop()");
 
         const auto now = espchrono::millis_clock::now();
+
+        wifi_update();
 
 #ifdef FEATURE_DPAD
         dpad::update();

@@ -1,10 +1,10 @@
 # Name,   Type, SubType,  Offset,   Size,     Flags
 nvs,      data, nvs,        0x10000,  0x40000,
-nvsFac,   data, nvs,        0x50000,  0x40000,
+#nvsFac,   data, nvs,        0x50000,  0x40000,
 phy_init, data, phy,        0x90000,   0x1000,
 otadata,  data, ota,        0x91000,   0x2000,
 # PADDING FOR APP ALIGN     0x93000,   0xD000,
-factory,  app,  factory,    0xA0000, 0x100000,
+#factory,  app,  factory,    0xA0000, 0x100000,
 app_0,    app,  ota_0,     0x1A0000, 0x400000,
 app_1,    app,  ota_1,     0x5A0000, 0x400000,
 nvs_key,  data, nvs_keys,  0x9A0000,   0x1000, encrypted
