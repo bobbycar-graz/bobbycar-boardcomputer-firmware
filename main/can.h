@@ -417,7 +417,7 @@ void sendCanCommands()
     case 10:
         if (send(Boardcomputer::Feedback::ButtonLeds, buttonLeds) == ESP_OK)
             lastValues.buttonLeds = buttonLeds;
-    [[fallthrough]]
+    [[fallthrough]];
     default:
         i=0;
         break;

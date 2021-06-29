@@ -157,9 +157,12 @@ void StatusDisplay::redraw()
     m_backStatus.redraw(controllers.back);
 
     tft.setTextFont(2);
-    //m_labelWifiStatus.redraw(to_string(WiFi.status()));
+    m_labelWifiStatus.redraw(wifi_stack::toString(wifi_stack::get_sta_status()));
     m_labelLimit0.redraw(std::to_string(controllers.front.command.left.iMotMax) + "A");
-    //m_labelIpAddress.redraw(to_string(WiFi.localIP()));
+    if (const auto result = wifi_stack::get_ip_info(TCPIP_ADAPTER_IF_STA))
+        m_labelIpAddress.redraw(wifi_stack::toString(result->ip));
+    else
+        m_labelIpAddress.clear();
     m_labelLimit1.redraw(std::to_string(controllers.front.command.left.iDcMax) + "A");
     m_labelPerformance.redraw(std::to_string(performance.last));
     m_labelMode.redraw(currentMode->displayName());
