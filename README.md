@@ -8,7 +8,9 @@
 ```
 git clone --recursive git@github.com:bobbycar-graz/bobbycar-boardcomputer-firmware.git
 cd bobbycar-boardcomputer-firmware/
-platformio run --environment bobbycar_usb --target upload
+./esp-idf/install.sh
+. esp-idf/export.sh
+idf.py -p /dev/ttyUSB0 -b 921600 flash monitor
 ```
 
 ## How to wire all connections?

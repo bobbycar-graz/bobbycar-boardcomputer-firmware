@@ -1,6 +1,42 @@
-[submodule "src/bobbycar-protocol"]
-	path = src/bobbycar-protocol
-	url = git@github.com:bobbycar-graz/bobbycar-protocol.git
 [submodule "src/espcpputils"]
-	path = src/espcpputils
+	path = components/espcpputils
 	url = git@github.com:0xFEEDC0DE64/espcpputils.git
+[submodule "esp-idf"]
+	path = esp-idf
+	url = git@github.com:0xFEEDC0DE64/esp-idf.git
+[submodule "components/cpputils"]
+	path = components/cpputils
+	url = git@github.com:0xFEEDC0DE64/cpputils.git
+[submodule "components/espcpputils"]
+	path = components/espcpputils
+	url = git@github.com:0xFEEDC0DE64/espcpputils.git
+[submodule "components/cxx-ring-buffer"]
+	path = components/cxx-ring-buffer
+	url = git@github.com:0xFEEDC0DE64/cxx-ring-buffer.git
+[submodule "components/date"]
+	path = components/date
+	url = git@github.com:0xFEEDC0DE64/date.git
+[submodule "components/espchrono"]
+	path = components/espchrono
+	url = git@github.com:0xFEEDC0DE64/espchrono.git
+[submodule "components/ArduinoJson"]
+	path = components/ArduinoJson
+	url = git@github.com:0xFEEDC0DE64/ArduinoJson.git
+[submodule "components/TFT_eSPI"]
+	path = components/TFT_eSPI
+	url = git@github.com:0xFEEDC0DE64/TFT_eSPI.git
+[submodule "components/arduino-esp32"]
+	path = components/arduino-esp32
+	url = git@github.com:0xFEEDC0DE64/arduino-esp32.git
+[submodule "components/expected"]
+	path = components/expected
+	url = git@github.com:0xFEEDC0DE64/expected.git
+[submodule "components/bobbycar-protocol"]
+	path = components/bobbycar-protocol
+	url = git@github.com:bobbycar-graz/bobbycar-protocol.git
+[submodule "components/fmt"]
+	path = components/fmt
+	url = git@github.com:0xFEEDC0DE64/fmt.git
+[submodule "components/espwifistack"]
+	path = components/espwifistack
+	url = git@github.com:0xFEEDC0DE64/espwifistack.git
