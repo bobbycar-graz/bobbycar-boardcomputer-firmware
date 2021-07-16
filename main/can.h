@@ -332,9 +332,9 @@ void sendCanCommands()
         front.command.buzzer.pattern != lastValues.front.pattern ||
         back.command.buzzer.freq     != lastValues.back.freq ||
         back.command.buzzer.pattern  != lastValues.back.pattern)
-        i = 8;
-    else if (buttonLeds              != lastValues.buttonLeds)
         i = 10;
+    else if (buttonLeds              != lastValues.buttonLeds)
+        i = 12;
 
     switch (i++)
     {
@@ -387,6 +387,18 @@ void sendCanCommands()
         send(MotorController<true, true>::Command::PhaseAdvMax, back.command.right.phaseAdvMax);
         break;
     case 8:
+        send(MotorController<false, false>::Command::CruiseCtrlEna, front.command.left.cruiseCtrlEna);
+        send(MotorController<false, true>::Command::CruiseCtrlEna, front.command.right.cruiseCtrlEna);
+        send(MotorController<true, false>::Command::CruiseCtrlEna, back.command.left.cruiseCtrlEna);
+        send(MotorController<true, true>::Command::CruiseCtrlEna, back.command.right.cruiseCtrlEna);
+        break;
+    case 9:
+        send(MotorController<false, false>::Command::CruiseMotTgt, front.command.left.nCruiseMotTgt);
+        send(MotorController<false, true>::Command::CruiseMotTgt, front.command.right.nCruiseMotTgt);
+        send(MotorController<true, false>::Command::CruiseMotTgt, back.command.left.nCruiseMotTgt);
+        send(MotorController<true, true>::Command::CruiseMotTgt, back.command.right.nCruiseMotTgt);
+        break;
+    case 10:
         if (send(MotorController<false, false>::Command::BuzzerFreq, front.command.buzzer.freq) == ESP_OK)
             lastValues.front.freq = front.command.buzzer.freq;
 //        if (send(MotorController<false, true>::Command::BuzzerFreq, front.command.buzzer.freq) == ESP_OK)
@@ -404,7 +416,7 @@ void sendCanCommands()
 //        if (send(MotorController<true, true>::Command::BuzzerPattern, back.command.buzzer.pattern) == ESP_OK)
 //            lastValues.back.pattern = back.command.buzzer.pattern;
         break;
-    case 9:
+    case 11:
         send(MotorController<false, false>::Command::Led, front.command.led);
         //send(MotorController<false, true>::Command::Led, front.command.led);
         send(MotorController<true, false>::Command::Led, back.command.led);
@@ -414,7 +426,7 @@ void sendCanCommands()
         send(MotorController<true, false>::Command::Poweroff, back.command.poweroff);
         //send(MotorController<true, true>::Command::Poweroff, back.command.poweroff);
         break;
-    case 10:
+    case 12:
         if (send(Boardcomputer::Feedback::ButtonLeds, buttonLeds) == ESP_OK)
             lastValues.buttonLeds = buttonLeds;
     [[fallthrough]];
