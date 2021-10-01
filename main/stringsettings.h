@@ -20,6 +20,13 @@ struct StringSettings
 
 #ifdef FEATURE_OTA
     std::string otaUrl;
+
+    struct OtaServer {
+        std::string serverName;
+        std::string serverUrl;
+    };
+
+    std::array<OtaServer, 10> otaservers;
 #endif
 
 #ifdef FEATURE_GARAGE
@@ -68,6 +75,27 @@ void StringSettings::executeForEveryCommonSetting(T &&callable)
 
 #ifdef FEATURE_OTA
     callable("otaUrl", otaUrl);
+
+    callable("otaser0name", otaservers[0].serverName);
+    callable("otaser0url", otaservers[0].serverUrl);
+    callable("otaser1name", otaservers[1].serverName);
+    callable("otaser1url", otaservers[1].serverUrl);
+    callable("otaser2name", otaservers[2].serverName);
+    callable("otaser2url", otaservers[2].serverUrl);
+    callable("otaser3name", otaservers[3].serverName);
+    callable("otaser3url", otaservers[3].serverUrl);
+    callable("otaser4name", otaservers[4].serverName);
+    callable("otaser4url", otaservers[4].serverUrl);
+    callable("otaser5name", otaservers[5].serverName);
+    callable("otaser5url", otaservers[5].serverUrl);
+    callable("otaser6name", otaservers[6].serverName);
+    callable("otaser6url", otaservers[6].serverUrl);
+    callable("otaser7name", otaservers[7].serverName);
+    callable("otaser7url", otaservers[7].serverUrl);
+    callable("otaser8name", otaservers[8].serverName);
+    callable("otaser8url", otaservers[8].serverUrl);
+    callable("otaser9name", otaservers[9].serverName);
+    callable("otaser9url", otaservers[9].serverUrl);
 #endif
 
 #ifdef FEATURE_GARAGE

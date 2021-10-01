@@ -3,7 +3,6 @@
 #include "actioninterface.h"
 #include "utils.h"
 #include "globals.h"
-#include "otadefine.h"
 #include <stdio.h>
 
 using namespace espgui;

@@ -77,7 +77,7 @@ public:
 #ifdef FEATURE_CLOUD
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CLOUDSETTINGS>,                 SwitchScreenAction<CloudSettingsMenu>>>();
 #endif
-#ifdef FEATURE_OTA
+#if defined(FEATURE_OTA) && defined(OTA_USERNAME)
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECTBUILDSERVER>,             SwitchScreenAction<BuildserverMenu>, StaticMenuItemIcon<&icons::update>>>();
 #endif
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_TIME>,                          SwitchScreenAction<TimeSettingsMenu>, StaticMenuItemIcon<&icons::time>>>();

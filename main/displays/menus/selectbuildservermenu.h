@@ -26,7 +26,7 @@ namespace  {
     public:
         BuildserverMenu()
         {
-            constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BUILDSERVER_COMR>,             SelectComrServerAction>>();
+            constructMenuItem<makeComponent<MenuItem, ChangeableText,             SelectComrServerAction>>();
             constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                         SwitchScreenAction<SettingsMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
         }
     };

@@ -144,7 +144,6 @@ set(headers
     macros_bobbycar.h
     modeinterface.h
     ota.h
-    otadefine.h
     serialhandler.h
     settings.h
     stringsettings.h

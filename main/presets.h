@@ -277,6 +277,7 @@ constexpr Settings defaultSettings {
 StringSettings makeDefaultStringSettings()
 {
     using ConfiguredWifi = StringSettings::ConfiguredWifi;
+    using OtaServer = StringSettings::OtaServer;
 
     return {
         .wifis = std::array<ConfiguredWifi, 10> {
@@ -296,6 +297,18 @@ StringSettings makeDefaultStringSettings()
 #endif
 #ifdef FEATURE_OTA
         .otaUrl = {},
+        .otaservers = std::array<OtaServer, 10> {
+            OtaServer { .serverName = {}, .serverUrl = {} },
+            OtaServer { .serverName = {}, .serverUrl = {} },
+            OtaServer { .serverName = {}, .serverUrl = {} },
+            OtaServer { .serverName = {}, .serverUrl = {} },
+            OtaServer { .serverName = {}, .serverUrl = {} },
+            OtaServer { .serverName = {}, .serverUrl = {} },
+            OtaServer { .serverName = {}, .serverUrl = {} },
+            OtaServer { .serverName = {}, .serverUrl = {} },
+            OtaServer { .serverName = {}, .serverUrl = {} },
+            OtaServer { .serverName = {}, .serverUrl = {} }
+        },
 #endif
 #ifdef FEATURE_GARAGE
         .garageUrl = {},
