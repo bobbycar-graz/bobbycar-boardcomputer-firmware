@@ -10,11 +10,15 @@
 #if defined(FEATURE_BLUETOOTH) || defined(FEATURE_BLE)
 #include "icons/bluetooth.h"
 #endif
+#ifdef FEATURE_OTA
+#include "selectbuildservermenu.h"
+#endif
 #include "icons/time.h"
 #include "icons/hardware.h"
 #include "icons/buzzer.h"
 #include "icons/info.h"
 #include "icons/back.h"
+#include "icons/update.h"
 #include "texts.h"
 #include "globals.h"
 #include "accessors/settingsaccessors.h"
@@ -33,6 +37,9 @@ class BoardcomputerHardwareSettingsMenu;
 class BuzzerMenu;
 class AboutMenu;
 class MainMenu;
+#ifdef FEATURE_OTA
+class BuildserverMenu;
+#endif
 }
 
 using namespace espgui;
@@ -69,6 +76,9 @@ public:
 #endif
 #ifdef FEATURE_CLOUD
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CLOUDSETTINGS>,                 SwitchScreenAction<CloudSettingsMenu>>>();
+#endif
+#ifdef FEATURE_OTA
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECTBUILDSERVER>,             SwitchScreenAction<BuildserverMenu>, StaticMenuItemIcon<&icons::update>>>();
 #endif
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_TIME>,                          SwitchScreenAction<TimeSettingsMenu>, StaticMenuItemIcon<&icons::time>>>();
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MODESSETTINGS>,                 SwitchScreenAction<ModesSettingsMenu>>>();

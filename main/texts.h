@@ -395,6 +395,10 @@ constexpr char TEXT_SINUSOIDAL[] = "Sinusoidal";
 constexpr char TEXT_FIELDORIENTEDCONTROL[] = "Field oriented control";
 //constexpr char TEXT_BACK[] = "Back";
 
+//BuildserverMenu
+constexpr char TEXT_SELECTBUILDSERVER[] = "Select Buildserver";
+constexpr char TEXT_BUILDSERVER_COMR[] = "commanderred.xyz";
+
 //ChangeValueDisplay<LarsmMode::Mode>
 constexpr char TEXT_LARSMMODE1[] = "Mode1";
 constexpr char TEXT_LARSMMODE2[] = "Mode2";

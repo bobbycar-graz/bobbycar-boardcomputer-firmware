@@ -19,6 +19,7 @@ set(headers
     actions/multiaction.h
     actions/rebootaction.h
     actions/savesettingsaction.h
+    actions/selectotaactions.h
     actions/tempomatmodeapplycurrentpeedaction.h
     actions/wifiscanaction.h
     actions/switchprofileaction.h
@@ -63,6 +64,7 @@ set(headers
     displays/menus/presetsmenu.h
     displays/menus/profilesmenu.h
     displays/menus/selectmodemenu.h
+    displays/menus/selectbuildservermenu.h
     displays/menus/settingsmenu.h
     displays/menus/stationwifisettingsmenu.h
     displays/menus/tempomatmodesettingsmenu.h
@@ -142,6 +144,7 @@ set(headers
     macros_bobbycar.h
     modeinterface.h
     ota.h
+    otadefine.h
     serialhandler.h
     settings.h
     stringsettings.h
