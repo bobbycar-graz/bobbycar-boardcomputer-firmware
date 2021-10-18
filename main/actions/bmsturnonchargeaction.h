@@ -1,23 +1,12 @@
 #pragma once
 
+// 3rdparty lib includes
 #include "actioninterface.h"
-#include "bmsutils.h"
 
-using namespace espgui;
-
-namespace {
 #ifdef FEATURE_BMS
-class BmsTurnOnChargeAction : public virtual ActionInterface
+class BmsTurnOnChargeAction : public virtual espgui::ActionInterface
 {
 public:
     void triggered() override
-    {
-        if (!bms::send6Bit(42405, 250, 1))
-        {
-            //Serial.println("Could not turn on charge mosfet");
-            // TODO: better error handling
-        }
-    }
 };
 #endif
-}

@@ -1,19 +1,12 @@
 #pragma once
 
+// 3rdparty lib includes
 #include "actioninterface.h"
-#include "globals.h"
 
-using namespace espgui;
-
-namespace {
 #ifdef FEATURE_BLUETOOTH
-class BluetoothFlushAction : public virtual ActionInterface
+class BluetoothFlushAction : public virtual espgui::ActionInterface
 {
 public:
-    void triggered() override
-    {
-        bluetoothSerial.flush();
-    }
+    void triggered() override;
 };
 #endif
-}

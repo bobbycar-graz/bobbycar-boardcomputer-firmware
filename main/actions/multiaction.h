@@ -1,15 +1,13 @@
 #pragma once
 
+// 3rdparty lib includes
 #include "actioninterface.h"
 
-using namespace espgui;
-
-namespace {
 template<typename ...T>
 class MultiAction;
 
 template<typename T>
-class MultiAction<T> : public virtual ActionInterface
+class MultiAction<T> : public virtual espgui::ActionInterface
 {
 public:
     void triggered() override
@@ -28,4 +26,3 @@ public:
         MultiAction<Tmore...>::triggered();
     }
 };
-}

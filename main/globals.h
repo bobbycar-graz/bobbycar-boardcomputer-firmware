@@ -27,55 +27,31 @@
 #include "settingspersister.h"
 #include "macros_bobbycar.h"
 
-using namespace espgui;
-
-namespace {
-std::optional<int16_t> raw_gas, raw_brems;
-std::optional<float> gas, brems;
+extern std::optional<int16_t> raw_gas, raw_brems;
+extern std::optional<float> gas, brems;
 
 #ifdef FEATURE_GAMETRAK
-int16_t raw_gametrakX, raw_gametrakY, raw_gametrakDist;
-float gametrakX, gametrakY, gametrakDist;
+extern int16_t raw_gametrakX, raw_gametrakY, raw_gametrakDist;
+extern float gametrakX, gametrakY, gametrakDist;
 #endif
-float avgSpeed, avgSpeedKmh, sumCurrent;
+extern float avgSpeed, avgSpeedKmh, sumCurrent;
 
-char deviceName[32] = STRING(DEVICE_PREFIX) "_ERR";
+extern char deviceName[32];
 
 #ifdef GLOBALS_PLUGIN
 #include GLOBALS_PLUGIN
 #endif
 
-#if defined(HAS_SIMPLIFIED)
-bool simplified = true;
-#else
-bool simplified = false;
-#endif
+extern bool simplified;
 
-Settings settings;
-StringSettings stringSettings;
-SettingsPersister settingsPersister;
+extern Settings settings;
+extern StringSettings stringSettings;
+extern SettingsPersister settingsPersister;
 
 class Controllers : public std::array<Controller, 2>
 {
 public:
-    explicit Controllers() :
-        std::array<Controller, 2>{{
-            Controller {
-#ifdef FEATURE_SERIAL
-                Serial1,
-#endif
-                settings.controllerHardware.enableFrontLeft, settings.controllerHardware.enableFrontRight, settings.controllerHardware.invertFrontLeft, settings.controllerHardware.invertFrontRight,
-                settings.battery.front30VoltCalibration, settings.battery.front50VoltCalibration
-            },
-            Controller {
-#ifdef FEATURE_SERIAL
-                Serial2,
-#endif
-                settings.controllerHardware.enableBackLeft, settings.controllerHardware.enableBackRight, settings.controllerHardware.invertBackLeft, settings.controllerHardware.invertBackRight,
-                settings.battery.back30VoltCalibration, settings.battery.back50VoltCalibration
-            }
-        }}
-    {}
+    explicit Controllers();
 
     Controllers(const Controllers &) = delete;
     Controllers &operator=(const Controllers &) = delete;
@@ -84,24 +60,27 @@ public:
     Controller &back{operator[](1)};
 };
 
-Controllers controllers;
+extern Controllers controllers;
 struct FrontControllerGetter { static Controller &get() { return controllers.front; }};
 struct BackControllerGetter { static Controller &get() { return controllers.back; }};
 
-struct {
+struct Performance {
     espchrono::millis_clock::time_point lastTime;
     int current{};
     int last{};
-} performance;
+};
+
+extern Performance performance;
 
 #ifdef FEATURE_BLUETOOTH
-BluetoothSerial bluetoothSerial;
+extern BluetoothSerial bluetoothSerial;
 #endif
 
-ModeInterface *lastMode{};
-ModeInterface *currentMode{};
+extern ModeInterface *lastMode;
+extern ModeInterface *currentMode;
 
 #ifdef FEATURE_LEDBACKLIGHT
+namespace {
 constexpr const bool ledBacklightInverted =
 #ifdef LEDBACKLIGHT_INVERTED
         true
@@ -109,5 +88,5 @@ constexpr const bool ledBacklightInverted =
         false
 #endif
 ;
+} // namespace
 #endif
-}

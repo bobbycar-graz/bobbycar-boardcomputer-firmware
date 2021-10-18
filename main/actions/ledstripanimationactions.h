@@ -1,38 +1,34 @@
 #pragma once
 
+// system includes
+#include <cstdint>
+
+// 3rdparty lib includes
 #include "actioninterface.h"
-#include "utils.h"
-#include "globals.h"
-#include "ledstrip.h"
-// #include "ledstripdefines.h"
 
-using namespace espgui;
-
-namespace {
 template<int16_t type>
-class LedStripSetAnimationAction : public virtual ActionInterface
+class LedStripSetAnimationAction : public virtual espgui::ActionInterface
 {
 public:
-    void triggered() override { animation_type = type; }
+    void triggered() override;
 };
 
 /*
-class LedstripAnimationDefaultRainbowAction : public virtual ActionInterface
+class LedstripAnimationDefaultRainbowAction : public virtual espgui::ActionInterface
 {
 public:
     void triggered() override { animation_type = LEDSTRIP_ANIMATION_TYPE_DEFAULTRAINBOW; }
 };
 
-class LedstripAnimationBetterRainbowAction : public virtual ActionInterface
+class LedstripAnimationBetterRainbowAction : public virtual espgui::ActionInterface
 {
 public:
     void triggered() override { animation_type = LEDSTRIP_ANIMATION_TYPE_BETTERRAINBOW; }
 };
 
-class LedstripAnimationSyncToSpeedAction : public virtual ActionInterface
+class LedstripAnimationSyncToSpeedAction : public virtual espgui::ActionInterface
 {
 public:
     void triggered() override { animation_type = LEDSTRIP_ANIMATION_TYPE_SPEEDSYNCANIMATION; }
 };
 */
-}

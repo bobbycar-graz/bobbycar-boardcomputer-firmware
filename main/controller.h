@@ -23,9 +23,8 @@
 class HardwareSerial;
 #endif
 
-namespace {
-
-struct Controller {
+struct Controller
+{
     Controller(
 #ifdef FEATURE_SERIAL
         HardwareSerial &serial,
@@ -75,4 +74,3 @@ struct Controller {
         return voltage;
     }
 };
-}

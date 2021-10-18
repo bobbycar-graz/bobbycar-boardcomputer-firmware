@@ -1,18 +1,14 @@
 #pragma once
 
+// system includes
+#include <cstdint>
+
+// 3rdparty lib includes
 #include "actioninterface.h"
-#include "settingsutils.h"
 
-using namespace espgui;
-
-namespace {
 template<uint8_t index>
-class SwitchProfileAction : public virtual ActionInterface
+class SwitchProfileAction : public virtual espgui::ActionInterface
 {
 public:
-    void triggered() override
-    {
-        switchProfile(index);
-    }
+    void triggered() override;
 };
-}

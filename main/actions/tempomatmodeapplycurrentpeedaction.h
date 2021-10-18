@@ -1,19 +1,10 @@
 #pragma once
 
-// local includes
+// 3rdparty lib includes
 #include "actioninterface.h"
-#include "globals.h"
-#include "modes/tempomatmode.h"
 
-using namespace espgui;
-
-namespace {
-class TempomatModeApplyCurrentSpeedAction : public virtual ActionInterface
+class TempomatModeApplyCurrentSpeedAction : public virtual espgui::ActionInterface
 {
 public:
-    void triggered() override
-    {
-        modes::tempomatMode.nCruiseMotTgt = avgSpeed;
-    }
+    void triggered() override;
 };
-} // namespace

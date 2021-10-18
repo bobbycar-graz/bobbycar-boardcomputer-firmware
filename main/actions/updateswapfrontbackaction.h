@@ -1,16 +1,12 @@
 #pragma once
 
+// 3rdparty lib includes
 #include "actioninterface.h"
-#include "utils.h"
 
-using namespace espgui;
-
-namespace {
 #ifdef FEATURE_SERIAL
-class UpdateSwapFrontBackAction : public virtual ActionInterface
+class UpdateSwapFrontBackAction : public virtual espgui::ActionInterface
 {
 public:
-    void triggered() override { updateSwapFrontBack(); }
+    void triggered() override;
 };
 #endif
-}

@@ -1,14 +1,10 @@
 #pragma once
 
+// 3rdparty lib includes
 #include "actioninterface.h"
-#include "utils.h"
 
-using namespace espgui;
-
-namespace {
-class LoadSettingsAction : public virtual ActionInterface
+class LoadSettingsAction : public virtual espgui::ActionInterface
 {
 public:
-    void triggered() override { loadSettings(); }
+    void triggered() override;
 };
-}

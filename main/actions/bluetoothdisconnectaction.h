@@ -1,23 +1,12 @@
 #pragma once
 
+// 3rdparty lib includes
 #include "actioninterface.h"
-#include "globals.h"
 
-using namespace espgui;
-
-namespace {
 #ifdef FEATURE_BLUETOOTH
-class BluetoothDisconnectAction : public virtual ActionInterface
+class BluetoothDisconnectAction : public virtual espgui::ActionInterface
 {
 public:
-    void triggered() override
-    {
-        if (!bluetoothSerial.disconnect())
-        {
-            //Serial.println("Could not disconnect bluetooth");
-            // TODO: better error handling
-        }
-    }
+    void triggered() override;
 };
 #endif
-}

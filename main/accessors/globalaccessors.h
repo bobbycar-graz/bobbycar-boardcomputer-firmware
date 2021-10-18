@@ -5,14 +5,8 @@
 #include "globals.h"
 #include "modes/tempomatmode.h"
 
-using namespace espgui;
+struct AvgSpeedAccessor : public espgui::RefAccessor<float> { float &getRef() const override { return avgSpeed; } };
+struct AvgSpeedKmhAccessor : public espgui::RefAccessor<float> { float &getRef() const override { return avgSpeedKmh; } };
+struct SumCurrentAccessor : public espgui::RefAccessor<float> { float &getRef() const override { return sumCurrent; } };
 
-namespace {
-
-struct AvgSpeedAccessor : public RefAccessor<float> { float &getRef() const override { return avgSpeed; } };
-struct AvgSpeedKmhAccessor : public RefAccessor<float> { float &getRef() const override { return avgSpeedKmh; } };
-struct SumCurrentAccessor : public RefAccessor<float> { float &getRef() const override { return sumCurrent; } };
-
-struct TempomatModeCruiseMotTgtAccessor : public RefAccessor<int16_t> { int16_t &getRef() const override { return modes::tempomatMode.nCruiseMotTgt; } };
-
-} // namespace
+struct TempomatModeCruiseMotTgtAccessor : public espgui::RefAccessor<int16_t> { int16_t &getRef() const override { return modes::tempomatMode.nCruiseMotTgt; } };

@@ -1,23 +1,12 @@
 #pragma once
 
+// 3rdparty lib includes
 #include "actioninterface.h"
-#include "globals.h"
 
-using namespace espgui;
-
-namespace {
 #ifdef FEATURE_BLUETOOTH
-class BluetoothBeginMasterAction : public virtual ActionInterface
+class BluetoothBeginMasterAction : public virtual espgui::ActionInterface
 {
 public:
-    void triggered() override
-    {
-        if (!bluetoothSerial.begin(deviceName, true))
-        {
-            //Serial.println("Could not begin bluetooth master");
-            // TODO: better error handling
-        }
-    }
+    void triggered() override;
 };
 #endif
-}
