@@ -249,12 +249,15 @@ void RemoteControlCallbacks::onWrite(NimBLECharacteristic* pCharacteristic)
     if (blinkAnimation != newBlinkAnimation) blinkAnimation = newBlinkAnimation;
 #endif
 
-    modes::remoteControlMode.setCommand(RemoteCommand{
-        .frontLeft = doc["fl"].as<int16_t>(),
-        .frontRight = doc["fr"].as<int16_t>(),
-        .backLeft = doc["bl"].as<int16_t>(),
-        .backRight = doc["br"].as<int16_t>()
-    });
+    if (!simplified)
+    {
+        modes::remoteControlMode.setCommand(RemoteCommand{
+            .frontLeft = doc["fl"].as<int16_t>(),
+            .frontRight = doc["fr"].as<int16_t>(),
+            .backLeft = doc["bl"].as<int16_t>(),
+            .backRight = doc["br"].as<int16_t>()
+        });
+    }
 }
 
 #ifdef FEATURE_WIRELESS_CONFIG
