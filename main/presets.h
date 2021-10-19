@@ -339,6 +339,7 @@ StringSettings makeDefaultStringSettings()
             ConfiguredOtaServer { .name = {}, .url = {} },
             ConfiguredOtaServer { .name = {}, .url = {} },*/
         },
+        .otaServerUrl = {},
 #endif
     };
 }

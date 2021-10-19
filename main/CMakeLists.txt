@@ -77,7 +77,6 @@ set(headers
     actions/multiaction.h
     actions/rebootaction.h
     actions/savesettingsaction.h
-    actions/selectbuildserveraction.h
     actions/switchprofileaction.h
     actions/tempomatmodeapplycurrentpeedaction.h
     actions/updateswapfrontbackaction.h

@@ -4,10 +4,14 @@
 #include "menudisplay.h"
 #include "utils.h"
 #include "actions/dummyaction.h"
-#include "actions/selectbuildserveraction.h"
 #include "icons/back.h"
 #include "texts.h"
 #include "globals.h"
+#include "buildserver.h"
+
+// Debugging
+#include "esp_log.h"
+#include "fmt/core.h"
 
 
 // forward declares
@@ -19,6 +23,28 @@ using namespace espgui;
 
 namespace {
 
+class BuildserverMenuItem : public MenuItem
+{
+
+public:
+
+    std::string text() const override { return m_buildserver_name; }
+    void setBuildserverName(std::string &&buildserver_name) { m_buildserver_name = std::move(buildserver_name); }
+    void setBuildserverName(const std::string &buildserver_name) { m_buildserver_name = buildserver_name; }
+    void setBuildserverUrl(std::string &&buildserver_url) { m_buildserver_url = std::move(buildserver_url); }
+    void setBuildserverUrl(const std::string &buildserver_url) { m_buildserver_url = buildserver_url; }
+
+    void triggered() override
+    {
+        stringSettings.otaServerUrl = m_buildserver_url;
+        saveSettings();
+    }
+
+private:
+    std::string m_buildserver_url;
+    std::string m_buildserver_name;
+};
+
 class SelectBuildServerMenu :
     public MenuDisplay,
     public StaticText<TEXT_SELECTBUILDSERVERMENU>,
@@ -27,22 +53,19 @@ class SelectBuildServerMenu :
 public:
     SelectBuildServerMenu() {
 
-        auto numDisplayedServers = 0;
-
-        for (auto index = 0; index < stringSettings.otaServers.size(); index++)
+        for (const auto &otaServer : stringSettings.otaServers)
         {
-            auto otaServer = stringSettings.otaServers[index];
             std::string url = otaServer.url;
             std::string name = (otaServer.name.empty()) ? url : otaServer.name;
 
             if (!name.empty()) {
-                auto menuitem = constructMenuItem<makeComponent<MenuItem, ChangeableText, DummyAction>>();
-                menuitem.setTitle(name);
-                numDisplayedServers++;
+                auto &menuitem = constructMenuItem<BuildserverMenuItem>();
+                menuitem.setBuildserverName(name);
+                menuitem.setBuildserverUrl(url);
             }
         }
 
-        if (!numDisplayedServers)
+        if (menuItemCount() < 1)
         {
             constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_NOBUILDSERVERCONFIGURED>, DummyAction>>();
         }
