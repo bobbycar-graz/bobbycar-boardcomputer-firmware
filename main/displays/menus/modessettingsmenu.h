@@ -8,32 +8,17 @@
 #include "texts.h"
 
 // forward declares
-namespace {
 class DefaultModeSettingsMenu;
 class TempomatModeSettingsMenu;
 class LarsmModeSettingsMenu;
 class GametrakModeSettingsMenu;
 class SettingsMenu;
-} // namespace
 
-using namespace espgui;
-
-namespace {
 class ModesSettingsMenu :
-    public MenuDisplay,
-    public StaticText<TEXT_MODESSETTINGS>,
-    public BackActionInterface<SwitchScreenAction<SettingsMenu>>
+    public espgui::MenuDisplay,
+    public espgui::StaticText<TEXT_MODESSETTINGS>,
+    public espgui::BackActionInterface<espgui::SwitchScreenAction<SettingsMenu>>
 {
 public:
-    ModesSettingsMenu()
-    {
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_DEFAULTMODESETTIGNS>,   SwitchScreenAction<DefaultModeSettingsMenu>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_TEMPOMATMODESETTINGS>,  SwitchScreenAction<TempomatModeSettingsMenu>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_LARSMMODESETTINGS>,     SwitchScreenAction<LarsmModeSettingsMenu>>>();
-#ifdef FEATURE_GAMETRAK
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_GAMETRAKMODESETTINGS>,  SwitchScreenAction<GametrakModeSettingsMenu>>>();
-#endif
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                  SwitchScreenAction<SettingsMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
-    }
+    ModesSettingsMenu();
 };
-} // namespace
