@@ -22,45 +22,15 @@
 #include "texts.h"
 
 // forward declares
-namespace {
 class SettingsMenu;
-} // namespace
 
-using namespace espgui;
-
-namespace {
 #ifdef FEATURE_BLUETOOTH
-class BluetoothSettingsMenu;
-
-using AutoBluetoothModeChangeDisplay = makeComponent<
-    ChangeValueDisplay<BluetoothMode>,
-    StaticText<TEXT_AUTOBLUETOOTHMODE>,
-    AutoBluetoothModeAccessor,
-    BackActionInterface<SwitchScreenAction<BluetoothSettingsMenu>>,
-    SwitchScreenAction<BluetoothSettingsMenu>
->;
-
 class BluetoothSettingsMenu :
-    public MenuDisplay,
-    public StaticText<TEXT_BLUETOOTHSETTINGS>,
-    public BackActionInterface<SwitchScreenAction<SettingsMenu>>
+    public espgui::MenuDisplay,
+    public espgui::StaticText<TEXT_BLUETOOTHSETTINGS>,
+    public espgui::BackActionInterface<espgui::SwitchScreenAction<SettingsMenu>>
 {
 public:
-    BluetoothSettingsMenu()
-    {
-        constructMenuItem<makeComponent<MenuItem, BluetoothAvailableText,                 DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, BluetoothHasClientText,                 DisabledColor, DummyAction>>();
-//        constructMenuItem<makeComponent<MenuItem, BluetoothConnectedText,                 DisabledColor, DummyAction>>(); // crashes
-        constructMenuItem<makeComponent<MenuItem, BluetoothIsReadyText,                   DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, BluetoothIsReadyMasterText,             DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BLUETOOTHBEGIN>,        BluetoothBeginAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BLUETOOTHBEGINMASTER>,  BluetoothBeginMasterAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BLUETOOTHFLUSH>,        BluetoothFlushAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BLUETOOTHEND>,          BluetoothEndAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BLUETOOTHDISCONNECT>,   BluetoothDisconnectAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_AUTOBLUETOOTHMODE>,     SwitchScreenAction<AutoBluetoothModeChangeDisplay>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                  SwitchScreenAction<SettingsMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
-    }
+    BluetoothSettingsMenu();
 };
 #endif
-} // namespace
