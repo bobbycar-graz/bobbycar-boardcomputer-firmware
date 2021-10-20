@@ -125,6 +125,8 @@ set(headers
     displays/menus/mosfetsmenu.h
     displays/menus/motorfeedbackdebugmenu.h
     displays/menus/motorstatedebugmenu.h
+    displays/menus/otamenu.h
+    displays/menus/selectotabuildmenu.h
     displays/menus/presetsmenu.h
     displays/menus/profilesmenu.h
     displays/menus/selectbatterytypemenu.h

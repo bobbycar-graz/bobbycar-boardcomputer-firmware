@@ -106,6 +106,8 @@ using namespace std::chrono_literals;
 #include "displays/statusdisplay.h"
 #ifdef FEATURE_OTA
 #include "displays/updatedisplay.h"
+#include "displays/menus/otamenu.h"
+#include "displays/menus/selectotabuildmenu.h"
 #endif
 #include "screens.h"
 #include "dpad.h"

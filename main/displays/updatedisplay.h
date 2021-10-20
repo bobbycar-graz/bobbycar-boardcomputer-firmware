@@ -23,12 +23,12 @@
 #include "ota.h"
 
 namespace {
-class MainMenu;
+class OtaMenu;
 }
 
 namespace {
 #ifdef FEATURE_OTA
-class UpdateDisplay : public Display, public BackActionInterface<SwitchScreenAction<MainMenu>>
+class UpdateDisplay : public Display, public BackActionInterface<SwitchScreenAction<OtaMenu>>
 {
 public:
     void start() override;

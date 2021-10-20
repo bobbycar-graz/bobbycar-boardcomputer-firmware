@@ -46,7 +46,7 @@ class Lockscreen;
 class MosfetsMenu;
 class DemosMenu;
 class GarageDisplay;
-class UpdateDisplay;
+class OtaMenu;
 class PoweroffDisplay;
 class DebugMenu;
 class BatteryMenu;
@@ -97,7 +97,7 @@ public:
     if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_GARAGE>,       SwitchScreenAction<GarageDisplay>>>(); }
 #endif
 #ifdef FEATURE_OTA
-    if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UPDATE>,       SwitchScreenAction<UpdateDisplay>, StaticMenuItemIcon<&bobbyicons::update>>>(); }
+    if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UPDATE>,       SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&bobbyicons::update>>>(); }
 #endif
                          constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_POWEROFF>,     SwitchScreenAction<PoweroffDisplay>, StaticMenuItemIcon<&bobbyicons::poweroff>>>();
                          constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_REBOOT>,       RebootAction, StaticMenuItemIcon<&bobbyicons::reboot>>>();
