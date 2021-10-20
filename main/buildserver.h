@@ -107,8 +107,8 @@ namespace {
             index++;
         }
 
-        url_for_latest = doc["latest"].as<std::string>();
-        url_for_hashes = doc["url"].as<std::string>();
+        url_for_latest = fix_url(fmt::format("{}{}", stringSettings.otaServerUrl, doc["latest"].as<std::string>()));
+        url_for_hashes = fix_url(fmt::format("{}{}", stringSettings.otaServerUrl, doc["url"].as<std::string>()));
         parsing_finished = true;
     }
 
