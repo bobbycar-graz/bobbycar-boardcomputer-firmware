@@ -482,6 +482,7 @@ constexpr char TEXT_OTA_NOBUILDSERVERAVAILABLE[] = "E:No server saved.";
 constexpr char TEXT_OTA_NOBUILDSERVERSELECTED[] = "E:No server selected.";
 constexpr char TEXT_OTA_NOCONNECTION[] = "E:No internet.";
 constexpr char TEXT_OTA_WAITFORRESPONSE[] = "Wait for response...";
+constexpr char TEXT_REDOWNLOAD[] = "Reload list";
 
 #ifdef FEATURE_CAN
 constexpr char TEXT_POWERSUPPLY[] = "Powersupply";

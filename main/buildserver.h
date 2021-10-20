@@ -25,6 +25,7 @@ namespace {
     bool request_running = false;
     uint16_t request_failed = false;
     bool parsing_finished = false;
+    static bool redownload = true;
     cpputils::DelayedConstruction<AsyncHttpRequest> request;
 
     std::string get_ota_url_from_index(uint16_t index)
@@ -95,9 +96,9 @@ namespace {
         }
 
         JsonObject availableVersionsObject = doc["availableVersions"];
+        static auto index = 0;
         for (JsonPair kv : availableVersionsObject)
         {
-            static auto index = 0;
             auto hash = kv.key().c_str();
             if (index > availableVersions.size())
             {
@@ -107,9 +108,12 @@ namespace {
             index++;
         }
 
+        index = 0;
+
         url_for_latest = fix_url(fmt::format("{}{}", stringSettings.otaServerUrl, doc["latest"].as<std::string>()));
         url_for_hashes = fix_url(fmt::format("{}{}", stringSettings.otaServerUrl, doc["url"].as<std::string>()));
         parsing_finished = true;
+        redownload = false;
     }
 
     void setup_request()
@@ -120,6 +124,11 @@ namespace {
 
     void start_descriptor_request(std::string server_base_url)
     {
+        if (!redownload)
+        {
+            parsing_finished = true;
+            return;
+        }
         if (!request.constructed())
         {
             ESP_LOGW("BOBBY", "request is im oarsch");
