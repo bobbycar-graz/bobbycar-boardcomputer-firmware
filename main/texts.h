@@ -214,6 +214,7 @@ constexpr char TEXT_ADDBRAKEVAL[] = "Sub Brake";
 constexpr char TEXT_HYBRIDENABLE[] = "Enable Hybrid mode";
 constexpr char TEXT_HYBRIDACTIVATIONLIMIT[] = "Hybrid activation-limit";
 constexpr char TEXT_HYBRIDDEACTIVATIONLIMIT[] = "Hybrid deactivation-limit";
+constexpr char TEXT_LIMITS_TO_NEAR[] = "Hybrid limits too near (>20)";
 //constexpr char TEXT_BACK[] = "Back";
 
 //DynamicDebugMenu

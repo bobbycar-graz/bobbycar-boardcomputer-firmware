@@ -1,5 +1,7 @@
 #pragma once
 
+#include <TFT_eSPI.h>
+
 // local includes
 #include "menudisplay.h"
 #include "utils.h"
@@ -8,6 +10,7 @@
 #include "menuitem.h"
 #include "actions/toggleboolaction.h"
 #include "actions/switchscreenaction.h"
+#include "actions/dummyaction.h"
 #include "checkboxicon.h"
 #include "icons/back.h"
 #include "texts.h"
@@ -122,6 +125,8 @@ class DefaultModeSettingsMenu :
 public:
     DefaultModeSettingsMenu()
     {
+        auto diff = std::abs(settings.hybrid.activationLimit - settings.hybrid.deactivationLimit);
+        if (diff < 20) { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_LIMITS_TO_NEAR>, StaticFont<2>, StaticColor<TFT_RED>, DummyAction>>(); }
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MODELMODE>,          SwitchScreenAction<DefaultModeModelModeChangeDisplay>>>();
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_HYBRIDMODE>,         SwitchScreenAction<DefaultModeHybridModelModeChangeDisplay>>>();
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SQUAREGAS>,          ToggleBoolAction, CheckboxIcon,  DefaultModeSquareGasAccessor>>();

@@ -23,6 +23,7 @@ public:
 
     bool waitForGasLoslass{false};
     bool waitForBremsLoslass{false};
+    bool hybridModeActivated{false};
 
 private:
     espchrono::millis_clock::time_point lastTime{espchrono::millis_clock::now()};
@@ -128,7 +129,36 @@ void DefaultMode::update()
         lastPwm = pwm;
         lastTime = now;
 
-        const auto pair = split(settings.defaultMode.modelMode);
+        auto pair = split(settings.defaultMode.modelMode);
+
+        if (settings.hybrid.enable)
+        {
+            auto activationLimit = settings.hybrid.activationLimit;
+            auto deactivationLimit = settings.hybrid.deactivationLimit;
+            auto diff = std::abs(activationLimit - deactivationLimit);
+
+            if (diff < 20)
+            {
+                int half = (diff / 2) + 0.5;
+                deactivationLimit -= half;
+                activationLimit += half;
+            }
+
+            if (!hybridModeActivated && (pwm > activationLimit))
+            {
+                hybridModeActivated = true;
+            }
+            else if (hybridModeActivated && (pwm < deactivationLimit))
+            {
+                hybridModeActivated = false;
+            }
+
+            if (hybridModeActivated)
+            {
+                pair = split(settings.hybrid.hybridMode);
+            }
+        }
+
         for (bobbycar::protocol::serial::MotorState &motor : motorsInController(controllers.front))
         {
             motor.ctrlTyp = pair.first;
