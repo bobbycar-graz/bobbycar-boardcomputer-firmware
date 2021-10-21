@@ -42,7 +42,7 @@ public:
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECTBUILD>,             SwitchScreenAction<SelectBuildMenu>, StaticMenuItemIcon<&bobbyicons::presets>>>();
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UPDATENOW>,               SwitchScreenAction<UpdateDisplay>, StaticMenuItemIcon<&bobbyicons::update>>>();
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECTBUILDSERVERMENU>,   SwitchScreenAction<SelectBuildServerMenu>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_REDOWNLOAD>,   RedownloadJsonAction>>();
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_REDOWNLOAD>,              RedownloadJsonAction>>();
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                    SwitchScreenAction<MainMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
     }
 };
