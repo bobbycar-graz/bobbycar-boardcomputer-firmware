@@ -40,6 +40,10 @@ public:
     void triggered() override
     {
         stringSettings.otaServerUrl = m_buildserver_url;
+        if (m_buildserver_url.substr(m_buildserver_url.length() - 4) == ".bin")
+        {
+            stringSettings.otaUrl = m_buildserver_url;
+        }
         saveSettings();
         redownload = true;
         url_for_latest.clear();
