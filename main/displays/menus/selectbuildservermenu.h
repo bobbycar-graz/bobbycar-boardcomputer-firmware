@@ -38,6 +38,7 @@ public:
     {
         stringSettings.otaServerUrl = m_buildserver_url;
         saveSettings();
+        redownload = true;
     }
 
 private:
