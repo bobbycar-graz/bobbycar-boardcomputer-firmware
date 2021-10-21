@@ -89,6 +89,16 @@ void handleSerial()
             InputDispatcher::backButton(true);
             InputDispatcher::backButton(false);
             break;
+        case 'z':
+        case 'Z':
+            InputDispatcher::blinkLeftButton(true);
+            InputDispatcher::blinkLeftButton(false);
+            break;
+        case 'u':
+        case 'U':
+            InputDispatcher::blinkRightButton(true);
+            InputDispatcher::blinkRightButton(false);
+            break;
         }
     }
 }
