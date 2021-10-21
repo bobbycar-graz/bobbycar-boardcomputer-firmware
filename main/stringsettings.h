@@ -43,7 +43,7 @@ struct StringSettings
         std::string url;
     };
 
-    std::array<ConfiguredOtaServer, 2> otaServers;
+    std::array<ConfiguredOtaServer, 5> otaServers;
     std::string otaServerUrl;
 #endif
 };
@@ -90,13 +90,13 @@ void StringSettings::executeForEveryCommonSetting(T &&callable)
     callable("otaName0",    otaServers[0].name);
     callable("otaUrl0",     otaServers[0].url);
     callable("otaName1",    otaServers[1].name);
-    callable("otaUrl1",     otaServers[1].url);/*
+    callable("otaUrl1",     otaServers[1].url);
     callable("otaName2",    otaServers[2].name);
     callable("otaUrl2",     otaServers[2].url);
     callable("otaName3",    otaServers[3].name);
     callable("otaUrl3",     otaServers[3].url);
     callable("otaName4",    otaServers[4].name);
-    callable("otaUrl4",     otaServers[4].url);
+    callable("otaUrl4",     otaServers[4].url);/*
     callable("otaName5",    otaServers[5].name);
     callable("otaUrl5",     otaServers[5].url);
     callable("otaName6",    otaServers[6].name);
