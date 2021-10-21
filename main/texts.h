@@ -489,6 +489,9 @@ constexpr char TEXT_OTA_NOCONNECTION[] = "E:No internet.";
 constexpr char TEXT_OTA_WAITFORRESPONSE[] = "Wait for response...";
 constexpr char TEXT_REDOWNLOAD[] = "Reload list";
 
+//LedstripColorMenu
+constexpr char TEXT_LEDSTRIPCOLORMENU[] = "Customize Ledstrip";
+
 #ifdef FEATURE_CAN
 constexpr char TEXT_POWERSUPPLY[] = "Powersupply";
 #endif
