@@ -1,5 +1,8 @@
 #pragma once
 
+// 3rdparty lib includes
+#include <TFT_eSPI.h>
+
 // local includes
 #include "menudisplay.h"
 #include "utils.h"
@@ -71,7 +74,7 @@ public:
 
         if (menuItemCount() < 1)
         {
-            constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_NOBUILDSERVERCONFIGURED>, DummyAction>>();
+            constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_NOBUILDSERVERCONFIGURED>, DefaultFont, StaticColor<TFT_RED>, DummyAction>>();
         }
 
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<SettingsMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();

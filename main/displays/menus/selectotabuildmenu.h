@@ -1,6 +1,7 @@
 #pragma once
 
 #include <espwifistack.h>
+#include <TFT_eSPI.h>
 #include "esp_log.h"
 #include "fmt/core.h"
 
@@ -15,7 +16,7 @@
 #include "buildserver.h"
 #include "globals.h"
 
-#define MESSAGE(text) constructMenuItem<makeComponent<MenuItem, StaticText<text>, DummyAction>>()
+#define MESSAGE(text) constructMenuItem<makeComponent<MenuItem, StaticText<text>, DefaultFont, StaticColor<TFT_RED>, DummyAction>>()
 
 // forward declares
 namespace {
@@ -28,6 +29,7 @@ namespace {
 
 // ToDo: if (request_failed) => MESSAGE("An error occurred")
 
+template<int item_color>
 class VersionMenuItem : public MenuItem
 {
 public:
@@ -41,6 +43,11 @@ public:
     {
         stringSettings.otaUrl = m_url;
         saveSettings();
+    }
+
+    int color() const override
+    {
+        return item_color;
     }
 private:
     std::string m_url;
@@ -82,7 +89,7 @@ public:
                 std::string serverUrl = stringSettings.otaServerUrl;
                 if (serverUrl.substr(serverUrl.length() - 4) == ".bin")
                 {
-                    auto &menuitem = constructMenuItem<VersionMenuItem>();
+                    auto &menuitem = constructMenuItem<VersionMenuItem<TFT_WHITE>>();
                     std::size_t last_slash_index = serverUrl.find_last_of("/");
                     auto filename = serverUrl.substr(last_slash_index+1);
                     auto hash = filename.substr(0, filename.length() - 4);
@@ -125,13 +132,13 @@ void SelectBuildMenu::update()
 
 void SelectBuildMenu::buildMenuFromJson()
 {
-    auto &latest = constructMenuItem<VersionMenuItem>();
+    auto &latest = constructMenuItem<VersionMenuItem<TFT_GREEN>>();
     latest.setHash("latest");
     latest.setUrl(url_for_latest);
 
     for (const std::string &hash : availableVersions)
     {
-        auto &menuitem = constructMenuItem<VersionMenuItem>();
+        auto &menuitem = constructMenuItem<VersionMenuItem<TFT_WHITE>>();
         menuitem.setHash(hash);
         menuitem.setUrl(fmt::format(url_for_hashes, hash));
     }
@@ -140,7 +147,7 @@ void SelectBuildMenu::buildMenuFromJson()
 
 void SelectBuildMenu::buildMenuRequestError(std::string error)
 {
-    auto &item = constructMenuItem<makeComponent<MenuItem, ChangeableText, DummyAction>>();
+    auto &item = constructMenuItem<makeComponent<MenuItem, ChangeableText, DefaultFont, StaticColor<TFT_RED>, DummyAction>>();
     item.setTitle(error);
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
