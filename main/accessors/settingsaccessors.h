@@ -126,6 +126,7 @@ struct CloudSendRateAccessor : public RefAccessorSaveSettings<int16_t> { int16_t
 #endif
 
 struct DefaultModeModelModeAccessor : public RefAccessorSaveSettings<UnifiedModelMode> { UnifiedModelMode &getRef() const override { return settings.defaultMode.modelMode; } };
+struct DefaultModeHybridModelModeAccessor : public RefAccessorSaveSettings<UnifiedModelMode> { UnifiedModelMode &getRef() const override { return settings.hybrid.hybridMode; } };
 struct DefaultModeSquareGasAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.defaultMode.squareGas; } };
 struct DefaultModeSquareBremsAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.defaultMode.squareBrems; } };
 
@@ -143,6 +144,10 @@ struct DefaultModeGas1WertAccessor : public RefAccessorSaveSettings<int16_t> { i
 struct DefaultModeGas2WertAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.defaultMode.gas2_wert; } };
 struct DefaultModeBrems1WertAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.defaultMode.brems1_wert; } };
 struct DefaultModeBrems2WertAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.defaultMode.brems2_wert; } };
+
+struct DefaultModeEnableHybridAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.hybrid.enable; } };
+struct DefaultModeHybridActivationLimitAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.hybrid.activationLimit; } };
+struct DefaultModeHybridDeactivationLimitAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return settings.hybrid.deactivationLimit; } };
 
 struct TempomatModeModelModeAccessor : public RefAccessorSaveSettings<UnifiedModelMode> { UnifiedModelMode &getRef() const override { return settings.tempomatMode.modelMode; } };
 

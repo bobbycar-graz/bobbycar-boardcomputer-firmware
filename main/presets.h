@@ -265,6 +265,13 @@ constexpr Settings::Battery defaultBattery {
     .applyCalibration = true
 };
 
+constexpr Settings::Hybrid defaultHybrid {
+    .hybridMode = UnifiedModelMode::FocTorque,
+    .enable = false,
+    .activationLimit = 1000,
+    .deactivationLimit = 950,
+};
+
 constexpr Settings defaultSettings {
 #ifdef FEATURE_BMS
     .autoConnectBms = false,
@@ -291,6 +298,7 @@ constexpr Settings defaultSettings {
     .ledstrip = defaultLedstrip,
 #endif
     .battery = defaultBattery,
+    .hybrid = defaultHybrid,
     .lockscreen = defaultLockscreen
 };
 

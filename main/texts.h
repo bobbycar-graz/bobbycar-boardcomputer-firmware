@@ -195,6 +195,7 @@ constexpr char TEXT_DYNAMICMENU[] = "Dynamic menu";
 //DefaultModeSettingsMenu
 //constexpr char TEXT_DEFAULTMODESETTINGS[] = "Default mode settings";
 constexpr char TEXT_MODELMODE[] = "Model mode";
+constexpr char TEXT_HYBRIDMODE[] = "Hybrid mode";
 constexpr char TEXT_SQUAREGAS[] = "Square gas";
 constexpr char TEXT_SQUAREBREMS[] = "Square brems";
 constexpr char TEXT_ENABLESMOOTHINGUP[] = "Enable up smoothing";
@@ -210,6 +211,9 @@ constexpr char TEXT_SUBGASVAL[] = "Add Gas";
 constexpr char TEXT_SUBBRAKEVAL[] = "Add Brake";
 constexpr char TEXT_ADDGASVAL[] = "Sub Gas";
 constexpr char TEXT_ADDBRAKEVAL[] = "Sub Brake";
+constexpr char TEXT_HYBRIDENABLE[] = "Enable Hybrid mode";
+constexpr char TEXT_HYBRIDACTIVATIONLIMIT[] = "Hybrid activation-limit";
+constexpr char TEXT_HYBRIDDEACTIVATIONLIMIT[] = "Hybrid deactivation-limit";
 //constexpr char TEXT_BACK[] = "Back";
 
 //DynamicDebugMenu
