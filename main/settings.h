@@ -3,6 +3,7 @@
 // system includes
 #include <cstdint>
 #include <array>
+#include <FastLED.h>
 
 // esp-idf includes
 #include <esp_wifi_types.h>

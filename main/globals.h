@@ -55,6 +55,8 @@ Settings settings;
 StringSettings stringSettings;
 SettingsPersister settingsPersister;
 
+std::array<CRGB, 8> ledstrip_custom_colors = {};
+
 class Controllers : public std::array<Controller, 2>
 {
 public:
