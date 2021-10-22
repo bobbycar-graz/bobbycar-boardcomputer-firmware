@@ -16,6 +16,7 @@
 #include "actions/switchscreenaction.h"
 #include "actioninterface.h"
 #include "globals.h"
+#include "esp_log.h"
 
 using namespace espgui;
 
@@ -25,7 +26,7 @@ namespace  {
 
 namespace {
 
-static uint8_t ledstrip_side;
+static int8_t selected_side = 7;
 static int8_t selected_color;
 bool state_select_color{false};
 bool last_state = {false};
@@ -78,15 +79,13 @@ public:
     void redraw() override;
     void rotate(int offset) override;
     void confirm() override;
-    uint8_t side_to_crgb_index(uint8_t side);
     void drawColors();
+    void drawSide(Bobbycar_Side side, unsigned int color);
+    void clearSides();
     LedstripColorsMenu() {}
+private:
+    bool already_drew_circle{false};
 };
-
-uint8_t LedstripColorsMenu::side_to_crgb_index(uint8_t side)
-{
-    return 0;
-}
 
 void LedstripColorsMenu::redraw()
 {
@@ -112,6 +111,11 @@ void LedstripColorsMenu::redraw()
     {
         tft.drawString("Please select a side!", 50, y_pos);
     }
+    if(!already_drew_circle)
+    {
+        this->drawSide(static_cast<Bobbycar_Side>(selected_side), TFT_GOLD);
+        already_drew_circle = true;
+    }
 }
 
 void LedstripColorsMenu::rotate(int offset)
@@ -126,7 +130,16 @@ void LedstripColorsMenu::rotate(int offset)
                 selected_color = 0;
             }
         }
-    } else if (offset > 0)
+        else
+        {
+            selected_side++;
+            if (selected_side > 7)
+            {
+                selected_side = 0;
+            }
+        }
+    }
+    else if (offset > 0)
     {
         if (state_select_color)
         {
@@ -134,6 +147,14 @@ void LedstripColorsMenu::rotate(int offset)
             if (selected_color < 0)
             {
                 selected_color = 7;
+            }
+        }
+        else
+        {
+            selected_side--;
+            if (selected_side < 0)
+            {
+                selected_side = 7;
             }
         }
     }
@@ -145,6 +166,8 @@ void LedstripColorsMenu::rotate(int offset)
     else
     {
         tft.fillRect(0, 228, tft.width(), ((tft.width() - 40) / 8) + 4, TFT_BLACK);
+        this->clearSides();
+        this->drawSide(static_cast<Bobbycar_Side>(selected_side), TFT_GOLD);
     }
 }
 
@@ -157,7 +180,12 @@ void LedstripColorsMenu::confirm()
     }
     else
     {
-        ledstrip_custom_colors[side_to_crgb_index(ledstrip_side)] = Colors[selected_color];
+        ledstrip_custom_colors[selected_side] = Colors[selected_color];
+        // Uncomment to close select color menu on color select
+        /*
+        state_select_color = false;
+        tft.fillRect(0, 228, tft.width(), ((tft.width() - 40) / 8) + 4, TFT_BLACK);
+        */
     }
 }
 
@@ -175,6 +203,57 @@ void LedstripColorsMenu::drawColors()
         auto offset = index * (cube_width);
         tft.fillRect(22 + offset, 232, cube_width - 4, cube_width - 4, tft_colors[index]);
     }
+}
+
+void LedstripColorsMenu::clearSides()
+{
+    for(int index = 0; index < 8; index++)
+    {
+        this->drawSide(static_cast<Bobbycar_Side>(index), TFT_BLACK);
+    }
+}
+
+void LedstripColorsMenu::drawSide(Bobbycar_Side side, unsigned int color)
+{
+    const auto middle = tft.width() / 2;
+    const auto width = bobbyicons::bobbycar.WIDTH;
+    const auto height = bobbyicons::bobbycar.HEIGHT;
+    const auto left = middle - (width / 2);
+    const auto right = middle + (width / 2);
+    const auto above = 50;
+    const auto bellow = above + 10 + bobbyicons::bobbycar.HEIGHT;
+
+    switch (side) {
+        case Bobbycar_Side::FRONT:
+            tft.fillRect(left, above, width, 5, color);
+            break;
+        case Bobbycar_Side::FRONT_LEFT:
+            tft.fillRect(left - 10, above + 10, 5, height / 2, color);
+            tft.fillRect(left, above, width / 2, 5, color);
+            break;
+        case Bobbycar_Side::LEFT:
+            tft.fillRect(left - 10, above + 10, 5, height, color);
+            break;
+        case Bobbycar_Side::BACK_LEFT:
+            tft.fillRect(left - 10, above + 10 + (height / 2), 5, height / 2, color);
+            tft.fillRect(left, bellow + 5, width / 2, 5, color);
+            break;
+        case Bobbycar_Side::BACK:
+            tft.fillRect(left, bellow + 5, width, 5, color);
+            break;
+        case Bobbycar_Side::BACK_RIGHT:
+            tft.fillRect(right + 5, above + 10 + (height / 2), 5, height / 2, color);
+            tft.fillRect(middle, bellow + 5, width / 2, 5, color);
+            break;
+        case Bobbycar_Side::RIGHT:
+            tft.fillRect(right + 5, above + 10, 5, height, color);
+            break;
+        case Bobbycar_Side::FRONT_RIGHT:
+            tft.fillRect(right + 5, above + 10, 5, height / 2, color);
+            tft.fillRect(middle, above, width / 2, 5, color);
+            break;
+    }
+    // tft.fillCircle(tft.width() / 2, 140, 100, TFT_BLACK);
 }
 
 } // Namespace

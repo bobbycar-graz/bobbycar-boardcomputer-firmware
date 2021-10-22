@@ -1,4 +1,7 @@
 #pragma once
+
+#include <FastLED.h>
+
 // local includes
 #include "menudisplay.h"
 #include "menuitem.h"
@@ -15,6 +18,7 @@
 #include "ledstrip.h"
 #endif
 #include "changevaluedisplay.h"
+#include "actioninterface.h"
 
 // forward declares
 namespace {
@@ -101,6 +105,17 @@ using ledstripBrightnessChangeScreen = makeComponent<
     SwitchScreenAction<LedstripMenu>
 >;
 
+class AllCustomLedsOffAction : public virtual ActionInterface
+{
+public:
+    void triggered() {
+        for(int index = 0; index < 8; index++)
+        {
+            ledstrip_custom_colors[index] = CRGB{0,0,0};
+        }
+    }
+};
+
 class LedstripMenu :
     public MenuDisplay,
     public StaticText<TEXT_LEDSTRIP>,
@@ -117,6 +132,7 @@ public:
 
  if (!simplified) { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_LEDSTRIP_STVO>, ToggleBoolAction, CheckboxIcon,   EnableLedstripStVOAccessor>>(); }
                     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_STVO_ENABLEFRONTLIGHT>, ToggleBoolAction, CheckboxIcon,   EnableLedstripStVOFrontlight>>();
+                    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_LEDSTRIP_ALLCUSTOMOFF>, AllCustomLedsOffAction>>();
  if (!simplified) { constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_STVO_FRONTOFFSET, LedsStVOFrontOffsetAccessor>,    SwitchScreenAction<StVOOffsetChangeScreen>>>(); }
  if (!simplified) { constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_STVO_FRONTLENGTH, LedsStVOFrontLengthAccessor>,    SwitchScreenAction<StVOLengthChangeScreen>>>(); }
 

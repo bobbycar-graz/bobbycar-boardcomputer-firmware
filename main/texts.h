@@ -289,6 +289,7 @@ constexpr char TEXT_STVO_FRONTLENGTH[] = "StVO Front Length";
 constexpr char TEXT_STVO_ENABLEFRONTLIGHT[] = "StVO Front Enable";
 constexpr char TEXT_ANIMATION_MULTIPLIER[] = "Animation Multiplier";
 constexpr char TEXT_LEDSTRIP_BRIGHTNESS[] = "Ledstrip Brightness";
+constexpr char TEXT_LEDSTRIP_ALLCUSTOMOFF[] = "All custom off";
 //constexpr char TEXT_BACK[] = "Back";
 
 //LedstripSelectAnimationMenu
@@ -296,6 +297,7 @@ constexpr char TEXT_SELECTANIMATION[] = "Select Animation";
 constexpr char TEXT_ANIMATION_DEFAULTRAINBOW[] = "Default Rainbow";
 constexpr char TEXT_ANIMATION_BETTERRAINBOW[] = "Better Rainbow";
 constexpr char TEXT_ANIMATION_SPEEDSYNCANIMATION[] = "Speed Sync";
+constexpr char TEXT_ANIMATION_CUSTOMCOLOR[] = "Custom Color";
 
 //LedstripSelectBlinkMenu
 constexpr char TEXT_ANIMATION_BLINKNONE[] = "Blink Off";

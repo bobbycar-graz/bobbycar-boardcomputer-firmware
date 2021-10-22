@@ -22,6 +22,8 @@ class currentSelectedAnimationText : public virtual TextInterface { public: std:
                 return TEXT_ANIMATION_BETTERRAINBOW;
             case LEDSTRIP_ANIMATION_TYPE_SPEEDSYNCANIMATION:
                 return TEXT_ANIMATION_SPEEDSYNCANIMATION;
+            case LEDSTRIP_ANIMATION_TYPE_CUSTOMCOLOR:
+                return TEXT_ANIMATION_CUSTOMCOLOR;
             default:
                 return "Animation Unkown";
         }
@@ -48,6 +50,7 @@ namespace  {
             constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_ANIMATION_DEFAULTRAINBOW>,     LedStripSetAnimationAction<LEDSTRIP_ANIMATION_TYPE_DEFAULTRAINBOW>>>();
             constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_ANIMATION_BETTERRAINBOW>,      LedStripSetAnimationAction<LEDSTRIP_ANIMATION_TYPE_BETTERRAINBOW>>>();
             constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_ANIMATION_SPEEDSYNCANIMATION>, LedStripSetAnimationAction<LEDSTRIP_ANIMATION_TYPE_SPEEDSYNCANIMATION>>>();
+            constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_ANIMATION_CUSTOMCOLOR>,        LedStripSetAnimationAction<LEDSTRIP_ANIMATION_TYPE_CUSTOMCOLOR>>>();
             constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                         SwitchScreenAction<LedstripMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
         }
     };

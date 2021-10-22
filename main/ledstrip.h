@@ -10,6 +10,18 @@
 #include "ledstripdefines.h"
 
 namespace {
+
+enum Bobbycar_Side {
+    FRONT_RIGHT,
+    RIGHT,
+    BACK_RIGHT,
+    BACK,
+    BACK_LEFT,
+    LEFT,
+    FRONT_LEFT,
+    FRONT
+};
+
 std::vector<CRGB> leds;
 uint8_t gHue = 0;
 
@@ -20,6 +32,7 @@ void showDefaultLedstrip();
 void showAnimation();
 void showBetterRainbow();
 void showSpeedSyncAnimation();
+void showCustomColor();
 
 void initLedStrip()
 {
@@ -154,6 +167,7 @@ void showAnimation() {
         if (animation_type == LEDSTRIP_ANIMATION_TYPE_DEFAULTRAINBOW) showDefaultLedstrip();
         else if (animation_type == LEDSTRIP_ANIMATION_TYPE_BETTERRAINBOW) showBetterRainbow();
         else if (animation_type == LEDSTRIP_ANIMATION_TYPE_SPEEDSYNCANIMATION) showSpeedSyncAnimation();
+        else if (animation_type == LEDSTRIP_ANIMATION_TYPE_CUSTOMCOLOR) showCustomColor();
         else showDefaultLedstrip();
     }
     else
@@ -220,6 +234,40 @@ void showDefaultLedstrip()
         leds[beatsin16(i + 7, 0, leds.size())] |= CHSV(dothue, 200, 255);
         dothue += 32;
     }
+}
+
+void showCustomColor()
+{
+    const auto eighth_length = leds.size() / 8;
+    const auto center = (std::begin(leds) + (leds.size() / 2) + settings.ledstrip.centerOffset);
+
+    std::fill(std::begin(leds), std::end(leds), ledstrip_custom_colors[int(Bobbycar_Side::FRONT)]); // Front
+    std::fill(center - (eighth_length / 2), center + (eighth_length / 2), ledstrip_custom_colors[int(Bobbycar_Side::BACK)]); // Back
+
+#ifdef LEDSTRIP_WRONG_DIRECTION
+    std::fill(center + (eighth_length / 2), center + (eighth_length / 2) + eighth_length, ledstrip_custom_colors[int(Bobbycar_Side::BACK_LEFT)]);  // Back Left
+    std::fill(center - (eighth_length / 2) - eighth_length, center - (eighth_length / 2), ledstrip_custom_colors[int(Bobbycar_Side::BACK_RIGHT)]); // Back Right
+#else
+    std::fill(center + (eighth_length / 2), center + (eighth_length / 2) + eighth_length, ledstrip_custom_colors[int(Bobbycar_Side::BACK_RIGHT)]);  // Back Right
+    std::fill(center - (eighth_length / 2) - eighth_length, center - (eighth_length / 2), ledstrip_custom_colors[int(Bobbycar_Side::BACK_LEFT)]);   // Back Left
+#endif
+
+#ifdef LEDSTRIP_WRONG_DIRECTION
+    std::fill(center + (eighth_length / 2) + eighth_length, center + (eighth_length / 2) + eighth_length + eighth_length, ledstrip_custom_colors[int(Bobbycar_Side::LEFT)]);  // Left
+    std::fill(center - (eighth_length / 2) - eighth_length - eighth_length, center - (eighth_length / 2) - eighth_length, ledstrip_custom_colors[int(Bobbycar_Side::RIGHT)]); // Right
+#else
+    std::fill(center + (eighth_length / 2) + eighth_length, center + (eighth_length / 2) + eighth_length + eighth_length, ledstrip_custom_colors[int(Bobbycar_Side::RIGHT)]);  // Right
+    std::fill(center - (eighth_length / 2) - eighth_length - eighth_length, center - (eighth_length / 2) - eighth_length, ledstrip_custom_colors[int(Bobbycar_Side::LEFT)]);   // Left
+#endif
+
+#ifdef LEDSTRIP_WRONG_DIRECTION
+    std::fill(center + (eighth_length / 2) + eighth_length + eighth_length, center + (eighth_length / 2) + eighth_length + eighth_length + eighth_length, ledstrip_custom_colors[int(Bobbycar_Side::FRONT_LEFT)]);  // Front Left
+    std::fill(center - (eighth_length / 2) - eighth_length - eighth_length - eighth_length, center - (eighth_length / 2) - eighth_length - eighth_length, ledstrip_custom_colors[int(Bobbycar_Side::FRONT_RIGHT)]); // Front Right
+#else
+    std::fill(center + (eighth_length / 2) + eighth_length + eighth_length, center + (eighth_length / 2) + eighth_length + eighth_length + eighth_length, ledstrip_custom_colors[int(Bobbycar_Side::FRONT_RIGHT)]);  // Front Right
+    std::fill(center - (eighth_length / 2) - eighth_length - eighth_length - eighth_length, center - (eighth_length / 2) - eighth_length - eighth_length, ledstrip_custom_colors[int(Bobbycar_Side::FRONT_LEFT)]);   // Front Left
+#endif
+
 }
 } // namespace
 #endif
