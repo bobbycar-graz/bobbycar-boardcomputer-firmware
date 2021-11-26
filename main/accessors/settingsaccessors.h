@@ -159,6 +159,9 @@ struct LarsmModeModelModeAccessor : public RefAccessorSaveSettings<UnifiedModelM
 struct LarsmModeModeAccessor : public RefAccessorSaveSettings<LarsmModeMode> { LarsmModeMode &getRef() const override { return settings.larsmMode.mode; } };
 struct LarsmModeIterationsAccessor : public RefAccessorSaveSettings<uint8_t> { uint8_t &getRef() const override { return settings.larsmMode.iterations; } };
 
+struct MotortestModeMultiplikatorAccessor : public RefAccessorSaveSettings<uint8_t> { uint8_t &getRef() const override { return settings.motortestMode.multiplikator; } };
+struct MotortestMaxPwmAccessor : public RefAccessorSaveSettings<uint16_t> { uint16_t &getRef() const override { return settings.motortestMode.maxPwm; } };
+
 #ifdef FEATURE_LEDSTRIP
 struct EnableLedAnimationAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.ledstrip.enableLedAnimation; } };
 struct EnableBrakeLightsAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return settings.ledstrip.enableBrakeLights; } };

@@ -158,6 +158,11 @@ struct Settings
         uint8_t iterations;
     } larsmMode;
 
+    struct MotortestMode {
+        uint8_t multiplikator;
+        uint16_t maxPwm;
+    } motortestMode;
+
 #ifdef FEATURE_LEDSTRIP
     struct Ledstrip {
         bool enableLedAnimation;

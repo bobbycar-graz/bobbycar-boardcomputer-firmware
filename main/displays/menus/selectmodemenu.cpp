@@ -11,6 +11,7 @@
 #include "modes/larsmmode.h"
 #include "modes/remotecontrolmode.h"
 #include "modes/gametrakmode.h"
+#include "modes/motortestmode.h"
 #include "accessors/globalaccessors.h"
 #include "displays/menus/mainmenu.h"
 
@@ -25,6 +26,7 @@ using SetDefaultModeAction = SetterAction<ModeInterface*, currentMode, DefaultMo
 using SetTempomatModeAction = SetterAction<ModeInterface*, currentMode, TempomatMode*, &modes::tempomatMode>;
 using SetLarsmModeAction = SetterAction<ModeInterface*, currentMode, LarsmMode*, &modes::larsmMode>;
 using SetRemoteControlModeAction = SetterAction<ModeInterface*, currentMode, RemoteControlMode*, &modes::remoteControlMode>;
+using SetMotorTestModeAction = SetterAction<ModeInterface*, currentMode, MotortestMode*, &modes::motortestMode>;
 #ifdef FEATURE_GAMETRAK
 using SetGametrakModeAction = SetterAction<ModeInterface*, currentMode, GametrakMode*, &modes::gametrakMode>;
 #endif
@@ -41,6 +43,7 @@ SelectModeMenu::SelectModeMenu()
 #ifdef FEATURE_GAMETRAK
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_GAMETRAK>,  MultiAction<SetGametrakModeAction, SwitchScreenAction<MainMenu>>>>();
 #endif
+    if (!simplified) { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MOTORTEST>, MultiAction<SetMotorTestModeAction, SwitchScreenAction<MainMenu>>>>(); }
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,      SwitchScreenAction<MainMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
@@ -54,10 +57,12 @@ void SelectModeMenu::start()
         setSelectedIndex(1);
     else if (currentMode == &modes::larsmMode)
         setSelectedIndex(2);
+    else if (currentMode == &modes::motortestMode)
+        setSelectedIndex(3);
     else
     {
         //Serial.printf("Unknown mode: %s", currentMode?currentMode->displayName():"");
-        setSelectedIndex(3);
+        setSelectedIndex(4);
     }
 }
 

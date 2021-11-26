@@ -277,6 +277,11 @@ constexpr char TEXT_SETMODE[] = "Set mode";
 constexpr char TEXT_SETITERATIONS[] = "Set iterations";
 //constexpr char TEXT_BACK[] = "Back";
 
+//MotortestModeSettingsMenu
+constexpr char TEXT_MOTORTESTMODESETTINGS[] = "Motortest mode seetings";
+constexpr char TEXT_MOTORTESTMAXPWM[] = "Max Pwm";
+constexpr char TEXT_MOTORTESTMULTIPLIKATOR[] = "Acceleration";
+
 //LedstripMenu
 constexpr char TEXT_LEDSTRIP[] = "Ledstrip";
 constexpr char TEXT_LEDANIMATION[] = "LED Animation";
@@ -407,6 +412,7 @@ constexpr char TEXT_TEMPOMAT[] = "Tempomat";
 constexpr char TEXT_LARSM[] = "Larsm";
 constexpr char TEXT_REMOTECONTROL[] = "Remote control";
 constexpr char TEXT_GAMETRAK[] = "Gametrak";
+constexpr char TEXT_MOTORTEST[] = "Motortest";
 //constexpr char TEXT_BACK[] = "Back";
 
 //TimersMenu

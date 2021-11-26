@@ -230,6 +230,11 @@ constexpr Settings::LarsmMode defaultLarsmMode {
     .iterations = 100
 };
 
+constexpr Settings::MotortestMode defaultMotortestMode {
+    .multiplikator = 2,
+    .maxPwm = 400
+};
+
 #ifdef FEATURE_LEDSTRIP
 constexpr Settings::Ledstrip defaultLedstrip {
     .enableLedAnimation = true,
@@ -307,6 +312,7 @@ constexpr Settings defaultSettings {
     .defaultMode = defaultDefaultMode,
     .tempomatMode = defaultTempomatMode,
     .larsmMode = defaultLarsmMode,
+    .motortestMode = defaultMotortestMode,
 #ifdef FEATURE_LEDSTRIP
     .ledstrip = defaultLedstrip,
 #endif

@@ -6,10 +6,12 @@
 #include "modes/tempomatmode.h"
 #include "modes/larsmmode.h"
 #include "modes/gametrakmode.h"
+#include "modes/motortestmode.h"
 #include "displays/menus/defaultmodesettingsmenu.h"
 #include "displays/menus/tempomatmodesettingsmenu.h"
 #include "displays/menus/larsmmodesettingsmenu.h"
 #include "displays/menus/gametrakmodesettingsmenu.h"
+#include "displays/menus/motortestmodesettingsmenu.h"
 #include "screenmanager.h"
 
 using namespace espgui;
@@ -29,6 +31,8 @@ void ModeSettingsAction::triggered()
         switchScreen<TempomatModeSettingsMenu>();
     else if (currentMode == &modes::larsmMode)
         switchScreen<LarsmModeSettingsMenu>();
+    else if (currentMode == &modes::motortestMode)
+        switchScreen<MotortestModeSettingsMenu>();
 #ifdef FEATURE_GAMETRAK
     else if (currentMode == &modes::gametrakMode)
         switchScreen<GametrakModeSettingsMenu>();

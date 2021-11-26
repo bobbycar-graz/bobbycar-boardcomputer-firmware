@@ -133,6 +133,7 @@ set(headers
     displays/menus/mosfetsmenu.h
     displays/menus/motorfeedbackdebugmenu.h
     displays/menus/motorstatedebugmenu.h
+    displays/menus/motortestmodesettingsmenu.h
     displays/menus/otamenu.h
     displays/menus/selectotabuildmenu.h
     displays/menus/presetsmenu.h
@@ -187,6 +188,7 @@ set(headers
     modes/larsmmode.h
     modes/remotecontrolmode.h
     modes/tempomatmode.h
+    modes/motortestmode.h
 )
 
 set(sources
@@ -324,6 +326,7 @@ set(sources
     displays/menus/mosfetsmenu.cpp
     displays/menus/motorfeedbackdebugmenu.cpp
     displays/menus/motorstatedebugmenu.cpp
+    displays/menus/motortestmodesettingsmenu.cpp
     displays/menus/otamenu.cpp
     displays/menus/selectotabuildmenu.cpp
     displays/menus/statisticsmenu.cpp
@@ -378,6 +381,7 @@ set(sources
     modes/larsmmode.cpp
     modes/remotecontrolmode.cpp
     modes/tempomatmode.cpp
+    modes/motortestmode.cpp
 )
 
 set(dependencies
