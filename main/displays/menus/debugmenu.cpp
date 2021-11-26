@@ -8,6 +8,7 @@
 #include "checkboxicon.h"
 #include "icons/back.h"
 #include "accessors/settingsaccessors.h"
+#include <screenmanager.h>
 
 // local includes
 #include "utils.h"
@@ -25,11 +26,27 @@
 #include "displays/menus/dynamicdebugmenu.h"
 #include "displays/menus/mainmenu.h"
 #include "displays/menus/batterydebugmenu.h"
+#include "displays/popups/alertdisplay.cpp"
+
+namespace {
+class AlertAction : public espgui::MenuItem
+{
+public:
+    std::string text() const override { return "Open popup"; }
+    void triggered() override
+    {
+        auto newDisplay = std::make_unique<AlertDisplay>(std::move(currentDisplay));
+        newDisplay->initOverlay();
+        currentDisplay = std::move(newDisplay);
+    }
+};
+} // namespace
 
 using namespace espgui;
 
 DebugMenu::DebugMenu()
 {
+    constructMenuItem<AlertAction>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_LOADSETTINGS>,         LoadSettingsAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SAVESETTINGS>,         SaveSettingsAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_ERASENVS>,             EraseNvsAction>>();

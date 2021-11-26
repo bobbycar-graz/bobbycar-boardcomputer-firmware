@@ -139,6 +139,7 @@ set(headers
     displays/menus/presetsmenu.h
     displays/menus/profilesmenu.h
     displays/menus/selectbatterytypemenu.h
+    displays/menus/ledstripselectotamode.h
     displays/menus/selectbuildservermenu.h
     displays/menus/selectmodemenu.h
     displays/menus/settingsmenu.h
@@ -157,7 +158,7 @@ set(headers
     displays/starfielddisplay.h
     displays/statusdisplay.h
     displays/updatedisplay.h
-    displays/menus/ledstripselectotamode.h
+    displays/popups/alertdisplay.h
     icons/alert.h
     icons/battery.h
     icons/bluetooth.h
@@ -351,6 +352,7 @@ set(sources
     displays/starfielddisplay.cpp
     displays/statusdisplay.cpp
     displays/updatedisplay.cpp
+    displays/popups/alertdisplay.h
     icons/alert.cpp
     icons/battery.cpp
     icons/bluetooth.cpp
