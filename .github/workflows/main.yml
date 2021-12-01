@@ -58,15 +58,24 @@ jobs:
             build_${{ matrix.node }}/bootloader/bootloader.bin
             build_${{ matrix.node }}/bootloader/bootloader.elf
             build_${{ matrix.node }}/partition_table/partition-table.bin
+            
+      - name: Prepare to upload
+        run: |
+          mkdir build_${{ matrix.node }}_${{ env.GITHUB_SHA }}
+          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.bin build_${{ matrix.node }}_${{ env.GITHUB_SHA }}/
+          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.elf build_${{ matrix.node }}_${{ env.GITHUB_SHA }}/
+          cp build_${{ matrix.node }}/bootloader/bootloader.bin build_${{ matrix.node }}_${{ env.GITHUB_SHA }}/
+          cp build_${{ matrix.node }}/bootloader/bootloader.elf build_${{ matrix.node }}_${{ env.GITHUB_SHA }}/
+          dp build_${{ matrix.node }}/partition_table/partition-table.bin build_${{ matrix.node }}_${{ env.GITHUB_SHA }}/
       
       - name: Deploy to file-host
         uses: up9cloud/action-rsync@v1.3
         env:
           HOST: commanderred.xyz
           KEY: ${{ secrets.RSYNC_SSH_KEY }}
-          TARGET: /home/github/${{ env.GITHUB_SHA }}
+          TARGET: /home/github
           USER: github
           SSH_ARGS: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
-          SOURCE: 'build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.bin'
-          PRE_SCRIPT: "echo Uploading to '/home/github/${{ env.GITHUB_SHA }}/'"
+          SOURCE: 'build_${{ matrix.node }}_${{ env.GITHUB_SHA }}/'
+          PRE_SCRIPT: "echo Uploading to '/home/github'"
           POST_SCRIPT: "echo Upload done"
