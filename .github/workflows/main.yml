@@ -47,6 +47,10 @@ jobs:
           ./switchconf.sh ${{ matrix.node }}
           idf.py --ccache build
           ccache -s
+          
+      - name: Set outputs
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v2.2.4
@@ -61,12 +65,12 @@ jobs:
             
       - name: Prepare to upload
         run: |
-          mkdir $(git rev-parse --short "${{ github.sha }}")
-          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.bin $(git rev-parse --short "${{ github.sha }}")/
-          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.elf $(git rev-parse --short "${{ github.sha }}")/
-          cp build_${{ matrix.node }}/bootloader/bootloader.bin $(git rev-parse --short "${{ github.sha }}")/
-          cp build_${{ matrix.node }}/bootloader/bootloader.elf $(git rev-parse --short "${{ github.sha }}")/
-          cp build_${{ matrix.node }}/partition_table/partition-table.bin $(git rev-parse --short "${{ github.sha }}")/
+          mkdir ${{ steps.vars.outputs.sha_short }}
+          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.bin ${{ steps.vars.outputs.sha_short }}/
+          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.elf ${{ steps.vars.outputs.sha_short }}/
+          cp build_${{ matrix.node }}/bootloader/bootloader.bin ${{ steps.vars.outputs.sha_short }}/
+          cp build_${{ matrix.node }}/bootloader/bootloader.elf ${{ steps.vars.outputs.sha_short }}/
+          cp build_${{ matrix.node }}/partition_table/partition-table.bin ${{ steps.vars.outputs.sha_short }}/
       
       - name: Deploy to file-host
         uses: up9cloud/action-rsync@v1.3
@@ -76,6 +80,6 @@ jobs:
           TARGET: /home/github/builds/${{ matrix.node }}
           USER: github
           SSH_ARGS: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
-          SOURCE: '$(git rev-parse --short "${{ github.sha }}")'
+          SOURCE: '${{ steps.vars.outputs.sha_short }}'
           PRE_SCRIPT: "echo Uploading from $(git rev-parse --short '${{ github.sha }}') to /home/github/builds/${{ matrix.node }}"
           POST_SCRIPT: "echo Upload done"
