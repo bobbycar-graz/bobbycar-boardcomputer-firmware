@@ -67,11 +67,11 @@ jobs:
             
       - name: Prepare to upload
         run: |
-          mkdir ${{ steps.vars.outputs.sha_short }}
-          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.bin ${{ steps.vars.outputs.sha_short }}/${{ steps.vars.outputs.sha_short }}.${{ steps.vars.outputs.branch }}.bin
-          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.elf ${{ steps.vars.outputs.sha_short }}/${{ steps.vars.outputs.sha_short }}.${{ steps.vars.outputs.branch }}.elf
+          mkdir ${{ matrix.node }}
+          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.bin ${{ matrix.node }}/${{ steps.vars.outputs.sha_short }}.${{ steps.vars.outputs.branch }}.bin
+          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.elf ${{ matrix.node }}/${{ steps.vars.outputs.sha_short }}.${{ steps.vars.outputs.branch }}.elf
           echo ${{ steps.vars.outputs.sha_short }}
-          echo Prepare for upload from ${{ steps.vars.outputs.sha_short }}/ to /home/github/builds/${{ matrix.node }}
+          echo Prepare for upload from ${{ matrix.node }}/ to /home/github/builds/${{ matrix.node }}
           
       
       - name: Deploy to file-host
