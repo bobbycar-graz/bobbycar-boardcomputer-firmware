@@ -61,19 +61,19 @@ jobs:
             
       - name: Prepare to upload
         run: |
-          mkdir build_${{ matrix.node }}_${{ github.sha }}
-          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.bin build_${{ matrix.node }}_${{ github.sha }}/
-          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.elf build_${{ matrix.node }}_${{ github.sha }}/
-          cp build_${{ matrix.node }}/bootloader/bootloader.bin build_${{ matrix.node }}_${{ github.sha }}/
-          cp build_${{ matrix.node }}/bootloader/bootloader.elf build_${{ matrix.node }}_${{ github.sha }}/
-          cp build_${{ matrix.node }}/partition_table/partition-table.bin build_${{ matrix.node }}_${{ github.sha }}/
+          mkdir $(git rev-parse --short "${{ github.sha }}")
+          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.bin $(git rev-parse --short "${{ github.sha }}")/
+          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.elf $(git rev-parse --short "${{ github.sha }}")/
+          cp build_${{ matrix.node }}/bootloader/bootloader.bin $(git rev-parse --short "${{ github.sha }}")/
+          cp build_${{ matrix.node }}/bootloader/bootloader.elf $(git rev-parse --short "${{ github.sha }}")/
+          cp build_${{ matrix.node }}/partition_table/partition-table.bin $(git rev-parse --short "${{ github.sha }}")/
       
       - name: Deploy to file-host
         uses: up9cloud/action-rsync@v1.3
         env:
           HOST: commanderred.xyz
           KEY: ${{ secrets.RSYNC_SSH_KEY }}
-          TARGET: /home/github/${{ github.sha }}
+          TARGET: /home/github/builds/${{ matrix.node }}
           USER: github
           SSH_ARGS: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
           SOURCE: 'build_${{ matrix.node }}_${{ github.sha }}'
