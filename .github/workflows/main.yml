@@ -71,6 +71,9 @@ jobs:
           cp build_${{ matrix.node }}/bootloader/bootloader.bin ${{ steps.vars.outputs.sha_short }}/
           cp build_${{ matrix.node }}/bootloader/bootloader.elf ${{ steps.vars.outputs.sha_short }}/
           cp build_${{ matrix.node }}/partition_table/partition-table.bin ${{ steps.vars.outputs.sha_short }}/
+          echo ${{ steps.vars.outputs.sha_short }}
+          echo Prepare for upload from ${{ steps.vars.outputs.sha_short }}/ to /home/github/builds/${{ matrix.node }}
+          
       
       - name: Deploy to file-host
         uses: up9cloud/action-rsync@v1.3
@@ -81,5 +84,5 @@ jobs:
           USER: github
           SSH_ARGS: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
           SOURCE: '${{ steps.vars.outputs.sha_short }}'
-          PRE_SCRIPT: "echo Uploading from $(git rev-parse --short '${{ github.sha }}') to /home/github/builds/${{ matrix.node }}"
+          PRE_SCRIPT: "echo Uploading from ${{ steps.vars.outputs.sha_short }}/ to /home/github/builds/${{ matrix.node }}"
           POST_SCRIPT: "echo Upload done"
