@@ -38,8 +38,7 @@ jobs:
       - name: Install ignore folder
         run: |
           ./tools/access.sh
-          ls -lah
-
+          
       - name: Build firmware
         run: |
           export CCACHE_MAXSIZE=400M CCACHE_BASEDIR="$(pwd)"
