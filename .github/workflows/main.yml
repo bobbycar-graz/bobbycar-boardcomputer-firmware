@@ -79,7 +79,7 @@ jobs:
         env:
           HOST: commanderred.xyz
           KEY: ${{ secrets.RSYNC_SSH_KEY }}
-          TARGET: /home/github/tmp/
+          TARGET: /home/github/tmp
           USER: github
           SSH_ARGS: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
           SOURCE: '${{ matrix.node }}'
@@ -93,7 +93,7 @@ jobs:
           key: ${{ secrets.RSYNC_SSH_KEY }}
           port: 22
           script: |
-            mv /home/github/tmp/${{ matrix.node }} /home/github/builds/${{ matrix.node }}
+            mv /home/github/tmp/${{ matrix.node }} /home/github/builds/
             rm -f /home/github/builds/${{ matrix.node }}/latest.bin
             ln -s /home/github/builds/${{ matrix.node }}/${{ steps.vars.outputs.sha_short }}.${{ steps.vars.outputs.branch }}.bin /home/github/builds/${{ matrix.node }}/latest.bin
             cd bobbycar-boardcomputer-firmware
