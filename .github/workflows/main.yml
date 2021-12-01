@@ -13,6 +13,8 @@ jobs:
       fail-fast: false
       matrix:
         node: [feedc0de, comred, peter, mick]
+    env:
+      IGNORE_KEY: ${{ secrets.IGNORE_KEY }}
     steps:
       - name: Checkout (without submodules)
         uses: actions/checkout@v2
