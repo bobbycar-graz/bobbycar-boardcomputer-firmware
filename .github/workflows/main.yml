@@ -92,5 +92,6 @@ jobs:
           key: ${{ secrets.RSYNC_SSH_KEY }}
           port: 22
           script: |
+            mv /home/github/builds/${{ steps.vars.outputs.sha_short }} /home/github/builds/${{ matrix.node }}
             rm -f /home/github/builds/${{ matrix.node }}/latest.bin
             ln -s /home/github/builds/${{ matrix.node }}/${{ steps.vars.outputs.sha_short }}.bin /home/github/builds/${{ matrix.node }}/latest.bin
