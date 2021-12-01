@@ -35,6 +35,11 @@ jobs:
         uses: 0xFEEDC0DE64/setup_ccache@main
         with:
           key: ${{ runner.os }}-ccache-${{ matrix.node }}
+          
+      - name: Install ignore folder
+        run: |
+          ./tools/access.sh
+          ls -lah
 
       - name: Build firmware
         run: |
