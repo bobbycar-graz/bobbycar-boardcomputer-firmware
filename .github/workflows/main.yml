@@ -11,6 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: deploy
     strategy:
       fail-fast: false
       matrix:
