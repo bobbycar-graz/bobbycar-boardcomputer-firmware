@@ -64,7 +64,7 @@ jobs:
         env:
           HOST: commanderred.xyz
           KEY: ${{ secrets.RSYNC_SSH_KEY }}
-          TARGET: /home/github/${{GITHUB_SHA}}/
+          TARGET: /home/github/${{ env.GITHUB_SHA }}/
           SSH_ARGS: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
           SOURCE: |
             uild_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.bin
