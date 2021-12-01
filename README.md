@@ -5,7 +5,7 @@
 | Service | Status |
 | :---                |                                                                                                                   ---: |
 | Actions (master) | ![Build Status](https://github.com/bobbycar-graz/bobbycar-boardcomputer-firmware/actions/workflows/main.yml/badge.svg) |
-| Actions (cloud)  | ![Build Status (cloud)](https://github.com/bobbycar-graz/bobbycar-boardcomputer-firmware/actions/workflows/main.yml/badge.svg?branch=cloud) |
+| Bobbycloud (no-specific-branch)  | ![Bobbycloud](http://bobbycar.commanderred.xyz/badge) |
 
 ## How to clone ? (READ THIS OR YOU WILL FAIL)
 
