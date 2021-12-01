@@ -3,6 +3,10 @@
 // 3rdparty lib includes
 #include <tftinstance.h>
 #include <screenmanager.h>
+#include <fmt/core.h>
+
+// local includes
+#include "utils.h"
 
 AlertDisplay::AlertDisplay(std::string &&message, std::unique_ptr<Display> &&lastDisplay) :
     m_message{std::move(message)}, m_lastDisplay{std::move(lastDisplay)}
@@ -44,6 +48,32 @@ void AlertDisplay::initOverlay()
                                espgui::tft.color565(40, 40, 40));
 
     espgui::tft.setTextColor(TFT_WHITE, espgui::tft.color565(40, 40, 40));
+
+    std::string _message{};
+    std::vector<std::string> concated{};
+
+    std::vector<std::string> lines{};
+    str_split(m_message, lines, ' ');
+
+    int line_width = 0;
+
+    for (int i=0;i<lines.size();i++) {
+        const auto line = lines[i];
+        const auto line_length = espgui::tft.textWidth(line, 4);
+        if (line_width + line_length > espgui::tft.width())
+        {
+            concated.push_back(fmt::format("{}\n", line));
+            line_width = 0;
+        }
+        else
+        {
+            if (line_width > 0)
+                line_width++;
+            line_width += line_length;
+            concated.push_back(fmt::format("{} ", line));
+        }
+    }
+
 
     int x = leftMargin + 5;
     int y = topMargin + 5;
