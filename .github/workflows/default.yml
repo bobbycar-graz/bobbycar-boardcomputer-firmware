@@ -1,5 +1,8 @@
 on:
   push:
+  pull_request:
+    branches:
+      - main
   page_build:
   release:
     types:
@@ -8,7 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: deploy
+    environment: default
     strategy:
       fail-fast: false
       matrix:
@@ -33,11 +36,6 @@ jobs:
         with:
           key: ${{ runner.os }}-ccache-${{ matrix.node }}
           
-      - name: Install ignore folder
-        run: |
-          ./tools/access.sh
-          ls -lah
-
       - name: Build firmware
         run: |
           export CCACHE_MAXSIZE=400M CCACHE_BASEDIR="$(pwd)"
