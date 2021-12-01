@@ -60,7 +60,7 @@ jobs:
             build_${{ matrix.node }}/partition_table/partition-table.bin
       
       - name: Deploy to file-host
-        uses: up9cloud/action-rsync@1.3
+        uses: up9cloud/action-rsync@v1.3
         env:
           HOST: commanderred.xyz
           KEY: ${{ secrets.RSYNC_SSH_KEY }}
