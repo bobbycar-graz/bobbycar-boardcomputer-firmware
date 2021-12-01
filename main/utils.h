@@ -59,3 +59,4 @@ void readPotis();
 float wattToAmpere(float watt);
 float wattToMotorCurrent(float watt);
 uint8_t time_to_percent(espchrono::milliseconds32 repeat, espchrono::milliseconds32 riseTime, espchrono::milliseconds32 fullTime, size_t numLeds, bool invert);
+size_t str_split(const std::string &txt, std::vector<std::string> &strs, char ch);
