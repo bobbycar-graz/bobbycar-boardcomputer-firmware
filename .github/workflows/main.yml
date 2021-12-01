@@ -67,11 +67,6 @@ jobs:
           TARGET: /home/github/${{ env.GITHUB_SHA }}/
           USER: github
           SSH_ARGS: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
-          SOURCE: |
-            'build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.bin'
-            'build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.elf'
-            'build_${{ matrix.node }}/bootloader/bootloader.bin'
-            'build_${{ matrix.node }}/bootloader/bootloader.elf'
-            'build_${{ matrix.node }}/partition_table/partition-table.bin'
+          SOURCE: 'build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.bin'
           PRE_SCRIPT: "echo Uploading to '/home/github/${{ env.GITHUB_SHA }}/'"
           POST_SCRIPT: "echo Upload done"
