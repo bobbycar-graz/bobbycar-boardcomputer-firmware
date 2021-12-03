@@ -4,13 +4,20 @@
 #include <esp_log.h>
 
 // 3rdparty lib includes
-#include <fmt/core.h>
 #include <actions/switchscreenaction.h>
+#include <fmt/core.h>
 
 // local includes
+#include "actions/dummyaction.h"
+#include "buildserver.h"
 #include "displays/menus/settingsmenu.h"
+#include "utils.h"
 
 #ifdef FEATURE_OTA
+
+using namespace buildserver;
+using namespace espgui;
+
 namespace {
 class BuildserverMenuItem : public espgui::MenuItem
 {
@@ -39,8 +46,6 @@ private:
     std::string m_buildserver_name;
 };
 } // namespace
-
-using namespace espgui;
 
 SelectBuildServerMenu::SelectBuildServerMenu()
 {

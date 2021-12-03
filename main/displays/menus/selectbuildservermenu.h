@@ -2,14 +2,10 @@
 
 // 3rdparty lib includes
 #include <menudisplay.h>
-#include <actions/dummyaction.h>
 #include <icons/back.h>
 
 // local includes
-#include "utils.h"
 #include "texts.h"
-#include "globals.h"
-#include "buildserver.h"
 
 #ifdef FEATURE_OTA
 

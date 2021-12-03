@@ -6,24 +6,25 @@
 #include "fmt/core.h"
 
 // local includes
+#include "buildserver.h"
 #include "menudisplay.h"
 #include "utils.h"
 #include "actions/dummyaction.h"
+#include "actions/switchscreenaction.h"
 #include "icons/back.h"
 #include "icons/update.h"
 #include "texts.h"
+#include "displays/menus/otamenu.h"
 
-#include "buildserver.h"
 #include "globals.h"
 
 #define MESSAGE(text) constructMenuItem<makeComponent<MenuItem, StaticText<text>, DefaultFont, StaticColor<TFT_RED>, DummyAction>>()
 
 using namespace espgui;
+using namespace buildserver;
 
 #ifdef FEATURE_OTA
 namespace {
-
-// ToDo: if (request_failed) => MESSAGE("An error occurred")
 
 template<int item_color>
 class VersionMenuItem : public MenuItem
@@ -138,14 +139,14 @@ void SelectBuildMenu::buildMenuFromJson()
         menuitem.setHash(hash);
         menuitem.setUrl(fmt::format(url_for_hashes, hash));
     }
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 void SelectBuildMenu::buildMenuRequestError(std::string error)
 {
     auto &item = constructMenuItem<makeComponent<MenuItem, ChangeableText, DefaultFont, StaticColor<TFT_RED>, DummyAction>>();
     item.setTitle(error);
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 } // namespace
 #endif

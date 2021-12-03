@@ -4,17 +4,15 @@
 #include "actioninterface.h"
 #include "actions/dummyaction.h"
 #include "actions/switchscreenaction.h"
-#include "icons/back.h"
 
 // local includes
-#include "utils.h"
-#include "icons/update.h"
+#include "icons/back.h"
 #include "icons/presets.h"
-#include "buildserver.h"
+#include "icons/update.h"
 #include "displays/menus/selectotabuildmenu.h"
-#include "displays/updatedisplay.h"
 #include "displays/menus/selectbuildservermenu.h"
 #include "displays/menus/mainmenu.h"
+#include "displays/updatedisplay.h"
 
 #ifdef FEATURE_OTA
 
