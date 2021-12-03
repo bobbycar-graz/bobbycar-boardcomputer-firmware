@@ -2,31 +2,15 @@
 
 // local includes
 #include "menudisplay.h"
-#include "utils.h"
-#include "menuitem.h"
-#include "actions/toggleboolaction.h"
-#include "actions/switchscreenaction.h"
-#include "checkboxicon.h"
-#include "icons/back.h"
 #include "texts.h"
-#include "accessors/settingsaccessors.h"
 
 using namespace espgui;
 
-namespace {
 class InvertMenu :
     public MenuDisplay,
-    public StaticText<TEXT_SETINVERTED>,
-    public BackActionInterface<SwitchScreenAction<ControllerHardwareSettingsMenu>>
+    public StaticText<TEXT_SETINVERTED>
 {
 public:
-    InvertMenu()
-    {
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_INVERTFRONTLEFT>,  ToggleBoolAction, CheckboxIcon, FrontLeftInvertedAccessor>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_INVERTFRONTRIGHT>, ToggleBoolAction, CheckboxIcon, FrontRightInvertedAccessor>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_INVERTBACKLEFT>,   ToggleBoolAction, CheckboxIcon, BackLeftInvertedAccessor>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_INVERTBACKRIGHT>,  ToggleBoolAction, CheckboxIcon, BackRightInvertedAccessor>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,             SwitchScreenAction<ControllerHardwareSettingsMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
-    }
+    InvertMenu();
+    void back() override;
 };
-} // namespace
