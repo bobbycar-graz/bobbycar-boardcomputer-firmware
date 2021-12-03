@@ -1,5 +1,6 @@
 #pragma once
 
+namespace bobbytexts {
 //AboutMenu
 constexpr char TEXT_ABOUT[] = "About";
 constexpr char TEXT_BACK[] = "Back";
@@ -520,3 +521,6 @@ constexpr char TEXT_STATSCLEAR[] = "Clear current km";
 #ifdef FEATURE_CAN
 constexpr char TEXT_POWERSUPPLY[] = "Powersupply";
 #endif
+} // namespace
+
+using namespace bobbytexts;
