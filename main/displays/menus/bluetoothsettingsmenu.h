@@ -22,6 +22,7 @@
 #include "texts.h"
 
 using namespace espgui;
+using namespace bluetoothtexthelpers;
 
 namespace {
 #ifdef FEATURE_BLUETOOTH

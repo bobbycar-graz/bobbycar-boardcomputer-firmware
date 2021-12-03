@@ -8,7 +8,7 @@
 #include "globals.h"
 #include "utils.h"
 
-namespace {
+namespace bluetoothtexthelpers {
 #ifdef FEATURE_BLUETOOTH
 template<const char *Ttext, typename TreturnType, TreturnType (BluetoothSerial::*Tmethod)()>
 using BluetoothStatusTextHelper = StatusTextHelper<Ttext, BluetoothSerial, &bluetoothSerial, TreturnType, Tmethod>;
