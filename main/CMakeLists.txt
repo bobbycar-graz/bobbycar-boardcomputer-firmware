@@ -1,66 +1,4 @@
 set(headers
-    battery.h
-    ble_bobby.h
-    bletexthelpers.h
-    bluetoothmode.h
-    bluetoothtexthelpers.h
-    bmsutils.h
-    buildserver.h
-    buttons.h
-    can.h
-    changevaluedisplay_bluetoothmode.h
-    changevaluedisplay_controlmode.h
-    changevaluedisplay_controltype.h
-    changevaluedisplay_larsmmode_mode.h
-    changevaluedisplay_unifiedmodelmode.h
-    changevaluedisplay_wifi_mode_t.h
-    changevaluedisplay_wifi_power_t.h
-    cloud.h
-    cloudtexthelpers.h
-    controller.h
-    debugcolorhelpers.h
-    debugtexthelpers.h
-    dpad3wire.h
-    dpad5wire_2out.h
-    dpad5wire.h
-    dpad6wire.h
-    dpad.h
-    dnsannounce.h
-    drivingstatistics.h
-    esptexthelpers.h
-    feedbackparser.h
-    globals.h
-    ledstripdefines.h
-    ledstrip.h
-    newsettings.h
-    macros_bobbycar.h
-    modeinterface.h
-    ota.h
-    presets.h
-    rotary.h
-    screens.h
-    serialhandler.h
-    settings.h
-    settingspersister.h
-    settingsutils.h
-    statistics.h
-    statustexthelper.h
-    stringsettings.h
-    texts.h
-    time_bobbycar.h
-    types.h
-    udpcloud.h
-    unifiedmodelmode.h
-    utils.h
-    webserver_displaycontrol.h
-    webserver.h
-    webserver_lock.h
-    webserver_ota.h
-    webserver_settings.h
-    webserver_stringsettings.h
-    webserver_dumpnvs.h
-    wifi_bobbycar.h
-    wifitexthelpers.h
     accessors/globalaccessors.h
     accessors/settingsaccessors.h
     accessors/wifiaccessors.h
@@ -88,6 +26,27 @@ set(headers
     actions/tempomatmodeapplycurrentpeedaction.h
     actions/updateswapfrontbackaction.h
     actions/wifiscanaction.h
+    battery.h
+    ble_bobby.h
+    bletexthelpers.h
+    bluetoothmode.h
+    bluetoothtexthelpers.h
+    bmsutils.h
+    buildserver.h
+    buttons.h
+    can.h
+    changevaluedisplay_bluetoothmode.h
+    changevaluedisplay_controlmode.h
+    changevaluedisplay_controltype.h
+    changevaluedisplay_larsmmode_mode.h
+    changevaluedisplay_unifiedmodelmode.h
+    changevaluedisplay_wifi_mode_t.h
+    changevaluedisplay_wifi_power_t.h
+    cloud.h
+    cloudtexthelpers.h
+    controller.h
+    debugcolorhelpers.h
+    debugtexthelpers.h
     displays/bmsdisplay.h
     displays/calibratedisplay.h
     displays/calibratevoltagedisplay.h
@@ -101,8 +60,8 @@ set(headers
     displays/lockscreen.h
     displays/menus/aboutmenu.h
     displays/menus/accesspointwifisettingsmenu.h
-    displays/menus/batterymenu.h
     displays/menus/batterydebugmenu.h
+    displays/menus/batterymenu.h
     displays/menus/blesettingsmenu.h
     displays/menus/bluetoothsettingsmenu.h
     displays/menus/bmsmenu.h
@@ -126,6 +85,7 @@ set(headers
     displays/menus/ledstripmenu.h
     displays/menus/ledstripselectanimationmenu.h
     displays/menus/ledstripselectblinkmenu.h
+    displays/menus/ledstripselectotamode.h
     displays/menus/limitssettingsmenu.h
     displays/menus/lockscreensettingsmenu.h
     displays/menus/mainmenu.h
@@ -135,13 +95,12 @@ set(headers
     displays/menus/motorstatedebugmenu.h
     displays/menus/motortestmodesettingsmenu.h
     displays/menus/otamenu.h
-    displays/menus/selectotabuildmenu.h
     displays/menus/presetsmenu.h
     displays/menus/profilesmenu.h
     displays/menus/selectbatterytypemenu.h
-    displays/menus/ledstripselectotamode.h
     displays/menus/selectbuildservermenu.h
     displays/menus/selectmodemenu.h
+    displays/menus/selectotabuildmenu.h
     displays/menus/settingsmenu.h
     displays/menus/stationwifisettingsmenu.h
     displays/menus/statisticsmenu.h
@@ -152,13 +111,23 @@ set(headers
     displays/menus/wifisettingsmenu.h
     displays/metersdisplay.h
     displays/pingpongdisplay.h
+    displays/popups/alertdisplay.h
     displays/poweroffdisplay.h
     displays/powersupplydisplay.h
     displays/spirodisplay.h
     displays/starfielddisplay.h
     displays/statusdisplay.h
     displays/updatedisplay.h
-    displays/popups/alertdisplay.h
+    dnsannounce.h
+    dpad.h
+    dpad3wire.h
+    dpad5wire.h
+    dpad5wire_2out.h
+    dpad6wire.h
+    drivingstatistics.h
+    esptexthelpers.h
+    feedbackparser.h
+    globals.h
     icons/alert.h
     icons/battery.h
     icons/bluetooth.h
@@ -179,82 +148,51 @@ set(headers
     icons/reboot.h
     icons/scan.h
     icons/settings.h
+    icons/statistics.h
     icons/time.h
     icons/update.h
     icons/wifi.h
-    icons/statistics.h
+    ledstrip.h
+    ledstripdefines.h
+    macros_bobbycar.h
+    modeinterface.h
     modes/defaultmode.h
     modes/gametrakmode.h
     modes/ignoreinputmode.h
     modes/larsmmode.h
+    modes/motortestmode.h
     modes/remotecontrolmode.h
     modes/tempomatmode.h
-    modes/motortestmode.h
+    newsettings.h
+    ota.h
+    presets.h
+    rotary.h
+    screens.h
+    serialhandler.h
+    settings.h
+    settingspersister.h
+    settingsutils.h
+    statistics.h
+    statustexthelper.h
+    stringsettings.h
+    texts.h
+    time_bobbycar.h
+    types.h
+    udpcloud.h
+    unifiedmodelmode.h
+    utils.h
+    webserver.h
+    webserver_displaycontrol.h
+    webserver_dumpnvs.h
+    webserver_lock.h
+    webserver_ota.h
+    webserver_settings.h
+    webserver_stringsettings.h
+    wifi_bobbycar.h
+    wifitexthelpers.h
 )
 
 set(sources
-    battery.cpp
-    ble_bobby.cpp
-    bletexthelpers.cpp
-    bluetoothmode.cpp
-    bluetoothtexthelpers.cpp
-    bmsutils.cpp
-    buttons.cpp
-    can.cpp
-    changevaluedisplay_bluetoothmode.cpp
-    changevaluedisplay_controlmode.cpp
-    changevaluedisplay_controltype.cpp
-    changevaluedisplay_larsmmode_mode.cpp
-    changevaluedisplay_unifiedmodelmode.cpp
-    changevaluedisplay_wifi_mode_t.cpp
-    changevaluedisplay_wifi_power_t.cpp
-    cloud.cpp
-    cloudtexthelpers.cpp
-    controller.cpp
-    debugcolorhelpers.cpp
-    debugtexthelpers.cpp
-    dpad3wire.cpp
-    dpad5wire_2out.cpp
-    dpad5wire.cpp
-    dpad6wire.cpp
-    dpad.cpp
-    dnsannounce.cpp
-    drivingstatistics.cpp
-    esptexthelpers.cpp
-    feedbackparser.cpp
-    globals.cpp
-    ledstrip.cpp
-    ledstripdefines.cpp
-    newsettings.cpp
-    macros_bobbycar.cpp
-    main.cpp
-    modeinterface.cpp
-    ota.cpp
-    presets.cpp
-    rotary.cpp
-    screens.cpp
-    serialhandler.cpp
-    settings.cpp
-    settingspersister.cpp
-    settingsutils.cpp
-    statistics.cpp
-    statustexthelper.cpp
-    stringsettings.cpp
-    texts.cpp
-    time_bobbycar.cpp
-    types.cpp
-    udpcloud.cpp
-    unifiedmodelmode.cpp
-    utils.cpp
-    webserver.cpp
-    webserver_displaycontrol.cpp
-    webserver_lock.cpp
-    webserver_ota.cpp
-    webserver_settings.cpp
-    webserver_stringsettings.cpp
-    webserver_dumpnvs.cpp
-    wifi_bobbycar.cpp
-    wifitexthelpers.cpp
     accessors/globalaccessors.cpp
     accessors/settingsaccessors.cpp
     accessors/wifiaccessors.cpp
@@ -282,6 +220,27 @@ set(sources
     actions/tempomatmodeapplycurrentpeedaction.cpp
     actions/updateswapfrontbackaction.cpp
     actions/wifiscanaction.cpp
+    battery.cpp
+    ble_bobby.cpp
+    bletexthelpers.cpp
+    bluetoothmode.cpp
+    bluetoothtexthelpers.cpp
+    bmsutils.cpp
+    buildserver.cpp
+    buttons.cpp
+    can.cpp
+    changevaluedisplay_bluetoothmode.cpp
+    changevaluedisplay_controlmode.cpp
+    changevaluedisplay_controltype.cpp
+    changevaluedisplay_larsmmode_mode.cpp
+    changevaluedisplay_unifiedmodelmode.cpp
+    changevaluedisplay_wifi_mode_t.cpp
+    changevaluedisplay_wifi_power_t.cpp
+    cloud.cpp
+    cloudtexthelpers.cpp
+    controller.cpp
+    debugcolorhelpers.cpp
+    debugtexthelpers.cpp
     displays/bmsdisplay.cpp
     displays/calibratedisplay.cpp
     displays/calibratevoltagedisplay.cpp
@@ -295,8 +254,8 @@ set(sources
     displays/lockscreen.cpp
     displays/menus/aboutmenu.cpp
     displays/menus/accesspointwifisettingsmenu.cpp
-    displays/menus/batterymenu.cpp
     displays/menus/batterydebugmenu.cpp
+    displays/menus/batterymenu.cpp
     displays/menus/blesettingsmenu.cpp
     displays/menus/bluetoothsettingsmenu.cpp
     displays/menus/bmsmenu.cpp
@@ -320,6 +279,7 @@ set(sources
     displays/menus/ledstripmenu.cpp
     displays/menus/ledstripselectanimationmenu.cpp
     displays/menus/ledstripselectblinkmenu.cpp
+    displays/menus/ledstripselectotamode.cpp
     displays/menus/limitssettingsmenu.cpp
     displays/menus/lockscreensettingsmenu.cpp
     displays/menus/mainmenu.cpp
@@ -329,30 +289,39 @@ set(sources
     displays/menus/motorstatedebugmenu.cpp
     displays/menus/motortestmodesettingsmenu.cpp
     displays/menus/otamenu.cpp
-    displays/menus/selectotabuildmenu.cpp
-    displays/menus/statisticsmenu.cpp
     displays/menus/presetsmenu.cpp
     displays/menus/profilesmenu.cpp
     displays/menus/selectbatterytypemenu.cpp
     displays/menus/selectbuildservermenu.cpp
     displays/menus/selectmodemenu.cpp
+    displays/menus/selectotabuildmenu.cpp
     displays/menus/settingsmenu.cpp
     displays/menus/stationwifisettingsmenu.cpp
+    displays/menus/statisticsmenu.cpp
     displays/menus/tempomatmodesettingsmenu.cpp
     displays/menus/timersmenu.cpp
     displays/menus/timesettingsmenu.cpp
     displays/menus/wifiscanmenu.cpp
     displays/menus/wifisettingsmenu.cpp
-    displays/menus/ledstripselectotamode.cpp
     displays/metersdisplay.cpp
     displays/pingpongdisplay.cpp
+    displays/popups/alertdisplay.cpp
     displays/poweroffdisplay.cpp
     displays/powersupplydisplay.cpp
     displays/spirodisplay.cpp
     displays/starfielddisplay.cpp
     displays/statusdisplay.cpp
     displays/updatedisplay.cpp
-    displays/popups/alertdisplay.cpp
+    dnsannounce.cpp
+    dpad.cpp
+    dpad3wire.cpp
+    dpad5wire.cpp
+    dpad5wire_2out.cpp
+    dpad6wire.cpp
+    drivingstatistics.cpp
+    esptexthelpers.cpp
+    feedbackparser.cpp
+    globals.cpp
     icons/alert.cpp
     icons/battery.cpp
     icons/bluetooth.cpp
@@ -373,17 +342,49 @@ set(sources
     icons/reboot.cpp
     icons/scan.cpp
     icons/settings.cpp
+    icons/statistics.cpp
     icons/time.cpp
     icons/update.cpp
     icons/wifi.cpp
-    icons/statistics.cpp
+    ledstrip.cpp
+    ledstripdefines.cpp
+    macros_bobbycar.cpp
+    main.cpp
+    modeinterface.cpp
     modes/defaultmode.cpp
     modes/gametrakmode.cpp
     modes/ignoreinputmode.cpp
     modes/larsmmode.cpp
+    modes/motortestmode.cpp
     modes/remotecontrolmode.cpp
     modes/tempomatmode.cpp
-    modes/motortestmode.cpp
+    newsettings.cpp
+    ota.cpp
+    presets.cpp
+    rotary.cpp
+    screens.cpp
+    serialhandler.cpp
+    settings.cpp
+    settingspersister.cpp
+    settingsutils.cpp
+    statistics.cpp
+    statustexthelper.cpp
+    stringsettings.cpp
+    texts.cpp
+    time_bobbycar.cpp
+    types.cpp
+    udpcloud.cpp
+    unifiedmodelmode.cpp
+    utils.cpp
+    webserver.cpp
+    webserver_displaycontrol.cpp
+    webserver_dumpnvs.cpp
+    webserver_lock.cpp
+    webserver_ota.cpp
+    webserver_settings.cpp
+    webserver_stringsettings.cpp
+    wifi_bobbycar.cpp
+    wifitexthelpers.cpp
 )
 
 set(dependencies
