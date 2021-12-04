@@ -36,20 +36,12 @@ jobs:
         with:
           key: ${{ runner.os }}-ccache-${{ matrix.node }}
           
-      - name: Tree command
-        run: ls -lah
-          
       - name: Install ignore
-        uses: up9cloud/action-rsync@v1.3
-        env:
-          MODE: pull
-          HOST: commanderred.xyz
-          KEY: ${{ secrets.RSYNC_SSH_KEY }}
-          TARGET: ./
-          USER: github
-          SSH_ARGS: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
-          SOURCE: /home/github/ignore/
-          POST_SCRIPT: "echo Download done"
+        run: |
+          mkdir -p "$HOME/.ssh"
+          echo "${{ secrets.RSYNC_SSH_KEY }}" >"$HOME/.ssh/key"
+          chmod 600 "$HOME/.ssh/key"
+          rsync -azv --delete --exclude=/.git/ --exclude=/.github/ -e "ssh -i $HOME/.ssh/key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=quiet" github@commanderred.xyz:/home/github/ignore/ ./
           
       - name: Build firmware
         run: |
