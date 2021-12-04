@@ -77,7 +77,7 @@ void AlertDisplay::initOverlay()
                                espgui::tft.color565(100, 100, 100),
                                espgui::tft.color565(170, 170, 170));
 
-    espgui::tft.drawString("Yes", leftMargin + 16, bottom - 39);
+    espgui::tft.drawString("Yes", leftMargin + 18, bottom - 37);
 
     espgui::tft.drawSunkenRect(leftMargin + 15 + ((width - 15 - 30 - 15) / 2) + 15, bottom - 40,
                                (width - 15 - 10 - 15) / 2,
@@ -86,7 +86,7 @@ void AlertDisplay::initOverlay()
                                espgui::tft.color565(100, 100, 100),
                                espgui::tft.color565(170, 170, 170));
 
-    espgui::tft.drawString("No", leftMargin + 15 + ((width - 15 - 30 - 15) / 2) + 15 + 1, bottom - 39);
+    espgui::tft.drawString("No", leftMargin + 18 + ((width - 15 - 30 - 15) / 2) + 15 + 1, bottom - 37);
 }
 
 void AlertDisplay::closeOverlay()
