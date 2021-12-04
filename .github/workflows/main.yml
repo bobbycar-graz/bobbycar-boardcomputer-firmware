@@ -41,7 +41,7 @@ jobs:
           mkdir -p "$HOME/.ssh"
           echo "${{ secrets.RSYNC_SSH_KEY }}" >"$HOME/.ssh/key"
           chmod 600 "$HOME/.ssh/key"
-          rsync -azv --delete --exclude=/.git/ --exclude=/.github/ -e "ssh -i $HOME/.ssh/key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=quiet" github@commanderred.xyz:/home/github/ignore/ ./
+          rsync -azv --exclude=/.git/ --exclude=/.github/ -e "ssh -i $HOME/.ssh/key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=quiet" github@commanderred.xyz:/home/github/ignore/ ./
           
       - name: Build firmware
         run: |
