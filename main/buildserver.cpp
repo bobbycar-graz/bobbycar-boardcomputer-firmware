@@ -78,11 +78,11 @@ namespace buildserver {
 
     void parse_response_into_variables(std::string response)
     {
-        StaticJsonDocument<512> doc;
+        StaticJsonDocument<1024> doc;
 
         if (const auto error = deserializeJson(doc, response))
         {
-            ESP_LOGE("BOBBY", "Error parsing server-response => %s", response.c_str());
+            ESP_LOGE("BOBBY", "Error parsing server-response => %s (%s)", error.c_str(), response.c_str());
             return;
         }
 
