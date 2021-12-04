@@ -1,15 +1,13 @@
-#pragma once
-
 namespace bobbytexts {
 //AboutMenu
-constexpr char TEXT_ABOUT[] = "About";
-constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_ABOUT[];
+extern char TEXT_BACK[];
 
 //AccessPointWifiSettingsMenu
-constexpr char TEXT_ACCESSPOINTWIFISETTINGS[] = "Access Point WiFi settings";
-constexpr char TEXT_WIFIAPENABLED[] = "AP enabled";
-constexpr char TEXT_RESEND_DNS[] = "Resend DNS";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_ACCESSPOINTWIFISETTINGS[];
+extern char TEXT_WIFIAPENABLED[];
+extern char TEXT_RESEND_DNS[];
+//extern char TEXT_BACK[];
 
 #ifdef TEXTS_PLUGIN
 #include TEXTS_PLUGIN
@@ -17,510 +15,511 @@ constexpr char TEXT_RESEND_DNS[] = "Resend DNS";
 
 #ifdef FEATURE_BLUETOOTH
 //BluetoothSettingsMenu
-constexpr char TEXT_BLUETOOTHSETTINGS[] = "Bluetooth settings";
-constexpr char TEXT_BLUETOOTHBEGIN[] = "begin()";
-constexpr char TEXT_BLUETOOTHBEGINMASTER[] = "begin() Master";
-constexpr char TEXT_BLUETOOTHFLUSH[] = "flush()";
-constexpr char TEXT_BLUETOOTHEND[] = "end()";
-constexpr char TEXT_BLUETOOTHDISCONNECT[] = "disconnect()";
-constexpr char TEXT_AUTOBLUETOOTHMODE[] = "Auto bluetooth mode";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_BLUETOOTHSETTINGS[];
+extern char TEXT_BLUETOOTHBEGIN[];
+extern char TEXT_BLUETOOTHBEGINMASTER[];
+extern char TEXT_BLUETOOTHFLUSH[];
+extern char TEXT_BLUETOOTHEND[];
+extern char TEXT_BLUETOOTHDISCONNECT[];
+extern char TEXT_AUTOBLUETOOTHMODE[];
+//extern char TEXT_BACK[];
 
 //BmsMenu
 #ifdef FEATURE_BMS
-constexpr char TEXT_BMS[] = "BMS";
-constexpr char TEXT_CONNECTBMS[] = "Connect BMS";
-constexpr char TEXT_DISCONNECTBMS[] = "Disonnect BMS";
-constexpr char TEXT_TURNONCHARGE[] = "Turn on charge";
-constexpr char TEXT_TURNOFFCHARGE[] = "Turn off charge";
-constexpr char TEXT_TURNONDISCHARGE[] = "Turn on discharge";
-constexpr char TEXT_TURNOFFDISCHARGE[] = "Turn off discharge";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_BMS[];
+extern char TEXT_CONNECTBMS[];
+extern char TEXT_DISCONNECTBMS[];
+extern char TEXT_TURNONCHARGE[];
+extern char TEXT_TURNOFFCHARGE[];
+extern char TEXT_TURNONDISCHARGE[];
+extern char TEXT_TURNOFFDISCHARGE[];
+//extern char TEXT_BACK[];
 #endif
 #endif
 
 #ifdef FEATURE_BLE
 //BleSettingsMenu
-constexpr char TEXT_BLESETTINGS[] = "BLE settings";
-constexpr char TEXT_BLEENABLED[] = "BLE enabled";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_BLESETTINGS[];
+extern char TEXT_BLEENABLED[];
+//extern char TEXT_BACK[];
 #endif
 
 #ifdef FEATURE_CLOUD
 //CloudSettingsMenu
-constexpr char TEXT_CLOUDSETTINGS[] = "Cloud settings";
-constexpr char TEXT_CLOUDENABLED[] = "Tcp Cloud enabled";
-constexpr char TEXT_UDPCLOUDENABLED[] = "Udp Cloud enabled";
-constexpr char TEXT_CLOUDTRANSMITTIMEOUT[] = "Transmit timeout";
-constexpr char TEXT_CLOUDCOLLECTRATE[] = "Cloud collect rate";
-constexpr char TEXT_CLOUDSENDRATE[] = "Cloud send rate";
-constexpr char TEXT_UDPSENDRATE[] = "Udp send rate";
-constexpr char TEXT_UDPUSESTRING[] = "Udp use std::string";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_CLOUDSETTINGS[];
+extern char TEXT_CLOUDENABLED[];
+extern char TEXT_UDPCLOUDENABLED[];
+extern char TEXT_CLOUDTRANSMITTIMEOUT[];
+extern char TEXT_CLOUDCOLLECTRATE[];
+extern char TEXT_CLOUDSENDRATE[];
+extern char TEXT_UDPSENDRATE[];
+extern char TEXT_UDPUSESTRING[];
+//extern char TEXT_BACK[];
 #endif
 
 //DebugMenu
-constexpr char TEXT_LOADSETTINGS[] = "Load settings";
-constexpr char TEXT_SAVESETTINGS[] = "Save settings";
-constexpr char TEXT_ERASENVS[] = "Erase NVS";
-constexpr char TEXT_FRONTCOMMAND[] = "Front command";
-constexpr char TEXT_BACKCOMMAND[] = "Back command";
-constexpr char TEXT_FRONTLEFTCOMMAND[] = "Front left command";
-constexpr char TEXT_FRONTRIGHTCOMMAND[] = "Front right command";
-constexpr char TEXT_BACKLEFTCOMMAND[] = "Back left command";
-constexpr char TEXT_BACKRIGHTCOMMAND[] = "Back right command";
-constexpr char TEXT_FRONTFEEDBACK[] = "Front feedback";
-constexpr char TEXT_BACKFEEDBACK[] = "Back feedback";
-constexpr char TEXT_FRONTLEFTFEEDBACK[] = "Front left feedback";
-constexpr char TEXT_FRONTRIGHTFEEDBACK[] = "Front right feedback";
-constexpr char TEXT_BACKLEFTFEEDBACK[] = "Back left feedback";
-constexpr char TEXT_BACKRIGHTFEEDBACK[] = "Back right feedback";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_LOADSETTINGS[];
+extern char TEXT_SAVESETTINGS[];
+extern char TEXT_ERASENVS[];
+extern char TEXT_FRONTCOMMAND[];
+extern char TEXT_BACKCOMMAND[];
+extern char TEXT_FRONTLEFTCOMMAND[];
+extern char TEXT_FRONTRIGHTCOMMAND[];
+extern char TEXT_BACKLEFTCOMMAND[];
+extern char TEXT_BACKRIGHTCOMMAND[];
+extern char TEXT_FRONTFEEDBACK[];
+extern char TEXT_BACKFEEDBACK[];
+extern char TEXT_FRONTLEFTFEEDBACK[];
+extern char TEXT_FRONTRIGHTFEEDBACK[];
+extern char TEXT_BACKLEFTFEEDBACK[];
+extern char TEXT_BACKRIGHTFEEDBACK[];
+//extern char TEXT_BACK[];
 
 //MainMenu
-constexpr char TEXT_MAINMENU[] = "Main menu";
-constexpr char TEXT_STATUS[] = "Status";
-constexpr char TEXT_SELECTMODE[] = "Select mode";
-constexpr char TEXT_MODESETTINGS[] = "Mode settings";
-constexpr char TEXT_PRESETS[] = "Presets";
-constexpr char TEXT_PROFILES[] = "Profiles";
-constexpr char TEXT_GRAPHS[] = "Graphs";
-//constexpr char TEXT_BMS[] = "BMS";
-constexpr char TEXT_SETTINGS[] = "Settings";
-constexpr char TEXT_LOCKVEHICLE[] = "Lock vehicle";
-constexpr char TEXT_MOSFETS[] = "Mosfets";
-constexpr char TEXT_DEMOS[] = "Demos";
-constexpr char TEXT_GARAGE[] = "Garage";
-constexpr char TEXT_UPDATE[] = "Update";
-constexpr char TEXT_POWEROFF[] = "Poweroff";
-constexpr char TEXT_REBOOT[] = "Reboot";
-constexpr char TEXT_DEBUG[] = "Debug";
-constexpr char TEXT_BATTERY[] = "Battery";
-constexpr char TEXT_BATTERYDEBUG[] = "Bat Debug Menu";
-constexpr char TEXT_TOGGLECLOUDDEBUG[] = "Cloud Debug";
+extern char TEXT_MAINMENU[];
+extern char TEXT_STATUS[];
+extern char TEXT_SELECTMODE[];
+extern char TEXT_MODESETTINGS[];
+extern char TEXT_PRESETS[];
+extern char TEXT_PROFILES[];
+extern char TEXT_GRAPHS[];
+//extern char TEXT_BMS[];
+extern char TEXT_SETTINGS[];
+extern char TEXT_LOCKVEHICLE[];
+extern char TEXT_MOSFETS[];
+extern char TEXT_DEMOS[];
+extern char TEXT_GARAGE[];
+extern char TEXT_UPDATE[];
+extern char TEXT_POWEROFF[];
+extern char TEXT_REBOOT[];
+extern char TEXT_DEBUG[];
+extern char TEXT_BATTERY[];
+extern char TEXT_BATTERYDEBUG[];
+extern char TEXT_TOGGLECLOUDDEBUG[];
 
 //BatteryMenu
-constexpr char TEXT_CELL_SERIES[] = "Cells (Series)";
-constexpr char TEXT_CELL_PARALLEL[] = "Cells (Parallel)";
-constexpr char TEXT_SELECT_CELL_TYPE[] = "Select Cell Type";
-constexpr char TEXT_CELL_TYPE[] = "Cell Type";
-constexpr char TEXT_BATTERY_CALIBRATE[] = "Calibrate Voltages";
-constexpr char TEXT_BATTERY_TYPE_22P[] = "22P cells";
-constexpr char TEXT_BATTERY_TYPE_HG2[] = "HG2 cells";
-constexpr char TEXT_BATTERY_TYPE_MH1[] = "MH1 cells";
-constexpr char TEXT_BATTERY_TYPE_VTC5[] = "VTC5 cells";
-constexpr char TEXT_BATTERY_TYPE_BAK_25R[] = "BAK / 25R cells";
-constexpr char TEXT_BATTERY_WHKM[] = "Wh per km";
-constexpr char TEXT_BATTERY_APPLYCALIB[] = "Apply calibration";
-constexpr char TEXT_VOLTAGECALIBRATION_RESET[] = "Reset calibration";
+extern char TEXT_CELL_SERIES[];
+extern char TEXT_CELL_PARALLEL[];
+extern char TEXT_SELECT_CELL_TYPE[];
+extern char TEXT_CELL_TYPE[];
+extern char TEXT_BATTERY_CALIBRATE[];
+extern char TEXT_BATTERY_TYPE_22P[];
+extern char TEXT_BATTERY_TYPE_HG2[];
+extern char TEXT_BATTERY_TYPE_MH1[];
+extern char TEXT_BATTERY_TYPE_VTC5[];
+extern char TEXT_BATTERY_TYPE_BAK_25R[];
+extern char TEXT_BATTERY_WHKM[];
+extern char TEXT_BATTERY_APPLYCALIB[];
+extern char TEXT_VOLTAGECALIBRATION_RESET[];
 
 //CalibrateVoltageDisplay
-constexpr char TEXT_VOLTAGECALIBRATION_30V[] = "Calibrate 30.0V";
-constexpr char TEXT_VOLTAGECALIBRATION_50V[] = "Calibrate 50.0V";
-constexpr char TEXT_VOLTAGECALIBRATION_VALUE_30_FRONT[] = "30V Front";
-constexpr char TEXT_VOLTAGECALIBRATION_VALUE_30_BACK[] = "30V Back";
-constexpr char TEXT_VOLTAGECALIBRATION_VALUE_50_FRONT[] = "50V Front";
-constexpr char TEXT_VOLTAGECALIBRATION_VALUE_50_BACK[] = "50V Back";
+extern char TEXT_VOLTAGECALIBRATION_30V[];
+extern char TEXT_VOLTAGECALIBRATION_50V[];
+extern char TEXT_VOLTAGECALIBRATION_VALUE_30_FRONT[];
+extern char TEXT_VOLTAGECALIBRATION_VALUE_30_BACK[];
+extern char TEXT_VOLTAGECALIBRATION_VALUE_50_FRONT[];
+extern char TEXT_VOLTAGECALIBRATION_VALUE_50_BACK[];
 
 //SettingsMenu
-//constexpr char TEXT_SETTINGS[] = "Settings";
-constexpr char TEXT_BACKLIGHT[] = "Backlight";
-constexpr char TEXT_LIMITSSETTINGS[] = "Limits settings";
-constexpr char TEXT_WIFISETTINGS[] = "WiFi settings";
-//constexpr char TEXT_BLUETOOTHSETTINGS[] = "Bluetooth settings";
-//constexpr char TEXT_BLESETTINGS[] = "BLE settings";
-//constexpr char TEXT_CLOUDSETTINGS[] = "Cloud settings";
-constexpr char TEXT_TIME[] = "Time";
-constexpr char TEXT_MODESSETTINGS[] = "Modes settings";
-constexpr char TEXT_CONTROLLERHARDWARESETTINGS[] = "Controller H/W settings";
-constexpr char TEXT_BOARDCOMPUTERHARDWARESETTINGS[] = "Boardcomputer H/W settings";
-constexpr char TEXT_AUTOCONNECTBMS[] = "Auto connect BMS";
-constexpr char TEXT_BUZZER[] = "Buzzer";
-constexpr char TEXT_FRONTLED[] = "Front LED";
-constexpr char TEXT_BACKLED[] = "Back LED";
-//constexpr char TEXT_ABOUT[] = "About";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_SETTINGS[];
+extern char TEXT_BACKLIGHT[];
+extern char TEXT_LIMITSSETTINGS[];
+extern char TEXT_WIFISETTINGS[];
+//extern char TEXT_BLUETOOTHSETTINGS[];
+//extern char TEXT_BLESETTINGS[];
+//extern char TEXT_CLOUDSETTINGS[];
+extern char TEXT_TIME[];
+extern char TEXT_MODESSETTINGS[];
+extern char TEXT_CONTROLLERHARDWARESETTINGS[];
+extern char TEXT_BOARDCOMPUTERHARDWARESETTINGS[];
+extern char TEXT_AUTOCONNECTBMS[];
+extern char TEXT_BUZZER[];
+extern char TEXT_FRONTLED[];
+extern char TEXT_BACKLED[];
+//extern char TEXT_ABOUT[];
+//extern char TEXT_BACK[];
 
 //ControllerHardwareSettings
-//constexpr char TEXT_CONTROLLERHARDWARESETTINGS[] = "Controller H/W settings";
-constexpr char TEXT_WHEELDIAMETERMM[] = "Wheel diameter (mm)";
-constexpr char TEXT_WHEELDIAMETERINCH[] = "Wheel diameter (inch)";
-constexpr char TEXT_NUMMAGNETPOLES[] = "Num magnet poles";
-constexpr char TEXT_SETENABLED[] = "Set enabled";
-constexpr char TEXT_SETINVERTED[] = "Set inverted";
-constexpr char TEXT_SWAPFRONTBACK[] = "Swap front/back";
+//extern char TEXT_CONTROLLERHARDWARESETTINGS[];
+extern char TEXT_WHEELDIAMETERMM[];
+extern char TEXT_WHEELDIAMETERINCH[];
+extern char TEXT_NUMMAGNETPOLES[];
+extern char TEXT_SETENABLED[];
+extern char TEXT_SETINVERTED[];
+extern char TEXT_SWAPFRONTBACK[];
 #ifdef FEATURE_CAN
-constexpr char TEXT_FRONTSENDCAN[] = "Front send CAN";
-constexpr char TEXT_BACKSENDCAN[] = "Back send CAN";
-constexpr char TEXT_CANTRANSMITTIMEOUT[] = "CanTransmitTimeout";
-constexpr char TEXT_CANRECEIVETIMEOUT[] = "CanReceiveTimeout";
+extern char TEXT_FRONTSENDCAN[];
+extern char TEXT_BACKSENDCAN[];
+extern char TEXT_CANTRANSMITTIMEOUT[];
+extern char TEXT_CANRECEIVETIMEOUT[];
 #endif
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_BACK[];
 
 //StationWifiSettingsMenu
-constexpr char TEXT_STATIONWIFISETTINGS[] = "Station WiFi settings";
-constexpr char TEXT_WIFISTAENABLED[] = "STA enabled";
-constexpr char TEXT_WIFITRIGGERSCAN[] = "Trigger Scan";
-constexpr char TEXT_WIFISCANRESULTS[] = "WiFi scan results";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_STATIONWIFISETTINGS[];
+extern char TEXT_WIFISTAENABLED[];
+extern char TEXT_WIFITRIGGERSCAN[];
+extern char TEXT_WIFISCANRESULTS[];
+//extern char TEXT_BACK[];
 
 //DemosMenu
-//constexpr char TEXT_DEMOS[] = "Demos";
-constexpr char TEXT_STARFIELD[] = "Starfield";
-constexpr char TEXT_PINGPONG[] = "PingPong";
-constexpr char TEXT_SPIRO[] = "Spiro";
-constexpr char TEXT_GAMEOFLIFE[] = "GameOfLife";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_DEMOS[];
+extern char TEXT_STARFIELD[];
+extern char TEXT_PINGPONG[];
+extern char TEXT_SPIRO[];
+extern char TEXT_GAMEOFLIFE[];
+//extern char TEXT_BACK[];
 
 //BuzzerMenu
-//constexpr char TEXT_BUZZER[] = "Buzzer";
-constexpr char TEXT_FRONTFREQ[] = "Front freq";
-constexpr char TEXT_FRONTPATTERN[] = "Front pattern";
-constexpr char TEXT_BACKFREQ[] = "Back freq";
-constexpr char TEXT_BACKPATTERN[] = "Back pattern";
-constexpr char TEXT_REVERSEBEEP[] = "Reverse beep";
-constexpr char TEXT_REVERSEBEEPFREQ0[] = "Reverse beep freq0";
-constexpr char TEXT_REVERSEBEEPFREQ1[] = "Reverse beep freq1";
-constexpr char TEXT_REVERSEBEEPDURATION0[] = "Reverse beep duration0";
-constexpr char TEXT_REVERSEBEEPDURATION1[] = "Reverse beep duration1";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_BUZZER[];
+extern char TEXT_FRONTFREQ[];
+extern char TEXT_FRONTPATTERN[];
+extern char TEXT_BACKFREQ[];
+extern char TEXT_BACKPATTERN[];
+extern char TEXT_REVERSEBEEP[];
+extern char TEXT_REVERSEBEEPFREQ0[];
+extern char TEXT_REVERSEBEEPFREQ1[];
+extern char TEXT_REVERSEBEEPDURATION0[];
+extern char TEXT_REVERSEBEEPDURATION1[];
+//extern char TEXT_BACK[];
 
 //LimitsSettingsMenu
-//constexpr char TEXT_LIMITSSETTINGS[] = "Limit settings";
-constexpr char TEXT_IMOTMAX[] = "iMotMax";
-constexpr char TEXT_IDCMAX[] = "iDcMax";
-constexpr char TEXT_NMOTMAXKMH[] = "nMotMaxKmh";
-constexpr char TEXT_NMOTMAX[] = "nMotMax";
-constexpr char TEXT_FIELDWEAKMAX[] = "fldWkMax";
-constexpr char TEXT_PHASEADVMAX[] = "phsAdvMax";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_LIMITSSETTINGS[];
+extern char TEXT_IMOTMAX[];
+extern char TEXT_IDCMAX[];
+extern char TEXT_NMOTMAXKMH[];
+extern char TEXT_NMOTMAX[];
+extern char TEXT_FIELDWEAKMAX[];
+extern char TEXT_PHASEADVMAX[];
+//extern char TEXT_BACK[];
 
 //DebugMenu
-//constexpr char TEXT_DEBUG[] = "Debug";
-constexpr char TEXT_DYNAMICMENU[] = "Dynamic menu";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_DEBUG[];
+extern char TEXT_DYNAMICMENU[];
+//extern char TEXT_BACK[];
 
 //DefaultModeSettingsMenu
-//constexpr char TEXT_DEFAULTMODESETTINGS[] = "Default mode settings";
-constexpr char TEXT_MODELMODE[] = "Model mode";
-constexpr char TEXT_HYBRIDMODE[] = "Hybrid mode";
-constexpr char TEXT_SQUAREGAS[] = "Square gas";
-constexpr char TEXT_SQUAREBREMS[] = "Square brems";
-constexpr char TEXT_ENABLESMOOTHINGUP[] = "Enable up smoothing";
-constexpr char TEXT_ENABLESMOOTHINGDOWN[] = "Enable down smoothing";
-constexpr char TEXT_ENABLEFWSMOOTHINGUP[] = "Enable fw up smoothing";
-constexpr char TEXT_ENABLEFWSMOOTHINGDOWN[] = "Enable fw down smoothing";
-constexpr char TEXT_FWSMOOTHING_LIMIT[] = "Fw smooth lower limit";
-constexpr char TEXT_SMOOTHINGVAL[] = "Smoothing";
-constexpr char TEXT_FRONTPERCENTAGE[] = "Front %";
-constexpr char TEXT_BACKPERCENTAGE[] = "Back %";
-constexpr char TEXT_ADDSCHWELLE[] = "Add/Sub Lim";
-constexpr char TEXT_SUBGASVAL[] = "Add Gas";
-constexpr char TEXT_SUBBRAKEVAL[] = "Add Brake";
-constexpr char TEXT_ADDGASVAL[] = "Sub Gas";
-constexpr char TEXT_ADDBRAKEVAL[] = "Sub Brake";
-constexpr char TEXT_HYBRIDENABLE[] = "Enable Hybrid mode";
-constexpr char TEXT_HYBRIDACTIVATIONLIMIT[] = "Hybrid activation-limit";
-constexpr char TEXT_HYBRIDDEACTIVATIONLIMIT[] = "Hybrid deactivation-limit";
-constexpr char TEXT_LIMITS_TO_NEAR[] = "Hybrid limits too near (>20)";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_DEFAULTMODESETTINGS[];
+extern char TEXT_MODELMODE[];
+extern char TEXT_HYBRIDMODE[];
+extern char TEXT_SQUAREGAS[];
+extern char TEXT_SQUAREBREMS[];
+extern char TEXT_ENABLESMOOTHINGUP[];
+extern char TEXT_ENABLESMOOTHINGDOWN[];
+extern char TEXT_ENABLEFWSMOOTHINGUP[];
+extern char TEXT_ENABLEFWSMOOTHINGDOWN[];
+extern char TEXT_FWSMOOTHING_LIMIT[];
+extern char TEXT_SMOOTHINGVAL[];
+extern char TEXT_FRONTPERCENTAGE[];
+extern char TEXT_BACKPERCENTAGE[];
+extern char TEXT_ADDSCHWELLE[];
+extern char TEXT_SUBGASVAL[];
+extern char TEXT_SUBBRAKEVAL[];
+extern char TEXT_ADDGASVAL[];
+extern char TEXT_ADDBRAKEVAL[];
+extern char TEXT_HYBRIDENABLE[];
+extern char TEXT_HYBRIDACTIVATIONLIMIT[];
+extern char TEXT_HYBRIDDEACTIVATIONLIMIT[];
+extern char TEXT_LIMITS_TO_NEAR[];
+//extern char TEXT_BACK[];
 
 //DynamicDebugMenu
-//constexpr char TEXT_DYNAMICMENU[] = "Dynamic menu";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_DYNAMICMENU[];
+//extern char TEXT_BACK[];
 
 //EnableMenu
-//constexpr char TEXT_SETENABLED[] = "Set enabled";
-constexpr char TEXT_ENABLEFRONTLEFT[] = "Enable front left";
-constexpr char TEXT_ENABLEFRONTRIGHT[] = "Enable front right";
-constexpr char TEXT_ENABLEBACKLEFT[] = "Enable back left";
-constexpr char TEXT_ENABLEBACKRIGHT[] = "Enable back right";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_SETENABLED[];
+extern char TEXT_ENABLEFRONTLEFT[];
+extern char TEXT_ENABLEFRONTRIGHT[];
+extern char TEXT_ENABLEBACKLEFT[];
+extern char TEXT_ENABLEBACKRIGHT[];
+//extern char TEXT_BACK[];
 
 //GametrakModeSettingsMenu
-constexpr char TEXT_GAMETRAKMODESETTINGS[] = "Gametrak mode settings";
+extern char TEXT_GAMETRAKMODESETTINGS[];
 
 //GenericWifiSettingsMenu
-constexpr char TEXT_GENERICWIFISETTINGS[] = "Generic WiFi settings";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_GENERICWIFISETTINGS[];
+//extern char TEXT_BACK[];
 
 //GraphsMenu
-//constexpr char TEXT_GRAPHS[] = "Graphs";
-constexpr char TEXT_GAS[] = "Gas";
-constexpr char TEXT_BREMS[] = "Brems";
-constexpr char TEXT_POTIS[] = "Potis";
-constexpr char TEXT_AVGSPEED[] = "Avg. speed";
-constexpr char TEXT_AVGSPEEDKMH[] = "Avg. speed KMH";
-constexpr char TEXT_SUMCURRENT[] = "Sum current";
-constexpr char TEXT_FRONTVOLTAGE[] = "Front voltage";
-constexpr char TEXT_BACKVOLTAGE[] = "Back voltage";
-constexpr char TEXT_VOLTAGES[] = "Voltages";
-constexpr char TEXT_BMSVOLTAGE[] = "BMS voltage";
-constexpr char TEXT_BMSCURRENT[] = "BMS current";
-constexpr char TEXT_BMSPOWER[] = "BMS power";
-constexpr char TEXT_SUMCURRENTSCOMPARISON[] = "Sum currents comparison";
-constexpr char TEXT_MOTORCURRENTS[] = "Motor currents";
-constexpr char TEXT_RSSI[] = "RSSI";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_GRAPHS[];
+extern char TEXT_GAS[];
+extern char TEXT_BREMS[];
+extern char TEXT_POTIS[];
+extern char TEXT_AVGSPEED[];
+extern char TEXT_AVGSPEEDKMH[];
+extern char TEXT_SUMCURRENT[];
+extern char TEXT_FRONTVOLTAGE[];
+extern char TEXT_BACKVOLTAGE[];
+extern char TEXT_VOLTAGES[];
+extern char TEXT_BMSVOLTAGE[];
+extern char TEXT_BMSCURRENT[];
+extern char TEXT_BMSPOWER[];
+extern char TEXT_SUMCURRENTSCOMPARISON[];
+extern char TEXT_MOTORCURRENTS[];
+extern char TEXT_RSSI[];
+//extern char TEXT_BACK[];
 
 //InvertMenu
-//constexpr char TEXT_SETINVERTED[] = "Set inverted";
-constexpr char TEXT_INVERTFRONTLEFT[] = "Invert front left";
-constexpr char TEXT_INVERTFRONTRIGHT[] = "Invert front right";
-constexpr char TEXT_INVERTBACKLEFT[] = "Invert back left";
-constexpr char TEXT_INVERTBACKRIGHT[] = "Invert back right";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_SETINVERTED[];
+extern char TEXT_INVERTFRONTLEFT[];
+extern char TEXT_INVERTFRONTRIGHT[];
+extern char TEXT_INVERTBACKLEFT[];
+extern char TEXT_INVERTBACKRIGHT[];
+//extern char TEXT_BACK[];
 
 //LarsmModeSettingsMenu
-constexpr char TEXT_LARSMMODESETTINGS[] = "Larsm mode settings";
-//constexpr char TEXT_MODELMODE[] = "Model mode";
-constexpr char TEXT_SETMODE[] = "Set mode";
-constexpr char TEXT_SETITERATIONS[] = "Set iterations";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_LARSMMODESETTINGS[];
+//extern char TEXT_MODELMODE[];
+extern char TEXT_SETMODE[];
+extern char TEXT_SETITERATIONS[];
+//extern char TEXT_BACK[];
 
 //MotortestModeSettingsMenu
-constexpr char TEXT_MOTORTESTMODESETTINGS[] = "Motortest mode seetings";
-constexpr char TEXT_MOTORTESTMAXPWM[] = "Max Pwm";
-constexpr char TEXT_MOTORTESTMULTIPLIKATOR[] = "Acceleration";
+extern char TEXT_MOTORTESTMODESETTINGS[];
+extern char TEXT_MOTORTESTMAXPWM[];
+extern char TEXT_MOTORTESTMULTIPLIKATOR[];
 
 //LedstripMenu
-constexpr char TEXT_LEDSTRIP[] = "Ledstrip";
-constexpr char TEXT_LEDANIMATION[] = "LED Animation";
-constexpr char TEXT_BRAKELIGHTS[] = "Brake Lights";
-constexpr char TEXT_BLINKANIMATION[] = "Blink animation";
-constexpr char TEXT_ANIMATION_TYPE[] = "Blink animation";
-constexpr char TEXT_LEDSCOUNT[] = "LEDs Count";
-constexpr char TEXT_CENTEROFFSET[] = "Center Offset";
-constexpr char TEXT_SMALLOFFSET[] = "Small Offset";
-constexpr char TEXT_BIGOFFSET[] = "Big Offset";
-constexpr char TEXT_LEDSTRIP_MILLIAMP[] = "Ledstrip 0.1A";
-constexpr char TEXT_BLINKBEEP[] = "Blink Beep";
-constexpr char TEXT_FULLBLINK[] = "Full blink";
-constexpr char TEXT_LEDSTRIP_STVO[] = "Enable StVO";
-constexpr char TEXT_STVO_FRONTOFFSET[] = "StVO Front Offset";
-constexpr char TEXT_STVO_FRONTLENGTH[] = "StVO Front Length";
-constexpr char TEXT_STVO_ENABLEFRONTLIGHT[] = "StVO Front Enable";
-constexpr char TEXT_ANIMATION_MULTIPLIER[] = "Animation Multiplier";
-constexpr char TEXT_LEDSTRIP_BRIGHTNESS[] = "Ledstrip Brightness";
-constexpr char TEXT_LEDSTRIP_ALLCUSTOMOFF[] = "All custom off";
-constexpr char TEXT_LEDSTRIP_EN_BLINK_ANIM[] = "Animated Blink";
-constexpr char TEXT_LEDSTRIP_CHANGE_OTA_ANIM[] = "Change Ota animation";
+extern char TEXT_LEDSTRIP[];
+extern char TEXT_LEDANIMATION[];
+extern char TEXT_BRAKELIGHTS[];
+extern char TEXT_BLINKANIMATION[];
+extern char TEXT_ANIMATION_TYPE[];
+extern char TEXT_LEDSCOUNT[];
+extern char TEXT_CENTEROFFSET[];
+extern char TEXT_SMALLOFFSET[];
+extern char TEXT_BIGOFFSET[];
+extern char TEXT_LEDSTRIP_MILLIAMP[];
+extern char TEXT_BLINKBEEP[];
+extern char TEXT_FULLBLINK[];
+extern char TEXT_LEDSTRIP_STVO[];
+extern char TEXT_STVO_FRONTOFFSET[];
+extern char TEXT_STVO_FRONTLENGTH[];
+extern char TEXT_STVO_ENABLEFRONTLIGHT[];
+extern char TEXT_ANIMATION_MULTIPLIER[];
+extern char TEXT_LEDSTRIP_BRIGHTNESS[];
+extern char TEXT_LEDSTRIP_ALLCUSTOMOFF[];
+extern char TEXT_LEDSTRIP_EN_BLINK_ANIM[];
+extern char TEXT_LEDSTRIP_CHANGE_OTA_ANIM[];
 
-constexpr char TEXT_OTAANIM_NONE[] = "None";
-constexpr char TEXT_OTAANIM_PROGRESS[] = "Progress Bar";
-constexpr char TEXT_OTAANIM_COLOR[] = "Color change";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_OTAANIM_NONE[];
+extern char TEXT_OTAANIM_PROGRESS[];
+extern char TEXT_OTAANIM_COLOR[];
+//extern char TEXT_BACK[];
 
 //LedstripSelectAnimationMenu
-constexpr char TEXT_SELECTANIMATION[] = "Select Animation";
-constexpr char TEXT_ANIMATION_DEFAULTRAINBOW[] = "Default Rainbow";
-constexpr char TEXT_ANIMATION_BETTERRAINBOW[] = "Better Rainbow";
-constexpr char TEXT_ANIMATION_SPEEDSYNCANIMATION[] = "Speed Sync";
-constexpr char TEXT_ANIMATION_CUSTOMCOLOR[] = "Custom Color";
+extern char TEXT_SELECTANIMATION[];
+extern char TEXT_ANIMATION_DEFAULTRAINBOW[];
+extern char TEXT_ANIMATION_BETTERRAINBOW[];
+extern char TEXT_ANIMATION_SPEEDSYNCANIMATION[];
+extern char TEXT_ANIMATION_CUSTOMCOLOR[];
 
 //LedstripSelectBlinkMenu
-constexpr char TEXT_ANIMATION_BLINKNONE[] = "Blink Off";
-constexpr char TEXT_ANIMATION_BLINKLEFT[] = "Blink Left";
-constexpr char TEXT_ANIMATION_BLINKRIGHT[] = "Blink Right";
-constexpr char TEXT_ANIMATION_BLINKBOTH[] = "Blink Both";
+extern char TEXT_ANIMATION_BLINKNONE[];
+extern char TEXT_ANIMATION_BLINKLEFT[];
+extern char TEXT_ANIMATION_BLINKRIGHT[];
+extern char TEXT_ANIMATION_BLINKBOTH[];
 
 //LockscreenSettingsMenu
-constexpr char TEXT_LOCKSCREENSETTINGS[] = "Lockscreen Settings";
-constexpr char TEXT_ALLOWPRESETSWITCH[] = "Allow preset switch";
-constexpr char TEXT_PINDIGIT0[] = "PIN digit0";
-constexpr char TEXT_PINDIGIT1[] = "PIN digit1";
-constexpr char TEXT_PINDIGIT2[] = "PIN digit2";
-constexpr char TEXT_PINDIGIT3[] = "PIN digit3";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_LOCKSCREENSETTINGS[];
+extern char TEXT_ALLOWPRESETSWITCH[];
+extern char TEXT_PINDIGIT0[];
+extern char TEXT_PINDIGIT1[];
+extern char TEXT_PINDIGIT2[];
+extern char TEXT_PINDIGIT3[];
+//extern char TEXT_BACK[];
 
 //ModesSettingsMenu
-//constexpr char TEXT_MODESSETTINGS[] = "Modes settings";
-constexpr char TEXT_DEFAULTMODESETTIGNS[] = "Default mode settings";
-constexpr char TEXT_TEMPOMATMODESETTINGS[] = "Tempomat mode settings";
-//constexpr char TEXT_LARSMMODESETTINGS[] = "Larsm mode settings";
-//constexpr char TEXT_GAMETRAKMODESETTINGS[] = "Gametrak mode settings";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_MODESSETTINGS[];
+extern char TEXT_DEFAULTMODESETTIGNS[];
+extern char TEXT_TEMPOMATMODESETTINGS[];
+//extern char TEXT_LARSMMODESETTINGS[];
+//extern char TEXT_GAMETRAKMODESETTINGS[];
+//extern char TEXT_BACK[];
 
 //MosfetsMenu
-//constexpr char TEXT_MOSFETS[] = "Mosfets";
-constexpr char TEXT_MOSFET0[] = "Mosfet0";
-constexpr char TEXT_MOSFET1[] = "Mosfet1";
-constexpr char TEXT_MOSFET2[] = "Mosfet2";
+//extern char TEXT_MOSFETS[];
+extern char TEXT_MOSFET0[];
+extern char TEXT_MOSFET1[];
+extern char TEXT_MOSFET2[];
 
 //TempomatModeSettingsMenu
-//constexpr char TEXT_TEMPOMATMODESETTINGS[] = "Tempomat mode settings";
-constexpr char TEXT_APPLY[] = "Apply";
-constexpr char TEXT_NCRUISEMOTTGT[] = "nCruiseMotTgt";
-//constexpr char TEXT_MODELMODE[] = "Model mode";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_TEMPOMATMODESETTINGS[];
+extern char TEXT_APPLY[];
+extern char TEXT_NCRUISEMOTTGT[];
+//extern char TEXT_MODELMODE[];
+//extern char TEXT_BACK[];
 
 //WiFiSettingsMenu
-//constexpr char TEXT_WIFISETTINGS[] = "WiFi settings";
-//constexpr char TEXT_GENERICWIFISETTINGS[] = "Generic WiFi settings";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_WIFISETTINGS[];
+//extern char TEXT_GENERICWIFISETTINGS[];
+//extern char TEXT_BACK[];
 
 //BoardcomputerHardwareSettingsMenu
-//constexpr char TEXT_BOARDCOMPUTERHARDWARESETTINGS[] = "Boardcomputer H/W settings";
-//constexpr char TEXT_LOCKSCREENSETTINGS[] = "Lockscreen Settings";
-constexpr char TEXT_CALIBRATE[] = "Calibrate";
-constexpr char TEXT_SAMPLECOUNT[] = "sampleCount";
-constexpr char TEXT_GASMIN[] = "gasMin";
-constexpr char TEXT_GASMAX[] = "gasMax";
-constexpr char TEXT_BREMSMIN[] = "bremsMin";
-constexpr char TEXT_BREMSMAX[] = "bremsMax";
-constexpr char TEXT_DPADDEBOUNCE[] = "dpadDebounce";
-constexpr char TEXT_GAMETRAKCALIBRATE[] = "Gametrak calibrate";
-constexpr char TEXT_SETGAMETRAKXMIN[] = "Set gametrakXMin";
-constexpr char TEXT_SETGAMETRAKXMAX[] = "Set gametrakXMax";
-constexpr char TEXT_SETGAMETRAKYMIN[] = "Set gametrakYMin";
-constexpr char TEXT_SETGAMETRAKYMAX[] = "Set gametrakYMax";
-constexpr char TEXT_SETGAMETRAKDISTMIN[] = "Set gametrakDistMin";
-constexpr char TEXT_SETGAMETRAKDISTMAX[] = "Set gametrakDistMax";
-constexpr char TEXT_TIMERS[] = "Timers";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_BOARDCOMPUTERHARDWARESETTINGS[];
+//extern char TEXT_LOCKSCREENSETTINGS[];
+extern char TEXT_CALIBRATE[];
+extern char TEXT_SAMPLECOUNT[];
+extern char TEXT_GASMIN[];
+extern char TEXT_GASMAX[];
+extern char TEXT_BREMSMIN[];
+extern char TEXT_BREMSMAX[];
+extern char TEXT_DPADDEBOUNCE[];
+extern char TEXT_GAMETRAKCALIBRATE[];
+extern char TEXT_SETGAMETRAKXMIN[];
+extern char TEXT_SETGAMETRAKXMAX[];
+extern char TEXT_SETGAMETRAKYMIN[];
+extern char TEXT_SETGAMETRAKYMAX[];
+extern char TEXT_SETGAMETRAKDISTMIN[];
+extern char TEXT_SETGAMETRAKDISTMAX[];
+extern char TEXT_TIMERS[];
+//extern char TEXT_BACK[];
 
 //ProfilesMenu
-//constexpr char TEXT_PROFILES[] = "Profiles";
-constexpr char TEXT_PROFILE0[] = "Profile 0";
-constexpr char TEXT_PROFILE1[] = "Profile 1";
-constexpr char TEXT_PROFILE2[] = "Profile 2";
-constexpr char TEXT_PROFILE3[] = "Profile 3";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_PROFILES[];
+extern char TEXT_PROFILE0[];
+extern char TEXT_PROFILE1[];
+extern char TEXT_PROFILE2[];
+extern char TEXT_PROFILE3[];
+//extern char TEXT_BACK[];
 
 //PresetsMenu
-//constexpr char TEXT_PRESETS[] = "Presets";
-constexpr char TEXT_DEFAULTEVERYTHING[] = "Default everything";
-constexpr char TEXT_DEFAULTLIMITS[] = "Default limits";
-constexpr char TEXT_KIDSLIMITS[] = "Kids limits";
-constexpr char TEXT_DEFAULTPOTI[] = "Default poti";
-constexpr char TEXT_DEFAULTCONTROLLERHARDWARE[] = "Default controller H/W";
-constexpr char TEXT_MOSFETSOFFCONTROLLERHARDWARE[] = "MOSFETs off controller H/W";
-constexpr char TEXT_SPINNERCONTROLLERHARDWARE[] = "Spinner controller H/W";
-constexpr char TEXT_DEFAULTBOARDCOMPUTERHARDWARE[] = "Default boardcomputer H/W";
-constexpr char TEXT_DEFAULTDEFAULTMODE[] = "Default defaultMode";
-constexpr char TEXT_SINUSOIDALDEFAULTMODE[] = "Sinusoidal defaultMode";
-constexpr char TEXT_DEFAULTTEMPOMATMODE[] = "Default tempomatMode";
-constexpr char TEXT_DEFAULTLARSMMODE[] = "Default larsmMode";
-constexpr char TEXT_STREET[] = "Street";
-constexpr char TEXT_SIDEWALK[] = "Sidewalk";
-constexpr char TEXT_POLICE[] = "Police";
-constexpr char TEXT_RACE[] = "Race";
+//extern char TEXT_PRESETS[];
+extern char TEXT_DEFAULTEVERYTHING[];
+extern char TEXT_DEFAULTLIMITS[];
+extern char TEXT_KIDSLIMITS[];
+extern char TEXT_DEFAULTPOTI[];
+extern char TEXT_DEFAULTCONTROLLERHARDWARE[];
+extern char TEXT_MOSFETSOFFCONTROLLERHARDWARE[];
+extern char TEXT_SPINNERCONTROLLERHARDWARE[];
+extern char TEXT_DEFAULTBOARDCOMPUTERHARDWARE[];
+extern char TEXT_DEFAULTDEFAULTMODE[];
+extern char TEXT_SINUSOIDALDEFAULTMODE[];
+extern char TEXT_DEFAULTTEMPOMATMODE[];
+extern char TEXT_DEFAULTLARSMMODE[];
+extern char TEXT_STREET[];
+extern char TEXT_SIDEWALK[];
+extern char TEXT_POLICE[];
+extern char TEXT_RACE[];
 
 //SelectModeMenu
-//constexpr char TEXT_SELECTMODE[] = "Select mode";
-constexpr char TEXT_DEFAULT[] = "Default";
-constexpr char TEXT_TEMPOMAT[] = "Tempomat";
-constexpr char TEXT_LARSM[] = "Larsm";
-constexpr char TEXT_REMOTECONTROL[] = "Remote control";
-constexpr char TEXT_GAMETRAK[] = "Gametrak";
-constexpr char TEXT_MOTORTEST[] = "Motortest";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_SELECTMODE[];
+extern char TEXT_DEFAULT[];
+extern char TEXT_TEMPOMAT[];
+extern char TEXT_LARSM[];
+extern char TEXT_REMOTECONTROL[];
+extern char TEXT_GAMETRAK[];
+extern char TEXT_MOTORTEST[];
+//extern char TEXT_BACK[];
 
 //TimersMenu
-//constexpr char TEXT_TIMERS[] = "Timers";
-constexpr char TEXT_POTIREADRATE[] = "Poti read rate";
-constexpr char TEXT_MODEUPDATERATE[] = "Mode update rate";
-constexpr char TEXT_STATSUPDATERATE[] = "Stats update rate";
-constexpr char TEXT_DISPLAYUPDATERATE[] = "Display update rate";
-constexpr char TEXT_DISPLAYREDRAWRATE[] = "Display redraw rate";
+//extern char TEXT_TIMERS[];
+extern char TEXT_POTIREADRATE[];
+extern char TEXT_MODEUPDATERATE[];
+extern char TEXT_STATSUPDATERATE[];
+extern char TEXT_DISPLAYUPDATERATE[];
+extern char TEXT_DISPLAYREDRAWRATE[];
 #ifdef FEATURE_CAN
-constexpr char TEXT_CANRECEIVERATE[] = "CAN receive rate";
+extern char TEXT_CANRECEIVERATE[];
 #endif
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_BACK[];
 
 //TimeSettingsMenu
-//constexpr char TEXT_TIME[] = "Time";
-constexpr char TEXT_OFFSET[] = "Offset";
-constexpr char TEXT_DAYLIGHTSAVINGMODE[] = "Daylight Saving";
-constexpr char TEXT_NTPENABLED[] = "NTP Enabled";
-constexpr char TEXT_NTPSERVER[] = "NTP Server";
-constexpr char TEXT_NTPMODE[] = "NTP Mode";
-constexpr char TEXT_NTPINTERVAL[] = "NTP Interval";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_TIME[];
+extern char TEXT_OFFSET[];
+extern char TEXT_DAYLIGHTSAVINGMODE[];
+extern char TEXT_NTPENABLED[];
+extern char TEXT_NTPSERVER[];
+extern char TEXT_NTPMODE[];
+extern char TEXT_NTPINTERVAL[];
+//extern char TEXT_BACK[];
 
 //ChangeValueDisplay<BluetoothMode>
-constexpr char TEXT_OFF[] = "Off";
-constexpr char TEXT_MASTER[] = "Master";
-constexpr char TEXT_SLAVE[] = "Slave";
+extern char TEXT_OFF[];
+extern char TEXT_MASTER[];
+extern char TEXT_SLAVE[];
 
 //ChangeValueDisplay<ControlMode>
-constexpr char TEXT_OPENMODE[] = "Open mode";
-constexpr char TEXT_VOLTAGE[] = "Voltage";
-constexpr char TEXT_SPEED[] = "Speed";
-constexpr char TEXT_TORQUE[] = "Torque";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_OPENMODE[];
+extern char TEXT_VOLTAGE[];
+extern char TEXT_SPEED[];
+extern char TEXT_TORQUE[];
+//extern char TEXT_BACK[];
 
 //ChangeValueDisplay<ControlType>
-constexpr char TEXT_COMMUTATION[] = "Commutation";
-constexpr char TEXT_SINUSOIDAL[] = "Sinusoidal";
-constexpr char TEXT_FIELDORIENTEDCONTROL[] = "Field oriented control";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_COMMUTATION[];
+extern char TEXT_SINUSOIDAL[];
+extern char TEXT_FIELDORIENTEDCONTROL[];
+//extern char TEXT_BACK[];
 
 //ChangeValueDisplay<LarsmMode::Mode>
-constexpr char TEXT_LARSMMODE1[] = "Mode1";
-constexpr char TEXT_LARSMMODE2[] = "Mode2";
-constexpr char TEXT_LARSMMODE3[] = "Mode3";
-constexpr char TEXT_LARSMMODE4[] = "Mode4";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_LARSMMODE1[];
+extern char TEXT_LARSMMODE2[];
+extern char TEXT_LARSMMODE3[];
+extern char TEXT_LARSMMODE4[];
+//extern char TEXT_BACK[];
 
 //ChangeValueDisplay<UnifiedModelMode>
-//constexpr char TEXT_COMMUTATION[] = "Commutation";
-//constexpr char TEXT_SINUSOIDAL[] = "Sinusoidal";
-constexpr char TEXT_FOCVOLTAGE[] = "FOC/Voltage";
-constexpr char TEXT_FOCSPEED[] = "FOC/Speed";
-constexpr char TEXT_FOCTORQUE[] = "FOC/Torque";
-//constexpr char TEXT_BACK[] = "Back";
+//extern char TEXT_COMMUTATION[];
+//extern char TEXT_SINUSOIDAL[];
+extern char TEXT_FOCVOLTAGE[];
+extern char TEXT_FOCSPEED[];
+extern char TEXT_FOCTORQUE[];
+//extern char TEXT_BACK[];
 
 //ChangeValueDisplay<wifi_mode_t>
-constexpr char TEXT_WIFI_MODE_NULL[] = "WIFI_MODE_NULL";
-constexpr char TEXT_WIFI_MODE_STA[] = "WIFI_MODE_STA";
-constexpr char TEXT_WIFI_MODE_AP[] = "WIFI_MODE_AP";
-constexpr char TEXT_WIFI_MODE_APSTA[] = "WIFI_MODE_APSTA";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_WIFI_MODE_NULL[];
+extern char TEXT_WIFI_MODE_STA[];
+extern char TEXT_WIFI_MODE_AP[];
+extern char TEXT_WIFI_MODE_APSTA[];
+//extern char TEXT_BACK[];
 
 //ChangeValueDisplay<wifi_power_t>
-constexpr char TEXT_WIFI_POWER_19_5dBm[] = "19.5dBm";
-constexpr char TEXT_WIFI_POWER_19dBm[] = "19dBm";
-constexpr char TEXT_WIFI_POWER_18_5dBm[] = "18.5dBm";
-constexpr char TEXT_WIFI_POWER_17dBm[] = "17dBm";
-constexpr char TEXT_WIFI_POWER_15dBm[] = "15dBm";
-constexpr char TEXT_WIFI_POWER_13dBm[] = "13dBm";
-constexpr char TEXT_WIFI_POWER_11dBm[] = "11dBm";
-constexpr char TEXT_WIFI_POWER_8_5dBm[] = "8.5dBm";
-constexpr char TEXT_WIFI_POWER_7dBm[] = "7dBm";
-constexpr char TEXT_WIFI_POWER_5dBm[] = "5dBm";
-constexpr char TEXT_WIFI_POWER_2dBm[] = "2dBm";
-constexpr char TEXT_WIFI_POWER_MINUS_1dBm[] = "-1dBm";
-//constexpr char TEXT_BACK[] = "Back";
+extern char TEXT_WIFI_POWER_19_5dBm[];
+extern char TEXT_WIFI_POWER_19dBm[];
+extern char TEXT_WIFI_POWER_18_5dBm[];
+extern char TEXT_WIFI_POWER_17dBm[];
+extern char TEXT_WIFI_POWER_15dBm[];
+extern char TEXT_WIFI_POWER_13dBm[];
+extern char TEXT_WIFI_POWER_11dBm[];
+extern char TEXT_WIFI_POWER_8_5dBm[];
+extern char TEXT_WIFI_POWER_7dBm[];
+extern char TEXT_WIFI_POWER_5dBm[];
+extern char TEXT_WIFI_POWER_2dBm[];
+extern char TEXT_WIFI_POWER_MINUS_1dBm[];
+//extern char TEXT_BACK[];
 
 //Crashmenu
-constexpr char TEXT_CRASHMENU[] = "Crash Menu";
-constexpr char TEXT_CRASH_ASSERT[] = "assert(0)";
-constexpr char TEXT_CRASH_DIVZERO[] = "42 / 0";
+extern char TEXT_CRASHMENU[];
+extern char TEXT_CRASH_ASSERT[];
+extern char TEXT_CRASH_DIVZERO[];
 
 //SelectBuildServerMenu
-constexpr char TEXT_SELECTBUILDSERVERMENU[] = "Select Buildserver";
-constexpr char TEXT_NOBUILDSERVERCONFIGURED[] = "Not configured";
+extern char TEXT_SELECTBUILDSERVERMENU[];
+extern char TEXT_NOBUILDSERVERCONFIGURED[];
 
 //Otamenu
-constexpr char TEXT_UPDATENOW[] = "Update now";
-constexpr char TEXT_SELECTBUILD[] = "Select build";
-constexpr char TEXT_OTA_NOBUILDSERVERAVAILABLE[] = "E:No server saved.";
-constexpr char TEXT_OTA_NOBUILDSERVERSELECTED[] = "E:No server selected.";
-constexpr char TEXT_OTA_NOCONNECTION[] = "E:No internet.";
-constexpr char TEXT_OTA_WAITFORRESPONSE[] = "Wait for response...";
+extern char TEXT_UPDATENOW[];
+extern char TEXT_SELECTBUILD[];
+extern char TEXT_OTA_NOBUILDSERVERAVAILABLE[];
+extern char TEXT_OTA_NOBUILDSERVERSELECTED[];
+extern char TEXT_OTA_NOCONNECTION[];
+extern char TEXT_OTA_WAITFORRESPONSE[];
 
 //LedstripColorMenu
-constexpr char TEXT_LEDSTRIPCOLORMENU[] = "Customize Ledstrip";
+extern char TEXT_LEDSTRIPCOLORMENU[];
 
 //StatisticsMenu
-constexpr char TEXT_STATISTICSMENU[] = "Statistics";
-constexpr char TEXT_STATSSAVE[] = "Save kilometers";
-constexpr char TEXT_STATSCLEAR[] = "Clear current km";
+extern char TEXT_STATISTICSMENU[];
+extern char TEXT_STATSSAVE[];
+extern char TEXT_STATSCLEAR[];
 
 #ifdef FEATURE_CAN
-constexpr char TEXT_POWERSUPPLY[] = "Powersupply";
+extern char TEXT_POWERSUPPLY[];
 #endif
+extern char TEXT_REENABLE_MENUITEMS[];
 } // namespace
 
 using namespace bobbytexts;
