@@ -222,6 +222,11 @@ char TEXT_HYBRIDENABLE[] = "Enable Hybrid mode";
 char TEXT_HYBRIDACTIVATIONLIMIT[] = "Hybrid activation-limit";
 char TEXT_HYBRIDDEACTIVATIONLIMIT[] = "Hybrid deactivation-limit";
 char TEXT_LIMITS_TO_NEAR[] = "Hybrid limits too near (>20)";
+
+char TEXT_HANDBREMSE_ENABLE[] = "Enable Handbrems";
+char TEXT_HANDBREMSE_AUTOMATIC[] = "Automatic Handbrems";
+char TEXT_HANDBREMSE_MODE[] = "Handbrems Mode";
+char TEXT_HANDBREMSE_TRIGGERTIMEOUT[] = "Handbrems Timeout";
 //char TEXT_BACK[] = "Back";
 
 //DynamicDebugMenu
@@ -454,6 +459,12 @@ char TEXT_COMMUTATION[] = "Commutation";
 char TEXT_SINUSOIDAL[] = "Sinusoidal";
 char TEXT_FIELDORIENTEDCONTROL[] = "Field oriented control";
 //char TEXT_BACK[] = "Back";
+
+//ChangeValueDisplay<HandbremseMode>
+char TEXT_HANDBREMS_MOSFETS_OFF[] = "Mosfets off";
+char TEXT_HANDBREMS_OPENMODE[] = "Open Mode";
+char TEXT_HANDBREMS_SPEED0[] = "Speed 0";
+char TEXT_HANDBREMSE[] = "Handbremse";
 
 //ChangeValueDisplay<LarsmMode::Mode>
 char TEXT_LARSMMODE1[] = "Mode1";

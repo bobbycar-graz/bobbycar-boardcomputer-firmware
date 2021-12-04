@@ -13,6 +13,7 @@
 #include "utils.h"
 #include "changevaluedisplay_unifiedmodelmode.h"
 #include "accessors/settingsaccessors.h"
+#include "displays/menus/handbremssettingsmenu.h"
 #include "displays/menus/modessettingsmenu.h"
 
 namespace {
@@ -124,6 +125,7 @@ DefaultModeSettingsMenu::DefaultModeSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_ENABLEFWSMOOTHINGUP>,  ToggleBoolAction, CheckboxIcon,  DefaultModeEnableFieldWeakSmoothingUpAccessor>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_ENABLEFWSMOOTHINGDOWN>,  ToggleBoolAction, CheckboxIcon,  DefaultModeEnableFieldWeakSmoothingDownAccessor>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_HYBRIDENABLE>,  ToggleBoolAction, CheckboxIcon,  DefaultModeEnableHybridAccessor>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_HANDBREMSE>, SwitchScreenAction<HandbremsSettingsMenu>>>();
     constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_FWSMOOTHING_LIMIT, DefaultModeEnableFieldWeakSmoothingLowerLimitAccessor>, SwitchScreenAction<DefaultModeFwSmoothingLowerLimitChangeDisplay>>>();
     constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_SMOOTHINGVAL, DefaultModeSmoothingAccessor>,                     SwitchScreenAction<DefaultModeSmoothingChangeDisplay>>>();
     constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_FRONTPERCENTAGE, DefaultModeFrontPercentageAccessor>, SwitchScreenAction<DefaultModeFrontPercentageChangeDisplay>>>();

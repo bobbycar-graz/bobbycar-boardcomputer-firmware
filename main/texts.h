@@ -221,6 +221,12 @@ extern char TEXT_HYBRIDENABLE[];
 extern char TEXT_HYBRIDACTIVATIONLIMIT[];
 extern char TEXT_HYBRIDDEACTIVATIONLIMIT[];
 extern char TEXT_LIMITS_TO_NEAR[];
+
+extern char TEXT_HANDBREMSE_ENABLE[];
+extern char TEXT_HANDBREMSE_AUTOMATIC[];
+extern char TEXT_HANDBREMSE_MODE[];
+extern char TEXT_HANDBREMSE_TRIGGERTIMEOUT[];
+extern char TEXT_HANDBREMSE[];
 //extern char TEXT_BACK[];
 
 //DynamicDebugMenu
@@ -453,6 +459,11 @@ extern char TEXT_COMMUTATION[];
 extern char TEXT_SINUSOIDAL[];
 extern char TEXT_FIELDORIENTEDCONTROL[];
 //extern char TEXT_BACK[];
+
+//ChangeValueDisplay<HandbremseMode>
+extern char TEXT_HANDBREMS_MOSFETS_OFF[];
+extern char TEXT_HANDBREMS_OPENMODE[];
+extern char TEXT_HANDBREMS_SPEED0[];
 
 //ChangeValueDisplay<LarsmMode::Mode>
 extern char TEXT_LARSMMODE1[];

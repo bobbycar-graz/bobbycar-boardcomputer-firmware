@@ -189,6 +189,14 @@ template<> struct nvsGetterHelper<UnifiedModelMode> { static esp_err_t nvs_get(n
         *out_value = UnifiedModelMode(tempValue);
     return err;
 }};
+template<> struct nvsGetterHelper<HandbremseMode> { static esp_err_t nvs_get(nvs_handle handle, const char* key, HandbremseMode* out_value)
+{
+    uint8_t tempValue;
+    esp_err_t err = nvs_get_u8(handle, key, &tempValue);
+    if (err == ESP_OK)
+        *out_value = HandbremseMode(tempValue);
+    return err;
+}};
 #if defined(FEATURE_LEDSTRIP) && defined(FEATURE_OTA)
 template<> struct nvsGetterHelper<OtaAnimationModes> { static esp_err_t nvs_get(nvs_handle handle, const char* key, OtaAnimationModes* out_value)
 {
@@ -352,6 +360,10 @@ template<> struct nvsSetterHelper<BluetoothMode> { static esp_err_t nvs_set(nvs_
 }};
 #endif
 template<> struct nvsSetterHelper<UnifiedModelMode> { static esp_err_t nvs_set(nvs_handle handle, const char* key, UnifiedModelMode value)
+{
+    return nvs_set_u8(handle, key, uint8_t(value));
+}};
+template<> struct nvsSetterHelper<HandbremseMode> { static esp_err_t nvs_set(nvs_handle handle, const char* key, HandbremseMode value)
 {
     return nvs_set_u8(handle, key, uint8_t(value));
 }};

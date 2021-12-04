@@ -1,4 +1,5 @@
 #include "buttons.h"
+#include "modes/defaultmode.h"
 
 int rotated{};
 bool requestFullRedraw{};
@@ -155,7 +156,8 @@ void InputDispatcher::blinkRightButton(bool pressed)
 
 void InputDispatcher::quickActionButtonDown(bool pressed)
 {
-
+    if(!pressed)return;
+    modes::defaultMode.overrideHandbremse = pressed;
 }
 
 void InputDispatcher::quickActionButtonUp(bool pressed)

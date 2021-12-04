@@ -235,6 +235,13 @@ constexpr Settings::MotortestMode defaultMotortestMode {
     .maxPwm = 400
 };
 
+constexpr Settings::Handbremse defaultHandbremse {
+    .mode = HandbremseMode::MOSFETS_OFF,
+    .triggerTimeout = 10,
+    .automatic = false,
+    .enable = false
+};
+
 #ifdef FEATURE_LEDSTRIP
 constexpr Settings::Ledstrip defaultLedstrip {
     .enableLedAnimation = true,
@@ -320,6 +327,7 @@ constexpr Settings defaultSettings {
     .hybrid = defaultHybrid,
     .lockscreen = defaultLockscreen,
     .savedStatistics = defaultSavedStatistics,
+    .handbremse = defaultHandbremse
 };
 
 StringSettings makeDefaultStringSettings();

@@ -2,6 +2,7 @@
 
 // system includes
 #include <cstdint>
+#include <optional>
 
 // 3rdparty lib includes
 #include <espchrono.h>
@@ -24,10 +25,12 @@ public:
     bool waitForGasLoslass{false};
     bool waitForBremsLoslass{false};
     bool hybridModeActivated{false};
+    bool overrideHandbremse{false};
 
 private:
-    espchrono::millis_clock::time_point lastTime{espchrono::millis_clock::now()};
-    float lastPwm{0};
+    espchrono::millis_clock::time_point m_lastTime{espchrono::millis_clock::now()};
+    float m_lastPwm{0};
+    std::optional<espchrono::millis_clock::time_point> m_stillSince;
 };
 
 namespace modes {

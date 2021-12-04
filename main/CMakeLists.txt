@@ -38,6 +38,7 @@ set(headers
     changevaluedisplay_bluetoothmode.h
     changevaluedisplay_controlmode.h
     changevaluedisplay_controltype.h
+    changevaluedisplay_handbremsmode.h
     changevaluedisplay_larsmmode_mode.h
     changevaluedisplay_unifiedmodelmode.h
     changevaluedisplay_wifi_mode_t.h
@@ -80,6 +81,7 @@ set(headers
     displays/menus/gametrakmodesettingsmenu.h
     displays/menus/genericwifisettingsmenu.h
     displays/menus/graphsmenu.h
+    displays/menus/handbremssettingsmenu.h
     displays/menus/invertmenu.h
     displays/menus/larsmmodesettingsmenu.h
     displays/menus/ledstripmenu.h
@@ -128,6 +130,7 @@ set(headers
     esptexthelpers.h
     feedbackparser.h
     globals.h
+    handbremse.h
     icons/alert.h
     icons/battery.h
     icons/bluetooth.h
@@ -232,6 +235,7 @@ set(sources
     changevaluedisplay_bluetoothmode.cpp
     changevaluedisplay_controlmode.cpp
     changevaluedisplay_controltype.cpp
+    changevaluedisplay_handbremsmode.cpp
     changevaluedisplay_larsmmode_mode.cpp
     changevaluedisplay_unifiedmodelmode.cpp
     changevaluedisplay_wifi_mode_t.cpp
@@ -274,6 +278,7 @@ set(sources
     displays/menus/gametrakmodesettingsmenu.cpp
     displays/menus/genericwifisettingsmenu.cpp
     displays/menus/graphsmenu.cpp
+    displays/menus/handbremssettingsmenu.cpp
     displays/menus/invertmenu.cpp
     displays/menus/larsmmodesettingsmenu.cpp
     displays/menus/ledstripmenu.cpp

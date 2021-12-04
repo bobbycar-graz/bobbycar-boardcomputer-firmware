@@ -21,6 +21,7 @@
 #include "bluetoothmode.h"
 #endif
 #include "unifiedmodelmode.h"
+#include "handbremse.h"
 #include "ledstrip.h"
 
 enum class LarsmModeMode : uint8_t { Mode1, Mode2, Mode3, Mode4 };
@@ -214,6 +215,13 @@ struct Settings
         uint32_t totalCentimeters;
     } savedStatistics;
 
+    struct Handbremse {
+        HandbremseMode mode;
+        uint16_t triggerTimeout;
+        bool automatic;
+        bool enable;
+    } handbremse;
+
     template<typename T>
     void executeForEveryCommonSetting(T &&callable);
 
@@ -341,7 +349,13 @@ void Settings::executeForEveryCommonSetting(T &&callable)
 
     callable("lockAlwPresetSw", lockscreen.allowPresetSwitch);
     callable("lockscreenPin", lockscreen.pin);
+
     callable("totalCentimeter", savedStatistics.totalCentimeters);
+
+    callable("handBremsE", handbremse.enable);
+    callable("handBremsA", handbremse.automatic);
+    callable("handBremsM", handbremse.mode);
+    callable("handBremsT", handbremse.triggerTimeout);
 }
 
 template<typename T>

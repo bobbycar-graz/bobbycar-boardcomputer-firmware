@@ -14,6 +14,7 @@
 #endif
 #include "drivingstatistics.h"
 #include "udpcloud.h"
+#include "modes/defaultmode.h"
 
 using namespace espgui;
 
@@ -69,6 +70,10 @@ void StatusDisplay::initScreen()
 void StatusDisplay::redraw()
 {
     Base::redraw();
+    if (modes::defaultMode.overrideHandbremse)
+        tft.fillRect(0, 0, tft.width(), 2, TFT_RED);
+    else
+        tft.fillRect(0, 0, tft.width(), 2, TFT_BLACK);
 
     tft.setTextFont(2);
     m_labelRawGas.redraw(raw_gas ? std::to_string(*raw_gas) : "?");
