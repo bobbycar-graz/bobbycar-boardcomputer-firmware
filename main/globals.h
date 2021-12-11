@@ -15,17 +15,17 @@
 #include <SPI.h>
 
 // 3rdparty lib includes
-#include <espchrono.h>
 #include <TFT_eSPI.h>
+#include <espchrono.h>
 
 // local includes
 #include "controller.h"
 #include "display.h"
+#include "macros_bobbycar.h"
 #include "modeinterface.h"
 #include "settings.h"
-#include "stringsettings.h"
 #include "settingspersister.h"
-#include "macros_bobbycar.h"
+#include "stringsettings.h"
 
 extern std::optional<int16_t> raw_gas, raw_brems;
 extern std::optional<float> gas, brems;
@@ -66,40 +66,44 @@ extern std::array<CRGB, 8> ledstrip_custom_colors;
 class Controllers : public std::array<Controller, 2>
 {
 public:
-    explicit Controllers() :
-        std::array<Controller, 2>{{
-            Controller {
+  explicit Controllers() :
+      std::array<Controller, 2> { { Controller {
 #ifdef FEATURE_SERIAL
-                Serial1,
+                                        Serial1,
 #endif
-                settings.controllerHardware.enableFrontLeft, settings.controllerHardware.enableFrontRight, settings.controllerHardware.invertFrontLeft, settings.controllerHardware.invertFrontRight,
-                settings.battery.front30VoltCalibration, settings.battery.front50VoltCalibration
-            },
-            Controller {
+                                        settings.controllerHardware.enableFrontLeft, settings.controllerHardware.enableFrontRight, settings.controllerHardware.invertFrontLeft, settings.controllerHardware.invertFrontRight,
+                                        settings.battery.front30VoltCalibration, settings.battery.front50VoltCalibration },
+                                    Controller {
 #ifdef FEATURE_SERIAL
-                Serial2,
+                                        Serial2,
 #endif
-                settings.controllerHardware.enableBackLeft, settings.controllerHardware.enableBackRight, settings.controllerHardware.invertBackLeft, settings.controllerHardware.invertBackRight,
-                settings.battery.back30VoltCalibration, settings.battery.back50VoltCalibration
-            }
-        }}
-    {}
+                                        settings.controllerHardware.enableBackLeft, settings.controllerHardware.enableBackRight, settings.controllerHardware.invertBackLeft, settings.controllerHardware.invertBackRight,
+                                        settings.battery.back30VoltCalibration, settings.battery.back50VoltCalibration } } }
+  {
+  }
 
-    Controllers(const Controllers &) = delete;
-    Controllers &operator=(const Controllers &) = delete;
+  Controllers(const Controllers &) = delete;
+  Controllers &operator=(const Controllers &) = delete;
 
-    Controller &front{operator[](0)};
-    Controller &back{operator[](1)};
+  Controller &front { operator[](0) };
+  Controller &back { operator[](1) };
 };
 
 extern Controllers controllers;
-struct FrontControllerGetter { static Controller &get() { return controllers.front; }};
-struct BackControllerGetter { static Controller &get() { return controllers.back; }};
+struct FrontControllerGetter
+{
+  static Controller &get() { return controllers.front; }
+};
+struct BackControllerGetter
+{
+  static Controller &get() { return controllers.back; }
+};
 
-struct Performance {
-    espchrono::millis_clock::time_point lastTime;
-    int current{};
-    int last{};
+struct Performance
+{
+  espchrono::millis_clock::time_point lastTime;
+  int current {};
+  int last {};
 };
 extern Performance performance;
 
@@ -113,9 +117,9 @@ extern ModeInterface *currentMode;
 #ifdef FEATURE_LEDBACKLIGHT
 constexpr const bool ledBacklightInverted =
 #ifdef LEDBACKLIGHT_INVERTED
-        true
+    true
 #else
-        false
+    false
 #endif
-;
+    ;
 #endif

@@ -1,5 +1,6 @@
 #pragma once
 
-namespace {
+namespace
+{
 using pin_t = int;
 }

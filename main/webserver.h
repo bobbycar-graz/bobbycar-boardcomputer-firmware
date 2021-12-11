@@ -15,8 +15,8 @@
 #include <esphttpdutils.h>
 
 // local includes
-#include "webserver_lock.h"
 #include "webserver_displaycontrol.h"
+#include "webserver_lock.h"
 #ifdef FEATURE_OTA
 #include "webserver_ota.h"
 #endif
@@ -35,10 +35,11 @@ bool MenuDisplayChanged();
 esp_err_t webserver_reboot_handler(httpd_req_t *req);
 esp_err_t webserver_status_handler(httpd_req_t *req);
 
-namespace bobbywebserver {
+namespace bobbywebserver
+{
 extern bool forceRefresh;
 extern bool lastScreenWasMenu;
 extern int8_t lastSelectIndex;
-extern std::vector<std::pair<std::string, const espgui::MenuItemIcon*>> menuBuf;
-}
+extern std::vector<std::pair<std::string, const espgui::MenuItemIcon *>> menuBuf;
+} // namespace bobbywebserver
 #endif

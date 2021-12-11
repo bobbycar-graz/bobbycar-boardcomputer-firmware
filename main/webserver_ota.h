@@ -8,13 +8,13 @@
 #include <esp_ota_ops.h>
 
 // 3rdparty lib includes
-#include <htmlbuilder.h>
-#include <fmt/core.h>
 #include <espcppmacros.h>
 #include <esphttpdutils.h>
+#include <espstrutils.h>
+#include <fmt/core.h>
+#include <htmlbuilder.h>
 #include <lockhelper.h>
 #include <tickchrono.h>
-#include <espstrutils.h>
 
 // local includes
 #ifdef FEATURE_OTA

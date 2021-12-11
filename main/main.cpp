@@ -1,4 +1,4 @@
-constexpr const char * const TAG = "BOBBY";
+constexpr const char *const TAG = "BOBBY";
 
 #ifndef OTA_USERNAME
 #error No OTA username!
@@ -8,8 +8,8 @@ constexpr const char * const TAG = "BOBBY";
 #include <cstdio>
 
 // esp-idf includes
-#include <esp_wifi_types.h>
 #include <esp_log.h>
+#include <esp_wifi_types.h>
 
 // Arduino includes
 #include <Arduino.h>
@@ -22,10 +22,10 @@ using namespace std::chrono_literals;
 // local includes
 #include "bobbycar-common.h"
 #include "bobbycar-serial.h"
-#include "macros_bobbycar.h"
-#include "globals.h"
-#include "screens.h"
 #include "dpad.h"
+#include "globals.h"
+#include "macros_bobbycar.h"
+#include "screens.h"
 #ifdef FEATURE_DPAD_3WIRESW
 #include "dpad3wire.h"
 #endif
@@ -43,8 +43,8 @@ using namespace std::chrono_literals;
 #endif
 #include "serialhandler.h"
 #ifdef FEATURE_OTA
-#include "ota.h"
 #include "displays/menus/selectbuildservermenu.h"
+#include "ota.h"
 #endif
 #include "presets.h"
 #include "statistics.h"
@@ -68,21 +68,22 @@ using namespace std::chrono_literals;
 #include "cloud.h"
 #include "udpcloud.h"
 #endif
-#include "wifi_bobbycar.h"
 #include "time_bobbycar.h"
+#include "wifi_bobbycar.h"
 #ifdef FEATURE_LEDSTRIP
 #include "ledstrip.h"
 #endif
-#include "modes/defaultmode.h"
-#include "displays/statusdisplay.h"
 #include "displays/calibratedisplay.h"
+#include "displays/statusdisplay.h"
+#include "modes/defaultmode.h"
 #ifdef FEATURE_DNS_NS
 #include "dnsannounce.h"
 #endif
 #include "drivingstatistics.h"
 #include "newsettings.h"
 
-namespace {
+namespace
+{
 std::optional<espchrono::millis_clock::time_point> lastWifiUpdate;
 std::optional<espchrono::millis_clock::time_point> lastPotiRead;
 std::optional<espchrono::millis_clock::time_point> lastModeUpdate;
@@ -105,370 +106,370 @@ std::optional<espchrono::millis_clock::time_point> lastNtpUpdate;
 #ifdef FEATURE_LEDSTRIP
 std::optional<espchrono::millis_clock::time_point> lastLedstripUpdate;
 #endif
-}
+} // namespace
 
 extern "C" void app_main()
 {
-    Serial.begin(115200);
-    //Serial.setDebugOutput(true);
-    //Serial.println("setup()");
+  Serial.begin(115200);
+  // Serial.setDebugOutput(true);
+  // Serial.println("setup()");
 
 #ifdef FEATURE_LEDBACKLIGHT
-    pinMode(PINS_LEDBACKLIGHT, OUTPUT);
-    digitalWrite(PINS_LEDBACKLIGHT, ledBacklightInverted ? LOW : HIGH);
+  pinMode(PINS_LEDBACKLIGHT, OUTPUT);
+  digitalWrite(PINS_LEDBACKLIGHT, ledBacklightInverted ? LOW : HIGH);
 #endif
 
-    pinMode(3, INPUT_PULLUP);
+  pinMode(3, INPUT_PULLUP);
 
-    currentlyReverseBeeping = false;
+  currentlyReverseBeeping = false;
 
-    initScreen();
+  initScreen();
 
-    bootLabel.redraw("settings");
+  bootLabel.redraw("settings");
 
-    if (const auto result = configs.init("bobbycar"); result != ESP_OK)
-        ESP_LOGE(TAG, "config_init_settings() failed with %s", esp_err_to_name(result));
+  if (const auto result = configs.init("bobbycar"); result != ESP_OK)
+    ESP_LOGE(TAG, "config_init_settings() failed with %s", esp_err_to_name(result));
 
-    settings = presets::defaultSettings;
-    stringSettings = presets::makeDefaultStringSettings();
+  settings       = presets::defaultSettings;
+  stringSettings = presets::makeDefaultStringSettings();
 
-    if (settingsPersister.init())
-    {
-        if (!settingsPersister.openCommon())
-            ESP_LOGE("BOBBY", "openCommon() failed");
+  if (settingsPersister.init())
+  {
+    if (!settingsPersister.openCommon())
+      ESP_LOGE("BOBBY", "openCommon() failed");
 
-        if (!settingsPersister.openProfile(0))
-            ESP_LOGE("BOBBY", "openProfile(0) failed");
+    if (!settingsPersister.openProfile(0))
+      ESP_LOGE("BOBBY", "openProfile(0) failed");
 
-        loadSettings();
-    }
-    else
-        ESP_LOGE("BOBBY", "init() failed");
+    loadSettings();
+  }
+  else
+    ESP_LOGE("BOBBY", "init() failed");
 
-    bootLabel.redraw("deviceName");
-    if (const auto result = wifi_stack::get_default_mac_addr())
-        std::sprintf(deviceName, STRING(DEVICE_PREFIX) "_%02hhx%02hhx%02hhx", result->at(3), result->at(4), result->at(5));
-    else
-        ESP_LOGE("MAIN", "get_default_mac_addr() failed: %.*s", result.error().size(), result.error().data());
+  bootLabel.redraw("deviceName");
+  if (const auto result = wifi_stack::get_default_mac_addr())
+    std::sprintf(deviceName, STRING(DEVICE_PREFIX) "_%02hhx%02hhx%02hhx", result->at(3), result->at(4), result->at(5));
+  else
+    ESP_LOGE("MAIN", "get_default_mac_addr() failed: %.*s", result.error().size(), result.error().data());
 
-    bootLabel.redraw("wifi");
-    wifi_begin();
+  bootLabel.redraw("wifi");
+  wifi_begin();
 
 #ifdef FEATURE_DPAD
-    bootLabel.redraw("dpad");
-    dpad::init();
+  bootLabel.redraw("dpad");
+  dpad::init();
 #endif
 
 #ifdef FEATURE_DPAD_3WIRESW
-    bootLabel.redraw("dpad3wire");
-    dpad3wire::init();
+  bootLabel.redraw("dpad3wire");
+  dpad3wire::init();
 #endif
 
 #ifdef FEATURE_DPAD_5WIRESW
-    bootLabel.redraw("dpad5wire");
-    dpad5wire::init();
+  bootLabel.redraw("dpad5wire");
+  dpad5wire::init();
 #endif
 
 #ifdef FEATURE_DPAD_5WIRESW_2OUT
-    bootLabel.redraw("dpad5wire_2out");
-    dpad5wire_2out::init();
+  bootLabel.redraw("dpad5wire_2out");
+  dpad5wire_2out::init();
 #endif
 
 #ifdef FEATURE_DPAD_6WIRESW
-    bootLabel.redraw("dpad6wire");
-    dpad6wire::init();
+  bootLabel.redraw("dpad6wire");
+  dpad6wire::init();
 #endif
 
 #ifdef FEATURE_ROTARY
-    bootLabel.redraw("rotary");
-    initRotary();
+  bootLabel.redraw("rotary");
+  initRotary();
 #endif
 
 #ifdef FEATURE_MOSFETS
-    bootLabel.redraw("mosfets");
-    pinMode(PINS_MOSFET0, OUTPUT);
-    pinMode(PINS_MOSFET1, OUTPUT);
-    pinMode(PINS_MOSFET2, OUTPUT);
+  bootLabel.redraw("mosfets");
+  pinMode(PINS_MOSFET0, OUTPUT);
+  pinMode(PINS_MOSFET1, OUTPUT);
+  pinMode(PINS_MOSFET2, OUTPUT);
 
-    digitalWrite(PINS_MOSFET0, LOW);
-    digitalWrite(PINS_MOSFET1, LOW);
-    digitalWrite(PINS_MOSFET2, LOW);
+  digitalWrite(PINS_MOSFET0, LOW);
+  digitalWrite(PINS_MOSFET1, LOW);
+  digitalWrite(PINS_MOSFET2, LOW);
 #endif
 
 #ifdef FEATURE_SERIAL
-    bootLabel.redraw("swap front back");
-    updateSwapFrontBack();
+  bootLabel.redraw("swap front back");
+  updateSwapFrontBack();
 #endif
 
 #ifdef FEATURE_BLUETOOTH
-    if (settings.bluetoothSettings.autoBluetoothMode == BluetoothMode::Master)
-    {
-        bootLabel.redraw("bluetooth begin master");
-        BluetoothBeginMasterAction{}.triggered();
+  if (settings.bluetoothSettings.autoBluetoothMode == BluetoothMode::Master)
+  {
+    bootLabel.redraw("bluetooth begin master");
+    BluetoothBeginMasterAction {}.triggered();
 #ifdef FEATURE_BMS
-        if (settings.autoConnectBms)
-        {
-            bootLabel.redraw("connect BMS");
-            BluetoothConnectBmsAction{}.triggered();
-        }
-#endif
-    }
-    else if (settings.bluetoothSettings.autoBluetoothMode == BluetoothMode::Slave)
+    if (settings.autoConnectBms)
     {
-        bootLabel.redraw("bluetooth begin");
-        BluetoothBeginAction{}.triggered();
+      bootLabel.redraw("connect BMS");
+      BluetoothConnectBmsAction {}.triggered();
     }
+#endif
+  }
+  else if (settings.bluetoothSettings.autoBluetoothMode == BluetoothMode::Slave)
+  {
+    bootLabel.redraw("bluetooth begin");
+    BluetoothBeginAction {}.triggered();
+  }
 #endif
 
 #ifdef FEATURE_CAN
-    bootLabel.redraw("can");
-    can::initCan();
+  bootLabel.redraw("can");
+  can::initCan();
 #endif
 
 #ifdef FEATURE_SERIAL
-    bootLabel.redraw("front Serial begin");
-    controllers.front.serial.get().begin(38400, SERIAL_8N1, PINS_RX1, PINS_TX1);
+  bootLabel.redraw("front Serial begin");
+  controllers.front.serial.get().begin(38400, SERIAL_8N1, PINS_RX1, PINS_TX1);
 
-    bootLabel.redraw("back Serial begin");
-    controllers.back.serial.get().begin(38400, SERIAL_8N1, PINS_RX2, PINS_TX2);
+  bootLabel.redraw("back Serial begin");
+  controllers.back.serial.get().begin(38400, SERIAL_8N1, PINS_RX2, PINS_TX2);
 #endif
 
 #ifdef FEATURE_LEDSTRIP
-    bootLabel.redraw("LED strip");
-    initLedStrip();
+  bootLabel.redraw("LED strip");
+  initLedStrip();
 #endif
 
-    raw_gas = std::nullopt;
-    raw_brems = std::nullopt;
-    gas = std::nullopt;
-    brems = std::nullopt;
+  raw_gas   = std::nullopt;
+  raw_brems = std::nullopt;
+  gas       = std::nullopt;
+  brems     = std::nullopt;
 
-    for (Controller &controller : controllers)
-        controller.command.buzzer = {};
+  for (Controller &controller : controllers)
+    controller.command.buzzer = {};
 
-    currentMode = &modes::defaultMode;
+  currentMode = &modes::defaultMode;
 
 #ifdef FEATURE_OTA
-    bootLabel.redraw("ota");
-    initOta();
+  bootLabel.redraw("ota");
+  initOta();
 #endif
 
 #ifdef FEATURE_BLE
-    bootLabel.redraw("ble");
-    initBle();
+  bootLabel.redraw("ble");
+  initBle();
 #endif
 
 #ifdef FEATURE_WEBSERVER
-    bootLabel.redraw("webserver");
-    initWebserver();
+  bootLabel.redraw("webserver");
+  initWebserver();
 #endif
 
-    bootLabel.redraw("potis");
-    readPotis();
+  bootLabel.redraw("potis");
+  readPotis();
 
 #ifdef FEATURE_CLOUD
-    bootLabel.redraw("cloud");
-    initCloud();
+  bootLabel.redraw("cloud");
+  initCloud();
 #endif
 
 #ifdef FEATURE_NTP
-    bootLabel.redraw("time");
-    initTime();
+  bootLabel.redraw("time");
+  initTime();
 #endif
 
-    bootLabel.redraw("switchScreen");
+  bootLabel.redraw("switchScreen");
 
 #if defined(FEATURE_DPAD_5WIRESW) && defined(DPAD_5WIRESW_DEBUG)
-    switchScreen<DPad5WireDebugDisplay>();
+  switchScreen<DPad5WireDebugDisplay>();
 #elif defined(FEATURE_DPAD_5WIRESW_2OUT) && defined(DPAD_5WIRESW_DEBUG)
-    switchScreen<DPad5Wire2OutDebugDisplay>();
+  switchScreen<DPad5Wire2OutDebugDisplay>();
 #elif defined(FEATURE_DPAD_6WIRESW) && defined(DPAD_6WIRESW_DEBUG)
-    switchScreen<DPad6WireDebugDisplay>();
+  switchScreen<DPad6WireDebugDisplay>();
 #else
 
-    if (!gas || !brems || *gas > 200.f || *brems > 200.f)
-        espgui::switchScreen<CalibrateDisplay>(true);
-    else
-        espgui::switchScreen<StatusDisplay>();
+  if (!gas || !brems || *gas > 200.f || *brems > 200.f)
+    espgui::switchScreen<CalibrateDisplay>(true);
+  else
+    espgui::switchScreen<StatusDisplay>();
 #endif
 
-    while (true)
+  while (true)
+  {
+    const auto now = espchrono::millis_clock::now();
+
+    if (!lastWifiUpdate || now - *lastWifiUpdate >= 100ms)
     {
-        const auto now = espchrono::millis_clock::now();
+      wifi_update();
 
-        if (!lastWifiUpdate || now - *lastWifiUpdate >= 100ms)
-        {
-            wifi_update();
+      lastWifiUpdate = now;
+    }
 
-            lastWifiUpdate = now;
-        }
-
-        InputDispatcher::update();
+    InputDispatcher::update();
 
 #ifdef FEATURE_DPAD
-        dpad::update();
+    dpad::update();
 #endif
 
 #ifdef FEATURE_DPAD_3WIRESW
-        dpad3wire::update();
+    dpad3wire::update();
 #endif
 
 #ifdef FEATURE_DPAD_5WIRESW
-        dpad5wire::update();
+    dpad5wire::update();
 #endif
 #ifdef FEATURE_DPAD_5WIRESW_2OUT
-        dpad5wire_2out::update();
+    dpad5wire_2out::update();
 #endif
 #ifdef FEATURE_DPAD_6WIRESW
-        dpad6wire::update();
+    dpad6wire::update();
 #endif
 
-        if (!lastPotiRead || now - *lastPotiRead >= 1000ms/settings.boardcomputerHardware.timersSettings.potiReadRate)
-        {
-            readPotis();
+    if (!lastPotiRead || now - *lastPotiRead >= 1000ms / settings.boardcomputerHardware.timersSettings.potiReadRate)
+    {
+      readPotis();
 
-            lastPotiRead = now;
-        }
+      lastPotiRead = now;
+    }
 
-        if (!lastModeUpdate || now - *lastModeUpdate >= 1000ms/settings.boardcomputerHardware.timersSettings.modeUpdateRate)
-        {
-            if (lastMode != currentMode)
-            {
-                if (lastMode)
-                    lastMode->stop();
-                lastMode = currentMode;
-                if (currentMode)
-                    currentMode->start();
-            }
+    if (!lastModeUpdate || now - *lastModeUpdate >= 1000ms / settings.boardcomputerHardware.timersSettings.modeUpdateRate)
+    {
+      if (lastMode != currentMode)
+      {
+        if (lastMode)
+          lastMode->stop();
+        lastMode = currentMode;
+        if (currentMode)
+          currentMode->start();
+      }
 
-            if (currentMode)
-                currentMode->update();
+      if (currentMode)
+        currentMode->update();
 
-            lastModeUpdate = now;
+      lastModeUpdate = now;
 
-            performance.current++;
-        }
+      performance.current++;
+    }
 
-        if (!lastStatsUpdate || now - *lastStatsUpdate >= 1000ms/settings.boardcomputerHardware.timersSettings.statsUpdateRate)
-        {
-            updateAccumulators();
-            pushStats();
-            lastStatsUpdate = now;
-        }
+    if (!lastStatsUpdate || now - *lastStatsUpdate >= 1000ms / settings.boardcomputerHardware.timersSettings.statsUpdateRate)
+    {
+      updateAccumulators();
+      pushStats();
+      lastStatsUpdate = now;
+    }
 
-        if (!lastDisplayUpdate || now - *lastDisplayUpdate >= 1000ms/settings.boardcomputerHardware.timersSettings.displayUpdateRate)
-        {
-            updateDisplay();
+    if (!lastDisplayUpdate || now - *lastDisplayUpdate >= 1000ms / settings.boardcomputerHardware.timersSettings.displayUpdateRate)
+    {
+      updateDisplay();
 
-            lastDisplayUpdate = now;
-        }
+      lastDisplayUpdate = now;
+    }
 
-        if (!lastDisplayRedraw || now - *lastDisplayRedraw >= 1000ms/settings.boardcomputerHardware.timersSettings.displayRedrawRate)
-        {
-            redrawDisplay();
+    if (!lastDisplayRedraw || now - *lastDisplayRedraw >= 1000ms / settings.boardcomputerHardware.timersSettings.displayRedrawRate)
+    {
+      redrawDisplay();
 
-            lastDisplayRedraw = now;
-        }
+      lastDisplayRedraw = now;
+    }
 
-        if (now - performance.lastTime >= 1000ms)
-        {
-            performance.last = performance.current;
-            performance.current = 0;
-            performance.lastTime = now;
-        }
+    if (now - performance.lastTime >= 1000ms)
+    {
+      performance.last     = performance.current;
+      performance.current  = 0;
+      performance.lastTime = now;
+    }
 
 #ifdef FEATURE_CAN
-        if (!lastCanParse || now - *lastCanParse >= 1000ms/settings.boardcomputerHardware.timersSettings.canReceiveRate)
-        {
-            //can::tryParseCanInput();
-            can::parseCanInput();
+    if (!lastCanParse || now - *lastCanParse >= 1000ms / settings.boardcomputerHardware.timersSettings.canReceiveRate)
+    {
+      // can::tryParseCanInput();
+      can::parseCanInput();
 
-            lastCanParse = now;
-        }
+      lastCanParse = now;
+    }
 #endif
 
 #ifdef FEATURE_SERIAL
-        for (Controller &controller : controllers)
-            controller.parser.update();
+    for (Controller &controller : controllers)
+      controller.parser.update();
 #endif
 
-        handleSerial();
+    handleSerial();
 
 #ifdef FEATURE_OTA
-        handleOta();
+    handleOta();
 #endif
 
 #ifdef FEATURE_BLE
-        if (!lastBleUpdate || now - *lastBleUpdate >= 250ms)
-        {
-            handleBle();
+    if (!lastBleUpdate || now - *lastBleUpdate >= 250ms)
+    {
+      handleBle();
 
-            lastBleUpdate = now;
-        }
+      lastBleUpdate = now;
+    }
 #endif
 
 #ifdef FEATURE_CLOUD
-        if (!lastCloudCollect || now - *lastCloudCollect >= std::chrono::milliseconds{settings.boardcomputerHardware.timersSettings.cloudCollectRate})
-        {
-            cloudCollect();
+    if (!lastCloudCollect || now - *lastCloudCollect >= std::chrono::milliseconds { settings.boardcomputerHardware.timersSettings.cloudCollectRate })
+    {
+      cloudCollect();
 
-            lastCloudCollect = now;
-        }
+      lastCloudCollect = now;
+    }
 
-        if (!lastCloudSend || now - *lastCloudSend >= 1000ms/settings.boardcomputerHardware.timersSettings.cloudSendRate)
-        {
-            cloudSend();
+    if (!lastCloudSend || now - *lastCloudSend >= 1000ms / settings.boardcomputerHardware.timersSettings.cloudSendRate)
+    {
+      cloudSend();
 
-            lastCloudSend = now;
-        }
+      lastCloudSend = now;
+    }
 #endif
 
 #ifdef FEATURE_NTP
-        if (!lastNtpUpdate || now - *lastNtpUpdate >= 100ms)
-        {
-            updateTime();
+    if (!lastNtpUpdate || now - *lastNtpUpdate >= 100ms)
+    {
+      updateTime();
 
-            lastNtpUpdate = now;
-        }
+      lastNtpUpdate = now;
+    }
 #endif
 
 #ifdef FEATURE_WEBSERVER
-        handleWebserver();
+    handleWebserver();
 #endif
 
 #ifdef FEATURE_BMS
-        bms::update();
+    bms::update();
 #endif
 
 #ifdef FEATURE_LEDSTRIP
-        if (!lastLedstripUpdate || now - *lastLedstripUpdate >= 1000ms / 60)
-        {
-            updateLedStrip();
+    if (!lastLedstripUpdate || now - *lastLedstripUpdate >= 1000ms / 60)
+    {
+      updateLedStrip();
 
-            lastLedstripUpdate = now;
-        }
+      lastLedstripUpdate = now;
+    }
 #endif
 #ifdef FEATURE_DNS_NS
-        handle_dns_announce();
+    handle_dns_announce();
 #endif
-        calculateStatistics();
+    calculateStatistics();
 #ifdef FEATURE_CLOUD
-        if (settings.cloudSettings.udpCloudEnabled)
-            sendUdpCloudPacket();
+    if (settings.cloudSettings.udpCloudEnabled)
+      sendUdpCloudPacket();
 #endif
-        if (battery::bootBatPercentage == -1)
+    if (battery::bootBatPercentage == -1)
+    {
+      if (controllers.front.feedbackValid && controllers.back.feedbackValid)
+      {
+        float avgVoltage = 0;
+        for (auto &controller : controllers)
         {
-            if(controllers.front.feedbackValid && controllers.back.feedbackValid)
-            {
-                float avgVoltage = 0;
-                for (auto &controller : controllers)
-                {
-                    avgVoltage += controller.getCalibratedVoltage();
-                }
-                avgVoltage = avgVoltage / controllers.size();
-                if (avgVoltage > 30)
-                    battery::bootBatPercentage = getBatteryPercentage(avgVoltage, BatteryCellType(settings.battery.cellType));
-            }
+          avgVoltage += controller.getCalibratedVoltage();
         }
+        avgVoltage = avgVoltage / controllers.size();
+        if (avgVoltage > 30)
+          battery::bootBatPercentage = getBatteryPercentage(avgVoltage, BatteryCellType(settings.battery.cellType));
+      }
     }
+  }
 }

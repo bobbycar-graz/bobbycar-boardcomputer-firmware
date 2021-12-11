@@ -5,7 +5,7 @@
 
 std::string defaultHostname()
 {
-    return "hallo";
+  return "hallo";
 }
 
 ConfigManager<ConfigContainer> configs;

@@ -10,12 +10,12 @@
 #endif
 
 // local includes
-#include "globals.h"
 #include "futurecpp.h"
+#include "globals.h"
 #include "modes/remotecontrolmode.h"
 #include "utils.h"
 
-//wifistack
+// wifistack
 #include "wifi_bobbycar.h"
 
 #ifdef FEATURE_BLE
@@ -31,20 +31,20 @@ extern BLECharacteristic *getwifilist;
 class RemoteControlCallbacks : public NimBLECharacteristicCallbacks
 {
 public:
-    void onWrite(NimBLECharacteristic* pCharacteristic) override;
+  void onWrite(NimBLECharacteristic *pCharacteristic) override;
 };
 
 #ifdef FEATURE_WIRELESS_CONFIG
 class WirelessSettingsCallbacks : public NimBLECharacteristicCallbacks
 {
 public:
-    void onWrite(NimBLECharacteristic* pCharacteristic) override;
+  void onWrite(NimBLECharacteristic *pCharacteristic) override;
 };
 
 class WiFiListCallbacks : public NimBLECharacteristicCallbacks
 {
 public:
-    void onRead(NimBLECharacteristic* pCharacteristic) override;
+  void onRead(NimBLECharacteristic *pCharacteristic) override;
 };
 #endif
 

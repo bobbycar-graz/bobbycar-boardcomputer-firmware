@@ -7,10 +7,10 @@
 #include <esp_log.h>
 
 // 3rdparty lib includes
-#include <htmlbuilder.h>
-#include <fmt/core.h>
 #include <espcppmacros.h>
 #include <esphttpdutils.h>
+#include <fmt/core.h>
+#include <htmlbuilder.h>
 #include <lockhelper.h>
 #include <tickchrono.h>
 
@@ -22,4 +22,3 @@
 esp_err_t webserver_stringSettings_handler(httpd_req_t *req);
 esp_err_t webserver_saveStringSettings_handler(httpd_req_t *req);
 #endif
-

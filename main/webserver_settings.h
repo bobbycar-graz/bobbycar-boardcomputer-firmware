@@ -10,12 +10,12 @@
 #include <esp_log.h>
 
 // 3rdparty lib includes
-#include <htmlbuilder.h>
-#include <fmt/core.h>
 #include <espcppmacros.h>
 #include <esphttpdutils.h>
-#include <numberparsing.h>
+#include <fmt/core.h>
+#include <htmlbuilder.h>
 #include <lockhelper.h>
+#include <numberparsing.h>
 #include <tickchrono.h>
 
 // local includes

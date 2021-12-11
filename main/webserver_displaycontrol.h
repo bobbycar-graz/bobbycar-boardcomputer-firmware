@@ -7,17 +7,17 @@
 #include <esp_log.h>
 
 // 3rdparty lib includes
-#include <htmlbuilder.h>
-#include <fmt/core.h>
-#include <espcppmacros.h>
-#include <numberparsing.h>
-#include <esphttpdutils.h>
-#include <textinterface.h>
-#include <menudisplay.h>
 #include <changevaluedisplay.h>
+#include <espcppmacros.h>
+#include <esphttpdutils.h>
+#include <fmt/core.h>
+#include <htmlbuilder.h>
 #include <lockhelper.h>
-#include <tickchrono.h>
+#include <menudisplay.h>
+#include <numberparsing.h>
 #include <screenmanager.h>
+#include <textinterface.h>
+#include <tickchrono.h>
 
 // local includes
 #include "buttons.h"

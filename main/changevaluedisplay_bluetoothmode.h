@@ -1,18 +1,19 @@
 #pragma once
 
 // local includes
-#include "changevaluedisplay.h"
-#include "menudisplay.h"
-#include "utils.h"
-#include "actions/setvalueaction.h"
 #include "actions/backproxyaction.h"
+#include "actions/setvalueaction.h"
+#include "changevaluedisplay.h"
 #include "icons/back.h"
+#include "menudisplay.h"
 #include "texts.h"
+#include "utils.h"
 #ifdef FEATURE_BLUETOOTH
 #include "bluetoothmode.h"
 #endif
 
-namespace espgui {
+namespace espgui
+{
 #ifdef FEATURE_BLUETOOTH
 template<>
 class ChangeValueDisplay<BluetoothMode> :
@@ -20,35 +21,35 @@ class ChangeValueDisplay<BluetoothMode> :
     public virtual AccessorInterface<BluetoothMode>,
     public virtual ActionInterface
 {
-    using Base = MenuDisplay;
+  using Base = MenuDisplay;
 
 public:
-    ChangeValueDisplay();
+  ChangeValueDisplay();
 
-    void start() override;
+  void start() override;
 };
 
 ChangeValueDisplay<BluetoothMode>::ChangeValueDisplay()
 {
-    constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<BluetoothMode>, StaticText<TEXT_OFF>>>(BluetoothMode::Off, *this, *this);
-    constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<BluetoothMode>, StaticText<TEXT_MASTER>>>(BluetoothMode::Master, *this, *this);
-    constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<BluetoothMode>, StaticText<TEXT_SLAVE>>>(BluetoothMode::Slave, *this, *this);
-    constructMenuItem<makeComponentArgs<MenuItem, BackProxyAction, StaticText<TEXT_BACK>, StaticMenuItemIcon<&espgui::icons::back>>>(*this);
+  constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<BluetoothMode>, StaticText<TEXT_OFF>>>(BluetoothMode::Off, *this, *this);
+  constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<BluetoothMode>, StaticText<TEXT_MASTER>>>(BluetoothMode::Master, *this, *this);
+  constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<BluetoothMode>, StaticText<TEXT_SLAVE>>>(BluetoothMode::Slave, *this, *this);
+  constructMenuItem<makeComponentArgs<MenuItem, BackProxyAction, StaticText<TEXT_BACK>, StaticMenuItemIcon<&espgui::icons::back>>>(*this);
 }
 
 void ChangeValueDisplay<BluetoothMode>::start()
 {
-    Base::start();
+  Base::start();
 
-    switch (const auto value = getValue())
-    {
-    case BluetoothMode::Off:    setSelectedIndex(0); break;
-    case BluetoothMode::Master: setSelectedIndex(1); break;
-    case BluetoothMode::Slave:  setSelectedIndex(2); break;
-    default:
-        //Serial.printf("Unknown BluetoothMode: %i\r\n", int(value));
-        setSelectedIndex(4);
-    }
+  switch (const auto value = getValue())
+  {
+  case BluetoothMode::Off: setSelectedIndex(0); break;
+  case BluetoothMode::Master: setSelectedIndex(1); break;
+  case BluetoothMode::Slave: setSelectedIndex(2); break;
+  default:
+    // Serial.printf("Unknown BluetoothMode: %i\r\n", int(value));
+    setSelectedIndex(4);
+  }
 }
 #endif
 } // namespace espgui

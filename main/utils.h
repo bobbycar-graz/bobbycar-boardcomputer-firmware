@@ -2,8 +2,8 @@
 
 // system includes
 #include <algorithm>
-#include <utility>
 #include <string>
+#include <utility>
 
 // Arduino includes
 #ifdef FEATURE_SERIAL
@@ -11,9 +11,9 @@
 #endif
 
 // 3rdparty lib includes
+#include <cpputils.h>
 #include <espchrono.h>
 #include <futurecpp.h>
-#include <cpputils.h>
 
 // local includes
 #ifdef FEATURE_CAN

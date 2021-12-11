@@ -4,17 +4,17 @@ std::optional<int16_t> raw_gas, raw_brems;
 std::optional<float> gas, brems;
 
 #ifdef FEATURE_GAMETRAK
-int16_t raw_gametrakX{};
-int16_t raw_gametrakY{};
-int16_t raw_gametrakDist{};
+int16_t raw_gametrakX {};
+int16_t raw_gametrakY {};
+int16_t raw_gametrakDist {};
 float gametrakX;
 float gametrakY;
 float gametrakDist;
 #endif
-float avgSpeed{};
-float avgSpeedKmh{};
-float sumCurrent{};
-bool isLocked{};
+float avgSpeed {};
+float avgSpeedKmh {};
+float sumCurrent {};
+bool isLocked {};
 
 char deviceName[32] = STRING(DEVICE_PREFIX) "_ERR";
 
@@ -24,11 +24,11 @@ bool simplified =
 #else
     false
 #endif
-;
+    ;
 
 #ifdef FEATURE_DNS_NS
-std::string dns_lastIpAddress_v4 = "";
-std::string dns_lastIpAddress_v6 = "";
+std::string dns_lastIpAddress_v4        = "";
+std::string dns_lastIpAddress_v6        = "";
 std::string dns_lastIpAddress_v6_global = "";
 #endif
 
@@ -46,5 +46,5 @@ Performance performance;
 BluetoothSerial bluetoothSerial;
 #endif
 
-ModeInterface *lastMode{};
-ModeInterface *currentMode{};
+ModeInterface *lastMode {};
+ModeInterface *currentMode {};

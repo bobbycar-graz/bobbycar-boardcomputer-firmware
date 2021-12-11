@@ -7,8 +7,8 @@
 #include <espchrono.h>
 
 // local includes
-#include "settingsutils.h"
 #include "ledstripdefines.h"
+#include "settingsutils.h"
 
 #ifdef FEATURE_LEDSTRIP
 #include "ledstrip.h"
@@ -32,25 +32,25 @@ extern int downPressRepeat;
 class InputDispatcher
 {
 public:
-    static void update();
+  static void update();
 
-    static void rotate(int offset);
+  static void rotate(int offset);
 
-    static void upButton(bool pressed);
+  static void upButton(bool pressed);
 
-    static void downButton(bool pressed);
+  static void downButton(bool pressed);
 
-    static void confirmButton(bool pressed);
+  static void confirmButton(bool pressed);
 
-    static void backButton(bool pressed);
+  static void backButton(bool pressed);
 
-    static void profileButton(uint8_t index, bool pressed);
+  static void profileButton(uint8_t index, bool pressed);
 
-    static void blinkLeftButton(bool pressed);
+  static void blinkLeftButton(bool pressed);
 
-    static void blinkRightButton(bool pressed);
+  static void blinkRightButton(bool pressed);
 
-    static void quickActionButtonDown(bool pressed);
+  static void quickActionButtonDown(bool pressed);
 
-    static void quickActionButtonUp(bool pressed);
+  static void quickActionButtonUp(bool pressed);
 };

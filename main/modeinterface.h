@@ -3,12 +3,11 @@
 class ModeInterface
 {
 public:
-    virtual ~ModeInterface() = default;
+  virtual ~ModeInterface() = default;
 
-    virtual void start() {};
-    virtual void update() = 0;
-    virtual void stop() {};
+  virtual void start() {};
+  virtual void update() = 0;
+  virtual void stop() {};
 
-    virtual const char *displayName() const = 0;
+  virtual const char *displayName() const = 0;
 };
-

@@ -1,27 +1,28 @@
 #pragma once
 
 // 3rdparty lib includes
-#include "changevaluedisplay.h"
-#include "menudisplay.h"
-#include "actions/setvalueaction.h"
 #include "actions/backproxyaction.h"
+#include "actions/setvalueaction.h"
+#include "changevaluedisplay.h"
 #include "icons/back.h"
+#include "menudisplay.h"
 
 // local includes
 #include "unifiedmodelmode.h"
 
-namespace espgui {
+namespace espgui
+{
 template<>
 class ChangeValueDisplay<UnifiedModelMode> :
     public MenuDisplay,
     public virtual AccessorInterface<UnifiedModelMode>,
     public virtual ActionInterface
 {
-    using Base = MenuDisplay;
+  using Base = MenuDisplay;
 
 public:
-    ChangeValueDisplay();
+  ChangeValueDisplay();
 
-    void start() override;
+  void start() override;
 };
 } // namespace espgui
