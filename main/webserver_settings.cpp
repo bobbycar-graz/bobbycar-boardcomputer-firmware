@@ -67,6 +67,7 @@ showInputForSetting(std::string_view key, T value, std::string &body)
 
 esp_err_t webserver_settings_handler(httpd_req_t *req)
 {
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
     espcpputils::LockHelper helper{webserver_lock->handle, std::chrono::ceil<espcpputils::ticks>(5s).count()};
     if (!helper.locked())
     {
@@ -231,6 +232,7 @@ saveSetting(T &value, std::string_view newValue, std::string &body)
 
 esp_err_t webserver_saveSettings_handler(httpd_req_t *req)
 {
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
     espcpputils::LockHelper helper{webserver_lock->handle, std::chrono::ceil<espcpputils::ticks>(5s).count()};
     if (!helper.locked())
     {

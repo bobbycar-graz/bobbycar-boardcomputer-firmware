@@ -193,6 +193,7 @@ set(headers
     settings.h
     settingspersister.h
     settingsutils.h
+    sslcert.h
     statistics.h
     statustexthelper.h
     stringsettings.h
@@ -412,6 +413,7 @@ set(sources
     settings.cpp
     settingspersister.cpp
     settingsutils.cpp
+    sslcert.cpp
     statistics.cpp
     statustexthelper.cpp
     stringsettings.cpp
@@ -436,7 +438,7 @@ set(sources
 )
 
 set(dependencies
-    freertos nvs_flash esp_http_server esp_https_ota mdns app_update esp_system esp_websocket_client driver
+    freertos nvs_flash esp_http_server esp_https_server esp_https_ota mdns app_update esp_system esp_websocket_client driver
     arduino-esp32 ArduinoJson esp-nimble-cpp FastLED-idf TFT_eSPI QRCode-esp32
     bobbycar-protocol cpputils cxx-ring-buffer date
     espasynchttpreq espasyncota espchrono espcpputils espconfiglib esp-gui-lib esphttpdutils espwifistack expected fmt
@@ -450,6 +452,9 @@ idf_component_register(
         .
     REQUIRES
         ${dependencies}
+    EMBED_TXTFILES
+        certs/cert.pem
+        certs/key.pem
 )
 
 target_compile_options(${COMPONENT_TARGET}

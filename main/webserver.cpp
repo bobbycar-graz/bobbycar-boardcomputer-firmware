@@ -25,6 +25,23 @@ void initWebserver()
 #endif
 
     {
+#ifdef FEATURE_SSL
+        httpd_ssl_config_t httpsConfig HTTPD_SSL_CONFIG_DEFAULT();
+        httpsConfig.httpd.core_id = 1;
+        httpsConfig.httpd.max_uri_handlers = 14;
+        httpsConfig.httpd.stack_size = 8192;
+        httpsConfig.transport_mode = HTTPD_SSL_TRANSPORT_SECURE;
+
+        httpsConfig.cacert_pem = (const uint8_t*)bobbywebserver::cert_pem.data();
+        httpsConfig.cacert_len = bobbywebserver::cert_pem.size();
+        httpsConfig.prvtkey_pem = (const uint8_t*)bobbywebserver::key_pem.data();
+        httpsConfig.prvtkey_len = bobbywebserver::key_pem.size();
+
+        const auto result = httpd_ssl_start(&httpdHandle, &httpsConfig);
+        ESP_LOG_LEVEL_LOCAL((result == ESP_OK ? ESP_LOG_INFO : ESP_LOG_ERROR), TAG, "httpd_ssl_start(): %s", esp_err_to_name(result));
+        if (result != ESP_OK)
+            return;
+#else
         httpd_config_t httpConfig HTTPD_DEFAULT_CONFIG();
         httpConfig.core_id = 1;
         httpConfig.max_uri_handlers = 14;
@@ -34,6 +51,7 @@ void initWebserver()
         ESP_LOG_LEVEL_LOCAL((result == ESP_OK ? ESP_LOG_INFO : ESP_LOG_ERROR), TAG, "httpd_start(): %s", esp_err_to_name(result));
         if (result != ESP_OK)
             return;
+#endif
     }
 
     for (const httpd_uri_t &uri : {
@@ -145,7 +163,7 @@ esp_err_t webserver_status_handler(httpd_req_t *req)
     else
     {
         ESP_LOGE(TAG, "%.*s", result.error().size(), result.error().data());
-
+        httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
         CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", result.error());
     }
 
@@ -155,7 +173,7 @@ esp_err_t webserver_status_handler(httpd_req_t *req)
     {
         if (!menuDisplayChanged())
         {
-
+            httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
             CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::Ok, "text/plain", "Ok.");
         }
         else
@@ -165,7 +183,7 @@ esp_err_t webserver_status_handler(httpd_req_t *req)
     }
     else
     {
-
+        httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
         CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::Unauthorized, "text/plain", "");
     }
 }

@@ -98,6 +98,7 @@ set(BOBBYCAR_BUILDFLAGS
     -DLEDS_PER_METER=144
     -DOLD_NVS
     -DFEATURE_DNS_NS
+    -DFEATURE_SSL
 )
 
 if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/ignore/lockscreen_plugin.cmake")
