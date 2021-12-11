@@ -19,14 +19,14 @@ Controller::Controller(
 
 float Controller::getCalibratedVoltage() const
 {
-  float voltage = feedback.batVoltage;
-  if (settings.battery.applyCalibration)
-  {
-    voltage = ((voltage - float(voltageCalib30V)) * (20.f / (float(voltageCalib50V) - float(voltageCalib30V))) + 30.f);
-  }
-  else
-  {
-    voltage = voltage / 100.;
-  }
-  return voltage;
+    float voltage = feedback.batVoltage;
+    if (settings.battery.applyCalibration)
+    {
+        voltage = ((voltage - float(voltageCalib30V)) * (20.f / (float(voltageCalib50V) - float(voltageCalib30V))) + 30.f);
+    }
+    else
+    {
+        voltage = voltage / 100.;
+    }
+    return voltage;
 }

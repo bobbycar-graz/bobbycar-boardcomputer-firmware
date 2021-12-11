@@ -24,15 +24,15 @@ void pushStats();
 
 class StatisticsAccessorInterface
 {
-public:
-  virtual const statistics::ContainerType &getBuffer() const = 0;
+  public:
+    virtual const statistics::ContainerType &getBuffer() const = 0;
 };
 
 template<const statistics::ContainerType &T>
 class BufferAccessorImpl : public virtual StatisticsAccessorInterface
 {
-public:
-  const statistics::ContainerType &getBuffer() const override { return T; }
+  public:
+    const statistics::ContainerType &getBuffer() const override { return T; }
 };
 
 using GasStatistics          = BufferAccessorImpl<statistics::gas>;

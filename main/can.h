@@ -21,14 +21,14 @@ extern espchrono::millis_clock::time_point last_can_gas, last_can_brems;
 
 struct CanButtonsState
 {
-  bool up {};
-  bool down {};
-  bool confirm {};
-  bool back {};
-  bool profile0 {};
-  bool profile1 {};
-  bool profile2 {};
-  bool profile3 {};
+    bool up {};
+    bool down {};
+    bool confirm {};
+    bool back {};
+    bool profile0 {};
+    bool profile1 {};
+    bool profile2 {};
+    bool profile3 {};
 };
 extern CanButtonsState lastButtonsState;
 

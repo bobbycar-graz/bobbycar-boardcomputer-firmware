@@ -8,8 +8,8 @@ namespace
 template<typename Tcontroller, int TsuccessColor>
 class FeedbackColor : public virtual ColorInterface
 {
-public:
-  int color() const { return Tcontroller::get().feedbackValid ? TsuccessColor : TFT_RED; }
+  public:
+    int color() const { return Tcontroller::get().feedbackValid ? TsuccessColor : TFT_RED; }
 };
 
 template<int TsuccessColor>

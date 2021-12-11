@@ -6,12 +6,12 @@
 
 struct DrivingStatistics
 {
-  float meters_driven;
-  std::chrono::milliseconds currentDrivingTime;
-  double totalMeters;
-  uint32_t last_cm_written;
-  float wh_used;
-  float batteryWhEstimate;
+    float meters_driven;
+    std::chrono::milliseconds currentDrivingTime;
+    double totalMeters;
+    uint32_t last_cm_written;
+    float wh_used;
+    float batteryWhEstimate;
 };
 
 extern DrivingStatistics drivingStatistics;

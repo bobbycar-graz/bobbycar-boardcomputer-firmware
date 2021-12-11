@@ -30,21 +30,21 @@ extern BLECharacteristic *getwifilist;
 
 class RemoteControlCallbacks : public NimBLECharacteristicCallbacks
 {
-public:
-  void onWrite(NimBLECharacteristic *pCharacteristic) override;
+  public:
+    void onWrite(NimBLECharacteristic *pCharacteristic) override;
 };
 
 #ifdef FEATURE_WIRELESS_CONFIG
 class WirelessSettingsCallbacks : public NimBLECharacteristicCallbacks
 {
-public:
-  void onWrite(NimBLECharacteristic *pCharacteristic) override;
+  public:
+    void onWrite(NimBLECharacteristic *pCharacteristic) override;
 };
 
 class WiFiListCallbacks : public NimBLECharacteristicCallbacks
 {
-public:
-  void onRead(NimBLECharacteristic *pCharacteristic) override;
+  public:
+    void onRead(NimBLECharacteristic *pCharacteristic) override;
 };
 #endif
 

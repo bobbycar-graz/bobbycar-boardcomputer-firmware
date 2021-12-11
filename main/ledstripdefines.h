@@ -16,10 +16,10 @@
 
 enum LedstripAnimation : uint16_t
 {
-  DefaultRainbow,
-  BetterRainbow,
-  SpeedSync,
-  CustomColor
+    DefaultRainbow,
+    BetterRainbow,
+    SpeedSync,
+    CustomColor
 };
 
 #define BLINK_LEFT_EXPR blinkAnimation != LEDSTRIP_OVERWRITE_BLINKRIGHT

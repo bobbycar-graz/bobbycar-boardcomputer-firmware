@@ -11,69 +11,69 @@ constexpr const char *const TAG = "BOBBYWEB";
 
 esp_err_t webserver_stringSettings_handler(httpd_req_t *req)
 {
-  espcpputils::LockHelper helper { webserver_lock->handle, std::chrono::ceil<espcpputils::ticks>(5s).count() };
-  if (!helper.locked())
-  {
-    constexpr const std::string_view msg = "could not lock webserver_lock";
-    ESP_LOGE(TAG, "%.*s", msg.size(), msg.data());
-    CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", msg);
-  }
-
-  std::string body;
-
-  {
-    HtmlTag htmlTag { "html", body };
-
+    espcpputils::LockHelper helper { webserver_lock->handle, std::chrono::ceil<espcpputils::ticks>(5s).count() };
+    if (!helper.locked())
     {
-      HtmlTag headTag { "head", body };
-
-      {
-        HtmlTag titleTag { "title", body };
-        body += "String Settings";
-      }
-
-      body += "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" />";
-
-      HtmlTag styleTag { "style", "type=\"text/css\"", body };
-      body +=
-          ".form-table {"
-          "display: table;"
-          "border-collapse: separate;"
-          "border-spacing: 10px 0;"
-          "}"
-
-          ".form-table .form-table-row {"
-          "display: table-row;"
-          "}"
-
-          ".form-table .form-table-row .form-table-cell {"
-          "display: table-cell;"
-          "}";
+        constexpr const std::string_view msg = "could not lock webserver_lock";
+        ESP_LOGE(TAG, "%.*s", msg.size(), msg.data());
+        CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", msg);
     }
 
+    std::string body;
+
     {
-      HtmlTag bodyTag { "body", body };
+        HtmlTag htmlTag { "html", body };
 
-      {
-        HtmlTag h1Tag { "h1", body };
-        body += "String Settings";
-      }
+        {
+            HtmlTag headTag { "head", body };
 
-      {
-        HtmlTag pTag { "p", body };
-        body +=
-            "<a href=\"/\">Display control</a> - "
+            {
+                HtmlTag titleTag { "title", body };
+                body += "String Settings";
+            }
+
+            body += "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" />";
+
+            HtmlTag styleTag { "style", "type=\"text/css\"", body };
+            body +=
+                ".form-table {"
+                "display: table;"
+                "border-collapse: separate;"
+                "border-spacing: 10px 0;"
+                "}"
+
+                ".form-table .form-table-row {"
+                "display: table-row;"
+                "}"
+
+                ".form-table .form-table-row .form-table-cell {"
+                "display: table-cell;"
+                "}";
+        }
+
+        {
+            HtmlTag bodyTag { "body", body };
+
+            {
+                HtmlTag h1Tag { "h1", body };
+                body += "String Settings";
+            }
+
+            {
+                HtmlTag pTag { "p", body };
+                body +=
+                    "<a href=\"/\">Display control</a> - "
 #ifdef FEATURE_OTA
-            "<a href=\"/ota\">Update</a> - "
+                    "<a href=\"/ota\">Update</a> - "
 #endif
-            "<a href=\"/settings\">Settings</a> - "
-            "<b>String Settings</b> - "
-            "<a href=\"/dumpnvs\">Dump NVS</a>";
-      }
+                    "<a href=\"/settings\">Settings</a> - "
+                    "<b>String Settings</b> - "
+                    "<a href=\"/dumpnvs\">Dump NVS</a>";
+            }
 
-      HtmlTag divTag { "div", "class=\"form-table\"", body };
-      stringSettings.executeForEveryCommonSetting([&](std::string_view key, const auto &value)
-                                                  {
+            HtmlTag divTag { "div", "class=\"form-table\"", body };
+            stringSettings.executeForEveryCommonSetting([&](std::string_view key, const auto &value)
+                                                        {
                 HtmlTag formTag{"form", "class=\"form-table-row\" action=\"/saveStringSettings\" method=\"GET\"", body};
 
                 {
@@ -94,36 +94,36 @@ esp_err_t webserver_stringSettings_handler(httpd_req_t *req)
                     HtmlTag buttonTag{"button", "type=\"submit\"", body};
                     body += "Save";
                 } });
+        }
     }
-  }
 
-  CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::Ok, "text/html", body)
+    CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::Ok, "text/html", body)
 }
 
 esp_err_t webserver_saveStringSettings_handler(httpd_req_t *req)
 {
-  espcpputils::LockHelper helper { webserver_lock->handle, std::chrono::ceil<espcpputils::ticks>(5s).count() };
-  if (!helper.locked())
-  {
-    constexpr const std::string_view msg = "could not lock webserver_lock";
-    ESP_LOGE(TAG, "%.*s", msg.size(), msg.data());
-    CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", msg);
-  }
+    espcpputils::LockHelper helper { webserver_lock->handle, std::chrono::ceil<espcpputils::ticks>(5s).count() };
+    if (!helper.locked())
+    {
+        constexpr const std::string_view msg = "could not lock webserver_lock";
+        ESP_LOGE(TAG, "%.*s", msg.size(), msg.data());
+        CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", msg);
+    }
 
-  std::string query;
-  if (auto result = esphttpdutils::webserver_get_query(req))
-    query = *result;
-  else
-  {
-    ESP_LOGE(TAG, "%.*s", result.error().size(), result.error().data());
-    CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", result.error());
-  }
+    std::string query;
+    if (auto result = esphttpdutils::webserver_get_query(req))
+        query = *result;
+    else
+    {
+        ESP_LOGE(TAG, "%.*s", result.error().size(), result.error().data());
+        CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", result.error());
+    }
 
-  std::string body;
-  bool success { true };
+    std::string body;
+    bool success { true };
 
-  stringSettings.executeForEveryCommonSetting([&](std::string_view key, auto &value)
-                                              {
+    stringSettings.executeForEveryCommonSetting([&](std::string_view key, auto &value)
+                                                {
         char valueBufEncoded[256];
         if (const auto result = httpd_query_key_value(query.data(), key.data(), valueBufEncoded, 256); result != ESP_OK)
         {
@@ -145,27 +145,27 @@ esp_err_t webserver_saveStringSettings_handler(httpd_req_t *req)
         body += fmt::format("{}: applied", key);
         body += '\n'; });
 
-  if (body.empty())
-    CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::Ok, "text/plain", "nothing changed?!")
+    if (body.empty())
+        CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::Ok, "text/plain", "nothing changed?!")
 
-  if (settingsPersister.save(stringSettings))
-    body += "string settings persisted successfully";
-  else
-  {
-    body += "error while persisting string settings";
-    success = false;
-  }
+    if (settingsPersister.save(stringSettings))
+        body += "string settings persisted successfully";
+    else
+    {
+        body += "error while persisting string settings";
+        success = false;
+    }
 
-  if (success)
-  {
-    CALL_AND_EXIT_ON_ERROR(httpd_resp_set_hdr, req, "Location", "/stringSettings")
-    body += "\nOk, continue at /stringSettings";
-  }
+    if (success)
+    {
+        CALL_AND_EXIT_ON_ERROR(httpd_resp_set_hdr, req, "Location", "/stringSettings")
+        body += "\nOk, continue at /stringSettings";
+    }
 
-  CALL_AND_EXIT(esphttpdutils::webserver_resp_send,
-                req,
-                success ? esphttpdutils::ResponseStatus::TemporaryRedirect : esphttpdutils::ResponseStatus::BadRequest,
-                "text/plain",
-                body)
+    CALL_AND_EXIT(esphttpdutils::webserver_resp_send,
+                  req,
+                  success ? esphttpdutils::ResponseStatus::TemporaryRedirect : esphttpdutils::ResponseStatus::BadRequest,
+                  "text/plain",
+                  body)
 }
 #endif

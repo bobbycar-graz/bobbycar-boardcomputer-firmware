@@ -8,11 +8,11 @@
 
 enum class UnifiedModelMode : uint8_t
 {
-  Commutation,
-  Sinusoidal,
-  FocVoltage,
-  FocSpeed,
-  FocTorque
+    Commutation,
+    Sinusoidal,
+    FocVoltage,
+    FocSpeed,
+    FocTorque
 };
 
 std::pair<bobbycar::protocol::ControlType, bobbycar::protocol::ControlMode> split(UnifiedModelMode mode);

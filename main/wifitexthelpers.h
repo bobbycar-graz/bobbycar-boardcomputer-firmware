@@ -5,110 +5,110 @@
 
 class WifiStatusText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiScanStatusText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiHostnameText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiMacText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiSsidText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiBssidText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiRssiText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiEncryptionTypeText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiPairwiseCipherText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiGroupCipherText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiIpText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiNetmaskText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiGatewayText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiIpv6LinklocalText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiIpv6GlobalText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiDns0Text : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiDns1Text : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 class WifiDns2Text : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override;
+  public:
+    std::string text() const override;
 };
 
 constexpr char TEXT_SOFTAPGETSTATIONNUM[] = "softAPgetStationNum: ";

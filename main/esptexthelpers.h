@@ -15,83 +15,83 @@
 
 class HeapTotal8Text : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override
-  {
-    return fmt::format("HeapTotal8: {}", heap_caps_get_total_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
-  }
+  public:
+    std::string text() const override
+    {
+        return fmt::format("HeapTotal8: {}", heap_caps_get_total_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
+    }
 };
 
 class HeapFree8Text : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override
-  {
-    return fmt::format("HeapFree8: {}", heap_caps_get_free_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
-  }
+  public:
+    std::string text() const override
+    {
+        return fmt::format("HeapFree8: {}", heap_caps_get_free_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
+    }
 };
 
 class HeapMinFree8Text : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override
-  {
-    return fmt::format("HeapMinFree8: {}", heap_caps_get_minimum_free_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
-  }
+  public:
+    std::string text() const override
+    {
+        return fmt::format("HeapMinFree8: {}", heap_caps_get_minimum_free_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
+    }
 };
 
 class HeapLargest8Text : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override
-  {
-    return fmt::format("HeapLargest8: {}", heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
-  }
+  public:
+    std::string text() const override
+    {
+        return fmt::format("HeapLargest8: {}", heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
+    }
 };
 
 class HeapTotal32Text : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override
-  {
-    return fmt::format("HeapTotal32: {}", heap_caps_get_total_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_32BIT));
-  }
+  public:
+    std::string text() const override
+    {
+        return fmt::format("HeapTotal32: {}", heap_caps_get_total_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_32BIT));
+    }
 };
 
 class HeapFree32Text : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override
-  {
-    return fmt::format("HeapFree32: {}", heap_caps_get_free_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_32BIT));
-  }
+  public:
+    std::string text() const override
+    {
+        return fmt::format("HeapFree32: {}", heap_caps_get_free_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_32BIT));
+    }
 };
 
 class HeapMinFree32Text : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override
-  {
-    return fmt::format("HeapMinFree32: {}", heap_caps_get_minimum_free_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_32BIT));
-  }
+  public:
+    std::string text() const override
+    {
+        return fmt::format("HeapMinFree32: {}", heap_caps_get_minimum_free_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_32BIT));
+    }
 };
 
 class HeapLargest32Text : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override
-  {
-    return fmt::format("HeapLargest32: {}", heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL | MALLOC_CAP_32BIT));
-  }
+  public:
+    std::string text() const override
+    {
+        return fmt::format("HeapLargest32: {}", heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL | MALLOC_CAP_32BIT));
+    }
 };
 
 class LastRebootReasonText : public virtual espgui::TextInterface
 {
-public:
-  std::string text() const override
-  {
-    return fmt::format("Last Reboot Reason: {}", espcpputils::toString(esp_reset_reason()));
-  }
+  public:
+    std::string text() const override
+    {
+        return fmt::format("Last Reboot Reason: {}", espcpputils::toString(esp_reset_reason()));
+    }
 };
 
 constexpr char TEXT_ESPCHIPREVISION[] = "Chip revision: ";

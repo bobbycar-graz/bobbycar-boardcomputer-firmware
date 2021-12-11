@@ -18,11 +18,11 @@ class ChangeValueDisplay<UnifiedModelMode> :
     public virtual AccessorInterface<UnifiedModelMode>,
     public virtual ActionInterface
 {
-  using Base = MenuDisplay;
+    using Base = MenuDisplay;
 
-public:
-  ChangeValueDisplay();
+  public:
+    ChangeValueDisplay();
 
-  void start() override;
+    void start() override;
 };
 } // namespace espgui

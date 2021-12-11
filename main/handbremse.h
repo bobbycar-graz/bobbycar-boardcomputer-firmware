@@ -8,9 +8,9 @@
 #include <espchrono.h>
 
 #define HandbremseModeValues(x) \
-  x(MOSFETS_OFF)                \
-      x(OPENMODE)               \
-          x(SPEED_0)
+    x(MOSFETS_OFF)              \
+        x(OPENMODE)             \
+            x(SPEED_0)
 DECLARE_TYPESAFE_ENUM(HandbremseMode,
                       : uint8_t, HandbremseModeValues)
 
@@ -26,9 +26,9 @@ extern std::optional<espchrono::millis_clock::time_point> lastAutoRelease;
 
 enum StateWish
 {
-  none,
-  release,
-  brake
+    none,
+    release,
+    brake
 };
 
 extern StateWish stateWish;

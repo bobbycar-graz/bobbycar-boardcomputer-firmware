@@ -9,22 +9,22 @@
 #ifdef FEATURE_LEDSTRIP
 enum Bobbycar_Side
 {
-  FRONT_RIGHT,
-  RIGHT,
-  BACK_RIGHT,
-  BACK,
-  BACK_LEFT,
-  LEFT,
-  FRONT_LEFT,
-  FRONT
+    FRONT_RIGHT,
+    RIGHT,
+    BACK_RIGHT,
+    BACK,
+    BACK_LEFT,
+    LEFT,
+    FRONT_LEFT,
+    FRONT
 };
 
 #ifdef FEATURE_OTA
 enum OtaAnimationModes
 {
-  None,
-  GreenProgressBar,
-  ColorChangeAll
+    None,
+    GreenProgressBar,
+    ColorChangeAll
 };
 #endif
 

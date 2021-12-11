@@ -7,11 +7,11 @@
 #include <cpptypesafeenum.h>
 
 #define BatteryCellTypeValues(x) \
-  x(_22P)                        \
-      x(HG2)                     \
-          x(MH1)                 \
-              x(VTC5)            \
-                  x(BAK_25R)
+    x(_22P)                      \
+        x(HG2)                   \
+            x(MH1)               \
+                x(VTC5)          \
+                    x(BAK_25R)
 DECLARE_TYPESAFE_ENUM(BatteryCellType,
                       : uint8_t, BatteryCellTypeValues)
 

@@ -24,24 +24,24 @@ using BluetoothHasClientText             = BluetoothStatusTextHelper<TEXT_BLUETO
 // using BluetoothConnectedText = BluetoothStatusTextHelper<TEXT_BLUETOOTHCONNECTED, bool, &BluetoothSerial::connected>;
 struct BluetoothConnectedText : public virtual TextInterface
 {
-public:
-  std::string text() const override { return fmt::format("{}: {}", TEXT_BLUETOOTHCONNECTED, to_string(bluetoothSerial.connected())); }
+  public:
+    std::string text() const override { return fmt::format("{}: {}", TEXT_BLUETOOTHCONNECTED, to_string(bluetoothSerial.connected())); }
 };
 
 // constexpr char TEXT_BLUETOOTHISREADY[] = "Is ready: ";
 // using BluetoothIsReadyText = BluetoothStatusTextHelper<TEXT_BLUETOOTHISREADY, bool, &BluetoothSerial::isReady>;
 struct BluetoothIsReadyText : public virtual TextInterface
 {
-public:
-  std::string text() const override { return fmt::format("{}: {}", TEXT_BLUETOOTHISREADY, to_string(bluetoothSerial.isReady())); }
+  public:
+    std::string text() const override { return fmt::format("{}: {}", TEXT_BLUETOOTHISREADY, to_string(bluetoothSerial.isReady())); }
 };
 
 // constexpr char TEXT_BLUETOOTHISREADYMASTER[] = "Is ready (M): ";
 // using BluetoothIsReadyMasterText = BluetoothStatusTextHelper<TEXT_BLUETOOTHISREADYMASTER, bool, &BluetoothSerial::isReady>;
 class BluetoothIsReadyMasterText : public virtual TextInterface
 {
-public:
-  std::string text() const override { return fmt::format("{}: {}", TEXT_BLUETOOTHISREADYMASTER, to_string(bluetoothSerial.isReady(true))); }
+  public:
+    std::string text() const override { return fmt::format("{}: {}", TEXT_BLUETOOTHISREADYMASTER, to_string(bluetoothSerial.isReady(true))); }
 };
 #endif
 } // namespace bluetoothtexthelpers
