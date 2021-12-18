@@ -430,7 +430,7 @@ set(sources
 )
 
 set(dependencies
-    libsodium freertos nvs_flash esp_http_server esp_https_ota mdns app_update esp_system esp_websocket_client driver
+    freertos nvs_flash esp_http_server esp_https_ota mdns app_update esp_system esp_websocket_client driver
     arduino-esp32 ArduinoJson esp-nimble-cpp FastLED-idf TFT_eSPI QRCode-esp32
     bobbycar-protocol cpputils cxx-ring-buffer date
     espasynchttpreq espasyncota espchrono espcpputils espconfiglib esp-gui-lib esphttpdutils espwifistack expected fmt
