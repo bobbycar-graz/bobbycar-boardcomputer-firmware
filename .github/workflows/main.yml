@@ -122,7 +122,7 @@ jobs:
       
       - name: Deploy to file-host
         run: |
-          rsync --recursive --compress --progress --human-readable --rsh 'ssh -oPort=22 -i $HOME/.ssh/key' ${{ matrix.node }} commanderred.xyz:/home/github/tmp || true
+          rsync --recursive --compress --progress --human-readable --rsh 'ssh -oPort=22 -i ~/.ssh/key' ${{ matrix.node }} commanderred.xyz:/home/github/tmp || true
           
       - name: Create Symlink on server
         uses: appleboy/ssh-action@master
