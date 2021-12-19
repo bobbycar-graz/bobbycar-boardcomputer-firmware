@@ -71,7 +71,7 @@ jobs:
           mkdir -p "$HOME/.ssh"
           echo "${{ secrets.RSYNC_SSH_KEY }}" >"$HOME/.ssh/key"
           chmod 600 "$HOME/.ssh/key"
-          rsync -azv --exclude=/.git/ --exclude=/.github/ -e "ssh -i $HOME/.ssh/key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=quiet" github@commanderred.xyz:/home/github/ignore ./
+          rsync -azv --exclude=/.git/ --exclude=/.github/ -e "ssh -i $HOME/.ssh/key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=quiet" github@commanderred.xyz:/home/github/ignore ./ || true
           
       - name: Build firmware
         run: |
@@ -121,15 +121,8 @@ jobs:
           
       
       - name: Deploy to file-host
-        uses: up9cloud/action-rsync@v1.3
-        env:
-          HOST: commanderred.xyz
-          KEY: ${{ secrets.RSYNC_SSH_KEY }}
-          TARGET: /home/github/tmp
-          USER: github
-          SSH_ARGS: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
-          SOURCE: '${{ matrix.node }}'
-          POST_SCRIPT: "echo Upload done"
+        run: |
+          rsync --recursive --compress --progress --human-readable --rsh 'ssh -oPort=22 -i $HOME/.ssh/key' ${{ matrix.node }} commanderred.xyz:/home/github/tmp || true
           
       - name: Create Symlink on server
         uses: appleboy/ssh-action@master
@@ -147,4 +140,4 @@ jobs:
             ln -s /home/github/builds/${{ matrix.node }}/${{ steps.vars.outputs.sha_short }}.${{ steps.vars.outputs.branch }}.bin /home/github/builds/${{ matrix.node }}/latest.bin
             ln -s /home/github/builds/${{ matrix.node }}/${{ steps.vars.outputs.sha_short }}.${{ steps.vars.outputs.branch }}.bin /home/github/builds/${{ matrix.node }}/${{ steps.vars.outputs.branch }}.latest.bin
             cd bobbycar-boardcomputer-firmware
-            git pull
+            git pull || true
