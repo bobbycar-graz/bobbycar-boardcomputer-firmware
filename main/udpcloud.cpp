@@ -1,6 +1,5 @@
-constexpr const char * const TAG = "bobbycloud";
+#include "udpcloud.h"
 
-#ifdef FEATURE_CLOUD
 // 3rd party includes
 #include <ArduinoJson.h>
 #include <FastLED.h>
@@ -10,7 +9,6 @@ constexpr const char * const TAG = "bobbycloud";
 #include <espwifistack.h>
 
 // local includes
-#include "udpcloud.h"
 #include "udpsender.h"
 #include "espwifistack.h"
 #include "esp_log.h"
@@ -22,10 +20,28 @@ constexpr const char * const TAG = "bobbycloud";
 #include "battery.h"
 #include "drivingstatistics.h"
 
+#ifdef FEATURE_UDPCLOUD
 using namespace std::chrono_literals;
+
+namespace {
+constexpr const char * const TAG = "bobbycloud";
+
+espchrono::millis_clock::time_point timestampLastFailed;
+} // namespace
+
 // Little "flash" on statusdisplay when udp stuff is happening
 bool visualSendUdpPacket;
-espchrono::millis_clock::time_point timestampLastFailed;
+
+void udpCloudInit()
+{
+
+}
+
+void udpCloudUpdate()
+{
+    if (settings.udpCloudSettings.udpCloudEnabled)
+        sendUdpCloudPacket();
+}
 
 void spamUdpBroadcast()
 {
@@ -77,7 +93,7 @@ std::string buildUdpCloudJson()
     // const auto w_per_kmh = watt / avgSpeedKmh;
 
     // User ID
-    doc["uid"] = settings.cloudSettings.udpUid;
+    doc["uid"] = settings.udpCloudSettings.udpUid;
     doc["upt"] = uptime;
 
     const auto addController = [&](const Controller &controller, const bool isBack) {
@@ -175,8 +191,8 @@ std::string buildUdpCloudString()
     buf += "{";
 
     // User ID
-    if(settings.cloudSettings.udpUid)
-        buf += fmt::format("\"uid\":{},", settings.cloudSettings.udpUid);
+    if(settings.udpCloudSettings.udpUid)
+        buf += fmt::format("\"uid\":{},", settings.udpCloudSettings.udpUid);
     else
         buf += "\"uid\":null,";
 
@@ -343,7 +359,7 @@ void sendUdpCloudPacket()
 
         wifi_stack::UdpSender udpCloudSender;
         std::string buf;
-            buf = settings.cloudSettings.udpUseStdString ? buildUdpCloudString() : buildUdpCloudJson();
+            buf = settings.udpCloudSettings.udpUseStdString ? buildUdpCloudString() : buildUdpCloudJson();
 
 
         if (const auto result = udpCloudSender.send(receipient, buf); !result)

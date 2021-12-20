@@ -6,7 +6,6 @@
 
 // local includes
 #include "globals.h"
-
 #ifdef FEATURE_CAN
 #include "can.h"
 #endif
@@ -19,6 +18,8 @@ void initPotis()
     raw_brems = std::nullopt;
     gas = std::nullopt;
     brems = std::nullopt;
+
+    readPotis();
 }
 
 void readPotis()

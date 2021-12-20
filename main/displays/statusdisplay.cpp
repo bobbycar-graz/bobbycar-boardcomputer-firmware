@@ -4,6 +4,7 @@
 #include <fmt/core.h>
 #include <espwifistack.h>
 #include <tftinstance.h>
+#include <schedulertask.h>
 
 // local includes
 #include "displays/menus/mainmenu.h"
@@ -15,7 +16,9 @@
 #include "drivingstatistics.h"
 #include "udpcloud.h"
 #include "modes/defaultmode.h"
+#include "taskmanager.h"
 
+using namespace std::chrono_literals;
 using namespace espgui;
 
 namespace {
@@ -70,6 +73,14 @@ void StatusDisplay::initScreen()
 void StatusDisplay::redraw()
 {
     Base::redraw();
+
+    {
+        const auto now = espchrono::millis_clock::now();
+        if (now - lastRedraw < 50ms)
+            return;
+        lastRedraw = now;
+    }
+
     if (settings.handbremse.enable && settings.handbremse.visualize && handbremse::angezogen)
         tft.fillRect(0, tft.height()-6, tft.width(), 6, TFT_RED);
     else if (settings.handbremse.enable && settings.handbremse.visualize && handbremse::stateWish == handbremse::StateWish::brake)
@@ -99,8 +110,8 @@ void StatusDisplay::redraw()
     m_backStatus.redraw(controllers.back);
 
     tft.setTextFont(2);
-#ifdef FEATURE_CLOUD
-    if(settings.cloudSettings.udpCloudEnabled && settings.cloudSettings.enableCloudDebug)
+#ifdef FEATURE_UDPCLOUD
+    if(settings.udpCloudSettings.udpCloudEnabled && settings.udpCloudSettings.enableCloudDebug)
     {
         tft.fillRect(125, 258, 8, 8, (visualSendUdpPacket) ? TFT_DARKGREY : TFT_BLACK);
     }
@@ -153,8 +164,8 @@ clearIp:
 
     m_labelLimit1.redraw(fmt::format("{}A", controllers.front.command.left.iDcMax));
 
-    tft.setTextColor(performance.last < 35 ? TFT_ORANGE : TFT_WHITE, TFT_BLACK);
-    m_labelPerformance.redraw(std::to_string(performance.last));
+    tft.setTextColor(drivingModeTask.callCount() < 35 ? TFT_ORANGE : TFT_WHITE, TFT_BLACK);
+    m_labelPerformance.redraw(std::to_string(drivingModeTask.callCount()));
     tft.setTextColor(TFT_WHITE, TFT_BLACK);
 
     {

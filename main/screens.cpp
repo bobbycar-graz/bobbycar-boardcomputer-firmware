@@ -2,6 +2,7 @@
 
 // 3rdparty lib includes
 #include <tftinstance.h>
+#include <screenmanager.h>
 
 // local includes
 #include "globals.h"

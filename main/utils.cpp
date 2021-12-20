@@ -5,7 +5,7 @@
 
 using namespace std::chrono_literals;
 
-bool currentlyReverseBeeping;
+bool currentlyReverseBeeping{};
 bool reverseBeepToggle;
 espchrono::millis_clock::time_point lastReverseBeepToggle;
 

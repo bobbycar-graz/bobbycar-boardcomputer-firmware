@@ -8,6 +8,7 @@
 #include <actions/switchscreenaction.h>
 #include <widgets/label.h>
 #include <widgets/progressbar.h>
+#include <espchrono.h>
 
 // local includes
 #include "modeinterface.h"
@@ -68,6 +69,8 @@ private:
         MotorStatus m_leftMotor;
         MotorStatus m_rightMotor;
     };
+
+    espchrono::millis_clock::time_point lastRedraw;
 
     espgui::Label m_labelRawGas{45, 0}; // 40, 15
     espgui::Label m_labelGas{90, 0}; // 60, 15

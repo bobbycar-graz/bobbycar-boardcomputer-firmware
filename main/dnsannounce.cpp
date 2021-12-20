@@ -11,6 +11,11 @@
 #include "lwip/dns.h"
 #include "globals.h"
 
+void init_dns_announce()
+{
+
+}
+
 void handle_dns_announce()
 {
     const auto staStatus = wifi_stack::get_sta_status();

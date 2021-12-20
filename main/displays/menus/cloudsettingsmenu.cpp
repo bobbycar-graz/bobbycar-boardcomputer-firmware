@@ -18,6 +18,7 @@
 
 #ifdef FEATURE_CLOUD
 namespace {
+
 using CloudTransmitTimeoutChangeScreen = espgui::makeComponent<
     espgui::ChangeValueDisplay<int16_t>,
     espgui::StaticText<TEXT_CLOUDTRANSMITTIMEOUT>,
@@ -50,14 +51,6 @@ using CloudSendRateChangeDisplay = espgui::makeComponent<
     espgui::BackActionInterface<espgui::SwitchScreenAction<CloudSettingsMenu>>,
     espgui::SwitchScreenAction<CloudSettingsMenu>
 >;
-
-using UdpCloudSendRateChangeDisplay = espgui::makeComponent<
-    espgui::ChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_UDPSENDRATE>,
-    UdpCloudSendIntervalAccessor,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<CloudSettingsMenu>>,
-    espgui::SwitchScreenAction<CloudSettingsMenu>
->;
 } // namespace
 
 using namespace espgui;
@@ -65,8 +58,6 @@ using namespace espgui;
 CloudSettingsMenu::CloudSettingsMenu()
 {
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CLOUDENABLED>,         ToggleBoolAction, CheckboxIcon, CloudEnabledAccessor>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UDPCLOUDENABLED>,      ToggleBoolAction, CheckboxIcon, UdpCloudEnabledAccessor>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UDPUSESTRING>,         ToggleBoolAction, CheckboxIcon, UdpUseStdStringAccessor>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CLOUDTRANSMITTIMEOUT>, SwitchScreenAction<CloudTransmitTimeoutChangeScreen>>>();
     constructMenuItem<makeComponent<MenuItem, CloudCreatedText,                      DisabledColor, DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, CloudStartedText,                      DisabledColor, DummyAction>>();
@@ -74,7 +65,6 @@ CloudSettingsMenu::CloudSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, CloudBufferLengthText,                 DisabledColor, DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CLOUDCOLLECTRATE>,     SwitchScreenAction<CloudCollectRateChangeDisplay>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CLOUDSENDRATE>,        SwitchScreenAction<CloudSendRateChangeDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UDPSENDRATE>,          SwitchScreenAction<UdpCloudSendRateChangeDisplay>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                 SwitchScreenAction<SettingsMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 

@@ -57,9 +57,11 @@ void Lockscreen::initScreen()
 
     espgui::tft.setTextFont(7);
 
-    drawRect(0, 1, TFT_YELLOW);
-    drawRect(0, 2, TFT_YELLOW);
-    m_labels[0].redraw(std::to_string(m_numbers[0]));
+    drawRect(m_currentIndex, 1, TFT_YELLOW);
+    drawRect(m_currentIndex, 2, TFT_YELLOW);
+
+    for(int i = 0; i <= m_currentIndex; i++)
+        m_labels[i].redraw(std::to_string(m_numbers[i]));
 }
 
 void Lockscreen::update()

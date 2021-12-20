@@ -23,6 +23,7 @@ void destroyCloud();
 void startCloud();
 
 void initCloud();
+void updateCloud();
 void cloudCollect();
 void cloudSend();
 #endif

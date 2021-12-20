@@ -66,12 +66,6 @@ jobs:
         with:
           key: ${{ runner.os }}-ccache-${{ matrix.node }}
           
-      - name: Install ignore
-        run: |
-          mkdir -p "$HOME/.ssh"
-          echo "${{ secrets.RSYNC_SSH_KEY }}" >"$HOME/.ssh/key"
-          chmod 600 "$HOME/.ssh/key"
-          rsync -azv --exclude=/.git/ --exclude=/.github/ -e "ssh -i $HOME/.ssh/key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=quiet" github@commanderred.xyz:/home/github/ignore ./ || true
           
       - name: Build firmware
         run: |
@@ -110,34 +104,3 @@ jobs:
             build_${{ matrix.node }}/bootloader/bootloader.bin
             build_${{ matrix.node }}/bootloader/bootloader.elf
             build_${{ matrix.node }}/partition_table/partition-table.bin
-            
-      - name: Prepare to upload
-        run: |
-          mkdir ${{ matrix.node }}
-          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.bin ${{ matrix.node }}/${{ steps.vars.outputs.sha_short }}.${{ steps.vars.outputs.branch }}.bin
-          cp build_${{ matrix.node }}/bobbyquad_${{ matrix.node }}.elf ${{ matrix.node }}/${{ steps.vars.outputs.sha_short }}.${{ steps.vars.outputs.branch }}.elf
-          echo ${{ steps.vars.outputs.sha_short }}
-          echo Prepare for upload from ${{ matrix.node }}/ to /home/github/builds/${{ matrix.node }}
-          
-      
-      - name: Deploy to file-host
-        run: |
-          rsync --recursive --compress --progress --human-readable --rsh 'ssh -oPort=22 -i ~/.ssh/key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=quiet' ${{ matrix.node }} commanderred.xyz:/home/github/tmp || true
-          
-      - name: Create Symlink on server
-        uses: appleboy/ssh-action@master
-        with:
-          host: commanderred.xyz
-          username: github
-          key: ${{ secrets.RSYNC_SSH_KEY }}
-          port: 22
-          script: |
-            mkdir -p /home/github/builds/${{ matrix.node }}
-            mv /home/github/tmp/${{ matrix.node }}/* /home/github/builds/${{ matrix.node }}/
-            rm /home/github/tmp/${{ matrix.node }} -rf
-            rm -f /home/github/builds/${{ matrix.node }}/latest.bin
-            rm -f /home/github/builds/${{ matrix.node }}/${{ steps.vars.outputs.branch }}.latest.bin
-            ln -s /home/github/builds/${{ matrix.node }}/${{ steps.vars.outputs.sha_short }}.${{ steps.vars.outputs.branch }}.bin /home/github/builds/${{ matrix.node }}/latest.bin
-            ln -s /home/github/builds/${{ matrix.node }}/${{ steps.vars.outputs.sha_short }}.${{ steps.vars.outputs.branch }}.bin /home/github/builds/${{ matrix.node }}/${{ steps.vars.outputs.branch }}.latest.bin
-            cd bobbycar-boardcomputer-firmware
-            git pull || true

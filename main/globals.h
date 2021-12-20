@@ -96,13 +96,6 @@ extern Controllers controllers;
 struct FrontControllerGetter { static Controller &get() { return controllers.front; }};
 struct BackControllerGetter { static Controller &get() { return controllers.back; }};
 
-struct Performance {
-    espchrono::millis_clock::time_point lastTime;
-    int current{};
-    int last{};
-};
-extern Performance performance;
-
 #ifdef FEATURE_BLUETOOTH
 extern BluetoothSerial bluetoothSerial;
 #endif

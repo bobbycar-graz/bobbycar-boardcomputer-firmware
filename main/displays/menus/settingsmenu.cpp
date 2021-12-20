@@ -27,7 +27,12 @@
 #include "displays/menus/wifisettingsmenu.h"
 #include "displays/menus/bluetoothsettingsmenu.h"
 #include "displays/menus/blesettingsmenu.h"
+#ifdef FEATURE_CLOUD
 #include "displays/menus/cloudsettingsmenu.h"
+#endif
+#ifdef FEATURE_UDPCLOUD
+#include "displays/menus/udpcloudsettingsmenu.h"
+#endif
 #include "displays/menus/espnowmenu.h"
 #include "displays/menus/selectbuildservermenu.h"
 #include "displays/menus/timesettingsmenu.h"
@@ -73,6 +78,9 @@ SettingsMenu::SettingsMenu()
 #endif
 #ifdef FEATURE_CLOUD
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CLOUDSETTINGS>,                 SwitchScreenAction<CloudSettingsMenu>>>();
+#endif
+#ifdef FEATURE_UDPCLOUD
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UDPCLOUDSETTINGS>,              SwitchScreenAction<UdpCloudSettingsMenu>>>();
 #endif
 #ifdef FEATURE_OTA
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECTBUILDSERVERMENU>,         SwitchScreenAction<SelectBuildServerMenu>, StaticMenuItemIcon<&bobbyicons::update>>>();

@@ -49,6 +49,11 @@ uint16_t getEfficiencyClassColor()
     else                       return 0xF800;
 }
 
+void initStatistics()
+{
+
+}
+
 void calculateStatistics()
 {
     EVERY_N_MILLIS( 10 ) {

@@ -48,10 +48,16 @@ extern char TEXT_BLEENABLED[];
 //CloudSettingsMenu
 extern char TEXT_CLOUDSETTINGS[];
 extern char TEXT_CLOUDENABLED[];
-extern char TEXT_UDPCLOUDENABLED[];
 extern char TEXT_CLOUDTRANSMITTIMEOUT[];
 extern char TEXT_CLOUDCOLLECTRATE[];
 extern char TEXT_CLOUDSENDRATE[];
+//extern char TEXT_BACK[];
+#endif
+
+#ifdef FEATURE_UDPCLOUD
+//UdpCloudSettingsMenu
+extern char TEXT_UDPCLOUDSETTINGS[];
+extern char TEXT_UDPCLOUDENABLED[];
 extern char TEXT_UDPSENDRATE[];
 extern char TEXT_UDPUSESTRING[];
 //extern char TEXT_BACK[];
@@ -424,13 +430,7 @@ extern char TEXT_MOTORTEST[];
 
 //TimersMenu
 //extern char TEXT_TIMERS[];
-extern char TEXT_MODEUPDATERATE[];
 extern char TEXT_STATSUPDATERATE[];
-extern char TEXT_DISPLAYUPDATERATE[];
-extern char TEXT_DISPLAYREDRAWRATE[];
-#ifdef FEATURE_CAN
-extern char TEXT_CANRECEIVERATE[];
-#endif
 //extern char TEXT_BACK[];
 
 //TimeSettingsMenu
@@ -539,6 +539,9 @@ extern char TEXT_SELECT_BRANCH_CLEAR[];
 
 //QrCodeDebug
 extern char TEXT_QRCODE_DEBUG[];
+
+// TaskmanagerMenu
+extern char TEXT_TASKMANAGER[];
 
 //GreenPassMenu
 extern char TEXT_GREENPASS[];

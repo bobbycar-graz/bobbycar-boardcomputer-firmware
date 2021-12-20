@@ -39,6 +39,11 @@ bool send6Bit(int zhen_tou, int address, int data)
     return sent == 6;
 }
 
+void init()
+{
+
+}
+
 void update()
 {
     const auto now = espchrono::millis_clock::now();

@@ -1,5 +1,8 @@
 #include "cloud.h"
 
+// system includes
+#include <optional>
+
 // esp-idf includes
 #include <esp_log.h>
 
@@ -17,6 +20,9 @@ espchrono::millis_clock::time_point lastCreateTry;
 espchrono::millis_clock::time_point lastStartTry;
 std::string cloudBuffer;
 
+std::optional<espchrono::millis_clock::time_point> lastCloudCollect;
+std::optional<espchrono::millis_clock::time_point> lastCloudSend;
+
 void initCloud()
 {
     if (settings.cloudSettings.cloudEnabled &&
@@ -31,6 +37,25 @@ void initCloud()
             return;
 
         startCloud();
+    }
+}
+
+void updateCloud()
+{
+    const auto now = espchrono::millis_clock::now();
+
+    if (!lastCloudCollect || now - *lastCloudCollect >= std::chrono::milliseconds{settings.boardcomputerHardware.timersSettings.cloudCollectRate})
+    {
+        cloudCollect();
+
+        lastCloudCollect = now;
+    }
+
+    if (!lastCloudSend || now - *lastCloudSend >= 1000ms/settings.boardcomputerHardware.timersSettings.cloudSendRate)
+    {
+        cloudSend();
+
+        lastCloudSend = now;
     }
 }
 

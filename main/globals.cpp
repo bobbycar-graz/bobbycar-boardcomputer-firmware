@@ -40,8 +40,6 @@ std::array<CRGB, 8> ledstrip_custom_colors;
 
 Controllers controllers;
 
-Performance performance;
-
 #ifdef FEATURE_BLUETOOTH
 BluetoothSerial bluetoothSerial;
 #endif

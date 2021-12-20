@@ -3,6 +3,7 @@
 // 3rdparty lib includes
 #include <tftinstance.h>
 #include <screenmanager.h>
+#include <cppmacros.h>
 
 AlertDisplay::AlertDisplay(std::string &&message, std::unique_ptr<Display> &&lastDisplay) :
     m_message{std::move(message)}, m_lastDisplay{std::move(lastDisplay)}
@@ -37,6 +38,8 @@ void AlertDisplay::initOverlay()
     const auto height = espgui::tft.height() - topMargin - bottomMargin;
     const auto right = espgui::tft.width() - rightMargin;
     const auto bottom = espgui::tft.height() - bottomMargin;
+
+    CPP_UNUSED(right)
 
     //espgui::tft.drawRect(leftMargin, topMargin, espgui::tft.width() - leftMargin - rightMargin, espgui::tft.height() - topMargin - bottomMargin, TFT_WHITE);
     //espgui::tft.fillRect(leftMargin + 1, topMargin + 1, espgui::tft.width() - leftMargin - rightMargin - 2, espgui::tft.height() - topMargin - bottomMargin - 2, TFT_BLACK);

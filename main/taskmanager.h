@@ -8,4 +8,6 @@ namespace espcpputils { class SchedulerTask; }
 
 extern cpputils::ArrayView<espcpputils::SchedulerTask> schedulerTasks;
 
+extern const espcpputils::SchedulerTask &drivingModeTask;
+
 void sched_pushStats(bool printTasks);

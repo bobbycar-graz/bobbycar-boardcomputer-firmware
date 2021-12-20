@@ -49,6 +49,7 @@ set(headers
     cloudtexthelpers.h
     controller.h
     debugcolorhelpers.h
+    debuginputhandler.h
     debugtexthelpers.h
     displays/bmsdisplay.h
     displays/calibratedisplay.h
@@ -113,9 +114,11 @@ set(headers
     displays/menus/settingsmenu.h
     displays/menus/stationwifisettingsmenu.h
     displays/menus/statisticsmenu.h
+    displays/menus/taskmanagermenu.h
     displays/menus/tempomatmodesettingsmenu.h
     displays/menus/timersmenu.h
     displays/menus/timesettingsmenu.h
+    displays/menus/udpcloudsettingsmenu.h
     displays/menus/wifiscanmenu.h
     displays/menus/wifisettingsmenu.h
     displays/metersdisplay.h
@@ -170,6 +173,7 @@ set(headers
     ledstripdefines.h
     macros_bobbycar.h
     modeinterface.h
+    modes.h
     modes/defaultmode.h
     modes/gametrakmode.h
     modes/ignoreinputmode.h
@@ -185,8 +189,7 @@ set(headers
     qrimport.h
     rotary.h
     screens.h
-    serial.h
-    serialhandler.h
+    serial_bobby.h
     settings.h
     settingspersister.h
     settingsutils.h
@@ -264,6 +267,7 @@ set(sources
     cloudtexthelpers.cpp
     controller.cpp
     debugcolorhelpers.cpp
+    debuginputhandler.cpp
     debugtexthelpers.cpp
     displays/bmsdisplay.cpp
     displays/calibratedisplay.cpp
@@ -328,9 +332,11 @@ set(sources
     displays/menus/settingsmenu.cpp
     displays/menus/stationwifisettingsmenu.cpp
     displays/menus/statisticsmenu.cpp
+    displays/menus/taskmanagermenu.cpp
     displays/menus/tempomatmodesettingsmenu.cpp
     displays/menus/timersmenu.cpp
     displays/menus/timesettingsmenu.cpp
+    displays/menus/udpcloudsettingsmenu.cpp
     displays/menus/wifiscanmenu.cpp
     displays/menus/wifisettingsmenu.cpp
     displays/metersdisplay.cpp
@@ -386,6 +392,7 @@ set(sources
     macros_bobbycar.cpp
     main.cpp
     modeinterface.cpp
+    modes.cpp
     modes/defaultmode.cpp
     modes/gametrakmode.cpp
     modes/ignoreinputmode.cpp
@@ -401,8 +408,7 @@ set(sources
     qrimport.cpp
     rotary.cpp
     screens.cpp
-    serial.cpp
-    serialhandler.cpp
+    serial_bobby.cpp
     settings.cpp
     settingspersister.cpp
     settingsutils.cpp

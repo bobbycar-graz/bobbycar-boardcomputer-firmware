@@ -20,6 +20,7 @@
 #include "debugcolorhelpers.h"
 #include "esptexthelpers.h"
 #include "displays/qrcodedebug.h"
+#include "displays/menus/taskmanagermenu.h"
 #include "displays/menus/commanddebugmenu.h"
 #include "displays/menus/motorstatedebugmenu.h"
 #include "displays/menus/feedbackdebugmenu.h"
@@ -48,6 +49,7 @@ using namespace espgui;
 DebugMenu::DebugMenu()
 {
     constructMenuItem<AlertAction>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_TASKMANAGER>,         SwitchScreenAction<TaskmanagerMenu>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_QRCODE_DEBUG>,         SwitchScreenAction<QrCodeDebugDisplay>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_LOADSETTINGS>,         LoadSettingsAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SAVESETTINGS>,         SaveSettingsAction>>();
@@ -74,7 +76,7 @@ DebugMenu::DebugMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_DYNAMICMENU>,          SwitchScreenAction<DynamicDebugMenu>>>();
     constructMenuItem<makeComponent<MenuItem, EmptyText,                             DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BATTERYDEBUG>,         SwitchScreenAction<BatteryDebugMenu>, StaticMenuItemIcon<&bobbyicons::battery>>>();
-#ifdef FEATURE_CLOUD
+#ifdef FEATURE_UDPCLOUD
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_TOGGLECLOUDDEBUG>,     ToggleBoolAction, CheckboxIcon, CloudDebugEnableAccessor>>();
 #endif
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                 SwitchScreenAction<MainMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();

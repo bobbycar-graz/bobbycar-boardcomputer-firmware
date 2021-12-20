@@ -16,6 +16,7 @@ struct DrivingStatistics
 
 extern DrivingStatistics drivingStatistics;
 
+void initStatistics();
 void calculateStatistics();
 float getAvgWhPerKm();
 std::string getEfficiencyClassString();

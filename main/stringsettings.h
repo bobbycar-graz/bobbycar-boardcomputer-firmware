@@ -15,6 +15,9 @@ struct StringSettings
 
 #ifdef FEATURE_CLOUD
     std::string cloudUrl;
+#endif
+
+#ifdef FEATURE_UDPCLOUD
     std::string udpCloudUrl;
 #endif
 
@@ -81,6 +84,9 @@ void StringSettings::executeForEveryCommonSetting(T &&callable)
 
 #ifdef FEATURE_CLOUD
     callable("cloudUrl", cloudUrl);
+#endif
+
+#ifdef FEATURE_UDPCLOUD
     callable("udpUrl", udpCloudUrl);
 #endif
 
