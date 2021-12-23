@@ -1,7 +1,7 @@
 #include "ledstripblinkactions.h"
 
 #ifdef FEATURE_LEDSTRIP
-#include "ledstrip.h"
+#include "hardware/ledstrip.h"
 #include "ledstripdefines.h"
 
 using namespace espgui;

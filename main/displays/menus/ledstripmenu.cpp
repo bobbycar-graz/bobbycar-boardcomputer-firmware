@@ -17,7 +17,7 @@
 #include "displays/menus/ledstripselectotamode.h"
 #include "displays/menus/mainmenu.h"
 #include "globals.h"
-#include "ledstrip.h"
+#include "hardware/ledstrip.h"
 #include "ledstripselectanimationmenu.h"
 #include "ledstripselectblinkmenu.h"
 

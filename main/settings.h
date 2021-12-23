@@ -22,7 +22,7 @@
 #endif
 #include "unifiedmodelmode.h"
 #include "handbremse.h"
-#include "ledstrip.h"
+#include "hardware/ledstrip.h"
 
 enum class LarsmModeMode : uint8_t { Mode1, Mode2, Mode3, Mode4 };
 

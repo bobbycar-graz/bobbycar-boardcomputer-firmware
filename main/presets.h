@@ -13,7 +13,7 @@
 #include "settings.h"
 #include "stringsettings.h"
 #include "ledstripdefines.h"
-#include "ledstrip.h"
+#include "hardware/ledstrip.h"
 
 using namespace std::chrono_literals;
 

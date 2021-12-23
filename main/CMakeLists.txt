@@ -140,10 +140,11 @@ set(headers
     dpad6wire.h
     drivingstatistics.h
     esptexthelpers.h
-    espnowfunctions.h
+    utilities/espnowfunctions.h
     feedbackparser.h
     globals.h
     handbremse.h
+    hardware/ledstrip.h
     icons/alert.h
     icons/battery.h
     icons/bluetooth.h
@@ -169,7 +170,6 @@ set(headers
     icons/time.h
     icons/update.h
     icons/wifi.h
-    ledstrip.h
     ledstripdefines.h
     macros_bobbycar.h
     modeinterface.h
@@ -194,7 +194,7 @@ set(headers
     settingspersister.h
     settingsutils.h
     statistics.h
-    statustexthelper.h
+    helpers/statustexthelper.h
     stringsettings.h
     taskmanager.h
     texts.h
@@ -358,10 +358,11 @@ set(sources
     dpad6wire.cpp
     drivingstatistics.cpp
     esptexthelpers.cpp
-    espnowfunctions.cpp
+    utilities/espnowfunctions.cpp
     feedbackparser.cpp
     globals.cpp
     handbremse.cpp
+    hardware/ledstrip.cpp
     icons/alert.cpp
     icons/battery.cpp
     icons/bluetooth.cpp
@@ -387,7 +388,6 @@ set(sources
     icons/time.cpp
     icons/update.cpp
     icons/wifi.cpp
-    ledstrip.cpp
     ledstripdefines.cpp
     macros_bobbycar.cpp
     main.cpp
@@ -413,7 +413,7 @@ set(sources
     settingspersister.cpp
     settingsutils.cpp
     statistics.cpp
-    statustexthelper.cpp
+    helpers/statustexthelper.cpp
     stringsettings.cpp
     taskmanager.cpp
     texts.cpp

@@ -10,7 +10,7 @@
 #include <textinterface.h>
 #include <texts.h>
 
-#include "espnowfunctions.h"
+#include "utilities/espnowfunctions.h"
 
 using namespace espgui;
 

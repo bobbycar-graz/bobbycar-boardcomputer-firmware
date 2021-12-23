@@ -3,7 +3,7 @@
 // Local includes
 #include "menudisplay.h"
 #include "texts.h"
-#include "ledstrip.h"
+#include "hardware/ledstrip.h"
 #include "globals.h"
 #include "utils.h"
 

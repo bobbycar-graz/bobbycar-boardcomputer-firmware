@@ -11,7 +11,7 @@
 #include "ledstripdefines.h"
 
 #ifdef FEATURE_LEDSTRIP
-#include "ledstrip.h"
+#include "hardware/ledstrip.h"
 #endif
 
 extern int rotated;

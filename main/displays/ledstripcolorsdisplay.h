@@ -8,7 +8,7 @@
 #include <FastLED.h>
 
 // local includes
-#include "ledstrip.h"
+#include "hardware/ledstrip.h"
 
 #ifdef FEATURE_LEDSTRIP
 extern int8_t selected_side;

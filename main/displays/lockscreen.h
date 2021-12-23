@@ -9,7 +9,7 @@
 #include "modes/ignoreinputmode.h"
 
 #ifdef LOCKSCREEN_PLUGIN
-#include "ledstrip.h"
+#include "hardware/ledstrip.h"
 #endif
 
 class Lockscreen : public espgui::Display

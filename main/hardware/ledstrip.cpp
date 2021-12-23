@@ -1,4 +1,4 @@
-#include "ledstrip.h"
+#include "hardware/ledstrip.h"
 
 // 3rdparty lib includes
 

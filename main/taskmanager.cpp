@@ -61,10 +61,10 @@
 #include "webserver.h"
 #endif
 #ifdef FEATURE_LEDSTRIP
-#include "ledstrip.h"
+#include "hardware/ledstrip.h"
 #endif
 #ifdef FEATURE_ESPNOW
-#include "espnowfunctions.h"
+#include "utilities/espnowfunctions.h"
 #endif
 #ifdef FEATURE_CLOUD
 #include "cloud.h"

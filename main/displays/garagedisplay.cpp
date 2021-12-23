@@ -14,7 +14,7 @@
 #include "displays/menus/mainmenu.h"
 #include "globals.h"
 #include "texts.h"
-#include "espnowfunctions.h"
+#include "utilities/espnowfunctions.h"
 
 #ifdef FEATURE_GARAGE
 void GarageDisplay::start()
