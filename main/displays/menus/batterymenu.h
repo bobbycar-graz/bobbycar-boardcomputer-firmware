@@ -8,7 +8,7 @@
 #include <actions/switchscreenaction.h>
 
 // Local includes
-#include "utils.h"
+#include "utilities/utils.h"
 #include "icons/settings.h"
 #include "texts.h"
 #include "battery.h"

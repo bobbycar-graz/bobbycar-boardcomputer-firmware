@@ -18,7 +18,7 @@
 
 // local includes
 #include "globals.h"
-#include "webserver_lock.h"
+#include "wireless/webserver_lock.h"
 #include "settingsutils.h"
 
 #ifdef FEATURE_WEBSERVER

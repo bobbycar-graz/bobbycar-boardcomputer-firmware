@@ -4,7 +4,7 @@
 #include <esp_log.h>
 
 // local includes
-#include "utils.h"
+#include "utilities/utils.h"
 #include "texts.h"
 
 namespace espgui {

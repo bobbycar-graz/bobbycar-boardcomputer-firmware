@@ -13,7 +13,7 @@
 
 // local includes
 #include "menudisplay.h"
-#include "utils.h"
+#include "utilities/utils.h"
 #include "actions/multiaction.h"
 #include "actions/switchscreenaction.h"
 #include "actions/dummyaction.h"

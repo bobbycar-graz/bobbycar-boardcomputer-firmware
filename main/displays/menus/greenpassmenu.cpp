@@ -14,7 +14,7 @@
 #include "displays/qrimportdisplay.h"
 #include "icons/back.h"
 #include "checkboxicon.h"
-#include "qrimport.h"
+#include "utilities/qrimport.h"
 
 using namespace espgui;
 

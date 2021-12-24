@@ -9,7 +9,7 @@
 #include "icons/back.h"
 
 // local includes
-#include "utils.h"
+#include "utilities/utils.h"
 #include "globals.h"
 #include "accessors/settingsaccessors.h"
 #include "displays/menus/settingsmenu.h"

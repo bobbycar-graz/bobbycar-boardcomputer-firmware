@@ -58,7 +58,7 @@
 #include "ble_bobby.h"
 #endif
 #ifdef FEATURE_WEBSERVER
-#include "webserver.h"
+#include "wireless/webserver.h"
 #endif
 #ifdef FEATURE_LEDSTRIP
 #include "hardware/ledstrip.h"

@@ -12,7 +12,7 @@
 // local includes
 #include "settings.h"
 #include "stringsettings.h"
-#include "ledstripdefines.h"
+#include "helpers/ledstripdefines.h"
 #include "hardware/ledstrip.h"
 
 using namespace std::chrono_literals;

@@ -14,7 +14,7 @@
 #include "esp_log.h"
 #include "fmt/format.h"
 #include "globals.h"
-#include "utils.h"
+#include "utilities/utils.h"
 #include "lwip/dns.h"
 #include "espchrono.h"
 #include "battery.h"

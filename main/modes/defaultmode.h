@@ -10,7 +10,7 @@
 // local includes
 #include "modeinterface.h"
 #include "globals.h"
-#include "utils.h"
+#include "utilities/utils.h"
 
 class DefaultMode : public ModeInterface
 {

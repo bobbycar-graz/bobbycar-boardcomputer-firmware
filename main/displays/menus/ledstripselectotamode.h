@@ -5,7 +5,7 @@
 #include "texts.h"
 #include "hardware/ledstrip.h"
 #include "globals.h"
-#include "utils.h"
+#include "utilities/utils.h"
 
 #if defined(FEATURE_LEDSTRIP) && defined(FEATURE_OTA)
 

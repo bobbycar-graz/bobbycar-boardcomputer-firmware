@@ -5,7 +5,7 @@
 #include "icons/back.h"
 
 // local includes
-#include "utils.h"
+#include "utilities/utils.h"
 #include "displays/menus/genericwifisettingsmenu.h"
 #include "displays/menus/stationwifisettingsmenu.h"
 #include "displays/menus/accesspointwifisettingsmenu.h"

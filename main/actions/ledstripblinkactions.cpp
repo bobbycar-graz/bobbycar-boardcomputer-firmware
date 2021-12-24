@@ -2,7 +2,7 @@
 
 #ifdef FEATURE_LEDSTRIP
 #include "hardware/ledstrip.h"
-#include "ledstripdefines.h"
+#include "helpers/ledstripdefines.h"
 
 using namespace espgui;
 

@@ -11,7 +11,7 @@
 #include "actions/dummyaction.h"
 #include "buildserver.h"
 #include "displays/menus/otamenu.h"
-#include "utils.h"
+#include "utilities/utils.h"
 
 #ifdef FEATURE_OTA
 

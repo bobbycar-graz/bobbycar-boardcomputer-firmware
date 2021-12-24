@@ -20,7 +20,7 @@
 #ifdef FEATURE_OTA
 #include "ota.h"
 #endif
-#include "webserver_lock.h"
+#include "wireless/webserver_lock.h"
 
 #if defined(FEATURE_WEBSERVER) && defined(FEATURE_OTA)
 esp_err_t webserver_ota_handler(httpd_req_t *req);

@@ -1,7 +1,7 @@
 #include "selectmodemenu.h"
 
 // local includes
-#include "utils.h"
+#include "utilities/utils.h"
 #include "actions/multiaction.h"
 #include "actions/switchscreenaction.h"
 #include "icons/back.h"

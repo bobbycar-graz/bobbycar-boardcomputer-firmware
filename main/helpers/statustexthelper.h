@@ -3,7 +3,7 @@
 // local includes
 #include "textinterface.h"
 #include "globals.h"
-#include "utils.h"
+#include "utilities/utils.h"
 
 template<const char *Ttext, typename Ttype, Ttype *Tptr, typename TreturnType, TreturnType (Ttype::*Tmethod)()>
 class StatusTextHelper : public virtual espgui::TextInterface

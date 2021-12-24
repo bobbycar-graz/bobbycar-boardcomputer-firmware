@@ -11,7 +11,7 @@
 #include "displays/menus/mainmenu.h"
 
 // local includes
-#include "utils.h"
+#include "utilities/utils.h"
 
 using namespace espgui;
 

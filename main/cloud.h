@@ -9,7 +9,7 @@
 
 // local includes
 #include "globals.h"
-#include "utils.h"
+#include "utilities/utils.h"
 
 #ifdef FEATURE_CLOUD
 extern espcpputils::websocket_client cloudClient;

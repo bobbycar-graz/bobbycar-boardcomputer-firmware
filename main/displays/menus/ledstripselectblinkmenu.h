@@ -4,7 +4,7 @@
 #include "menudisplay.h"
 #include "texts.h"
 #include "hardware/ledstrip.h"
-#include "ledstripdefines.h"
+#include "helpers/ledstripdefines.h"
 
 #ifdef FEATURE_LEDSTRIP
 class currentSelectedBlinkAnimationText : public virtual espgui::TextInterface

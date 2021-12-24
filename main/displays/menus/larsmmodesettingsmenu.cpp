@@ -7,7 +7,7 @@
 #include "icons/back.h"
 
 // local includes
-#include "utils.h"
+#include "utilities/utils.h"
 #include "changevaluedisplay_larsmmode_mode.h"
 #include "changevaluedisplay_unifiedmodelmode.h"
 #include "accessors/settingsaccessors.h"

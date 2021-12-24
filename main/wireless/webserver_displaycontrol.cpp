@@ -1,4 +1,4 @@
-#include "webserver_displaycontrol.h"
+#include "wireless/webserver_displaycontrol.h"
 
 #ifdef FEATURE_WEBSERVER
 using esphttpdutils::HtmlTag;

@@ -1,5 +1,5 @@
 constexpr const char * const TAG = "qrimport";
-#include "qrimportdisplay.h"
+#include "utilities/qrimportdisplay.h"
 
 // 3rd party includes
 #include <screenmanager.h>
@@ -10,7 +10,7 @@ constexpr const char * const TAG = "qrimport";
 #include "displays/menus/greenpassmenu.h"
 
 // local includes
-#include "qrimport.h"
+#include "utilities/qrimport.h"
 
 // m_statuslabel needs redraw
 

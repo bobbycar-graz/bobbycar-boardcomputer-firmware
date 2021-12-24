@@ -8,7 +8,7 @@
 
 // local includes
 #include "settingsutils.h"
-#include "ledstripdefines.h"
+#include "helpers/ledstripdefines.h"
 
 #ifdef FEATURE_LEDSTRIP
 #include "hardware/ledstrip.h"

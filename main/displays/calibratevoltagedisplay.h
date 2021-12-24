@@ -2,7 +2,7 @@
 
 // Local includes
 #include "menudisplay.h"
-#include "utils.h"
+#include "utilities/utils.h"
 #include "menuitem.h"
 #include "icons/back.h"
 #include "icons/settings.h"

@@ -11,7 +11,7 @@
 #include <screenmanager.h>
 
 // local includes
-#include "utils.h"
+#include "utilities/utils.h"
 #include "actions/loadsettingsaction.h"
 #include "actions/savesettingsaction.h"
 #include "actions/erasenvsaction.h"

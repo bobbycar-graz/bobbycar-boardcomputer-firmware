@@ -10,7 +10,7 @@
 #include "icons/back.h"
 
 // local includes
-#include "utils.h"
+#include "utilities/utils.h"
 #include "icons/wifi.h"
 #if defined(FEATURE_BLUETOOTH) || defined(FEATURE_BLE)
 #include "icons/bluetooth.h"

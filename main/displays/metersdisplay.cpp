@@ -6,7 +6,7 @@
 
 // local includes
 #include "globals.h"
-#include "utils.h"
+#include "utilities/utils.h"
 #include "displays/menus/mainmenu.h"
 #include "displays/statusdisplay.h"
 #include "displays/bmsdisplay.h"

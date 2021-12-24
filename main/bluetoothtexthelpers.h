@@ -6,7 +6,7 @@
 // local includes
 #include "textinterface.h"
 #include "globals.h"
-#include "utils.h"
+#include "utilities/utils.h"
 
 namespace bluetoothtexthelpers {
 #ifdef FEATURE_BLUETOOTH

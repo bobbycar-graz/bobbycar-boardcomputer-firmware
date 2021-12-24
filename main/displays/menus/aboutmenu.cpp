@@ -1,7 +1,7 @@
 #include "aboutmenu.h"
 
 // local includes
-#include "utils.h"
+#include "utilities/utils.h"
 #include "actions/dummyaction.h"
 #include "actions/switchscreenaction.h"
 #include "icons/back.h"

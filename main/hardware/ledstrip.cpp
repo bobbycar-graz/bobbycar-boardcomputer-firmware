@@ -6,8 +6,8 @@
 #include "globals.h"
 #include "cpputils.h"
 #include "espchrono.h"
-#include "ledstripdefines.h"
-#include "utils.h"
+#include "helpers/ledstripdefines.h"
+#include "utilities/utils.h"
 #include "ota.h"
 
 using namespace std::chrono_literals;

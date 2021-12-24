@@ -11,7 +11,7 @@
 #include "presets.h"
 #include "settings.h"
 #include "texts.h"
-#include "utils.h"
+#include "utilities/utils.h"
 
 namespace {
 class ApplyPresetAction : public virtual ActionInterface

@@ -2,7 +2,7 @@
 
 #include "actioninterface.h"
 #include "hardware/ledstrip.h"
-// #include "ledstripdefines.h"
+// #include "helpers/ledstripdefines.h"
 
 #ifdef FEATURE_LEDSTRIP
 template<uint16_t type>

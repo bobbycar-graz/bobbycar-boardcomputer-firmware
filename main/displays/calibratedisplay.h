@@ -14,7 +14,7 @@
 
 // local includes
 #include "globals.h"
-#include "utils.h"
+#include "utilities/utils.h"
 #include "texts.h"
 #include "modes/ignoreinputmode.h"
 

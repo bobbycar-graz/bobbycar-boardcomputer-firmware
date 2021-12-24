@@ -7,7 +7,7 @@
 #include "splitgraphdisplay.h"
 
 // local includes
-#include "utils.h"
+#include "utilities/utils.h"
 #include "statistics.h"
 #include "displays/menus/mainmenu.h"
 

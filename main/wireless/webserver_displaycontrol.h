@@ -22,7 +22,7 @@
 // local includes
 #include "hardware/buttons.h"
 #include "globals.h"
-#include "webserver_lock.h"
+#include "wireless/webserver_lock.h"
 
 #ifdef FEATURE_WEBSERVER
 esp_err_t webserver_root_handler(httpd_req_t *req);

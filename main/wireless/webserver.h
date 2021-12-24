@@ -15,15 +15,15 @@
 #include <esphttpdutils.h>
 
 // local includes
-#include "webserver_lock.h"
-#include "webserver_displaycontrol.h"
+#include "wireless/webserver_lock.h"
+#include "wireless/webserver_displaycontrol.h"
 #ifdef FEATURE_OTA
-#include "webserver_ota.h"
+#include "wireless/webserver_ota.h"
 #endif
-#include "webserver_settings.h"
-#include "webserver_stringsettings.h"
+#include "wireless/webserver_settings.h"
+#include "wireless/webserver_stringsettings.h"
 #ifdef OLD_NVS
-#include "webserver_dumpnvs.h"
+#include "wireless/webserver_dumpnvs.h"
 #endif
 
 #ifdef FEATURE_WEBSERVER

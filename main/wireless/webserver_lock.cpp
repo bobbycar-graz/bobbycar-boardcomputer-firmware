@@ -1,3 +1,3 @@
-#include "webserver_lock.h"
+#include "wireless/webserver_lock.h"
 
 cpputils::DelayedConstruction<espcpputils::mutex_semaphore> webserver_lock;

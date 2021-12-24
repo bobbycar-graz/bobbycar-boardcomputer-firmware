@@ -4,7 +4,7 @@
 
 #include "changevaluedisplay.h"
 #include "menudisplay.h"
-#include "utils.h"
+#include "utilities/utils.h"
 #include "actions/setvalueaction.h"
 #include "actions/backproxyaction.h"
 #include "icons/back.h"

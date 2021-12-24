@@ -2,7 +2,7 @@
 
 // local includes
 #include "globals.h"
-#include "utils.h"
+#include "utilities/utils.h"
 #include "defaultmode.h"
 
 namespace modes {

@@ -7,7 +7,7 @@
 // local includes
 #include "globals.h"
 #include "bmsutils.h"
-#include "utils.h"
+#include "utilities/utils.h"
 
 namespace statistics {
 using ContainerType = ring_buffer<float, 200>;

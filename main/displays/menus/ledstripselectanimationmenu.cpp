@@ -5,7 +5,7 @@
 #include "actions/ledstripanimationactions.h"
 #include "actions/switchscreenaction.h"
 #include "icons/back.h"
-#include "ledstripdefines.h"
+#include "helpers/ledstripdefines.h"
 #include "ledstripmenu.h"
 
 using namespace espgui;

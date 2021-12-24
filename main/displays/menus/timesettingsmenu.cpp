@@ -16,7 +16,7 @@
 #include "espstrutils.h"
 
 // local includes
-#include "utils.h"
+#include "utilities/utils.h"
 #include "accessors/settingsaccessors.h"
 #include "displays/menus/settingsmenu.h"
 

@@ -3,7 +3,7 @@
 // local includes
 #include "battery.h"
 #include "globals.h"
-#include "utils.h"
+#include "utilities/utils.h"
 #include "displays/menus/batterymenu.h"
 
 namespace {

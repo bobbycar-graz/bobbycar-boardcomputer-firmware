@@ -5,7 +5,7 @@
 
 // local includes
 #include "globals.h"
-#include "utils.h"
+#include "utilities/utils.h"
 
 //! Special type of RefAccessor that also saves settings after setValue()
 template<typename T>

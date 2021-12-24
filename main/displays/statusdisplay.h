@@ -13,7 +13,7 @@
 // local includes
 #include "modeinterface.h"
 #include "globals.h"
-#include "utils.h"
+#include "utilities/utils.h"
 #include "icons/alert.h"
 #include "battery.h"
 

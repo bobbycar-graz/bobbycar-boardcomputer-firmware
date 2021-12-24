@@ -10,7 +10,7 @@
 #include <checkboxicon.h>
 
 // local includes
-#include "utils.h"
+#include "utilities/utils.h"
 #include "icons/lock.h"
 #include "accessors/settingsaccessors.h"
 #include "displays/menus/lockscreensettingsmenu.h"

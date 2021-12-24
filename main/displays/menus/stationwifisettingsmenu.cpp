@@ -9,7 +9,7 @@
 #include "icons/back.h"
 
 // local includes
-#include "utils.h"
+#include "utilities/utils.h"
 #include "actions/wifiscanaction.h"
 #include "icons/scan.h"
 #include "wifitexthelpers.h"

@@ -14,7 +14,7 @@
 
 // local includes
 #include "menudisplay.h"
-#include "utils.h"
+#include "utilities/utils.h"
 #include "icons/back.h"
 #include "icons/bobbycar.h"
 #include "texts.h"

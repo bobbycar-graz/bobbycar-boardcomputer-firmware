@@ -35,7 +35,7 @@ set(headers
     bluetoothtexthelpers.h
     bmsutils.h
     buildserver.h
-    buttons.h
+    hardware/buttons.h
     can.h
     changevaluedisplay_bluetoothmode.h
     changevaluedisplay_controlmode.h
@@ -203,13 +203,13 @@ set(headers
     udpcloud.h
     unifiedmodelmode.h
     utils.h
-    webserver.h
-    webserver_displaycontrol.h
-    webserver_dumpnvs.h
-    webserver_lock.h
-    webserver_ota.h
-    webserver_settings.h
-    webserver_stringsettings.h
+    wireless/webserver.h
+    wireless/webserver_displaycontrol.h
+    wireless/webserver_dumpnvs.h
+    wireless/webserver_lock.h
+    wireless/webserver_ota.h
+    wireless/webserver_settings.h
+    wireless/webserver_stringsettings.h
     widgets/doubleprogressbar.h
     widgets/menudisplaywithtime.h
     wifi_bobbycar.h
@@ -253,7 +253,7 @@ set(sources
     bluetoothtexthelpers.cpp
     bmsutils.cpp
     buildserver.cpp
-    buttons.cpp
+    hardware/buttons.cpp
     can.cpp
     changevaluedisplay_bluetoothmode.cpp
     changevaluedisplay_controlmode.cpp
@@ -422,13 +422,13 @@ set(sources
     udpcloud.cpp
     unifiedmodelmode.cpp
     utils.cpp
-    webserver.cpp
-    webserver_displaycontrol.cpp
-    webserver_dumpnvs.cpp
-    webserver_lock.cpp
-    webserver_ota.cpp
-    webserver_settings.cpp
-    webserver_stringsettings.cpp
+    wireless/webserver.cpp
+    wireless/webserver_displaycontrol.cpp
+    wireless/webserver_dumpnvs.cpp
+    wireless/webserver_lock.cpp
+    wireless/webserver_ota.cpp
+    wireless/webserver_settings.cpp
+    wireless/webserver_stringsettings.cpp
     widgets/doubleprogressbar.cpp
     widgets/menudisplaywithtime.cpp
     wifi_bobbycar.cpp
