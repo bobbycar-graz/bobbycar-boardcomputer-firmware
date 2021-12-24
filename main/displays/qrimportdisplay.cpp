@@ -1,5 +1,5 @@
+#include "qrimportdisplay.h"
 constexpr const char * const TAG = "qrimport";
-#include "utilities/qrimportdisplay.h"
 
 // 3rd party includes
 #include <screenmanager.h>
