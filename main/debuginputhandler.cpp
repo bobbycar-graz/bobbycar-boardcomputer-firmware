@@ -15,7 +15,7 @@
 #include "globals.h"
 #include "utils.h"
 #include "screens.h"
-#include "buttons.h"
+#include "hardware/buttons.h"
 
 namespace {
 constexpr const char * const TAG = "DEBUG";

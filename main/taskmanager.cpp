@@ -14,7 +14,7 @@
 
 // local includes
 #include "wifi_bobbycar.h"
-#include "buttons.h"
+#include "hardware/buttons.h"
 #include "dpad.h"
 #ifdef FEATURE_DPAD_3WIRESW
 #include "dpad3wire.h"

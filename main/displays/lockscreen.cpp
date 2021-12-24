@@ -8,7 +8,7 @@
 #include "globals.h"
 #include "utils.h"
 #include "texts.h"
-#include "buttons.h"
+#include "hardware/buttons.h"
 #include "displays/menus/mainmenu.h"
 #include "displays/calibratedisplay.h"
 

@@ -17,7 +17,7 @@
 // local includes
 #include "bobbycar-can.h"
 #include "globals.h"
-#include "buttons.h"
+#include "hardware/buttons.h"
 
 using namespace std::chrono_literals;
 

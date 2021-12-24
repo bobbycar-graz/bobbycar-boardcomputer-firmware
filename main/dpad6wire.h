@@ -10,7 +10,7 @@
 #include <tickchrono.h>
 
 // local includes
-#include "buttons.h"
+#include "hardware/buttons.h"
 #include "types.h"
 #include "globals.h"
 

@@ -6,7 +6,7 @@
 
 #include <espchrono.h>
 
-#include "buttons.h"
+#include "hardware/buttons.h"
 #include "types.h"
 
 namespace {

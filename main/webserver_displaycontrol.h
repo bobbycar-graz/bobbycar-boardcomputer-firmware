@@ -20,7 +20,7 @@
 #include <screenmanager.h>
 
 // local includes
-#include "buttons.h"
+#include "hardware/buttons.h"
 #include "globals.h"
 #include "webserver_lock.h"
 

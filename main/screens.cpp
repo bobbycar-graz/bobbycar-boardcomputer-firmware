@@ -8,7 +8,7 @@
 #include "globals.h"
 #include "utils.h"
 #include "icons/logo.h"
-#include "buttons.h"
+#include "hardware/buttons.h"
 
 using namespace espgui;
 
