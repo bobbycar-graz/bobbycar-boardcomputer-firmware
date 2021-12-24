@@ -170,7 +170,7 @@ set(headers
     icons/time.h
     icons/update.h
     icons/wifi.h
-    ledstripdefines.h
+    helpers/ledstripdefines.h
     macros_bobbycar.h
     modeinterface.h
     modes.h
@@ -186,7 +186,7 @@ set(headers
     ota.h
     potis.h
     presets.h
-    qrimport.h
+    utilities/qrimport.h
     rotary.h
     screens.h
     serial_bobby.h
@@ -202,7 +202,7 @@ set(headers
     types.h
     udpcloud.h
     unifiedmodelmode.h
-    utils.h
+    utilities/utils.h
     wireless/webserver.h
     wireless/webserver_displaycontrol.h
     wireless/webserver_dumpnvs.h
@@ -388,7 +388,7 @@ set(sources
     icons/time.cpp
     icons/update.cpp
     icons/wifi.cpp
-    ledstripdefines.cpp
+    helpers/ledstripdefines.cpp
     macros_bobbycar.cpp
     main.cpp
     modeinterface.cpp
@@ -405,7 +405,7 @@ set(sources
     ota.cpp
     potis.cpp
     presets.cpp
-    qrimport.cpp
+    utilities/qrimport.cpp
     rotary.cpp
     screens.cpp
     serial_bobby.cpp
@@ -421,7 +421,7 @@ set(sources
     types.cpp
     udpcloud.cpp
     unifiedmodelmode.cpp
-    utils.cpp
+    utilities/utils.cpp
     wireless/webserver.cpp
     wireless/webserver_displaycontrol.cpp
     wireless/webserver_dumpnvs.cpp
