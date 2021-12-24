@@ -315,6 +315,17 @@ constexpr Settings::ESPNOW defaultEspNowSettings {
 };
 #endif
 
+constexpr Settings::ButtonMapping defaultButtonMapping {
+    .button1 = Buttons::Confirm,
+    .button2 = Buttons::Back,
+    .button3 = Buttons::Up,
+    .button4 = Buttons::Down,
+    .button5 = Buttons::BlinkLeft,
+    .button6 = Buttons::BlinkRight,
+    .button7 = Buttons::QuickActionUp,
+    .button8 = Buttons::QuickActionDown
+};
+
 constexpr Settings defaultSettings {
 #ifdef FEATURE_BMS
     .autoConnectBms = false,

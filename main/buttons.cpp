@@ -45,7 +45,59 @@ void InputDispatcher::rotate(int offset)
     rotated += offset;
 }
 
+void InputDispatcher::profileButton(uint8_t index, bool pressed)
+{
+    if (!pressed)
+        return;
+
+    if (profileButtonDisabled)
+        return;
+
+    settingsutils::switchProfile(index);
+}
+
 void InputDispatcher::upButton(bool pressed)
+{
+    ButtonHandlers[settings.buttonMapping.button3](pressed);
+}
+
+void InputDispatcher::downButton(bool pressed)
+{
+    ButtonHandlers[settings.buttonMapping.button4](pressed);
+}
+
+void InputDispatcher::confirmButton(bool pressed)
+{
+    ButtonHandlers[settings.buttonMapping.button1](pressed);
+}
+
+void InputDispatcher::backButton(bool pressed)
+{
+    ButtonHandlers[settings.buttonMapping.button2](pressed);
+}
+
+void InputDispatcher::blinkLeftButton(bool pressed)
+{
+    ButtonHandlers[settings.buttonMapping.button5](pressed);
+}
+
+void InputDispatcher::blinkRightButton(bool pressed)
+{
+    ButtonHandlers[settings.buttonMapping.button6](pressed);
+}
+
+void InputDispatcher::quickActionButtonDown(bool pressed)
+{
+    ButtonHandlers[settings.buttonMapping.button8](pressed);
+}
+
+void InputDispatcher::quickActionButtonUp(bool pressed)
+{
+    ButtonHandlers[settings.buttonMapping.button7](pressed);
+}
+
+// handlers
+void InputDispatcher::handleUp(bool pressed)
 {
     if (pressed)
     {
@@ -58,8 +110,7 @@ void InputDispatcher::upButton(bool pressed)
         upPressedSince = std::nullopt;
     }
 }
-
-void InputDispatcher::downButton(bool pressed)
+void InputDispatcher::handleDown(bool pressed)
 {
     if (pressed)
     {
@@ -72,8 +123,7 @@ void InputDispatcher::downButton(bool pressed)
         downPressedSince = std::nullopt;
     }
 }
-
-void InputDispatcher::confirmButton(bool pressed)
+void InputDispatcher::handleConfirm(bool pressed)
 {
     static espchrono::millis_clock::time_point pressBegin{};
 
@@ -95,8 +145,7 @@ void InputDispatcher::confirmButton(bool pressed)
         pressBegin = {};
     }
 }
-
-void InputDispatcher::backButton(bool pressed)
+void InputDispatcher::handleBack(bool pressed)
 {
     static espchrono::millis_clock::time_point pressBegin{};
 
@@ -116,23 +165,22 @@ void InputDispatcher::backButton(bool pressed)
         pressBegin = {};
     }
 }
-
-void InputDispatcher::profileButton(uint8_t index, bool pressed)
+void InputDispatcher::handleBlinkLeft(bool pressed)
 {
-    if (!pressed)
-        return;
-
-    if (profileButtonDisabled)
-        return;
-
-    settingsutils::switchProfile(index);
-}
-
-#ifdef SWITCH_BLINK
-void InputDispatcher::blinkRightButton(bool pressed)
-#else
-void InputDispatcher::blinkLeftButton(bool pressed)
+    if(!pressed)return;
+#ifdef FEATURE_LEDSTRIP
+    if(blinkAnimation == LEDSTRIP_OVERWRITE_NONE){ //transition from off to right
+        blinkAnimation = LEDSTRIP_OVERWRITE_BLINKRIGHT;
+    }
+    else if(blinkAnimation == LEDSTRIP_OVERWRITE_BLINKLEFT){ // transition to warning
+        blinkAnimation = LEDSTRIP_OVERWRITE_BLINKBOTH;
+    }
+    else{ // transition to off
+        blinkAnimation = LEDSTRIP_OVERWRITE_NONE;
+    }
 #endif
+}
+void InputDispatcher::handleBlinkRight(bool pressed)
 {
     if(!pressed)return;
 
@@ -148,31 +196,13 @@ void InputDispatcher::blinkLeftButton(bool pressed)
     }
 #endif
 }
-
-#ifndef SWITCH_BLINK
-void InputDispatcher::blinkRightButton(bool pressed)
-#else
-void InputDispatcher::blinkLeftButton(bool pressed)
-#endif
+void InputDispatcher::handleQuickActionUp(bool pressed)
 {
-    if(!pressed)return;
-#ifdef FEATURE_LEDSTRIP
-    if(blinkAnimation == LEDSTRIP_OVERWRITE_NONE){ //transition from off to right
-        blinkAnimation = LEDSTRIP_OVERWRITE_BLINKRIGHT;
-    }
-    else if(blinkAnimation == LEDSTRIP_OVERWRITE_BLINKLEFT){ // transition to warning
-        blinkAnimation = LEDSTRIP_OVERWRITE_BLINKBOTH;
-    }
-    else{ // transition to off
-        blinkAnimation = LEDSTRIP_OVERWRITE_NONE;
-    }
-#endif
-}
 
-void InputDispatcher::quickActionButtonDown(bool pressed)
+}
+void InputDispatcher::handleQuickActionDown(bool pressed)
 {
     using namespace handbremse;
-
     if(!pressed)return;
 
     if (settings.handbremse.enable)
@@ -185,7 +215,14 @@ void InputDispatcher::quickActionButtonDown(bool pressed)
     }
 }
 
-void InputDispatcher::quickActionButtonUp(bool pressed)
-{
-
-}
+// This should have the same order as Button enum in buttons.h
+std::array<std::function<void(bool)>, 8> InputDispatcher::ButtonHandlers = {
+    &handleConfirm,
+    &handleBack,
+    &handleUp,
+    &handleDown,
+    &handleBlinkLeft,
+    &handleBlinkRight,
+    &handleQuickActionUp,
+    &handleQuickActionDown
+};

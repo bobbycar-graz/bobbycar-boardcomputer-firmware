@@ -29,6 +29,17 @@ extern int upPressRepeat;
 extern std::optional<espchrono::millis_clock::time_point> downPressedSince;
 extern int downPressRepeat;
 
+enum Buttons : uint8_t {
+    Confirm,
+    Back,
+    Up,
+    Down,
+    BlinkLeft,
+    BlinkRight,
+    QuickActionUp,
+    QuickActionDown
+};
+
 class InputDispatcher
 {
 public:
@@ -55,4 +66,15 @@ public:
     static void quickActionButtonDown(bool pressed);
 
     static void quickActionButtonUp(bool pressed);
+
+    static std::array<std::function<void(bool)>, 8> ButtonHandlers;
+private:
+    static void handleUp(bool pressed);
+    static void handleDown(bool pressed);
+    static void handleConfirm(bool pressed);
+    static void handleBack(bool pressed);
+    static void handleBlinkLeft(bool pressed);
+    static void handleBlinkRight(bool pressed);
+    static void handleQuickActionUp(bool pressed);
+    static void handleQuickActionDown(bool pressed);
 };

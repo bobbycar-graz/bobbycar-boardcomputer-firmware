@@ -17,6 +17,7 @@
 
 // local includes
 #include "bobbycar-common.h"
+#include "buttons.h"
 #ifdef FEATURE_BLUETOOTH
 #include "bluetoothmode.h"
 #endif
@@ -234,6 +235,17 @@ struct Settings
     } espnow;
 #endif
 
+    struct ButtonMapping {
+        Buttons button1; // default Buttons::Confirm
+        Buttons button2; // default Buttons::Back
+        Buttons button3; // default Buttons::Up
+        Buttons button4; // default Buttons::Down
+        Buttons button5; // default Buttons::BlinkLeft
+        Buttons button6; // default Buttons::BlinkRight
+        Buttons button7; // default Buttons::QuickActionUp
+        Buttons button8; // default Buttons::QuickActionDown
+    } buttonMapping;
+
     template<typename T>
     void executeForEveryCommonSetting(T &&callable);
 
@@ -379,6 +391,15 @@ void Settings::executeForEveryCommonSetting(T &&callable)
     callable("espnowSyncBl", espnow.syncBlink);
 #endif
 #endif
+
+    callable("mappingBtn1", buttonMapping.button1);
+    callable("mappingBtn2", buttonMapping.button2);
+    callable("mappingBtn3", buttonMapping.button3);
+    callable("mappingBtn4", buttonMapping.button4);
+    callable("mappingBtn5", buttonMapping.button5);
+    callable("mappingBtn6", buttonMapping.button6);
+    callable("mappingBtn7", buttonMapping.button7);
+    callable("mappingBtn8", buttonMapping.button8);
 }
 
 template<typename T>
