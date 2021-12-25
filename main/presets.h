@@ -363,6 +363,7 @@ constexpr Settings defaultSettings {
 #ifdef FEATURE_ESPNOW
     .espnow = defaultEspNowSettings,
 #endif
+    .buttonMapping = defaultButtonMapping,
 };
 
 StringSettings makeDefaultStringSettings();
