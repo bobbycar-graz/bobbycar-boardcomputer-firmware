@@ -16,7 +16,8 @@ typename std::enable_if<
         !std::is_same<T, std::string>::value &&
         !std::is_same<T, espchrono::minutes32>::value &&
         !std::is_same<T, espchrono::DayLightSavingMode>::value &&
-        !std::is_same<T, UnifiedModelMode>::value
+        !std::is_same<T, UnifiedModelMode>::value &&
+        !std::is_same<T, Buttons>::value
 #if defined(FEATURE_LEDSTRIP) && defined(FEATURE_OTA)
         && !std::is_same<T, OtaAnimationModes>::value
 #endif
@@ -96,6 +97,16 @@ typename std::enable_if<
 showInputForSetting(std::string_view key, T value, JsonObject &body)
 {
     body[key] = int(value);
+    return true;
+}
+
+template<typename T>
+typename std::enable_if<
+    std::is_same<T, Buttons>::value
+    , bool>::type
+showInputForSetting(std::string_view key, T value, JsonObject &body)
+{
+    body[key] = uint8_t(value);
     return true;
 }
 

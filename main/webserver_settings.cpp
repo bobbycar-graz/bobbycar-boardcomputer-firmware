@@ -12,7 +12,8 @@ template<typename T>
 typename std::enable_if<
     !std::is_same<T, bool>::value &&
         !std::is_integral<T>::value &&
-        !std::is_same<T, std::array<int8_t, 4>>::value
+        !std::is_same<T, std::array<int8_t, 4>>::value &&
+        !std::is_same<T, Buttons>::value
     , bool>::type
 showInputForSetting(std::string_view key, T value, std::string &body)
 {
@@ -62,6 +63,20 @@ showInputForSetting(std::string_view key, T value, std::string &body)
                         value[1],
                         value[2],
                         value[3]);
+    return true;
+}
+
+template<typename T>
+typename std::enable_if<
+    !std::is_same<T, bool>::value &&
+        std::is_same<T, Buttons>::value
+    , bool>::type
+showInputForSetting(std::string_view key, T value, std::string &body)
+{
+    body += fmt::format("<input type=\"number\" name=\"{}\" value=\"{}\" min=\"0\" max=\"{}\" step=\"1\" />",
+                        esphttpdutils::htmlentities(key),
+                        value,
+                        InputDispatcher::ButtonHandlers.size());
     return true;
 }
 
@@ -157,7 +172,8 @@ template<typename T>
 typename std::enable_if<
     !std::is_same<T, bool>::value &&
         !std::is_integral<T>::value &&
-        !std::is_same<T, std::array<int8_t, 4>>::value
+        !std::is_same<T, std::array<int8_t, 4>>::value &&
+        !std::is_same<T, Buttons>::value
     , bool>::type
 saveSetting(T &value, std::string_view newValue, std::string &body)
 {
@@ -200,6 +216,26 @@ saveSetting(T &value, std::string_view newValue, std::string &body)
     if (auto parsed = cpputils::fromString<T>(newValue))
     {
         value = *parsed;
+        body += "applied";
+        return true;
+    }
+    else
+    {
+        body += fmt::format("could not parse {}", newValue);
+        return false;
+    }
+}
+
+template<typename T>
+typename std::enable_if<
+    !std::is_same<T, bool>::value &&
+        std::is_same<T, Buttons>::value
+    , bool>::type
+saveSetting(T &value, std::string_view newValue, std::string &body)
+{
+    if (auto parsed = cpputils::fromString<uint8_t>(newValue))
+    {
+        value = Buttons(*parsed);
         body += "applied";
         return true;
     }
