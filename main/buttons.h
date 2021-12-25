@@ -24,6 +24,8 @@ extern bool backButtonLongPressed;
 
 extern bool profileButtonDisabled;
 
+extern bool disableAllButtons;
+
 extern std::optional<espchrono::millis_clock::time_point> upPressedSince;
 extern int upPressRepeat;
 extern std::optional<espchrono::millis_clock::time_point> downPressedSince;

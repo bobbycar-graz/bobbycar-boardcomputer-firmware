@@ -13,6 +13,8 @@ bool backButtonLongPressed{};
 
 bool profileButtonDisabled{};
 
+bool disableAllButtons{};
+
 std::optional<espchrono::millis_clock::time_point> upPressedSince;
 int upPressRepeat{};
 std::optional<espchrono::millis_clock::time_point> downPressedSince;
@@ -42,11 +44,15 @@ void InputDispatcher::update()
 
 void InputDispatcher::rotate(int offset)
 {
+    if (disableAllButtons)
+        return;
     rotated += offset;
 }
 
 void InputDispatcher::profileButton(uint8_t index, bool pressed)
 {
+    if (disableAllButtons)
+        return;
     if (!pressed)
         return;
 
@@ -58,41 +64,57 @@ void InputDispatcher::profileButton(uint8_t index, bool pressed)
 
 void InputDispatcher::upButton(bool pressed)
 {
+    if (disableAllButtons)
+        return;
     ButtonHandlers[settings.buttonMapping.button3](pressed);
 }
 
 void InputDispatcher::downButton(bool pressed)
 {
+    if (disableAllButtons)
+        return;
     ButtonHandlers[settings.buttonMapping.button4](pressed);
 }
 
 void InputDispatcher::confirmButton(bool pressed)
 {
+    if (disableAllButtons)
+        return;
     ButtonHandlers[settings.buttonMapping.button1](pressed);
 }
 
 void InputDispatcher::backButton(bool pressed)
 {
+    if (disableAllButtons)
+        return;
     ButtonHandlers[settings.buttonMapping.button2](pressed);
 }
 
 void InputDispatcher::blinkLeftButton(bool pressed)
 {
+    if (disableAllButtons)
+        return;
     ButtonHandlers[settings.buttonMapping.button5](pressed);
 }
 
 void InputDispatcher::blinkRightButton(bool pressed)
 {
+    if (disableAllButtons)
+        return;
     ButtonHandlers[settings.buttonMapping.button6](pressed);
 }
 
 void InputDispatcher::quickActionButtonDown(bool pressed)
 {
+    if (disableAllButtons)
+        return;
     ButtonHandlers[settings.buttonMapping.button8](pressed);
 }
 
 void InputDispatcher::quickActionButtonUp(bool pressed)
 {
+    if (disableAllButtons)
+        return;
     ButtonHandlers[settings.buttonMapping.button7](pressed);
 }
 
