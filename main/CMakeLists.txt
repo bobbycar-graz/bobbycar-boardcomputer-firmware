@@ -72,6 +72,7 @@ set(headers
     displays/menus/bmsmenu.h
     displays/menus/boardcomputerhardwaresettingsmenu.h
     displays/menus/buzzermenu.h
+    displays/menus/buttonmapmenu.h
     displays/menus/cloudsettingsmenu.h
     displays/menus/commanddebugmenu.h
     displays/menus/controllerhardwaresettingsmenu.h
@@ -290,6 +291,7 @@ set(sources
     displays/menus/bmsmenu.cpp
     displays/menus/boardcomputerhardwaresettingsmenu.cpp
     displays/menus/buzzermenu.cpp
+    displays/menus/buttonmapmenu.cpp
     displays/menus/cloudsettingsmenu.cpp
     displays/menus/commanddebugmenu.cpp
     displays/menus/controllerhardwaresettingsmenu.cpp

@@ -561,4 +561,7 @@ char TEXT_ESPNOW_SETTINGS[] = "ESP-Now settings";
 char TEXT_ESPNOW_SYNCTIME[] = "Sync time (no NTP)";
 char TEXT_ESPNOW_SYNCWITHOTHERS[] = "Sync time with others";
 char TEXT_ESPNOW_SYNCBLINK[] = "Sync blink";
+
+//ButtonMapMenu
+char TEXT_BUTTONMAPMENU[] = "Button Mapping";
 } // namespace

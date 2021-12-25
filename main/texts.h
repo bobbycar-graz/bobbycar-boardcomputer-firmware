@@ -560,6 +560,9 @@ extern char TEXT_ESPNOW_SETTINGS[];
 extern char TEXT_ESPNOW_SYNCTIME[];
 extern char TEXT_ESPNOW_SYNCWITHOTHERS[];
 extern char TEXT_ESPNOW_SYNCBLINK[];
+
+//ButtonMapMenu
+extern char TEXT_BUTTONMAPMENU[];
 } // namespace
 
 using namespace bobbytexts;

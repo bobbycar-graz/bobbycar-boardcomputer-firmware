@@ -12,9 +12,11 @@
 // local includes
 #include "utils.h"
 #include "icons/lock.h"
+#include "icons/hardware.h"
 #include "accessors/settingsaccessors.h"
 #include "displays/menus/lockscreensettingsmenu.h"
 #include "displays/calibratedisplay.h"
+#include "displays/menus/buttonmapmenu.h"
 #include "displays/menus/timersmenu.h"
 #include "displays/menus/settingsmenu.h"
 
@@ -152,6 +154,7 @@ using namespace espgui;
 BoardcomputerHardwareSettingsMenu::BoardcomputerHardwareSettingsMenu()
 {
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_LOCKSCREENSETTINGS>,                          SwitchScreenAction<LockscreenSettingsMenu>, StaticMenuItemIcon<&bobbyicons::lock>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BUTTONMAPMENU>,                               SwitchScreenAction<ButtonMapMenu>, StaticMenuItemIcon<&bobbyicons::hardware>>>();
     constructMenuItem<makeComponent<MenuItem, GasText,                                                      DisabledColor, StaticFont<2>, DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, BremsText,                                                    DisabledColor, StaticFont<2>, DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CALIBRATE>,                                   SwitchScreenAction<CalibrateDisplay>>>();
