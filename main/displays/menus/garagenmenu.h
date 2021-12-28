@@ -1,5 +1,5 @@
 #pragma once
-
+#if defined(FEATURE_GARAGE) && defined (FEATURE_ESPNOW)
 // 3rd party lib
 #include <actioninterface.h>
 #include <esp_log.h>
@@ -37,3 +37,4 @@ public:
     GarageMenu();
     void back() override;
 };
+#endif

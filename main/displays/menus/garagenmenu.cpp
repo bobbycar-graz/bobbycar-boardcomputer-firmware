@@ -1,3 +1,4 @@
+#if defined(FEATURE_GARAGE) && defined (FEATURE_ESPNOW)
 #include "garagenmenu.h"
 
 // 3rd party libs
@@ -28,3 +29,4 @@ void GarageMenu::back()
 {
     switchScreen<MainMenu>();
 }
+#endif

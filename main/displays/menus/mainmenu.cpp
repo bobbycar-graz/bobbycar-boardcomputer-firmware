@@ -21,7 +21,9 @@
 #include "displays/menus/demosmenu.h"
 #include "displays/menus/greenpassmenu.h"
 #include "displays/lockscreen.h"
+#if defined(FEATURE_GARAGE) && defined (FEATURE_ESPNOW)
 #include "displays/menus/garagenmenu.h"
+#enidf
 #include "displays/menus/otamenu.h"
 #include "displays/poweroffdisplay.h"
 #include "displays/menus/statisticsmenu.h"
@@ -92,7 +94,7 @@ MainMenu::MainMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_DEMOS>,        SwitchScreenAction<DemosMenu>, StaticMenuItemIcon<&bobbyicons::demos>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_GREENPASS>,    SwitchScreenAction<GreenPassMenu>, StaticMenuItemIcon<&bobbyicons::greenpass>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_LOCKVEHICLE>,  SwitchScreenAction<Lockscreen>, StaticMenuItemIcon<&bobbyicons::lock>>>();
-#ifdef FEATURE_GARAGE
+#if defined(FEATURE_GARAGE) && defined (FEATURE_ESPNOW)
     if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_GARAGE>,       SwitchScreenAction<GarageMenu>>>(); }
 #endif
 #ifdef FEATURE_OTA
