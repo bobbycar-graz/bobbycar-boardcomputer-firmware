@@ -12,7 +12,9 @@ enum BobbyButton
     Left2,
     Right2,
     Up2,
-    Down2
+    Down2,
+    Confirm = espgui::Button::Right,
+    Back = espgui::Button::Left
 };
 
 class BobbyButtons : public virtual espgui::ButtonsInterface
