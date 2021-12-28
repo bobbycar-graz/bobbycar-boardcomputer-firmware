@@ -9,7 +9,6 @@ on:
 
 jobs:
   build:
-    name: "analysis"
     runs-on: ubuntu-latest
     env:
       SONAR_SCANNER_VERSION: 4.4.0.2170
@@ -21,6 +20,7 @@ jobs:
       fail-fast: false
       matrix:
         node: [allfeatures]
+    name: ${{ matrix.node }}
     steps:
     
       - name: Checkout (without submodules)
