@@ -13,8 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         node: [feedc0de, comred, peter, mick, nofeatures] # allfeatures not used here
-    name: >-
-      Config (${{ matrix.node }})
+    name: ${{ matrix.node }}
     steps:
     
       - name: Checkout (without submodules)
