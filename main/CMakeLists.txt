@@ -67,7 +67,6 @@ set(headers
     displays/dpad6wiredebugdisplay.h
     displays/gameoflifedisplay.h
     displays/gametrakcalibratedisplay.h
-    displays/garagedisplay.h
     displays/ledstripcolorsdisplay.h
     displays/lockscreen.h
     displays/menudisplaywithtime.cpp
@@ -92,6 +91,7 @@ set(headers
     displays/menus/espnowmenu.h
     displays/menus/espnowsettingsmenu.h
     displays/menus/feedbackdebugmenu.h
+    displays/menus/garagenmenu.h
     displays/menus/gametrakmodesettingsmenu.h
     displays/menus/genericwifisettingsmenu.h
     displays/menus/graphsmenu.h
@@ -293,7 +293,6 @@ set(sources
     displays/dpad6wiredebugdisplay.cpp
     displays/gameoflifedisplay.cpp
     displays/gametrakcalibratedisplay.cpp
-    displays/garagedisplay.cpp
     displays/ledstripcolorsdisplay.cpp
     displays/lockscreen.cpp
     displays/menus/aboutmenu.cpp
@@ -317,6 +316,7 @@ set(sources
     displays/menus/espnowmenu.cpp
     displays/menus/espnowsettingsmenu.cpp
     displays/menus/feedbackdebugmenu.cpp
+    displays/menus/garagenmenu.cpp
     displays/menus/gametrakmodesettingsmenu.cpp
     displays/menus/genericwifisettingsmenu.cpp
     displays/menus/graphsmenu.cpp
