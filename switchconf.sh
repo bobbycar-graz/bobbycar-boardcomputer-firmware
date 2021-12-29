@@ -8,6 +8,7 @@ VALID_CONFIGS=(
     "greyhash"
     "nofeatures"
     "allfeatures"
+    "relay"
 )
 
 print_usage() {

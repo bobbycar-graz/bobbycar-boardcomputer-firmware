@@ -11,11 +11,17 @@
 #include "globals.h"
 #include "utils.h"
 #include "time_bobbycar.h"
+#define PIN_RELAY 17
+
+using namespace std::chrono_literals;
 
 namespace espnow {
 namespace {
 constexpr const char * const TAG = "BOBBY_ESP_NOW";
 } // namespace
+
+std::optional<espchrono::millis_clock::time_point> ledtimer;
+std::optional<espchrono::millis_clock::time_point> last_send_ms;
 
 uint16_t lastYear; // Used for esp-now timesync
 
@@ -27,10 +33,49 @@ bool receiveTimeStamp{true};
 bool receiveTsFromOtherBobbycars{true};
 
 namespace {
-extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int data_len)
+extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len)
 {
-    ESP_LOGD(TAG, "Received data");
-    const std::string_view data_str{(const char *)data, size_t(data_len)};
+    ESP_LOGI(TAG, "Received data");
+    const std::string token = "Bobbycar_123";
+    const std::string id = "Buero";
+
+    const std::string message(data, data + len);
+    //Serial.printf("Received: %s\n", message.c_str());
+
+    // Parse the message (msg format: "msg_type:msg_value:msg_token") via find and npos
+    const size_t pos = message.find(":");
+    if (pos == std::string::npos) {
+        //Serial.println("Invalid message format");
+        return;
+    }
+    const size_t pos2 = message.find(":", pos + 1);
+    if (pos2 == std::string::npos) {
+        //Serial.println("Invalid message format");
+        return;
+    }
+    const std::string msg_type = message.substr(0, pos);
+    const std::string msg_value = message.substr(pos + 1, pos2 - pos - 1);
+    std::string msg_token{};
+    if (pos2 + 1 < message.size()) {
+        msg_token = message.substr(pos2 + 1);
+    }
+
+    if (msg_token.empty()) {
+        //Serial.println("No token was send");
+        return;
+    }
+
+    if (msg_token != std::string(token.c_str())) {
+        //Serial.println("Invalid token");
+        return;
+    }
+
+    if (msg_type == "BOBBYOPEN" && msg_value == std::string(id.c_str())) {
+        //Serial.println("Bob is opening the door");
+        digitalWrite(PIN_RELAY, HIGH);
+        ledtimer = espchrono::millis_clock::now();
+    }
+    /*const std::string_view data_str{(const char *)data, size_t(data_len)};
 
     size_t sep_pos = data_str.find(":");
     if (std::string_view::npos != sep_pos)
@@ -47,12 +92,15 @@ extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int data
     else
     {
         ESP_LOGW(TAG, "Invalid message: Could not find ':' (%.*s)", data_str.size(), data_str.data());
-    }
+    }*/
 }
 } // namespace
 
 void initESPNow()
 {
+    pinMode(PIN_RELAY, OUTPUT);
+    digitalWrite(PIN_RELAY, LOW);
+
     ESP_LOGI(TAG, "Initializing esp-now...");
 
     if (initialized < 1)
@@ -120,6 +168,17 @@ void initESPNow()
 
 void handle()
 {
+    if (!ledtimer || espchrono::ago(*ledtimer)  > 3s) {
+        digitalWrite(PIN_RELAY, LOW);
+    }
+
+    if (!last_send_ms || espchrono::ago(*last_send_ms)  > 1s) {
+        const auto message = fmt::format("T:{}", espchrono::utc_clock::now().time_since_epoch().count());
+        espnow::send_espnow_message(message);
+        last_send_ms = espchrono::millis_clock::now();
+    }
+
+
     if (initialized < 255 && !(!settings.wifiSettings.wifiApEnabled && (!settings.wifiSettings.wifiStaEnabled && wifi_stack::get_sta_status() == wifi_stack::WiFiStaStatus::NO_SHIELD) || (wifi_stack::get_wifi_mode() != wifi_mode_t::WIFI_MODE_STA && wifi_stack::get_wifi_mode() != wifi_mode_t::WIFI_MODE_AP && wifi_stack::get_wifi_mode() != wifi_mode_t::WIFI_MODE_APSTA)))
     {
         initESPNow();
