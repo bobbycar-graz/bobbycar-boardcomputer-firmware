@@ -7,6 +7,9 @@
 #include <esp_log.h>
 #include <numberparsing.h>
 #include <espwifistack.h>
+#include <asynchttprequest.h>
+#include <delayedconstruction.h>
+#include <cleanuphelper.h>
 
 #include "globals.h"
 #include "utils.h"
@@ -31,6 +34,68 @@ uint8_t initialized{0};
 
 bool receiveTimeStamp{true};
 bool receiveTsFromOtherBobbycars{true};
+
+namespace ifttt {
+namespace {
+cpputils::DelayedConstruction<AsyncHttpRequest> http_request;
+}
+void setup_request()
+{
+    if (!http_request.constructed())
+    {
+        http_request.construct("qr_request", espcpputils::CoreAffinity::Core0);
+    }
+}
+
+tl::expected<void, std::string> start_qr_request(std::string event)
+{
+    if (!http_request.constructed())
+    {
+        return tl::make_unexpected("request im oarsch");
+    }
+
+    if (const auto res = http_request->start(fmt::format("http://maker.ifttt.com/trigger/{}/with/key/{}", event, stringSettings.ifttt_key)); !res)
+    {
+        return res;
+    }
+    return{};
+}
+
+tl::expected<std::string, std::string> check_request()
+{
+    if (!http_request.constructed())
+    {
+        return tl::make_unexpected("request im oarsch");
+    }
+
+    if (!http_request->finished())
+    {
+        return tl::make_unexpected("request has not finished");
+    }
+
+    const auto helper = cpputils::makeCleanupHelper([](){ http_request->clearFinished(); });
+
+    if (const auto result = http_request->result(); !result)
+    {
+        return tl::make_unexpected(result.error());
+    }
+    else
+    {
+        ESP_LOGI(TAG, "%.*s", http_request->buffer().size(), http_request->buffer().data());
+        return http_request->takeBuffer();
+    }
+}
+
+bool get_request_running()
+{
+    if (!http_request.constructed())
+    {
+        return false;
+    }
+
+    return http_request->finished();
+}
+} // namespace
 
 namespace {
 extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len)
@@ -68,10 +133,15 @@ extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len)
         return;
     }
 
-    if (msg_type == "BOBBYOPEN" && msg_value == stringSettings.esp_now_door_id) {
+    if (msg_type == "BOBBYOPEN" && msg_value == stringSettings.esp_now_door_id)
+    {
         //Serial.println("Bob is opening the door");
         digitalWrite(PIN_RELAY, HIGH);
         ledtimer = espchrono::millis_clock::now();
+    }
+    else if(msg_type == "BOBBYOPEN" && msg_value == stringSettings.esp_now_ifttt_door_id)
+    {
+
     }
     /*const std::string_view data_str{(const char *)data, size_t(data_len)};
 

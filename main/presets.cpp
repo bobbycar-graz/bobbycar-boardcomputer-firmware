@@ -61,8 +61,12 @@ StringSettings makeDefaultStringSettings()
         .otaServerBranch = {},
 #endif
         .webserver_password = {},
+#ifdef FEATURE_ESPNOW
         .esp_now_door_id = {},
-        .esp_now_door_token = {}
+        .esp_now_door_token = {},
+#endif
+        .ifttt_key = {},
+        .esp_now_ifttt_door_id = {},
     };
 }
 } // namespace presets

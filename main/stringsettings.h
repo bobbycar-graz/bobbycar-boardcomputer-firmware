@@ -61,6 +61,8 @@ struct StringSettings
     std::string esp_now_door_id;
     std::string esp_now_door_token;
 #endif
+    std::string ifttt_key;
+    std::string esp_now_ifttt_door_id;
 };
 
 template<typename T>
@@ -137,9 +139,11 @@ void StringSettings::executeForEveryCommonSetting(T &&callable)
     callable("webpw", webserver_password);
 
 #ifdef FEATURE_ESPNOW
-#endif
     callable("espnow_doorId", esp_now_door_id);
     callable("espnow_doorTo", esp_now_door_token);
+#endif
+    callable("iftttkey", ifttt_key);
+    callable("espnowiftt", esp_now_ifttt_door_id);
 }
 
 template<typename T>

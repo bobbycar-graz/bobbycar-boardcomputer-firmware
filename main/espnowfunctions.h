@@ -6,6 +6,7 @@
 #include <string_view>
 #include <vector>
 #include <esp_now.h>
+#include <tl/expected.hpp>
 
 namespace espnow {
 extern uint16_t lastYear;
@@ -26,5 +27,11 @@ void initESPNow();
 void handle();
 void onRecvTs(uint64_t millis, bool isFromBobbycar = false);
 esp_err_t send_espnow_message(std::string_view message);
+namespace ifttt {
+void setup_request();
+tl::expected<void, std::string> start_qr_request(std::string event);
+tl::expected<std::string, std::string> check_request();
+bool get_request_running();
+} // namespace ifttt
 } // namespace espnow
 #endif
