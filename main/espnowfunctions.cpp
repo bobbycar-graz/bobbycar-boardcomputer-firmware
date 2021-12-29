@@ -35,19 +35,20 @@ bool receiveTsFromOtherBobbycars{true};
 namespace {
 extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len)
 {
-    ESP_LOGI(TAG, "Received data");
     const std::string message(data, data + len);
-    //Serial.printf("Received: %s\n", message.c_str());
+    ESP_LOGI(TAG, "Received data (%s)", message.c_str());
+
+    ESP_LOGI(TAG, "ID: %s - Token: %s", stringSettings.esp_now_door_id.c_str(), stringSettings.esp_now_door_token.c_str());
 
     // Parse the message (msg format: "msg_type:msg_value:msg_token") via find and npos
     const size_t pos = message.find(":");
     if (pos == std::string::npos) {
-        //Serial.println("Invalid message format");
+        ESP_LOGW(TAG, "Invalid message format");
         return;
     }
     const size_t pos2 = message.find(":", pos + 1);
     if (pos2 == std::string::npos) {
-        //Serial.println("Invalid message format");
+        ESP_LOGW(TAG, "Invalid message format");
         return;
     }
     const std::string msg_type = message.substr(0, pos);
@@ -58,12 +59,12 @@ extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len)
     }
 
     if (msg_token.empty()) {
-        //Serial.println("No token was send");
+        ESP_LOGW(TAG, "No token was send");
         return;
     }
 
     if (msg_token != stringSettings.esp_now_door_token) {
-        //Serial.println("Invalid token");
+        ESP_LOGW(TAG, "Invalid token (%s)", msg_token.c_str());
         return;
     }
 
