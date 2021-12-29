@@ -283,7 +283,6 @@ void WirelessSettingsCallbacks::onWrite(NimBLECharacteristic* pCharacteristic)
         ESP_LOGI(TAG, "[ble_config]: Set wifi%i: WiFi-SSID: %s, WiFi-Password: ***", doc["wifi_index"].as<int>(), doc["wifi_ssid"].as<const char*>());
         configs.write_config(configs.wifi_configs[index].ssid, doc["wifi_ssid"].as<std::string>());
         configs.write_config(configs.wifi_configs[index].key, doc["wifi_pass"].as<std::string>());
-        saveSettings();
     } else {
         const auto deserialized = deserializeJson(doc, val);
         ESP_LOGW(TAG, "Unkown type %s -> json: %.*s %s", doc["type"].as<const char*>(), val.size(), val.data(), deserialized.c_str());

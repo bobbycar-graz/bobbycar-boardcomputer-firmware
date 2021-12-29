@@ -48,15 +48,6 @@ struct StringSettings
     std::string otaServerBranch;
 #endif
     std::string webserver_password;
-
-#ifdef FEATURE_ESPNOW
-    struct ConfiguredWirelessDoors {
-        std::string doorId;
-        std::string doorToken;
-    };
-
-    std::array<ConfiguredWirelessDoors, 5> wirelessDoors;
-#endif
 };
 
 template<typename T>
@@ -109,19 +100,6 @@ void StringSettings::executeForEveryCommonSetting(T &&callable)
     callable("dnskey", dns_key);
 #endif
     callable("webpw", webserver_password);
-
-#ifdef FEATURE_ESPNOW
-    callable("doorId0",    wirelessDoors[0].doorId);
-    callable("doorToken0", wirelessDoors[0].doorToken);
-    callable("doorId1",    wirelessDoors[1].doorId);
-    callable("doorToken1", wirelessDoors[1].doorToken);
-    callable("doorId2",    wirelessDoors[2].doorId);
-    callable("doorToken2", wirelessDoors[2].doorToken);
-    callable("doorId3",    wirelessDoors[3].doorId);
-    callable("doorToken3", wirelessDoors[3].doorToken);
-    callable("doorId4",    wirelessDoors[4].doorId);
-    callable("doorToken4", wirelessDoors[4].doorToken);
-#endif
 }
 
 template<typename T>
