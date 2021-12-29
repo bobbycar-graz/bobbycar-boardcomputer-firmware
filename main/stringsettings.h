@@ -139,7 +139,7 @@ void StringSettings::executeForEveryCommonSetting(T &&callable)
 #ifdef FEATURE_ESPNOW
 #endif
     callable("espnow_doorId", esp_now_door_id);
-    callable("espnow_doorToken", esp_now_door_token);
+    callable("espnow_doorTo", esp_now_door_token);
 }
 
 template<typename T>
