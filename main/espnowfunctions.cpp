@@ -36,9 +36,6 @@ namespace {
 extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len)
 {
     ESP_LOGI(TAG, "Received data");
-    const std::string token = "Bobbycar_123";
-    const std::string id = "Buero";
-
     const std::string message(data, data + len);
     //Serial.printf("Received: %s\n", message.c_str());
 
@@ -65,12 +62,12 @@ extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len)
         return;
     }
 
-    if (msg_token != std::string(token.c_str())) {
+    if (msg_token != stringSettings.esp_now_door_token) {
         //Serial.println("Invalid token");
         return;
     }
 
-    if (msg_type == "BOBBYOPEN" && msg_value == std::string(id.c_str())) {
+    if (msg_type == "BOBBYOPEN" && msg_value == stringSettings.esp_now_door_id) {
         //Serial.println("Bob is opening the door");
         digitalWrite(PIN_RELAY, HIGH);
         ledtimer = espchrono::millis_clock::now();
