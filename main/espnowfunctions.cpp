@@ -168,13 +168,13 @@ void initESPNow()
 
 void handle()
 {
-    if (!ledtimer || espchrono::ago(*ledtimer)  > 3s) {
+    if (!ledtimer || espchrono::ago(*ledtimer) > 3s) {
         digitalWrite(PIN_RELAY, LOW);
     }
 
-    if (!last_send_ms || espchrono::ago(*last_send_ms)  > 1s) {
+    if (!last_send_ms || espchrono::ago(*last_send_ms) > 1s) {
         const auto message = fmt::format("T:{}", espchrono::utc_clock::now().time_since_epoch().count());
-        espnow::send_espnow_message(message);
+        send_espnow_message(message);
         last_send_ms = espchrono::millis_clock::now();
     }
 
@@ -339,7 +339,7 @@ esp_err_t send_espnow_message(std::string_view message)
         else
         {
             const auto timeAfter = espchrono::millis_clock::now();
-            ESP_LOGI(TAG, "Successfully executed esp_now_send(): Took %lldms", std::chrono::milliseconds{timeAfter-timeBefore}.count());
+            ESP_LOGI(TAG, "Successfully executed esp_now_send() with message %.*s (Took %lldms)", message.size(), message.data(), std::chrono::milliseconds{timeAfter-timeBefore}.count());
         }
     }
     return ESP_OK;
