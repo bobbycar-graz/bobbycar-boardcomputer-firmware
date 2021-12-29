@@ -13,16 +13,7 @@ using namespace espgui;
 
 GarageMenu::GarageMenu()
 {
-    for (uint8_t index = 0; index < stringSettings.wirelessDoors.size(); index++)
-    {
-        const auto &wirelessDoor = stringSettings.wirelessDoors[index];
-        if (wirelessDoor.doorId.empty() || wirelessDoor.doorToken.empty())
-            continue;
-        auto &menuitem = constructMenuItem<makeComponentArgs<MenuItem, garagenmenu::SendEspNowMessageAction, ChangeableText>>(index);
-        menuitem.setTitle(wirelessDoor.doorId);
-    }
 
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<MainMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 void GarageMenu::back()
