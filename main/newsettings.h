@@ -97,6 +97,7 @@ public:
         WirelessDoorsConfig { {}, {} },
         WirelessDoorsConfig { {}, {} }
     };
+    ConfigWrapper<bool>        canBusResetOnError {false,                                     DoReset,   {},                         "canBusRstErr"       };
 
     ConfigWrapper<std::string> bluetoothName      {defaultHostname,                        DoReset,   StringMinMaxSize<4, 32>,    "bluetoothName"       };
 
@@ -223,6 +224,8 @@ public:
     x(wireless_door_configs[3].doorToken) \
     x(wireless_door_configs[4].doorId) \
     x(wireless_door_configs[4].doorToken) \
+    \
+    x(canBusResetOnError) \
     \
     //x(bluetoothName)
 

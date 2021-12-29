@@ -18,6 +18,7 @@
 #include "bobbycar-can.h"
 #include "globals.h"
 #include "buttons.h"
+#include "newsettings.h"
 
 using namespace std::chrono_literals;
 
@@ -279,6 +280,9 @@ void parseCanInput()
             break;
 }
 
+uint32_t can_total_error_cnt = 0;
+uint32_t can_sequential_error_cnt = 0;
+
 void sendCanCommands()
 {
     constexpr auto send = [](uint32_t addr, auto value){
@@ -290,11 +294,38 @@ void sendCanCommands()
         std::memcpy(message.data, &value, sizeof(value));
 
         const auto timeout = std::chrono::ceil<espcpputils::ticks>(espchrono::milliseconds32{settings.controllerHardware.canTransmitTimeout}).count();
+
+        const auto timestamp_before = espchrono::millis_clock::now();
         const auto result = twai_transmit(&message, timeout);
         if (result != ESP_OK && result != ESP_ERR_TIMEOUT)
         {
             ESP_LOGE(TAG, "ERROR: twai_transmit() failed with %s", esp_err_to_name(result));
         }
+
+        if (result == ESP_ERR_TIMEOUT) {
+            can_sequential_error_cnt++;
+            can_total_error_cnt++;
+            ESP_LOGW(TAG, "twai_transmit() took %lld ms, seq err: %d, total err: %d",
+                     espchrono::ago(timestamp_before).count(),
+                     can_sequential_error_cnt,
+                     can_total_error_cnt);
+        } else {
+            can_sequential_error_cnt = 0;
+        }
+
+
+        if (can_sequential_error_cnt > 3) {
+            can_sequential_error_cnt = 0;
+            if (configs.canBusResetOnError.value) {
+                if (const auto err = twai_stop(); err != ESP_OK || true)
+                    ESP_LOGE(TAG, "ERROR: twai_stop() failed with %s", esp_err_to_name(err));
+
+                if (const auto err = twai_start(); err != ESP_OK || true)
+                    ESP_LOGE(TAG, "ERROR: twai_start() failed with %s", esp_err_to_name(err));
+
+            }
+        }
+
         return result;
     };
 
