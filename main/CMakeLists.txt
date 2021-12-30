@@ -100,8 +100,36 @@ set(headers
     actions/tempomatmodeapplycurrentpeedaction.h
     actions/updateswapfrontbackaction.h
     actions/wifiscanaction.h
+<<<<<<< Updated upstream
     actions/wifistascanaction.h
     actions/wifistascanclearaction.h
+=======
+    battery.h
+    ble_bobby.h
+    bletexthelpers.h
+    bluetooth_bobby.h
+    bluetoothmode.h
+    bluetoothtexthelpers.h
+    bmsutils.h
+    buildserver.h
+    buttons.h
+    can.h
+    changevaluedisplay_bluetoothmode.h
+    changevaluedisplay_controlmode.h
+    changevaluedisplay_controltype.h
+    changevaluedisplay_handbremsmode.h
+    changevaluedisplay_larsmmode_mode.h
+    changevaluedisplay_unifiedmodelmode.h
+    changevaluedisplay_wifi_mode_t.h
+    changevaluedisplay_wifi_power_t.h
+    cloud.h
+    cloudtexthelpers.h
+    config.h
+    controller.h
+    debugcolorhelpers.h
+    debuginputhandler.h
+    debugtexthelpers.h
+>>>>>>> Stashed changes
     displays/bmsdisplay.h
     displays/bobbychangevaluedisplay.h
     displays/bobbydisplay.h
@@ -330,8 +358,36 @@ set(sources
     actions/tempomatmodeapplycurrentpeedaction.cpp
     actions/updateswapfrontbackaction.cpp
     actions/wifiscanaction.cpp
+<<<<<<< Updated upstream
     actions/wifistascanaction.cpp
     actions/wifistascanclearaction.cpp
+=======
+    battery.cpp
+    ble_bobby.cpp
+    bletexthelpers.cpp
+    bluetooth_bobby.cpp
+    bluetoothmode.cpp
+    bluetoothtexthelpers.cpp
+    bmsutils.cpp
+    buildserver.cpp
+    buttons.cpp
+    can.cpp
+    changevaluedisplay_bluetoothmode.cpp
+    changevaluedisplay_controlmode.cpp
+    changevaluedisplay_controltype.cpp
+    changevaluedisplay_handbremsmode.cpp
+    changevaluedisplay_larsmmode_mode.cpp
+    changevaluedisplay_unifiedmodelmode.cpp
+    changevaluedisplay_wifi_mode_t.cpp
+    changevaluedisplay_wifi_power_t.cpp
+    cloud.cpp
+    cloudtexthelpers.cpp
+    config.cpp
+    controller.cpp
+    debugcolorhelpers.cpp
+    debuginputhandler.cpp
+    debugtexthelpers.cpp
+>>>>>>> Stashed changes
     displays/bmsdisplay.cpp
     displays/bobbychangevaluedisplay.cpp
     displays/bobbydisplay.cpp
