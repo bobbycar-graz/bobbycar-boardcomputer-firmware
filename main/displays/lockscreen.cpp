@@ -10,9 +10,6 @@
 #include "displays/menus/mainmenu.h"
 #include "displays/potiscalibratedisplay.h"
 #include "bobbybuttons.h"
-#ifdef LOCKSCREEN_PLUGIN
-#include "ledstripdefines.h"
-#endif
 
 bool isValidPin(std::array<int8_t,4> enteredPin)
 {
