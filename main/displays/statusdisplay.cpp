@@ -119,6 +119,11 @@ void StatusDisplay::redraw()
         {
             blink_fill_with_black = false;
             tft.fillRect(0, 0, tft.width(), 6, TFT_BLACK);
+            tft.setTextFont(2);
+            tft.drawString("gas", 0, 0);
+            m_labelRawGas.start();
+            m_labelGas.start();
+            m_progressBarGas.start();
         }
     }
 #endif
