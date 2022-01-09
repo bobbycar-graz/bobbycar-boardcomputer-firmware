@@ -60,3 +60,4 @@ float wattToAmpere(float watt);
 float wattToMotorCurrent(float watt);
 uint8_t time_to_percent(espchrono::milliseconds32 repeat, espchrono::milliseconds32 riseTime, espchrono::milliseconds32 fullTime, size_t numLeds, bool invert);
 std::string local_clock_string();
+int16_t map_analog_stick(uint16_t middle, uint16_t start, uint16_t end, uint16_t raw);

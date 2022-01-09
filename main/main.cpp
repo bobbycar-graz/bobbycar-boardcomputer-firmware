@@ -20,7 +20,11 @@ using namespace std::chrono_literals;
 #include "screens.h"
 #include "presets.h"
 #include "statistics.h"
+#ifdef FEATURE_JOYSTICK
+#include "modes/wheelchairmode.h"
+#else
 #include "modes/defaultmode.h"
+#endif
 #include "displays/statusdisplay.h"
 #include "displays/lockscreen.h"
 #include "displays/potiscalibratedisplay.h"
@@ -65,7 +69,11 @@ extern "C" void app_main()
         task.setup();
     }
 
+#ifdef FEATURE_JOYSTICK
+    currentMode = &modes::wheelchairMode;
+#else
     currentMode = &modes::defaultMode;
+#endif
 
     bootLabel.redraw("switchScreen");
 

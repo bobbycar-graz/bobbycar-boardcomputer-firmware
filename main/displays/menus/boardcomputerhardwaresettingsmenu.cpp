@@ -20,6 +20,9 @@
 #include "displays/buttoncalibratedisplay.h"
 #include "displays/menus/extrabuttoncalibratemenu.h"
 #include "displays/menus/setupquickactionsmenu.h"
+#ifdef FEATURE_JOYSTICK
+#include "displays/joystickdebugdisplay.h"
+#endif
 
 namespace {
 constexpr char TEXT_BOARDCOMPUTERHARDWARESETTINGS[] = "Boardcomputer H/W settings";
@@ -28,6 +31,9 @@ constexpr char TEXT_EXTRABUTTONCALIBRATE[] = "Cal other Buttons";
 constexpr char TEXT_QUICKACTIONS[] = "Quick Actions";
 constexpr char TEXT_LOCKSCREENSETTINGS[] = "Lockscreen Settings";
 constexpr char TEXT_POTISCALIBRATE[] = "Potis Calibrate";
+#ifdef FEATURE_JOYSTICK
+constexpr char TEXT_JOYSTICK[] = "Debug Joystick";
+#endif
 constexpr char TEXT_SAMPLECOUNT[] = "sampleCount";
 constexpr char TEXT_GASMIN[] = "gasMin";
 constexpr char TEXT_GASMAX[] = "gasMax";
@@ -182,6 +188,9 @@ BoardcomputerHardwareSettingsMenu::BoardcomputerHardwareSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, GasText,                                                      DisabledColor, StaticFont<2>, DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, BremsText,                                                    DisabledColor, StaticFont<2>, DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_POTISCALIBRATE>,                              SwitchScreenAction<PotisCalibrateDisplay>>>();
+#ifdef FEATURE_JOYSTICK
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_JOYSTICK>,                                    SwitchScreenAction<JoystickDebugDisplay>>>();
+#endif
     constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_SAMPLECOUNT, SampleCountAccessor>,   SwitchScreenAction<SampleCountChangeScreen>>>();
     constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_GASMIN, GasMinAccessor>,             SwitchScreenAction<GasMinChangeScreen>>>();
     constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_GASMAX, GasMaxAccessor>,             SwitchScreenAction<GasMaxChangeScreen>>>();

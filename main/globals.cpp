@@ -12,14 +12,6 @@ float gametrakY;
 float gametrakDist;
 #endif
 
-#ifdef FEATURE_JOYSTICK
-bool joystick_button{};
-int16_t joystick_x{};
-int16_t joystick_y{};
-int16_t raw_joystick_x{};
-int16_t raw_joystick_y{};
-#endif
-
 float avgSpeed{};
 float avgSpeedKmh{};
 float sumCurrent{};
