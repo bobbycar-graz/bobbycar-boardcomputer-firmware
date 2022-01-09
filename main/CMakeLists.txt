@@ -70,6 +70,7 @@ set(headers
     displays/calibratevoltagedisplay.h
     displays/gameoflifedisplay.h
     displays/gametrakcalibratedisplay.h
+    displays/joystickdebugdisplay.h
     displays/ledstripcolorsdisplay.h
     displays/lockscreen.h
     displays/menudisplaywithtime.cpp
@@ -199,6 +200,7 @@ set(headers
     modes/motortestmode.h
     modes/remotecontrolmode.h
     modes/tempomatmode.h
+    modes/wheelchairmode.h
     mosfets.h
     newsettings.h
     ota.h
@@ -300,6 +302,7 @@ set(sources
     displays/calibratevoltagedisplay.cpp
     displays/gameoflifedisplay.cpp
     displays/gametrakcalibratedisplay.cpp
+    displays/joystickdebugdisplay.cpp
     displays/ledstripcolorsdisplay.cpp
     displays/lockscreen.cpp
     displays/menus/aboutmenu.cpp
@@ -428,6 +431,7 @@ set(sources
     modes/motortestmode.cpp
     modes/remotecontrolmode.cpp
     modes/tempomatmode.cpp
+    modes/wheelchairmode.cpp
     mosfets.cpp
     newsettings.cpp
     ota.cpp

@@ -65,6 +65,9 @@ private:
 
     enum Status {
         Begin,
+#ifdef FEATURE_JOYSTICK
+        Mitte,
+#endif
         GasMin,
         GasMax,
         BremsMin,
@@ -75,6 +78,15 @@ private:
     int8_t m_selectedButton, m_renderedButton;
 
     Status m_status;
-    int16_t m_gasMin, m_gasMax, m_bremsMin, m_bremsMax;
+    int16_t
+        m_gasMin,
+        m_gasMax,
+        m_bremsMin,
+        m_bremsMax
+#ifdef FEATURE_JOYSTICK
+        ,m_gasMitte
+        ,m_bremsMitte
+#endif
+    ;
     std::optional<float> m_gas, m_brems;
 };

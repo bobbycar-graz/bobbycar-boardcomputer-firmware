@@ -130,8 +130,10 @@ public:
     ConfigWrapper<int16_t>     sampleCount        {50,                                     DoReset,   {},                           "sampleCount"         };
     ConfigWrapper<int16_t>     gasMin             {0,                                      DoReset,  MinMaxValue<int16_t, 0, 4095>, "gasMin"              };
     ConfigWrapper<int16_t>     gasMax             {4095,                                   DoReset,  MinMaxValue<int16_t, 0, 4095>, "gasMax"              };
+    ConfigWrapper<int16_t>     gasMitte           {2048,                                   DoReset,  MinMaxValue<int16_t, 0, 4095>, "gasMiddle"           };
     ConfigWrapper<int16_t>     bremsMin           {0,                                      DoReset,  MinMaxValue<int16_t, 0, 4095>, "bremsMin"            };
     ConfigWrapper<int16_t>     bremsMax           {4096,                                   DoReset,  MinMaxValue<int16_t, 0, 4095>, "bremsMax"            };
+    ConfigWrapper<int16_t>     bremsMitte         {2048,                                   DoReset,  MinMaxValue<int16_t, 0, 4095>, "bremsMiddle"         };
 
     ConfigWrapper<uint8_t>     dpadDebounce       {25,                                     DoReset,   {},                           "dpadDebounce"        };
 
@@ -421,8 +423,10 @@ public:
     x(sampleCount) \
     x(gasMin) \
     x(gasMax) \
+    x(gasMitte) \
     x(bremsMin) \
     x(bremsMax) \
+    x(bremsMitte) \
     \
     x(dpadDebounce) \
     \

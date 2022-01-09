@@ -69,6 +69,13 @@ struct ProfileSettings
         uint16_t maxPwm;
     } motortestMode;
 
+#ifdef FEATURE_JOYSTICK
+    struct WheelchairMode {
+        uint16_t sensitivity0Kmh;
+        uint16_t sensitivity50Kmh;
+    } wheelchairMode;
+#endif
+
     template<typename T>
     void executeForEveryProfileSetting(T &&callable);
 };
@@ -114,4 +121,9 @@ void ProfileSettings::executeForEveryProfileSetting(T &&callable)
     callable("larsm.modelMode", larsmMode.modelMode);
     callable("larsm.mode", larsmMode.mode);
     callable("larsm.iters", larsmMode.iterations);
+
+#ifdef FEATURE_JOYSTICK
+    callable("wc.ses0", wheelchairMode.sensitivity0Kmh);
+    callable("wc.ses50", wheelchairMode.sensitivity50Kmh);
+#endif
 }

@@ -122,12 +122,19 @@ constexpr ProfileSettings::MotortestMode defaultMotortestMode {
     .maxPwm = 400
 };
 
+
+constexpr ProfileSettings::WheelchairMode defaultWheelChairMode {
+    .sensitivity0Kmh = 100,
+    .sensitivity50Kmh = 10,
+};
+
 constexpr ProfileSettings defaultProfileSettings {
     .limits = defaultLimits,
     .controllerHardware = defaultControllerHardware,
     .defaultMode = defaultDefaultMode,
     .tempomatMode = defaultTempomatMode,
     .larsmMode = defaultLarsmMode,
-    .motortestMode = defaultMotortestMode
+    .motortestMode = defaultMotortestMode,
+    .wheelchairMode = defaultWheelChairMode
 };
 } // namespace presets

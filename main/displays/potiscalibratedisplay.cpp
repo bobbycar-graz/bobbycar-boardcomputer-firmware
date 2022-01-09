@@ -106,6 +106,9 @@ void PotisCalibrateDisplay::redraw()
         switch (m_status)
         {
         case Status::Begin: return "Start calibrating?";
+#ifdef FEATURE_JOYSTICK
+        case Status::Mitte: return "Release joystick";
+#endif
         case Status::GasMin: return "Release gas";
         case Status::GasMax: return "Press gas";
         case Status::BremsMin: return "Release brems";
@@ -123,6 +126,9 @@ void PotisCalibrateDisplay::redraw()
             switch (m_status)
             {
             case Status::Begin: return "Yes";
+#ifdef FEATURE_JOYSTICK
+            case Status::Mitte:
+#endif
             case Status::GasMin:
             case Status::GasMax:
             case Status::BremsMin:
@@ -141,6 +147,9 @@ void PotisCalibrateDisplay::redraw()
         switch (m_status)
         {
         case Status::Begin: return "No";
+#ifdef FEATURE_JOYSTICK
+        case Status::Mitte:
+#endif
         case Status::GasMin:
         case Status::GasMax:
         case Status::BremsMin:
@@ -206,6 +215,9 @@ void PotisCalibrateDisplay::buttonPressed(espgui::Button button)
             else
                 espgui::switchScreen<BoardcomputerHardwareSettingsMenu>();
             break;
+#ifdef FEATURE_JOYSTICK
+        case Status::Mitte:
+#endif
         case Status::GasMin:
         case Status::GasMax:
         case Status::BremsMin:
@@ -226,9 +238,21 @@ void PotisCalibrateDisplay::buttonPressed(espgui::Button button)
 
             switch (m_status)
             {
+#ifndef FEATURE_JOYSTICK
             case Status::Begin:
                 m_status = Status::GasMin;
                 break;
+#else
+            case Status::Begin:
+                m_status = Status::Mitte;
+                break;
+
+            case Status::Mitte:
+                m_gasMitte = *raw_gas;
+                m_bremsMitte = *raw_brems;
+                m_status = Status::GasMin;
+                break;
+#endif
             case Status::GasMin:
                 m_gasMin = *raw_gas;
                 m_status = Status::GasMax;
@@ -275,6 +299,10 @@ void PotisCalibrateDisplay::buttonPressed(espgui::Button button)
 
 void PotisCalibrateDisplay::copyFromSettings()
 {
+#ifdef FEATURE_JOYSTICK
+    m_gasMitte = configs.gasMitte.value;
+    m_bremsMitte = configs.bremsMitte.value;
+#endif
     m_gasMin = configs.gasMin.value;
     m_gasMax = configs.gasMax.value;
     m_bremsMin = configs.bremsMin.value;
@@ -283,6 +311,10 @@ void PotisCalibrateDisplay::copyFromSettings()
 
 void PotisCalibrateDisplay::copyToSettings()
 {
+#ifdef FEATURE_JOYSTICK
+    configs.write_config(configs.gasMitte, m_gasMitte);
+    configs.write_config(configs.bremsMitte, m_bremsMitte);
+#endif
     configs.write_config(configs.gasMin, m_gasMin);
     configs.write_config(configs.gasMax, m_gasMax);
     configs.write_config(configs.bremsMin, m_bremsMin);

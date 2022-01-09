@@ -39,14 +39,6 @@ extern float gametrakY;
 extern float gametrakDist;
 #endif
 
-#ifdef FEATURE_JOYSTICK
-extern bool joystick_button;
-extern int16_t joystick_x;
-extern int16_t joystick_y;
-extern int16_t raw_joystick_x;
-extern int16_t raw_joystick_y;
-#endif
-
 extern float avgSpeed;
 extern float avgSpeedKmh;
 extern float sumCurrent;
