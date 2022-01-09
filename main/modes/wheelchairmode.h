@@ -12,6 +12,7 @@
 #include "globals.h"
 #include "utils.h"
 
+#ifdef FEATURE_JOYSTICK
 class WheelchairMode : public ModeInterface
 {
     using Base = ModeInterface;
@@ -38,3 +39,4 @@ private:
 namespace modes {
 extern WheelchairMode wheelchairMode;
 } // namespace modes
+#endif

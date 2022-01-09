@@ -1,5 +1,6 @@
 #include "wheelchairmode.h"
 
+#ifdef FEATURE_JOYSTICK
 using namespace std::chrono_literals;
 
 namespace modes {
@@ -266,3 +267,4 @@ void WheelchairMode::update()
     }
     sendCommands();
 }
+#endif
