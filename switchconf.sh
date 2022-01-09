@@ -8,6 +8,7 @@ VALID_CONFIGS=(
     "greyhash"
     "nofeatures"
     "allfeatures"
+    "seatbot"
 )
 
 print_usage() {
