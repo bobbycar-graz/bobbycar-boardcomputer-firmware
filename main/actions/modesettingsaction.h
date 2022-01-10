@@ -7,7 +7,9 @@
 #include "modes/larsmmode.h"
 #include "modes/gametrakmode.h"
 #include "modes/motortestmode.h"
+#ifdef FEATURE_JOYSTICK
 #include "modes/wheelchairmode.h"
+#endif
 #include "displays/menus/defaultmodesettingsmenu.h"
 #include "displays/menus/tempomatmodesettingsmenu.h"
 #include "displays/menus/larsmmodesettingsmenu.h"
