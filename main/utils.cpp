@@ -284,23 +284,23 @@ std::string local_clock_string()
 }
 
 int16_t map_analog_stick(uint16_t middle, uint16_t start, uint16_t end, uint16_t raw)
+{
+    if (raw < middle)
     {
-        if (raw < middle)
-        {
-            const auto return_val = map(raw, start, middle, -1000, 0);
-            if (return_val > 0)
-                return 0;
-            if (return_val < -1000)
-                return -1000;
-            return return_val;
-        }
-        else
-        {
-            const auto return_val = map(raw, middle, end, 0, 1000);
-            if (return_val < 0)
-                return 0;
-            if (return_val > 1000)
-                return 1000;
-            return return_val;
-        }
+        const auto return_val = map(raw, start, middle, -1000, 0);
+        if (return_val > 0)
+            return 0;
+        if (return_val < -1000)
+            return -1000;
+        return return_val;
     }
+    else
+    {
+        const auto return_val = map(raw, middle, end, 0, 1000);
+        if (return_val < 0)
+            return 0;
+        if (return_val > 1000)
+            return 1000;
+        return return_val;
+    }
+}
