@@ -11,6 +11,7 @@
 #include "modeinterface.h"
 #include "modes/ignoreinputmode.h"
 
+#ifdef FEATURE_JOYSTICK
 class JoystickDebugDisplay : public BobbyDisplayWithTitle
 {
     using Base = BobbyDisplayWithTitle;
@@ -33,3 +34,4 @@ private:
 
     int16_t m_gasMin, m_gasMax, m_bremsMin, m_bremsMax, m_gasMitte, m_bremsMitte;
 };
+#endif
