@@ -19,6 +19,11 @@ float getAvgWhPerKm()
     return drivingStatistics.wh_used / (drivingStatistics.meters_driven / 1000.f);
 }
 
+float getAvgKmh()
+{
+    return (drivingStatistics.meters_driven / 1000.) / (drivingStatistics.currentDrivingTime.count() / 1000 / 60 / 60); // (meter / 1000) / (ms / 1000 / 60 / 60)
+}
+
 std::string getEfficiencyClassString()
 {
     const float avgWhPerKm = getAvgWhPerKm();

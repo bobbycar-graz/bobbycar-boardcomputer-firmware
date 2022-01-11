@@ -19,5 +19,6 @@ extern DrivingStatistics drivingStatistics;
 void initStatistics();
 void calculateStatistics();
 float getAvgWhPerKm();
+float getAvgKmh();
 std::string getEfficiencyClassString();
 uint16_t getEfficiencyClassColor();

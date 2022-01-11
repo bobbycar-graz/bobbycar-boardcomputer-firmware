@@ -126,6 +126,12 @@ class EfficiencyText : public virtual espgui::TextInterface {
     }
 };
 
+class AverageSpeedKmhOverTime : public virtual espgui::TextInterface {
+    public: std::string text() const override {
+        return fmt::format("Avg speed: {:.1f} km/h", getAvgKmh());
+    }
+};
+
 class EfficiencyTextColor : public virtual espgui::ColorInterface {
 public:
     int color() const override
@@ -169,6 +175,7 @@ StatisticsMenu::StatisticsMenu()
 //  constructMenuItem<makeComponent<MenuItem, SavedTotalCentimetersText,           DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, CurrentWhUsedText,                   DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, AverageWhUsedText,                   DummyAction>>();
+    constructMenuItem<makeComponent<MenuItem, AverageSpeedKmhOverTime,             DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, EfficiencyText, EfficiencyTextColor, DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, EmptyText,                           DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_STATSSAVE>,          SaveKilometersAction, StaticMenuItemIcon<&bobbyicons::update>>>();
