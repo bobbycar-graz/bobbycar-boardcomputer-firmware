@@ -184,17 +184,10 @@ jobs:
           key: ${{ runner.os }}-espressif-${{ steps.get-esp-idf-release.outputs.tag_name }}
 
       - name: Verify that "Cache .espressif" had a hit
-        # GitHub doesnt support if
-        #if: steps.cache-espressif.outputs.cache-hit != 'true'
-        #run: git submodule update --init --recursive ${{ inputs.submodule }}
+        if: ${{ steps.cache-espressif.outputs.cache-hit != 'true' }
         run: |
-          if echo ${{ steps.cache-espressif.outputs.cache-hit }} | grep -c "true"
-          then
-            echo "Cache .espressif had a hit, good"
-          else
-            echo "Cache .espressif did not hit? Did the prepare step run successfully?"
-            exit 1
-          fi
+          echo "Cache .espressif did not hit? Did the prepare step run successfully?"
+          exit 1
 
       - name: Setup ccache
         uses: 0xFEEDC0DE64/setup_ccache@main
@@ -268,17 +261,10 @@ jobs:
           key: ${{ runner.os }}-espressif-${{ steps.get-esp-idf-release.outputs.tag_name }}
 
       - name: Verify that "Cache .espressif" had a hit
-        # GitHub doesnt support if
-        #if: steps.cache-espressif.outputs.cache-hit != 'true'
-        #run: git submodule update --init --recursive ${{ inputs.submodule }}
+        if: ${{ steps.cache-espressif.outputs.cache-hit != 'true' }
         run: |
-          if echo ${{ steps.cache-espressif.outputs.cache-hit }} | grep -c "true"
-          then
-            echo "Cache .espressif had a hit, good"
-          else
-            echo "Cache .espressif did not hit? Did the prepare step run successfully?"
-            exit 1
-          fi
+          echo "Cache .espressif did not hit? Did the prepare step run successfully?"
+          exit 1
 
       - name: Cache sonar-build-wrapper
         uses: actions/cache@v2
@@ -288,17 +274,10 @@ jobs:
           key: ${{ runner.os }}-sonar-build-wrapper
 
       - name: Verify that "Cache sonar-build-wrapper" had a hit
-        # GitHub doesnt support if
-        #if: steps.cache-sonar-build-wrapper.outputs.cache-hit != 'true'
-        #run: git submodule update --init --recursive ${{ inputs.submodule }}
+        if: ${{ steps.cache-sonar-build-wrapper.outputs.cache-hit != 'true' }}
         run: |
-          if echo ${{ steps.cache-sonar-build-wrapper.outputs.cache-hit }} | grep -c "true"
-          then
-            echo "Cache sonar-build-wrapper had a hit, good"
-          else
-            echo "Cache sonar-build-wrapper did not hit? Did the prepare step run successfully?"
-            exit 1
-          fi
+          echo "Cache sonar-build-wrapper did not hit? Did the prepare step run successfully?"
+          exit 1
 
       - name: Cache sonar-build-wrapper-output
         uses: actions/cache@v2
@@ -363,17 +342,10 @@ jobs:
           key: ${{ runner.os }}-sonar-build-wrapper-output-${{ github.sha }}
 
       - name: Verify that "Cache sonar-build-wrapper-output" had a hit
-        # GitHub doesnt support if
-        #if: steps.cache-sonar-build-wrapper-output.outputs.cache-hit != 'true'
-        #run: git submodule update --init --recursive ${{ inputs.submodule }}
+        if: ${{ steps.cache-sonar-build-wrapper-output.outputs.cache-hit != 'true' }}
         run: |
-          if echo ${{ steps.cache-sonar-build-wrapper-output.outputs.cache-hit }} | grep -c "true"
-          then
-            echo "Cache sonar-build-wrapper-output had a hit, good"
-          else
-            echo "Cache sonar-build-wrapper-output did not hit? Did the prepare step run successfully?"
-            exit 1
-          fi
+          echo "Cache sonar-build-wrapper-output did not hit? Did the prepare step run successfully?"
+          exit 1
 
       - name: Get esp-idf release name
         id: get-esp-idf-release
@@ -389,17 +361,10 @@ jobs:
           key: ${{ runner.os }}-espressif-${{ steps.get-esp-idf-release.outputs.tag_name }}
 
       - name: Verify that "Cache .espressif" had a hit
-        # GitHub doesnt support if
-        #if: steps.cache-espressif.outputs.cache-hit != 'true'
-        #run: git submodule update --init --recursive ${{ inputs.submodule }}
+        if: ${{ steps.cache-espressif.outputs.cache-hit != 'true' }}
         run: |
-          if echo ${{ steps.cache-espressif.outputs.cache-hit }} | grep -c "true"
-          then
-            echo "Cache .espressif had a hit, good"
-          else
-            echo "Cache .espressif did not hit? Did the prepare step run successfully?"
-            exit 1
-          fi
+          echo "Cache .espressif did not hit? Did the prepare step run successfully?"
+          exit 1
 
       - name: Cache sonar-scanner
         uses: actions/cache@v2
@@ -409,17 +374,10 @@ jobs:
           key: ${{ runner.os }}-sonar-scanner-${{ env.SONAR_SCANNER_VERSION }}
 
       - name: Verify that "Cache sonar-scanner" had a hit
-        # GitHub doesnt support if
-        #if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-        #run: git submodule update --init --recursive ${{ inputs.submodule }}
+        if: ${{ steps.cache-sonar-scanner.outputs.cache-hit != 'true' }}
         run: |
-          if echo ${{ steps.cache-sonar-scanner.outputs.cache-hit }} | grep -c "true"
-          then
-            echo "Cache sonar-scanner had a hit, good"
-          else
-            echo "Cache sonar-scanner did not hit? Did the prepare step run successfully?"
-            exit 1
-          fi
+          echo "Cache sonar-scanner did not hit? Did the prepare step run successfully?"
+          exit 1
 
       - name: Set up JDK 11 (for Sonar)
         uses: actions/setup-java@v1
