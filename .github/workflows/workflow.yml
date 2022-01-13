@@ -184,7 +184,7 @@ jobs:
           key: ${{ runner.os }}-espressif-${{ steps.get-esp-idf-release.outputs.tag_name }}
 
       - name: Verify that "Cache .espressif" had a hit
-        if: ${{ steps.cache-espressif.outputs.cache-hit != 'true' }
+        if: ${{ steps.cache-espressif.outputs.cache-hit != 'true' }}
         run: |
           echo "Cache .espressif did not hit? Did the prepare step run successfully?"
           exit 1
@@ -261,7 +261,7 @@ jobs:
           key: ${{ runner.os }}-espressif-${{ steps.get-esp-idf-release.outputs.tag_name }}
 
       - name: Verify that "Cache .espressif" had a hit
-        if: ${{ steps.cache-espressif.outputs.cache-hit != 'true' }
+        if: ${{ steps.cache-espressif.outputs.cache-hit != 'true' }}
         run: |
           echo "Cache .espressif did not hit? Did the prepare step run successfully?"
           exit 1
