@@ -395,7 +395,6 @@ jobs:
 
       - name: Setup environment
         run: |
-          cd repository
           export CCACHE_MAXSIZE=1024M CCACHE_BASEDIR="$(pwd)"
           . export.sh
           ./switchconf.sh allfeatures
@@ -405,8 +404,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          echo $(pwd)
-          ls -lah
+          cd repository
           sonar-scanner \
               --define sonar.host.url="https://sonarcloud.io" \
               --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}" \
