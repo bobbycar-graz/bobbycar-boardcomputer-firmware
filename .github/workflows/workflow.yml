@@ -395,6 +395,7 @@ jobs:
 
       - name: Setup environment
         run: |
+          cd repository
           export CCACHE_MAXSIZE=1024M CCACHE_BASEDIR="$(pwd)"
           . export.sh
           ./switchconf.sh allfeatures
