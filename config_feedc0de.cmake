@@ -2,6 +2,7 @@ set(BOBBY_APP_NAME bobbyquad_feedc0de)
 
 add_definitions(
   -DUSER_SETUP_LOADED=1
+  -DOLD_IDF=1
   -DLOAD_GLCD=1
   -DLOAD_FONT2=1
   -DLOAD_FONT4=1
