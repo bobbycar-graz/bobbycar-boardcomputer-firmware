@@ -77,9 +77,9 @@ std::array<bool, 10> Helper<OUT, IN1, IN2, IN3, IN4, IN5>::read()
     result[7] = digitalRead(IN4);
     result[9] = digitalRead(IN5);
 
-    if (configs.feature.gschissene_diode.value)
+    if (configs.feature.gschissene_diode.value && (result[8] && result[9]))
     {
-        if (result[8] && result[9]) result[9] = 0;
+        result[9] = 0;
     }
 
     return result;
