@@ -565,12 +565,6 @@ CONFIG_SPI_SLAVE_ISR_IN_IRAM=y
 # end of UART configuration
 
 #
-# RTCIO configuration
-#
-# CONFIG_RTCIO_SUPPORT_RTC_GPIO_DESC is not set
-# end of RTCIO configuration
-
-#
 # GPIO Configuration
 #
 # CONFIG_GPIO_ESP32_SUPPORT_SWITCH_SLP_PULL is not set
@@ -582,6 +576,14 @@ CONFIG_SPI_SLAVE_ISR_IN_IRAM=y
 # CONFIG_GDMA_CTRL_FUNC_IN_IRAM is not set
 # CONFIG_GDMA_ISR_IRAM_SAFE is not set
 # end of GDMA Configuration
+
+#
+# GPTimer Configuration
+#
+# CONFIG_GPTIMER_CTRL_FUNC_IN_IRAM is not set
+# CONFIG_GPTIMER_ISR_IRAM_SAFE is not set
+# CONFIG_GPTIMER_SUPPRESS_DEPRECATE_WARN is not set
+# end of GPTimer Configuration
 # end of Driver configurations
 
 #
@@ -975,9 +977,6 @@ CONFIG_FREERTOS_CHECK_STACKOVERFLOW_CANARY=y
 # CONFIG_FREERTOS_WATCHPOINT_END_OF_STACK is not set
 CONFIG_FREERTOS_INTERRUPT_BACKTRACE=y
 CONFIG_FREERTOS_THREAD_LOCAL_STORAGE_POINTERS=1
-CONFIG_FREERTOS_ASSERT_FAIL_ABORT=y
-# CONFIG_FREERTOS_ASSERT_FAIL_PRINT_CONTINUE is not set
-# CONFIG_FREERTOS_ASSERT_DISABLE is not set
 CONFIG_FREERTOS_IDLE_TASK_STACKSIZE=2304
 CONFIG_FREERTOS_ISR_STACKSIZE=2096
 # CONFIG_FREERTOS_LEGACY_HOOKS is not set
@@ -1518,12 +1517,6 @@ CONFIG_WPA_MBEDTLS_CRYPTO=y
 # CONFIG_NIMBLE_CPP_ENABLE_ADVERTISMENT_TYPE_TEXT is not set
 # end of ESP-NimBLE-CPP configuration
 # end of Component config
-
-#
-# Compatibility options
-#
-# CONFIG_LEGACY_INCLUDE_COMMON_HEADERS is not set
-# end of Compatibility options
 
 # Deprecated options for backward compatibility
 CONFIG_TOOLPREFIX="xtensa-esp32-elf-"
