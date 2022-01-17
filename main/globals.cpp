@@ -27,8 +27,6 @@ bool simplified =
 ProfileSettings profileSettings;
 SettingsPersister settingsPersister;
 
-std::array<CRGB, 8> ledstrip_custom_colors;
-
 Controllers controllers;
 
 #ifdef FEATURE_BLUETOOTH
