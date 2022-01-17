@@ -27,11 +27,11 @@
 #include "handbremse.h"
 #include "bobbyquickactions.h"
 
-#define STRINGIZE(x) (#x)
-#define IS_MACRO_DEFINED_OR_ONE(y) (!*STRINGIZE(y) || '1'==*STRINGIZE(y))
+//#define STRINGIZE(x) (#x)
+//#define IS_MACRO_DEFINED_OR_ONE(y) (!*STRINGIZE(y) || '1'==*STRINGIZE(y))
 
-#define FLAG(name, _default) \
-    IS_MACRO_DEFINED_OR_ONE(name) ? name : _default
+//#define FLAG(name, _default) \
+//    IS_MACRO_DEFINED_OR_ONE(name) ? name : _default
 
 using namespace espconfig;
 
@@ -299,8 +299,9 @@ public:
     } espnow;
 
     struct {
-        ConfigWrapper<bool> webserver_disable_lock{FLAG(FEATURE_IS_MIR_EGAL_OB_DER_WEBSERVER_KORREKT_ARBEITET, false),DoReset,{}, "f_no_web_lock"       };
-        ConfigWrapper<bool> gschissene_diode      {FLAG(FEATURE_GSCHISSENE_DIODE, false),  DoReset,   {},                         "f_gschissDiode"      };
+        ConfigWrapper<bool> ledstrip              {false,                                  DoReset,   {},                         "f_ledstrip"          };
+        ConfigWrapper<bool> webserver_disable_lock{false,                                  DoReset,   {},                         "f_no_web_lock"       };
+        ConfigWrapper<bool> gschissene_diode      {false,                                  DoReset,   {},                         "f_gschissDiode"      };
     } feature;
 
     struct {
@@ -581,10 +582,12 @@ public:
     x(espnow.syncBlink) \
     \
     x(feature.gschissene_diode) \
-    x(feature.webserver_disable_lock) \
+    x(feature.ledstrip) \
+    x(feature.webserver_disable_lock)
     //x(bleSettings.bleEnabled)
 
 #define FEATURES(x) \
+    x(feature.ledstrip) \
     x(feature.webserver_disable_lock)
 
     template<typename T>
