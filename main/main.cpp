@@ -107,7 +107,8 @@ extern "C" void app_main()
 
         for (auto &schedulerTask : schedulerTasks)
         {
-            schedulerTask.loop();
+            if (schedulerTask.isInitialized())
+                schedulerTask.loop();
         }
 
         if (!lastStatsUpdate || now - *lastStatsUpdate >= 1000ms/configs.boardcomputerHardware.timersSettings.statsUpdateRate.value)
