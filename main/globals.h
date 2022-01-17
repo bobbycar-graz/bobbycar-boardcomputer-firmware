@@ -54,8 +54,6 @@ extern bool simplified;
 extern ProfileSettings profileSettings;
 extern SettingsPersister settingsPersister;
 
-extern std::array<CRGB, 8> ledstrip_custom_colors;
-
 class Controllers : public std::array<Controller, 2>
 {
 public:

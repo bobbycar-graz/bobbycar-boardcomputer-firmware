@@ -248,6 +248,16 @@ public:
         ConfigWrapper<OtaAnimationModes> otaMode  {OtaAnimationModes::GreenProgressBar,    DoReset,   {},                         "ledOtaAnim"          };
         ConfigWrapper<uint32_t>     maxMilliamps  {3000,                                   DoReset,   {},                         "ledMaxMilliamps"     };
         ConfigWrapper<bool> enableVisualizeBlink  {false,                                  DoReset,   {},                         "enVisualBlink"       };
+        std::array<ConfigWrapper<uint32_t>, 8> custom_color {
+            ConfigWrapper<uint32_t>                   {0,                                  DoReset,   {},                         "ledCustomCol1"       },
+            ConfigWrapper<uint32_t>                   {0,                                  DoReset,   {},                         "ledCustomCol2"       },
+            ConfigWrapper<uint32_t>                   {0,                                  DoReset,   {},                         "ledCustomCol3"       },
+            ConfigWrapper<uint32_t>                   {0,                                  DoReset,   {},                         "ledCustomCol4"       },
+            ConfigWrapper<uint32_t>                   {0,                                  DoReset,   {},                         "ledCustomCol5"       },
+            ConfigWrapper<uint32_t>                   {0,                                  DoReset,   {},                         "ledCustomCol6"       },
+            ConfigWrapper<uint32_t>                   {0,                                  DoReset,   {},                         "ledCustomCol7"       },
+            ConfigWrapper<uint32_t>                   {0,                                  DoReset,   {},                         "ledCustomCol8"       },
+        };
     } ledstrip;
 
     struct {
