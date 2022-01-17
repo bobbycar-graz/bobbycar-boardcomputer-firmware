@@ -41,6 +41,7 @@
 #include "displays/menus/crashmenu.h"
 #include "displays/menus/aboutmenu.h"
 #include "displays/menus/mainmenu.h"
+#include "displays/menus/featureflagsmenu.h"
 #include "bobbycheckbox.h"
 
 namespace {
@@ -58,6 +59,7 @@ constexpr char TEXT_TIME[] = "Time";
 constexpr char TEXT_MODESSETTINGS[] = "Modes settings";
 constexpr char TEXT_CONTROLLERHARDWARESETTINGS[] = "Controller H/W settings";
 constexpr char TEXT_BOARDCOMPUTERHARDWARESETTINGS[] = "Boardcomputer H/W settings";
+constexpr char TEXT_FEATUREFLAGS[] = "Feature flags";
 constexpr char TEXT_AUTOCONNECTBMS[] = "Auto connect BMS";
 constexpr char TEXT_BUZZER[] = "Buzzer";
 constexpr char TEXT_FRONTLED[] = "Front LED";
@@ -110,6 +112,7 @@ SettingsMenu::SettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MODESSETTINGS>,                 SwitchScreenAction<ModesSettingsMenu>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CONTROLLERHARDWARESETTINGS>,    SwitchScreenAction<ControllerHardwareSettingsMenu>, StaticMenuItemIcon<&bobbyicons::hardware>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BOARDCOMPUTERHARDWARESETTINGS>, SwitchScreenAction<BoardcomputerHardwareSettingsMenu>, StaticMenuItemIcon<&bobbyicons::hardware>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_FEATUREFLAGS>,                  SwitchScreenAction<FeatureFlagsMenu>, StaticMenuItemIcon<&bobbyicons::demos>>>();
 //#if defined(FEATURE_BLUETOOTH) && defined(FEATURE_BMS)
 //    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_AUTOCONNECTBMS>,                BobbyCheckbox, AutoConnectBmsAccessor>>();
 //#endif
