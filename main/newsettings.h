@@ -134,6 +134,7 @@ public:
     ConfigWrapper<int16_t>     bremsMin           {0,                                      DoReset,  MinMaxValue<int16_t, 0, 4095>, "bremsMin"            };
     ConfigWrapper<int16_t>     bremsMax           {4096,                                   DoReset,  MinMaxValue<int16_t, 0, 4095>, "bremsMax"            };
     ConfigWrapper<int16_t>     bremsMitte         {2048,                                   DoReset,  MinMaxValue<int16_t, 0, 4095>, "bremsMiddle"         };
+    ConfigWrapper<uint16_t>    deadband           {20,                                     DoReset,  MinMaxValue<uint16_t, 0, 4095>,"deadband"            };
 
     ConfigWrapper<uint8_t>     dpadDebounce       {25,                                     DoReset,   {},                           "dpadDebounce"        };
 
@@ -427,6 +428,7 @@ public:
     x(bremsMin) \
     x(bremsMax) \
     x(bremsMitte) \
+    x(deadband) \
     \
     x(dpadDebounce) \
     \
