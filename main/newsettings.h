@@ -322,14 +322,7 @@ public:
         ConfigWrapper<bool> ledstrip              {false,                                  DoReset,   {},                         "f_ledstrip"          };
         ConfigWrapper<bool> webserver_disable_lock{false,                                  DoReset,   {},                         "f_no_web_lock"       };
         ConfigWrapper<bool> garage                {false,                                  DoReset,   {},                         "f_garage"            };
-        ConfigWrapper<bool> cloud                 {false,                                  DoReset,   {},                         "f_cloud"             };
-        ConfigWrapper<bool> udpcloud              {false,                                  DoReset,   {},                         "f_udpcloud"          };
-        ConfigWrapper<bool> dnsannounce           {false,                                  DoReset,   {},                         "f_dnsannounce"       };
-        ConfigWrapper<bool> ntp                   {false,                                  DoReset,   {},                         "f_ntp"               };
-        ConfigWrapper<bool> ble                   {false,                                  DoReset,   {},                         "f_ble"               };
-        ConfigWrapper<bool> ota                   {false,                                  DoReset,   {},                         "f_ota"               };
-        ConfigWrapper<bool> webserver             {true,                                   DoReset,   {},                         "featureWebserv"      };
-        ConfigWrapper<bool> gschissene_diode      {false,                                  DoReset,   {},                         "featurDiodeHin"      };
+        ConfigWrapper<bool> gschissene_diode      {false,                                  DoReset,   {},                         "f_gschissDiode"      };
     } feature;
 
     struct {
@@ -622,29 +615,13 @@ public:
     \
     x(feature.ledstrip) \
     x(feature.webserver_disable_lock) \
-    x(feature.garage) \
-    x(feature.udpcloud) \
-    x(feature.cloud) \
-    x(feature.dnsannounce) \
-    x(feature.ntp) \
-    x(feature.ble) \
-    x(feature.ota) \
-    x(feature.webserver) \
-    x(feature.gschissene_diode)
+    x(feature.garage)
     //x(bleSettings.bleEnabled)
 
 #define FEATURES(x) \
     x(feature.ledstrip) \
     x(feature.webserver_disable_lock) \
-    x(feature.garage) \
-    x(feature.udpcloud) \
-    x(feature.cloud) \
-    x(feature.dnsannounce) \
-    x(feature.ntp) \
-    x(feature.ble) \
-    x(feature.ota) \
-    x(feature.webserver)
-    //x(feature.gschisseneDiode)
+    x(feature.garage)
 
     template<typename T>
     void callForEveryConfig(T &&callback)

@@ -102,6 +102,9 @@ MainMenu::MainMenu()
         if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_GARAGE>,       SwitchScreenAction<GarageMenu>>>(); }
     }
 #endif
+#ifdef FEATURE_OTA
+    if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UPDATE>,       SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&bobbyicons::update>>>(); }
+#endif
     if (configs.feature.ota.value)
         if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UPDATE>,       SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&bobbyicons::update>>>(); }
     if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_GRAPHS>,       SwitchScreenAction<GraphsMenu>, StaticMenuItemIcon<&bobbyicons::graph>>>(); }
