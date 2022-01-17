@@ -10,22 +10,10 @@ WheelchairMode wheelchairMode;
 void WheelchairMode::start()
 {
     Base::start();
-
-    copyFromSettings();
 }
 
 // left_right gas
 // front_back brems
-
-void WheelchairMode::copyFromSettings()
-{
-    m_gasMitte = configs.gasMitte.value;
-    m_gasMin = configs.gasMin.value;
-    m_gasMax = configs.gasMax.value;
-    m_bremsMitte = configs.bremsMitte.value;
-    m_bremsMin = configs.bremsMin.value;
-    m_bremsMax = configs.bremsMax.value;
-}
 
 void WheelchairMode::update()
 {
@@ -45,8 +33,8 @@ void WheelchairMode::update()
     }
     else
     {
-        const auto left_right = m_gasMin == m_gasMax ? 0 : map_analog_stick(m_gasMitte, m_gasMin, m_gasMax, *raw_gas);
-        const auto front_back = m_bremsMin == m_bremsMax ? 0 : map_analog_stick(m_bremsMitte, m_bremsMin, m_bremsMax, *raw_brems);
+        const auto left_right = configs.gasMin.value == configs.gasMax.value ? 0 : map_analog_stick(configs.gasMitte.value, configs.gasMin.value, configs.gasMax.value, *raw_gas);
+        const auto front_back = configs.bremsMin.value == configs.bremsMax.value ? 0 : map_analog_stick(configs.bremsMitte.value, configs.bremsMin.value, configs.bremsMax.value, *raw_brems);
 
         float local_gas = 0;
         float local_brems = 0;
