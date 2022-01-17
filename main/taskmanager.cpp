@@ -129,7 +129,7 @@ BobbySchedulerTask schedulerTasksArr[] {
 #ifdef FEATURE_WEBSERVER
     BobbySchedulerTask { "webserver",      initWebserver,         handleWebserver,         100ms },
 #endif
-    BobbySchedulerTask         { "ledstrip",       initLedStrip,          updateLedStrip,          30ms },
+    BobbySchedulerTask { "ledstrip",       initLedStrip,          updateLedStrip,          30ms },
 #ifdef FEATURE_ESPNOW
     BobbySchedulerTask { "espnow",         espnow::initESPNow,    espnow::handle,          100ms },
 #endif
