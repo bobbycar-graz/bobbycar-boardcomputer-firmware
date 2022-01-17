@@ -27,6 +27,12 @@
 #include "handbremse.h"
 #include "bobbyquickactions.h"
 
+#define STRINGIZE(x) (#x)
+#define IS_MACRO_DEFINED_OR_ONE(y) (!*STRINGIZE(y) || '1'==*STRINGIZE(y))
+
+#define FLAG(name, _default) \
+    IS_MACRO_DEFINED_OR_ONE(name) ? name : _default
+
 using namespace espconfig;
 
 std::string defaultHostname();
@@ -288,6 +294,11 @@ public:
         ConfigWrapper<bool> syncTimeWithOthers    {false,                                  DoReset,   {},                         "espnowSyncTWO"       };
         ConfigWrapper<bool> syncBlink             {false,                                  DoReset,   {},                         "espnowSyncBl"        };
     } espnow;
+
+    struct {
+        ConfigWrapper<bool> webserver_disable_lock{FLAG(FEATURE_IS_MIR_EGAL_OB_DER_WEBSERVER_KORREKT_ARBEITET, false),DoReset,{}, "f_no_web_lock"       };
+        ConfigWrapper<bool> gschissene_diode      {FLAG(FEATURE_GSCHISSENE_DIODE, false),  DoReset,   {},                         "f_gschissDiode"      };
+    } feature;
 
     struct {
         ConfigWrapper<bool> bleEnabled            {true,                                   DoReset,   {},                         "bleEnabled"          };
@@ -561,8 +572,14 @@ public:
     \
     x(espnow.syncTime) \
     x(espnow.syncTimeWithOthers) \
-    x(espnow.syncBlink)
+    x(espnow.syncBlink) \
+    \
+    x(feature.gschissene_diode) \
+    x(feature.webserver_disable_lock) \
     //x(bleSettings.bleEnabled)
+
+#define FEATURES(x) \
+    x(feature.webserver_disable_lock)
 
     template<typename T>
     void callForEveryConfig(T &&callback)
@@ -580,6 +597,25 @@ public:
             NEW_SETTINGS(HELPER)
 #undef HELPER
             std::ref<ConfigWrapperInterface>(bleSettings.bleEnabled)
+        );
+    }
+
+    template<typename T>
+    void callForEveryFeature(T &&callback)
+    {
+#define HELPER(x) callback(x);
+        FEATURES(HELPER)
+#undef HELPER
+        callback(feature.gschissene_diode);
+    }
+
+    auto getAllFeatureParams()
+    {
+        return cpputils::make_array(
+#define HELPER(x) std::ref<ConfigWrapperInterface>(x),
+            FEATURES(HELPER)
+#undef HELPER
+            std::ref<ConfigWrapperInterface>(feature.gschissene_diode)
         );
     }
 };
