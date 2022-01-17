@@ -24,6 +24,11 @@ float getAvgKmh()
     return (drivingStatistics.meters_driven / 1000.) / (drivingStatistics.currentDrivingTime.count() / 1000 / 60 / 60); // (meter / 1000) / (ms / 1000 / 60 / 60)
 }
 
+float getEstimatedKmLeft()
+{
+    return (getRemainingWattHours() / getAvgWhPerKm());
+}
+
 std::string getEfficiencyClassString()
 {
     const float avgWhPerKm = getAvgWhPerKm();
@@ -53,6 +58,12 @@ uint16_t getEfficiencyClassColor()
     else if (avgWhPerKm <= 40) return 0xE0C0;
     else                       return 0xF800;
 }
+
+std::string getRemainingEstimateRangeString()
+{
+    return fmt::format("{:.1f} km", getEstimatedKmLeft());
+}
+
 
 void initStatistics()
 {

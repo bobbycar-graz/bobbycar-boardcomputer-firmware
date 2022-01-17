@@ -20,5 +20,7 @@ void initStatistics();
 void calculateStatistics();
 float getAvgWhPerKm();
 float getAvgKmh();
+float getEstimatedKmLeft();
 std::string getEfficiencyClassString();
+std::string getRemainingEstimateRangeString();
 uint16_t getEfficiencyClassColor();

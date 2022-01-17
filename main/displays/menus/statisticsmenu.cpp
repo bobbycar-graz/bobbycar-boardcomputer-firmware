@@ -132,6 +132,12 @@ class AverageSpeedKmhOverTime : public virtual espgui::TextInterface {
     }
 };
 
+class EstimatedKmLeft : public virtual espgui::TextInterface {
+    public: std::string text() const override {
+        return fmt::format("est km:{}", getRemainingEstimateRangeString());
+    }
+};
+
 class EfficiencyTextColor : public virtual espgui::ColorInterface {
 public:
     int color() const override
