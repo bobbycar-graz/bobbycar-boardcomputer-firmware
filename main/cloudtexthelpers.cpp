@@ -6,7 +6,6 @@
 // local includes
 #include "cloud.h"
 
-#ifdef FEATURE_CLOUD
 std::string CloudCreatedText::text() const
 {
     return fmt::format("created: {}", cloudClient ? "true" : "false");
@@ -27,4 +26,3 @@ std::string CloudConnectedText::text() const
         text += cloudClient.is_connected() ? "true" : "false";
     return text;
 }
-#endif

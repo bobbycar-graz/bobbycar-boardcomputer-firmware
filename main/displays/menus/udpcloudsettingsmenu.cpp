@@ -14,7 +14,6 @@
 #include "displays/menus/settingsmenu.h"
 #include "bobbycheckbox.h"
 
-#ifdef FEATURE_UDPCLOUD
 namespace {
 constexpr char TEXT_UDPCLOUDSETTINGS[] = "UDP Cloud settings";
 constexpr char TEXT_UDPCLOUDENABLED[] = "Udp Cloud enabled";
@@ -50,4 +49,3 @@ void UdpCloudSettingsMenu::back()
 {
     switchScreen<SettingsMenu>();
 }
-#endif

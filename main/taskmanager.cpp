@@ -60,12 +60,8 @@
 #ifdef FEATURE_ESPNOW
 #include "espnowfunctions.h"
 #endif
-#ifdef FEATURE_CLOUD
 #include "cloud.h"
-#endif
-#ifdef FEATURE_UDPCLOUD
 #include "udpcloud.h"
-#endif
 #include "modes.h"
 #include "drivingstatistics.h"
 #ifdef FEATURE_DNS_NS
@@ -133,12 +129,8 @@ BobbySchedulerTask schedulerTasksArr[] {
 #ifdef FEATURE_ESPNOW
     BobbySchedulerTask { "espnow",         espnow::initESPNow,    espnow::handle,          100ms },
 #endif
-#ifdef FEATURE_CLOUD
     BobbySchedulerTask { "cloud",          initCloud,             updateCloud,             50ms },
-#endif
-#ifdef FEATURE_UDPCLOUD
     BobbySchedulerTask { "udpcloud",       udpCloudInit,          udpCloudUpdate,          50ms },
-#endif
     BobbySchedulerTask { "drivingmode",    initDrivingMode,       updateDrivingMode,       20ms },
     BobbySchedulerTask { "drivingstatistics", initStatistics,     calculateStatistics,     100ms },
 #ifdef FEATURE_DNS_NS

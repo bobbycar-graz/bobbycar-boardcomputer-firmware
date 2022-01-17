@@ -23,7 +23,6 @@ namespace {
 constexpr const char * const TAG = "BOBBYCLOUD";
 } // namespace
 
-#ifdef FEATURE_CLOUD
 
 espcpputils::websocket_client cloudClient;
 bool cloudStarted{};
@@ -52,6 +51,9 @@ void initCloud()
 
 void updateCloud()
 {
+    if (!configs.feature.cloud.value)
+        return;
+
     const auto now = espchrono::millis_clock::now();
 
     if (!lastCloudCollect || now - *lastCloudCollect >= std::chrono::milliseconds{configs.boardcomputerHardware.timersSettings.cloudCollectRate.value})
@@ -283,5 +285,3 @@ void destroyCloud()
     cloudClient = {};
     cloudStarted = false;
 }
-
-#endif

@@ -303,6 +303,8 @@ public:
         ConfigWrapper<bool> ledstrip              {false,                                  DoReset,   {},                         "f_ledstrip"          };
         ConfigWrapper<bool> webserver_disable_lock{false,                                  DoReset,   {},                         "f_no_web_lock"       };
         ConfigWrapper<bool> garage                {false,                                  DoReset,   {},                         "f_garage"            };
+        ConfigWrapper<bool> cloud                 {false,                                  DoReset,   {},                         "f_cloud"             };
+        ConfigWrapper<bool> udpcloud              {false,                                  DoReset,   {},                         "f_udpcloud"          };
         ConfigWrapper<bool> gschissene_diode      {false,                                  DoReset,   {},                         "f_gschissDiode"      };
     } feature;
 
@@ -583,13 +585,18 @@ public:
     x(feature.gschissene_diode) \
     x(feature.ledstrip) \
     x(feature.webserver_disable_lock) \
-    x(feature.garage)
+    x(feature.garage) \
+    x(feature.udpcloud) \
+    x(feature.cloud)
     //x(bleSettings.bleEnabled)
 
 #define FEATURES(x) \
     x(feature.ledstrip) \
     x(feature.webserver_disable_lock) \
-    x(feature.garage)
+    x(feature.garage) \
+    x(feature.udpcloud) \
+    x(feature.cloud)
+    //x(feature.gschisseneDiode)
 
     template<typename T>
     void callForEveryConfig(T &&callback)

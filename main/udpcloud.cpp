@@ -21,7 +21,6 @@
 #include "drivingstatistics.h"
 #include "newsettings.h"
 
-#ifdef FEATURE_UDPCLOUD
 using namespace std::chrono_literals;
 
 namespace {
@@ -40,6 +39,9 @@ void udpCloudInit()
 
 void udpCloudUpdate()
 {
+    if (!configs.feature.udpcloud.value)
+        return;
+
     if (configs.udpCloudSettings.udpCloudEnabled.value && configs.udpCloudSettings.udpUid.touched())
         sendUdpCloudPacket();
 }
@@ -373,4 +375,3 @@ void sendUdpCloudPacket()
         visualSendUdpPacket = !visualSendUdpPacket;
         }
 }
-#endif
