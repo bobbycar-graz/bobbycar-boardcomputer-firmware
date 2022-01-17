@@ -7,7 +7,6 @@
 #include <wrappers/websocket_client.h>
 #include <espchrono.h>
 
-#ifdef FEATURE_CLOUD
 extern espcpputils::websocket_client cloudClient;
 extern bool cloudStarted;
 extern espchrono::millis_clock::time_point lastCreateTry;
@@ -22,4 +21,3 @@ void initCloud();
 void updateCloud();
 void cloudCollect();
 void cloudSend();
-#endif

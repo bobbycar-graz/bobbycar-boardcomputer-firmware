@@ -150,16 +150,18 @@ void StatusDisplay::redraw()
     m_backStatus.redraw(controllers.back);
 
     tft.setTextFont(2);
-#ifdef FEATURE_UDPCLOUD
-    if(configs.udpCloudSettings.udpCloudEnabled.value && configs.udpCloudSettings.enableCloudDebug.value)
+
+    if (configs.feature.udpcloud.value)
     {
-        tft.fillRect(125, 258, 8, 8, (visualSendUdpPacket) ? TFT_DARKGREY : TFT_BLACK);
+        if(configs.udpCloudSettings.udpCloudEnabled.value && configs.udpCloudSettings.enableCloudDebug.value)
+        {
+            tft.fillRect(125, 258, 8, 8, (visualSendUdpPacket) ? TFT_DARKGREY : TFT_BLACK);
+        }
+//      else // is not needed because of redraw
+//      {
+//          tft.fillRect(125, 258, 8, 8, TFT_BLACK);
+//      }
     }
-//    else // is not needed because of redraw
-//    {
-//        tft.fillRect(125, 258, 8, 8, TFT_BLACK);
-//    }
-#endif
 
     const auto staStatus = wifi_stack::get_sta_status();
     if (staStatus == wifi_stack::WiFiStaStatus::CONNECTED)

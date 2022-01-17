@@ -25,12 +25,8 @@
 #include "displays/menus/networksettingsmenu.h"
 #include "displays/menus/bluetoothsettingsmenu.h"
 #include "displays/menus/blesettingsmenu.h"
-#ifdef FEATURE_CLOUD
 #include "displays/menus/cloudsettingsmenu.h"
-#endif
-#ifdef FEATURE_UDPCLOUD
 #include "displays/menus/udpcloudsettingsmenu.h"
-#endif
 #include "displays/menus/espnowmenu.h"
 #include "displays/menus/selectbuildservermenu.h"
 #include "displays/menus/timesettingsmenu.h"
@@ -99,12 +95,14 @@ SettingsMenu::SettingsMenu()
 #ifdef FEATURE_BLE
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BLESETTINGS>,                   SwitchScreenAction<BleSettingsMenu>, StaticMenuItemIcon<&bobbyicons::bluetooth>>>();
 #endif
-#ifdef FEATURE_CLOUD
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CLOUDSETTINGS>,                 SwitchScreenAction<CloudSettingsMenu>>>();
-#endif
-#ifdef FEATURE_UDPCLOUD
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UDPCLOUDSETTINGS>,              SwitchScreenAction<UdpCloudSettingsMenu>>>();
-#endif
+    if (configs.feature.cloud.value)
+    {
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CLOUDSETTINGS>,                 SwitchScreenAction<CloudSettingsMenu>>>();
+    }
+    if (configs.feature.udpcloud.value)
+    {
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UDPCLOUDSETTINGS>,              SwitchScreenAction<UdpCloudSettingsMenu>>>();
+    }
 #ifdef FEATURE_OTA
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECTBUILDSERVERMENU>,         SwitchScreenAction<SelectBuildServerMenu>, StaticMenuItemIcon<&bobbyicons::update>>>();
 #endif

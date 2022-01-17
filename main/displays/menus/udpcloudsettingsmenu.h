@@ -3,7 +3,6 @@
 // local includes
 #include "displays/bobbymenudisplay.h"
 
-#ifdef FEATURE_UDPCLOUD
 class UdpCloudSettingsMenu : public BobbyMenuDisplay
 {
 public:
@@ -13,4 +12,3 @@ public:
 
     void back() override;
 };
-#endif

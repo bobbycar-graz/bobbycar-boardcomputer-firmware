@@ -3,7 +3,6 @@
 // local includes
 #include "textinterface.h"
 
-#ifdef FEATURE_CLOUD
 struct CloudCreatedText : public virtual espgui::TextInterface
 {
 public:
@@ -21,4 +20,3 @@ struct CloudConnectedText : public virtual espgui::TextInterface
 public:
     std::string text() const override;
 };
-#endif

@@ -16,7 +16,6 @@
 #include "displays/menus/settingsmenu.h"
 #include "bobbycheckbox.h"
 
-#ifdef FEATURE_CLOUD
 namespace {
 constexpr char TEXT_CLOUDSETTINGS[] = "Cloud settings";
 constexpr char TEXT_CLOUDENABLED[] = "Cloud enabled";
@@ -83,4 +82,3 @@ void CloudSettingsMenu::back()
 {
     switchScreen<SettingsMenu>();
 }
-#endif
