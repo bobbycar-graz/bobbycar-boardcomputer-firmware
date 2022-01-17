@@ -27,12 +27,6 @@
 #include "handbremse.h"
 #include "bobbyquickactions.h"
 
-//#define STRINGIZE(x) (#x)
-//#define IS_MACRO_DEFINED_OR_ONE(y) (!*STRINGIZE(y) || '1'==*STRINGIZE(y))
-
-//#define FLAG(name, _default) \
-//    IS_MACRO_DEFINED_OR_ONE(name) ? name : _default
-
 using namespace espconfig;
 
 std::string defaultHostname();
