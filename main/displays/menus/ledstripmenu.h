@@ -3,7 +3,6 @@
 // local includes
 #include "displays/menudisplaywithtime.h"
 
-#ifdef FEATURE_LEDSTRIP
 class LedstripMenu : public bobbygui::MenuDisplayWithTime
 {
 public:
@@ -13,4 +12,3 @@ public:
 
     void back() override;
 };
-#endif

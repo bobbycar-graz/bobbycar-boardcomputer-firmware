@@ -13,7 +13,6 @@
 
 using namespace std::chrono_literals;
 
-#ifdef FEATURE_LEDSTRIP
 std::vector<CRGB> leds;
 uint8_t gHue = 0;
 
@@ -22,13 +21,19 @@ uint16_t blinkAnimation = LEDSTRIP_OVERWRITE_NONE;
 
 void initLedStrip()
 {
-    leds.resize(configs.ledstrip.ledsCount.value);
-    FastLED.addLeds<NEOPIXEL, PINS_LEDSTRIP>(&*std::begin(leds), leds.size())
-        .setCorrection(TypicalSMD5050);
+    if (configs.feature.ledstrip.value)
+    {
+        leds.resize(configs.ledstrip.ledsCount.value);
+        FastLED.addLeds<NEOPIXEL, PINS_LEDSTRIP>(&*std::begin(leds), leds.size())
+            .setCorrection(TypicalSMD5050);
+    }
 }
 
 void updateLedStrip()
 {
+    if(!configs.feature.ledstrip.value)
+            return;
+
     EVERY_N_MILLISECONDS( 20 ) { gHue++; }
     static bool have_disabled_beeper = false;
     const bool enAnim = configs.ledstrip.enableAnimBlink.value;
@@ -347,5 +352,3 @@ void showCustomColor()
     std::fill(center - (eighth_length / 2) - eighth_length - eighth_length - eighth_length, center - (eighth_length / 2) - eighth_length - eighth_length, ledstrip_custom_colors[int(Bobbycar_Side::FRONT_LEFT)]);   // Front Left
 #endif
 }
-
-#endif

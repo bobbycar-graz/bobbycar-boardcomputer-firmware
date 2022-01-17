@@ -1,7 +1,5 @@
 #include "ledstripselectblinkmenu.h"
 
-#ifdef FEATURE_LEDSTRIP
-
 // 3rdparty lib includes
 #include "actions/dummyaction.h"
 #include "actions/switchscreenaction.h"
@@ -83,4 +81,3 @@ std::string CurrentSelectedBlinkAnimationText::text() const
 }
 
 } // namespace
-#endif

@@ -82,7 +82,8 @@ void action_wifi_scan()
 
 void blink_left()
 {
-#ifdef FEATURE_LEDSTRIP
+    if (configs.feature.ledstrip.value)
+    {
         if (blinkAnimation == LEDSTRIP_OVERWRITE_NONE) //transition from off to left
         {
             blinkAnimation = LEDSTRIP_OVERWRITE_BLINKLEFT;
@@ -95,12 +96,13 @@ void blink_left()
         {
             blinkAnimation = LEDSTRIP_OVERWRITE_NONE;
         }
-#endif
+    }
 }
 
 void blink_right()
 {
-#ifdef FEATURE_LEDSTRIP
+    if(configs.feature.ledstrip.value)
+    {
         if (blinkAnimation == LEDSTRIP_OVERWRITE_NONE) //transition from off to right
         {
             blinkAnimation = LEDSTRIP_OVERWRITE_BLINKRIGHT;
@@ -113,7 +115,7 @@ void blink_right()
         {
             blinkAnimation = LEDSTRIP_OVERWRITE_NONE;
         }
-#endif
+    }
 }
 
 void handle_handbremse()

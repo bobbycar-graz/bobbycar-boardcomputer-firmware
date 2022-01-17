@@ -21,7 +21,6 @@
 #include "globals.h"
 #include "displays/menus/ledstripmenu.h"
 
-#ifdef FEATURE_LEDSTRIP
 namespace {
 constexpr char TEXT_LEDSTRIPCOLORMENU[] = "Customize Ledstrip";
 
@@ -258,4 +257,3 @@ void LedstripColorsDisplay::drawSide(Bobbycar_Side side, unsigned int color)
     }
     // espgui::tft.fillCircle(espgui::tft.width() / 2, 140, 100, TFT_BLACK);
 }
-#endif

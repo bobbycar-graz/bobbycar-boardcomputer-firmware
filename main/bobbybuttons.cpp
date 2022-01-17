@@ -7,10 +7,8 @@
 #include "newsettings.h"
 #include "settingsutils.h"
 #include "modes/defaultmode.h"
-#ifdef FEATURE_LEDSTRIP
 #include "ledstripdefines.h"
 #include "ledstrip.h"
-#endif
 
 #include "bobbyquickactions.h"
 
