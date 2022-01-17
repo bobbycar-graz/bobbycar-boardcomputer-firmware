@@ -34,16 +34,19 @@ constexpr const char * const TAG = "BOBBYWEB";
 
 esp_err_t webserver_ota_percentage_handler(httpd_req_t *req)
 {
-#ifndef FEATURE_IS_MIR_EGAL_OB_DER_WEBSERVER_KORREKT_ARBEITET
-    espcpputils::LockHelper helper{webserver_lock->handle, std::chrono::ceil<espcpputils::ticks>(5s).count()};
-    if (!helper.locked())
+    if (!configs.feature.webserver_disable_lock.value)
     {
-        constexpr const std::string_view msg = "could not lock webserver_lock";
-        ESP_LOGE(TAG, "%.*s", msg.size(), msg.data());
-        CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", msg);
+        espcpputils::LockHelper helper{webserver_lock->handle, std::chrono::ceil<espcpputils::ticks>(5s).count()};
+        if (!helper.locked())
+        {
+            constexpr const std::string_view msg = "could not lock webserver_lock";
+            ESP_LOGE(TAG, "%.*s", msg.size(), msg.data());
+            CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", msg);
+        }
     }
-#endif
+
     CALL_AND_EXIT_ON_ERROR(httpd_resp_set_hdr, req, "Access-Control-Allow-Origin", "http://web.bobbycar.cloud");
+
     std::string body;
 
     std::string wants_json_query;
@@ -93,16 +96,19 @@ esp_err_t webserver_ota_percentage_handler(httpd_req_t *req)
 
 esp_err_t webserver_ota_handler(httpd_req_t *req)
 {
-#ifndef FEATURE_IS_MIR_EGAL_OB_DER_WEBSERVER_KORREKT_ARBEITET
-    espcpputils::LockHelper helper{webserver_lock->handle, std::chrono::ceil<espcpputils::ticks>(5s).count()};
-    if (!helper.locked())
+    if (!configs.feature.webserver_disable_lock.value)
     {
-        constexpr const std::string_view msg = "could not lock webserver_lock";
-        ESP_LOGE(TAG, "%.*s", msg.size(), msg.data());
-        CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", msg);
+        espcpputils::LockHelper helper{webserver_lock->handle, std::chrono::ceil<espcpputils::ticks>(5s).count()};
+        if (!helper.locked())
+        {
+            constexpr const std::string_view msg = "could not lock webserver_lock";
+            ESP_LOGE(TAG, "%.*s", msg.size(), msg.data());
+            CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", msg);
+        }
     }
-#endif
+
     CALL_AND_EXIT_ON_ERROR(httpd_resp_set_hdr, req, "Access-Control-Allow-Origin", "http://web.bobbycar.cloud");
+
     std::string body;
 
     std::string wants_json_query;
@@ -361,16 +367,19 @@ esp_err_t webserver_ota_handler(httpd_req_t *req)
 
 esp_err_t webserver_trigger_ota_handler(httpd_req_t *req)
 {
-#ifndef FEATURE_IS_MIR_EGAL_OB_DER_WEBSERVER_KORREKT_ARBEITET
-    espcpputils::LockHelper helper{webserver_lock->handle, std::chrono::ceil<espcpputils::ticks>(5s).count()};
-    if (!helper.locked())
+    if (!configs.feature.webserver_disable_lock.value)
     {
-        constexpr const std::string_view msg = "could not lock webserver_lock";
-        ESP_LOGE(TAG, "%.*s", msg.size(), msg.data());
-        CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", msg);
+        espcpputils::LockHelper helper{webserver_lock->handle, std::chrono::ceil<espcpputils::ticks>(5s).count()};
+        if (!helper.locked())
+        {
+            constexpr const std::string_view msg = "could not lock webserver_lock";
+            ESP_LOGE(TAG, "%.*s", msg.size(), msg.data());
+            CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", msg);
+        }
     }
-#endif
+
     CALL_AND_EXIT_ON_ERROR(httpd_resp_set_hdr, req, "Access-Control-Allow-Origin", "http://web.bobbycar.cloud");
+
     std::string query;
     if (auto result = esphttpdutils::webserver_get_query(req))
         query = *result;
