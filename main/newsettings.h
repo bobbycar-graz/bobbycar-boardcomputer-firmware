@@ -295,6 +295,7 @@ public:
     struct {
         ConfigWrapper<bool> ledstrip              {false,                                  DoReset,   {},                         "f_ledstrip"          };
         ConfigWrapper<bool> webserver_disable_lock{false,                                  DoReset,   {},                         "f_no_web_lock"       };
+        ConfigWrapper<bool> garage                {false,                                  DoReset,   {},                         "f_garage"            };
         ConfigWrapper<bool> gschissene_diode      {false,                                  DoReset,   {},                         "f_gschissDiode"      };
     } feature;
 
@@ -577,12 +578,14 @@ public:
     \
     x(feature.gschissene_diode) \
     x(feature.ledstrip) \
-    x(feature.webserver_disable_lock)
+    x(feature.webserver_disable_lock) \
+    x(feature.garage)
     //x(bleSettings.bleEnabled)
 
 #define FEATURES(x) \
     x(feature.ledstrip) \
-    x(feature.webserver_disable_lock)
+    x(feature.webserver_disable_lock) \
+    x(feature.garage)
 
     template<typename T>
     void callForEveryConfig(T &&callback)
