@@ -126,7 +126,11 @@ class AllCustomLedsOffAction : public virtual espgui::ActionInterface
 public:
     void triggered() override
     {
-        std::fill(std::begin(ledstrip_custom_colors), std::end(ledstrip_custom_colors), CRGB{0, 0, 0});
+        // std::fill(std::begin(ledstrip_custom_colors), std::end(ledstrip_custom_colors), CRGB{0, 0, 0});
+        for (uint8_t i = 0; i < configs.ledstrip.custom_color.size(); i++)
+        {
+            configs.write_config(configs.ledstrip.custom_color[i], 0);
+        }
     }
 };
 
