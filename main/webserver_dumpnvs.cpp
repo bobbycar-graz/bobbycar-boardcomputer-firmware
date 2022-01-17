@@ -38,7 +38,7 @@ typename std::enable_if<
         !std::is_same<T, espchrono::minutes32>::value &&
         !std::is_same<T, espchrono::DayLightSavingMode>::value &&
         !std::is_same<T, UnifiedModelMode>::value
-#if defined(FEATURE_LEDSTRIP) && defined(FEATURE_OTA)
+#ifdef FEATURE_OTA
         && !std::is_same<T, OtaAnimationModes>::value
 #endif
     , bool>::type
@@ -120,7 +120,7 @@ showInputForSetting(std::string_view key, T value, JsonObject &body)
     return true;
 }
 
-#if defined(FEATURE_LEDSTRIP) && defined(FEATURE_OTA)
+#ifdef FEATURE_OTA
 
 template<typename T>
 typename std::enable_if<

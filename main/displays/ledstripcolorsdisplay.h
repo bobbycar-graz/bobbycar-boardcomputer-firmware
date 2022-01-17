@@ -10,16 +10,6 @@
 #include "bobbydisplaywithtitle.h"
 #include "ledstrip.h"
 
-#ifdef FEATURE_LEDSTRIP
-//extern int8_t selected_side;
-//extern int8_t selected_color;
-//extern bool state_select_color;
-//extern bool last_state;
-
-//extern const std::array<CRGB, 8> Colors;
-
-//extern const std::array<uint16_t, 8> tft_colors;
-
 class LedstripColorsDisplay : public BobbyDisplayWithTitle
 {
     using Base = BobbyDisplayWithTitle;
@@ -38,4 +28,3 @@ public:
 private:
     bool already_drew_circle{false};
 };
-#endif

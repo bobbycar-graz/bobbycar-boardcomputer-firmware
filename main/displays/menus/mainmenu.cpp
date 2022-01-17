@@ -42,9 +42,7 @@
 #ifdef FEATURE_OTA
 #include "icons/update.h"
 #endif
-#ifdef FEATURE_LEDSTRIP
 #include "icons/neopixel.h"
-#endif
 #include "icons/poweroff.h"
 #include "icons/reboot.h"
 #include "icons/statistics.h"
@@ -89,9 +87,10 @@ MainMenu::MainMenu()
 
     // constructMenuItem<makeComponent<MenuItem, mainmenu::CurrentTimeText,     DummyAction, StaticMenuItemIcon<&bobbyicons::time>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_STATUS>,       SwitchScreenAction<StatusDisplay>, StaticMenuItemIcon<&espgui::icons::back>>>();
-#ifdef FEATURE_LEDSTRIP
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_LEDSTRIP>,     SwitchScreenAction<LedstripMenu>,   StaticMenuItemIcon<&bobbyicons::neopixel>>>();
-#endif
+    if (configs.feature.ledstrip.value)
+    {
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_LEDSTRIP>,     SwitchScreenAction<LedstripMenu>,   StaticMenuItemIcon<&bobbyicons::neopixel>>>();
+    }
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_STATISTICSMENU>, SwitchScreenAction<StatisticsMenu>, StaticMenuItemIcon<&bobbyicons::statistics>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECTMODE>,   SwitchScreenAction<SelectModeMenu>, StaticMenuItemIcon<&bobbyicons::modes>>>();
     if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MODESETTINGS>, ModeSettingsAction>>(); }

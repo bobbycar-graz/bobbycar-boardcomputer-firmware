@@ -1,6 +1,5 @@
 #pragma once
 
-#ifdef FEATURE_LEDSTRIP
 #include "actioninterface.h"
 
 class LedstripAnimationBlinkNoneAction : public virtual espgui::ActionInterface
@@ -34,4 +33,3 @@ class LedstripAnimationBlinkBothAction : public virtual espgui::ActionInterface
 public:
     void triggered() override;
 };
-#endif

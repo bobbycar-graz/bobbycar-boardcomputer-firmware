@@ -3,7 +3,7 @@
 // local includes
 #include "displays/bobbymenudisplay.h"
 
-#if defined(FEATURE_LEDSTRIP) && defined(FEATURE_OTA)
+#ifdef FEATURE_OTA
 class LedstripOtaAnimationChangeMenu : public BobbyMenuDisplay
 {
 public:

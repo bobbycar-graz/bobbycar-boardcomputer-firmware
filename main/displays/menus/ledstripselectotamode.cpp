@@ -10,7 +10,7 @@
 #include "utils.h"
 #include "ledstripmenu.h"
 
-#if defined(FEATURE_LEDSTRIP) && defined(FEATURE_OTA)
+#ifdef FEATURE_OTA
 namespace {
 constexpr char TEXT_BLINKANIMATION[] = "Blink animation";
 constexpr char TEXT_OTAANIM_NONE[] = "None";

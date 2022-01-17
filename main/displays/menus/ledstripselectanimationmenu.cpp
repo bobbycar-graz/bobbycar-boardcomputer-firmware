@@ -9,7 +9,6 @@
 #include "ledstripmenu.h"
 #include "newsettings.h"
 
-#ifdef FEATURE_LEDSTRIP
 namespace {
 constexpr char TEXT_SELECTANIMATION[] = "Select Animation";
 constexpr char TEXT_ANIMATION_DEFAULTRAINBOW[] = "Default Rainbow";
@@ -69,4 +68,3 @@ std::string CurrentSelectedAnimationText::text() const
 }
 
 } // namespace
-#endif

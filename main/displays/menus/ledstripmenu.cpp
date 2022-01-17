@@ -1,6 +1,5 @@
 #include "ledstripmenu.h"
 
-#ifdef FEATURE_LEDSTRIP
 // 3rdparty lib includes
 #include <FastLED.h>
 #include <actioninterface.h>
@@ -185,4 +184,3 @@ void LedstripMenu::back()
 {
     espgui::switchScreen<MainMenu>();
 }
-#endif

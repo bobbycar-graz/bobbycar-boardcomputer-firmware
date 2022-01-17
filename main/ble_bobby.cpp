@@ -9,9 +9,7 @@
 #include <futurecpp.h>
 
 // local includes
-#ifdef FEATURE_LEDSTRIP
 #include "ledstrip.h"
-#endif
 #include "globals.h"
 #include "modes/remotecontrolmode.h"
 #include "utils.h"
@@ -246,10 +244,11 @@ void RemoteControlCallbacks::onWrite(NimBLECharacteristic* pCharacteristic)
         return;
     }
 
-#ifdef FEATURE_LEDSTRIP
-    auto newBlinkAnimation = doc["anim"].as<int16_t>();
-    if (blinkAnimation != newBlinkAnimation) blinkAnimation = newBlinkAnimation;
-#endif // FEATURE_LEDSTRIP
+    if (configs.feature.ledstrip.value)
+    {
+        const auto newBlinkAnimation = doc["anim"].as<int16_t>();
+        if (blinkAnimation != newBlinkAnimation) blinkAnimation = newBlinkAnimation;
+    }
 
     const bool isInverted = (profileSettings.controllerHardware.invertFrontLeft && !profileSettings.controllerHardware.invertFrontRight);
 

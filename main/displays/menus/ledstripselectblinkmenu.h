@@ -3,7 +3,6 @@
 // Local includes
 #include "displays/bobbymenudisplay.h"
 
-#ifdef FEATURE_LEDSTRIP
 class LedstripSelectBlinkMenu : public BobbyMenuDisplay
 {
 public:
@@ -12,4 +11,3 @@ public:
     std::string text() const override;
     void back() override;
 };
-#endif

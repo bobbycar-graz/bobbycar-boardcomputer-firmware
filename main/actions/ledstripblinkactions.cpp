@@ -1,6 +1,5 @@
 #include "ledstripblinkactions.h"
 
-#ifdef FEATURE_LEDSTRIP
 #include "ledstrip.h"
 #include "ledstripdefines.h"
 
@@ -39,4 +38,3 @@ void LedstripAnimationBlinkBothAction::triggered()
 {
     blinkAnimation = LEDSTRIP_OVERWRITE_BLINKBOTH;
 }
-#endif

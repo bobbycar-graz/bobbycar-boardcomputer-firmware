@@ -9,7 +9,6 @@
 #include "newsettings.h"
 #include "bobbyerrorhandler.h"
 
-#ifdef FEATURE_LEDSTRIP
 template<LedstripAnimation type>
 class LedStripSetAnimationAction : public virtual espgui::ActionInterface
 {
@@ -23,4 +22,3 @@ void LedStripSetAnimationAction<type>::triggered()
     if (auto result = configs.write_config(configs.ledstrip.animationType, type); !result)
         BobbyErrorHandler{}.errorOccured(std::move(result).error());
 }
-#endif

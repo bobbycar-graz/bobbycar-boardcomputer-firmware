@@ -3,7 +3,6 @@
 // Local includes
 #include "displays/bobbymenudisplay.h"
 
-#ifdef FEATURE_LEDSTRIP
 class LedstripSelectAnimationMenu : public BobbyMenuDisplay
 {
 public:
@@ -13,4 +12,3 @@ public:
 
     void back() override;
 };
-#endif
