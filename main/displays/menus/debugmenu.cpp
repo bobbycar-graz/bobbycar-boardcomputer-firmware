@@ -63,7 +63,9 @@ DebugMenu::DebugMenu()
 {
     using namespace espgui;
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_TASKMANAGER>,          SwitchScreenAction<TaskmanagerMenu>>>();
+#ifdef FEATURE_CAN
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CANDEBUG>,             SwitchScreenAction<CanDebugMenu>>>();
+#endif
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_QRCODE_DEBUG>,         SwitchScreenAction<QrCodeDebugDisplay>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BATTERYDEBUG>,         SwitchScreenAction<BatteryDebugMenu>, StaticMenuItemIcon<&bobbyicons::battery>>>();
     if (configs.feature.udpcloud.value)
@@ -71,7 +73,9 @@ DebugMenu::DebugMenu()
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_TOGGLECLOUDDEBUG>,     BobbyCheckbox, CloudDebugEnableAccessor>>();
     }
     constructMenuItem<makeComponent<MenuItem, LastRebootReasonText,                  StaticFont<2>, DisabledColor, DummyAction>>();
+#ifdef FEATURE_CAN
     constructMenuItem<makeComponent<MenuItem, CanIcCrashText,                        StaticFont<2>, DisabledColor, DummyAction>>();
+#endif
     constructMenuItem<makeComponent<MenuItem, EmptyText,                             DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_FRONTCOMMAND>,         SwitchScreenAction<FrontCommandDebugMenu>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACKCOMMAND>,          SwitchScreenAction<BackCommandDebugMenu>>>();

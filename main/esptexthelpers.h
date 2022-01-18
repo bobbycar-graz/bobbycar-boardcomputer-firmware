@@ -41,8 +41,10 @@ class HeapLargest32Text : public virtual espgui::TextInterface { public: std::st
 class LastRebootReasonText : public virtual espgui::TextInterface { public: std::string text() const override {
     return fmt::format("Last Reboot Reason: {}", espcpputils::toString(esp_reset_reason())); }};
 
+#ifdef FEATURE_CAN
 class CanIcCrashText : public virtual espgui::TextInterface { public: std::string text() const override {
     return fmt::format("CAN IC reseted: {}", can::can_total_error_cnt); }};
+#endif
 
 constexpr char TEXT_ESPCHIPREVISION[] = "Chip revision: ";
 using EspChipRevisionText = espgui::StaticText<TEXT_ESPCHIPREVISION>; //EspStatusTextHelper<TEXT_ESPCHIPREVISION, uint8_t, &EspClass::getChipRevision>;
