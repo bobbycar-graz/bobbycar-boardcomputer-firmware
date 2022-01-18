@@ -2,10 +2,8 @@
 
 // esp-idf includes
 #include <esp_log.h>
-#ifdef FEATURE_NTP
 #include <lwip/apps/snmp.h>
 #include <esp_sntp.h>
-#endif
 
 // 3rdparty lib includes
 #include <espstrutils.h>
@@ -30,7 +28,6 @@ namespace {
 constexpr const char * const TAG = "BOBBYTIME";
 } // namespace
 
-#ifdef FEATURE_NTP
 void time_sync_notification_cb(struct timeval *tv);
 
 void initTime()
@@ -54,6 +51,9 @@ void initTime()
 
 void updateTime()
 {
+    if (!configs.feature.ntp.value)
+        return;
+
     if (bool(sntp_enabled()) != configs.timeServerEnabled.value)
     {
         if (configs.timeServerEnabled.value)
@@ -107,7 +107,6 @@ void time_sync_notification_cb(struct timeval *tv)
     else
         ESP_LOGI("BOBBY", "nullptr");
 }
-#endif
 
 void time_set_now(espchrono::utc_clock::time_point now)
 {

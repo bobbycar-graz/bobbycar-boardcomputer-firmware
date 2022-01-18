@@ -50,13 +50,11 @@ struct CloudTransmitTimeoutAccessor : public NewSettingsAccessor<int16_t> { Conf
 //struct TimezoneOffsetAccessor : public NewSettingsAccessor<int32_t> { ConfigWrapper<int32_t> &getConfig() const override { return configs.timezoneOffset; } };
 struct TimezoneOffsetAccessor : public NewSettingsChronoAdaptorAccessor<espchrono::minutes32> { ConfigWrapper<espchrono::minutes32> &getConfig() const override { return configs.timezoneOffset; } };
 struct DaylightSavingModeAccessor : public NewSettingsAccessor<espchrono::DayLightSavingMode> { ConfigWrapper<espchrono::DayLightSavingMode> &getConfig() const override { return configs.timeDst; } };
-#ifdef FEATURE_NTP
 struct TimeServerEnabledAccessor : public NewSettingsAccessor<bool> { ConfigWrapper<bool> &getConfig() const override { return configs.timeServerEnabled; } };
 struct TimeServerAccessor : public NewSettingsAccessor<std::string> { ConfigWrapper<std::string> &getConfig() const override { return configs.timeServer; } };
 struct TimeSyncModeAccessor : public NewSettingsAccessor<sntp_sync_mode_t> { ConfigWrapper<sntp_sync_mode_t> &getConfig() const override { return configs.timeSyncMode; } };
 //struct TimeSyncIntervalAccessor : public NewSettingsAccessor<int32_t> { ConfigWrapper<int32_t> &getConfig() const override { return configs.timeSyncInterval; } };
 struct TimeSyncIntervalAccessor : public NewSettingsChronoAdaptorAccessor<espchrono::milliseconds32> { ConfigWrapper<espchrono::milliseconds32> &getConfig() const override { return configs.timeSyncInterval; } };
-#endif
 
 // Controller Hardware
 struct FrontLeftEnabledAccessor : public RefAccessorSaveSettings<bool> { bool &getRef() const override { return profileSettings.controllerHardware.enableFrontLeft; } };

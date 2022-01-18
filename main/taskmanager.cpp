@@ -30,9 +30,7 @@
 #ifdef FEATURE_MOSFETS
 #include "mosfets.h"
 #endif
-#ifdef FEATURE_NTP
 #include "time_bobbycar.h"
-#endif
 #include "potis.h"
 #ifdef FEATURE_BLUETOOTH
 #include "bluetooth_bobby.h"
@@ -97,9 +95,7 @@ BobbySchedulerTask schedulerTasksArr[] {
 #ifdef FEATURE_MOSFETS
     BobbySchedulerTask { "mosfets",        init_mosfets,          update_mosfets,          100ms },
 #endif
-#ifdef FEATURE_NTP
     BobbySchedulerTask { "time",           initTime,              updateTime,              100ms },
-#endif
     BobbySchedulerTask { "potis",          initPotis,             readPotis,               20ms  },
 #ifdef FEATURE_BLUETOOTH
     BobbySchedulerTask { "bluetooth",      bluetooth_init,        bluetooth_update,        100ms },

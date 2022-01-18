@@ -69,7 +69,6 @@ using DaylightSavingModeChangeDisplay = espgui::makeComponent<
     espgui::BackActionInterface<espgui::SwitchScreenAction<TimeSettingsMenu>>
 >;
 
-#ifdef FEATURE_NTP
 using TimeServerChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<std::string>,
     espgui::StaticText<TEXT_NTPSERVER>,
@@ -102,7 +101,6 @@ public:
         return fmt::format("Status: {}", espcpputils::toString(sntp_get_sync_status()));
     }
 };
-#endif
 } // namespace
 
 TimeSettingsMenu::TimeSettingsMenu()
@@ -112,13 +110,14 @@ TimeSettingsMenu::TimeSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, CurrentLocalDateTimeText,            StaticFont<2>, DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_OFFSET>,             SwitchScreenAction<TimezoneOffsetChangeDisplay>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_DAYLIGHTSAVINGMODE>, SwitchScreenAction<DaylightSavingModeChangeDisplay>>>();
-#ifdef FEATURE_NTP
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_NTPENABLED>,         BobbyCheckbox, TimeServerEnabledAccessor>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_NTPSERVER>,          SwitchScreenAction<TimeServerChangeDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_NTPMODE>,            SwitchScreenAction<TimeSyncModeChangeDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_NTPINTERVAL>,        SwitchScreenAction<TimeSyncIntervalChangeDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, NtpSyncStatusText,                   DummyAction>>();
-#endif
+    if (configs.feature.ntp.value)
+    {
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_NTPENABLED>,         BobbyCheckbox, TimeServerEnabledAccessor>>();
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_NTPSERVER>,          SwitchScreenAction<TimeServerChangeDisplay>>>();
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_NTPMODE>,            SwitchScreenAction<TimeSyncModeChangeDisplay>>>();
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_NTPINTERVAL>,        SwitchScreenAction<TimeSyncIntervalChangeDisplay>>>();
+        constructMenuItem<makeComponent<MenuItem, NtpSyncStatusText,                   DummyAction>>();
+    }
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,               SwitchScreenAction<SettingsMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
