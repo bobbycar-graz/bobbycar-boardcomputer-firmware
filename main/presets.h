@@ -3,8 +3,6 @@
 // local includes
 #include "profilesettings.h"
 
-using namespace std::chrono_literals;
-
 namespace presets {
 constexpr ProfileSettings::Limits defaultLimits {
     .iMotMax = DEFAULT_IMOTMAX,           // profileSetting
