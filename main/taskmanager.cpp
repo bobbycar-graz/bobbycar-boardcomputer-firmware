@@ -64,9 +64,7 @@
 #include "udpcloud.h"
 #include "modes.h"
 #include "drivingstatistics.h"
-#ifdef FEATURE_DNS_NS
 #include "dnsannounce.h"
-#endif
 #include "screens.h"
 
 using namespace std::chrono_literals;
@@ -133,9 +131,7 @@ BobbySchedulerTask schedulerTasksArr[] {
     BobbySchedulerTask { "udpcloud",       udpCloudInit,          udpCloudUpdate,          50ms },
     BobbySchedulerTask { "drivingmode",    initDrivingMode,       updateDrivingMode,       20ms },
     BobbySchedulerTask { "drivingstatistics", initStatistics,     calculateStatistics,     100ms },
-#ifdef FEATURE_DNS_NS
     BobbySchedulerTask { "dnsannounce",    init_dns_announce,     handle_dns_announce,     100ms },
-#endif
     BobbySchedulerTask { "updateDisp",     not_needed,            updateDisplay,           20ms },
     BobbySchedulerTask { "redrawDisp",     not_needed,            redrawDisplay,           20ms },
 };
