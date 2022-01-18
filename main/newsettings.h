@@ -51,6 +51,21 @@ public:
         staticDns2   {wifi_stack::ip_address_t{}, DoReset, {},                                             staticDns2Key      }
     {}
 
+    WiFiConfig(const char *ssidNvsKey, const char *keyNvsKey,
+               const char *useStaticIpKey, const char *staticIpKey, const char *staticSubnetKey, const char *staticGatewayKey,
+               const char *useStaticDnsKey, const char *staticDns0Key, const char *staticDns1Key, const char *staticDns2Key, const char *default_ssid, const char *default_key) :
+        ssid         {default_ssid,               DoReset, StringMaxSize<32>,                              ssidNvsKey         },
+        key          {default_key,                DoReset, StringOr<StringEmpty, StringMinMaxSize<8, 64>>, keyNvsKey          },
+        useStaticIp  {false,                      DoReset, {},                                             useStaticIpKey     },
+        staticIp     {wifi_stack::ip_address_t{}, DoReset, {},                                             staticIpKey        },
+        staticSubnet {wifi_stack::ip_address_t{}, DoReset, {},                                             staticSubnetKey    },
+        staticGateway{wifi_stack::ip_address_t{}, DoReset, {},                                             staticGatewayKey   },
+        useStaticDns {false,                      DoReset, {},                                             useStaticDnsKey    },
+        staticDns0   {wifi_stack::ip_address_t{}, DoReset, {},                                             staticDns0Key      },
+        staticDns1   {wifi_stack::ip_address_t{}, DoReset, {},                                             staticDns1Key      },
+        staticDns2   {wifi_stack::ip_address_t{}, DoReset, {},                                             staticDns2Key      }
+    {}
+
     ConfigWrapper<std::string> ssid;
     ConfigWrapper<std::string> key;
     ConfigWrapper<bool> useStaticIp;
@@ -97,7 +112,7 @@ public:
     ConfigWrapper<std::string> hostname           {defaultHostname,                       DoReset,   StringMinMaxSize<4, 32>,       "hostname"            };
     ConfigWrapper<bool>        wifiStaEnabled     {true,                                  DoReset,   {},                            "wifiStaEnabled"      };
     std::array<WiFiConfig, 10> wifi_configs {
-        WiFiConfig {"wifi_ssid0", "wifi_key0", "wifi_usestatic0", "wifi_static_ip0", "wifi_stati_sub0", "wifi_stat_gate0", "wifi_usestadns0", "wifi_stat_dnsA0", "wifi_stat_dnsB0", "wifi_stat_dnsC0"},
+        WiFiConfig {"wifi_ssid0", "wifi_key0", "wifi_usestatic0", "wifi_static_ip0", "wifi_stati_sub0", "wifi_stat_gate0", "wifi_usestadns0", "wifi_stat_dnsA0", "wifi_stat_dnsB0", "wifi_stat_dnsC0", "bobbycar", "12345678"},
         WiFiConfig {"wifi_ssid1", "wifi_key1", "wifi_usestatic1", "wifi_static_ip1", "wifi_stati_sub1", "wifi_stat_gate1", "wifi_usestadns1", "wifi_stat_dnsA1", "wifi_stat_dnsB1", "wifi_stat_dnsC1"},
         WiFiConfig {"wifi_ssid2", "wifi_key2", "wifi_usestatic2", "wifi_static_ip2", "wifi_stati_sub2", "wifi_stat_gate2", "wifi_usestadns2", "wifi_stat_dnsA2", "wifi_stat_dnsB2", "wifi_stat_dnsC2"},
         WiFiConfig {"wifi_ssid3", "wifi_key3", "wifi_usestatic3", "wifi_static_ip3", "wifi_stati_sub3", "wifi_stat_gate3", "wifi_usestadns3", "wifi_stat_dnsA3", "wifi_stat_dnsB3", "wifi_stat_dnsC3"},
