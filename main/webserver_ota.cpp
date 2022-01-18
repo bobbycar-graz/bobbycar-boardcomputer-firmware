@@ -1,9 +1,7 @@
 #include "webserver_ota.h"
 
 // esp-idf includes
-#ifdef FEATURE_WEBSERVER
 #include <esp_http_server.h>
-#endif
 #include <esp_log.h>
 #include <esp_ota_ops.h>
 
@@ -22,7 +20,6 @@
 #include "globals.h"
 #include "newsettings.h"
 
-#ifdef FEATURE_WEBSERVER
 using namespace std::chrono_literals;
 using esphttpdutils::HtmlTag;
 
@@ -423,4 +420,3 @@ esp_err_t webserver_trigger_ota_handler(httpd_req_t *req)
     CALL_AND_EXIT_ON_ERROR(httpd_resp_set_hdr, req, "Location", "/ota")
     CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::TemporaryRedirect, "text/html", "Ok, continue at <a href=\"/ota\">/</a>")
 }
-#endif

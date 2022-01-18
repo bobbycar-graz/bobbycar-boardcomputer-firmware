@@ -4,9 +4,7 @@
 #include <limits>
 
 // esp-idf includes
-#ifdef FEATURE_WEBSERVER
 #include <esp_http_server.h>
-#endif
 #include <esp_log.h>
 
 // 3rdparty lib includes
@@ -22,7 +20,6 @@
 #include "globals.h"
 #include "webserver_lock.h"
 
-#ifdef FEATURE_WEBSERVER
 using namespace std::chrono_literals;
 using esphttpdutils::HtmlTag;
 
@@ -325,4 +322,3 @@ esp_err_t webserver_saveSettings_handler(httpd_req_t *req)
                   "text/plain",
                   body)
 }
-#endif

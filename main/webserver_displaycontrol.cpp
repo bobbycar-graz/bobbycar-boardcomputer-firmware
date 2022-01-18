@@ -1,9 +1,7 @@
 #include "webserver_displaycontrol.h"
 
 // esp-idf includes
-#ifdef FEATURE_WEBSERVER
 #include <esp_http_server.h>
-#endif
 #include <esp_log.h>
 
 // 3rdparty lib includes
@@ -26,7 +24,6 @@
 #include "webserver_lock.h"
 #include "newsettings.h"
 
-#ifdef FEATURE_WEBSERVER
 using esphttpdutils::HtmlTag;
 using namespace std::chrono_literals;
 
@@ -613,4 +610,3 @@ esp_err_t webserver_setValue_handler(httpd_req_t *req)
     CALL_AND_EXIT_ON_ERROR(httpd_resp_set_hdr, req, "Location", "/")
     CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::TemporaryRedirect, "text/html", "Ok, continue at <a href=\"/\">/</a>")
 }
-#endif

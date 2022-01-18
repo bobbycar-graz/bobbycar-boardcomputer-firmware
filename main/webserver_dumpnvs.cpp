@@ -1,9 +1,7 @@
 #include "webserver_dumpnvs.h"
 
 // esp-idf includes
-#ifdef FEATURE_WEBSERVER
 #include <esp_http_server.h>
-#endif
 #include <esp_log.h>
 
 // 3rdparty lib includes

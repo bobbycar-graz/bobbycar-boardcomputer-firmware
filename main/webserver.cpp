@@ -29,7 +29,6 @@
 
 using namespace std::chrono_literals;
 
-#ifdef FEATURE_WEBSERVER
 namespace {
 constexpr const char * const TAG = "BOBBYWEB";
 
@@ -204,4 +203,3 @@ esp_err_t webserver_status_handler(httpd_req_t *req)
 }
 
 } // namespace
-#endif
