@@ -39,9 +39,7 @@
 #include "icons/settings.h"
 #include "icons/lock.h"
 #include "icons/demos.h"
-#ifdef FEATURE_OTA
 #include "icons/update.h"
-#endif
 #include "icons/neopixel.h"
 #include "icons/poweroff.h"
 #include "icons/reboot.h"
@@ -104,9 +102,8 @@ MainMenu::MainMenu()
         if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_GARAGE>,       SwitchScreenAction<GarageMenu>>>(); }
     }
 #endif
-#ifdef FEATURE_OTA
-    if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UPDATE>,       SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&bobbyicons::update>>>(); }
-#endif
+    if (configs.feature.ota.value)
+        if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UPDATE>,       SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&bobbyicons::update>>>(); }
     if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_GRAPHS>,       SwitchScreenAction<GraphsMenu>, StaticMenuItemIcon<&bobbyicons::graph>>>(); }
 #if defined(FEATURE_CAN) && defined(FEATURE_POWERSUPPLY)
     if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_POWERSUPPLY>,  SwitchScreenAction<PowerSupplyDisplay>>>(); }

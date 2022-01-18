@@ -20,9 +20,7 @@
 // local includes
 #include "webserver_lock.h"
 #include "webserver_displaycontrol.h"
-#ifdef FEATURE_OTA
 #include "webserver_ota.h"
-#endif
 #include "webserver_settings.h"
 #include "webserver_newsettings.h"
 #include "webserver_dumpnvs.h"
@@ -74,11 +72,9 @@ void initWebserver()
              httpd_uri_t { .uri = "/triggerItem",        .method = HTTP_GET, .handler = webserver_triggerItem_handler,        .user_ctx = NULL },
              httpd_uri_t { .uri = "/setValue",           .method = HTTP_GET, .handler = webserver_setValue_handler,           .user_ctx = NULL },
              httpd_uri_t { .uri = "/reboot",             .method = HTTP_GET, .handler = webserver_reboot_handler,             .user_ctx = NULL },
-#ifdef FEATURE_OTA
              httpd_uri_t { .uri = "/ota",                .method = HTTP_GET, .handler = webserver_ota_handler,                .user_ctx = NULL },
              httpd_uri_t { .uri = "/otaPercent",         .method = HTTP_GET, .handler = webserver_ota_percentage_handler,     .user_ctx = NULL },
              httpd_uri_t { .uri = "/triggerOta",         .method = HTTP_GET, .handler = webserver_trigger_ota_handler,        .user_ctx = NULL },
-#endif
              httpd_uri_t { .uri = "/settings",           .method = HTTP_GET, .handler = webserver_settings_handler,           .user_ctx = NULL },
              httpd_uri_t { .uri = "/saveSettings",       .method = HTTP_GET, .handler = webserver_saveSettings_handler,       .user_ctx = NULL },
              httpd_uri_t { .uri = "/newSettings",        .method = HTTP_GET, .handler = webserver_newSettings_handler,        .user_ctx = NULL },

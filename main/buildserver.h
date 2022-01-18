@@ -6,7 +6,6 @@
 #include <asynchttprequest.h>
 #include <delayedconstruction.h>
 
-#ifdef FEATURE_OTA
 namespace buildserver {
 
 uint16_t count_available_buildserver();
@@ -48,4 +47,3 @@ namespace SelectBuild {
     bool get_request_running();
 } // namespace SelectBuild
 } // namespace buildserver
-#endif

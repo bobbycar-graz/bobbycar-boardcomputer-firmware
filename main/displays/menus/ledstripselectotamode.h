@@ -3,7 +3,6 @@
 // local includes
 #include "displays/bobbymenudisplay.h"
 
-#ifdef FEATURE_OTA
 class LedstripOtaAnimationChangeMenu : public BobbyMenuDisplay
 {
 public:
@@ -12,4 +11,3 @@ public:
     std::string text() const override;
     void back() override;
 };
-#endif

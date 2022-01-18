@@ -15,7 +15,6 @@
 #include "globals.h"
 #include "newsettings.h"
 
-#ifdef FEATURE_OTA
 #define MESSAGE(text) constructMenuItem<makeComponent<MenuItem, StaticText<text>, DefaultFont, StaticColor<TFT_RED>, DummyAction>>()
 
 using namespace espgui;
@@ -151,4 +150,3 @@ void SelectBuildMenu::back()
 {
     switchScreen<OtaMenu>();
 }
-#endif

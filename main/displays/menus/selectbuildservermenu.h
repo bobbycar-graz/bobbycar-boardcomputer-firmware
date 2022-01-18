@@ -5,8 +5,6 @@
 // local includes
 #include "displays/bobbymenudisplay.h"
 
-#ifdef FEATURE_OTA
-
 class SelectBuildServerMenu : public BobbyMenuDisplay
 {
 public:
@@ -16,4 +14,3 @@ public:
 
     void back() override;
 };
-#endif

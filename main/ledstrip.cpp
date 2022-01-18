@@ -200,9 +200,7 @@ void showAnimation()
 {
     if (configs.ledstrip.enableLedAnimation.value
         && !simplified
-#ifdef FEATURE_OTA
         && !(asyncOtaTaskStarted && configs.ledstrip.otaMode.value != OtaAnimationModes::None)
-#endif
         )
     {
         switch (configs.ledstrip.animationType.value)
@@ -214,20 +212,17 @@ void showAnimation()
         default: showDefaultLedstrip();
         }
     }
-#ifdef FEATURE_OTA
     else if (asyncOtaTaskStarted && configs.ledstrip.otaMode.value != OtaAnimationModes::None)
     {
         // show ota animation
         showOtaAnimation();
     }
-#endif
     else
     {
         std::fill(std::begin(leds), std::end(leds), CRGB{0, 0, 0});
     }
 }
 
-#ifdef FEATURE_OTA
 void showOtaAnimation()
 {
     std::fill(std::begin(leds), std::end(leds), CRGB{0,0,0});
@@ -256,7 +251,6 @@ void showOtaAnimation()
         }
     }
 }
-#endif
 
 void showBetterRainbow()
 {

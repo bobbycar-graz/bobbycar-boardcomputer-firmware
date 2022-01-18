@@ -16,8 +16,6 @@
 #include "globals.h"
 #include "newsettings.h"
 
-#ifdef FEATURE_OTA
-
 namespace buildserver {
 
     uint16_t count_available_buildserver()
@@ -271,4 +269,3 @@ namespace buildserver {
     }
     } // namespace SelectBuild
 } // namespace buildserver
-#endif

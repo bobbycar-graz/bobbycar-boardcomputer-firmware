@@ -8,11 +8,9 @@
 #include "esptexthelpers.h"
 #include "displays/menus/settingsmenu.h"
 
-#ifdef FEATURE_OTA
 #include <espasyncota.h>
 #include <esp_ota_ops.h>
 #include "fmt/core.h"
-#endif
 
 namespace {
 constexpr char TEXT_ABOUT[] = "About";
@@ -23,17 +21,13 @@ class CurrentVersionText : public virtual espgui::TextInterface
 public:
     std::string text() const override
     {
-#ifdef FEATURE_OTA
         if (const esp_app_desc_t *app_desc = esp_ota_get_app_description())
         {
             return fmt::format("Version: {}", app_desc->version);
         }
-#endif
-        return "Version: 1.0";
+        return "Version: Unkown";
     };
 };
-
-constexpr char TEXT_VERSION[] = "Version: 1.0";
 } // namespace
 
 AboutMenu::AboutMenu()

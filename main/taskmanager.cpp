@@ -45,9 +45,7 @@
 #ifdef FEATURE_SERIAL
 #include "serial_bobby.h"
 #endif
-#ifdef FEATURE_OTA
 #include "ota.h"
-#endif
 #include "ble_bobby.h"
 #ifdef FEATURE_WEBSERVER
 #include "webserver.h"
@@ -108,9 +106,7 @@ BobbySchedulerTask schedulerTasksArr[] {
 #ifdef FEATURE_SERIAL
     BobbySchedulerTask { "serial",         initSerial,            updateSerial,            50ms  },
 #endif
-#ifdef FEATURE_OTA
     BobbySchedulerTask { "ota",            initOta,               handleOta,               50ms  },
-#endif
     BobbySchedulerTask { "ble",            initBle,               handleBle,               100ms },
 #ifdef FEATURE_WEBSERVER
     BobbySchedulerTask { "webserver",      initWebserver,         handleWebserver,         100ms },

@@ -6,7 +6,9 @@
 // 3rdparty lib includes
 #include <espwifistack.h>
 
-#ifdef FEATURE_OTA
+// local includes
+#include "globals.h"
+
 cpputils::DelayedConstruction<EspAsyncOta> asyncOta;
 bool asyncOtaTaskStarted{};
 
@@ -26,6 +28,9 @@ void handleOta()
 
 tl::expected<void, std::string> triggerOta(std::string_view url)
 {
+    if (!configs.feature.ota.value)
+        return tl::make_unexpected("OTA is not enabled!");
+
     ESP_LOGI(TAG, "%.*s", url.size(), url.data());
 
     if (!asyncOta)
@@ -49,4 +54,3 @@ tl::expected<void, std::string> triggerOta(std::string_view url)
 
     return {};
 }
-#endif

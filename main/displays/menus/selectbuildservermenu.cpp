@@ -15,8 +15,6 @@
 #include "utils.h"
 #include "newsettings.h"
 
-#ifdef FEATURE_OTA
-
 using namespace buildserver::SelectBuild;
 
 namespace {
@@ -84,4 +82,3 @@ void SelectBuildServerMenu::back()
 {
     espgui::switchScreen<OtaMenu>();
 }
-#endif

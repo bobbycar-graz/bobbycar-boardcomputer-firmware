@@ -10,10 +10,8 @@
 // 3rdparty lib includes
 #include <tftinstance.h>
 #include <screenmanager.h>
-#ifdef FEATURE_OTA
 #include <espasyncota.h>
 #include <esp_ota_ops.h>
-#endif
 
 // local includes
 #include "globals.h"
@@ -21,7 +19,6 @@
 #include "displays/menus/otamenu.h"
 #include "newsettings.h"
 
-#ifdef FEATURE_OTA
 void UpdateDisplay::initScreen()
 {
     Base::initScreen();
@@ -118,4 +115,3 @@ void UpdateDisplay::buttonPressed(espgui::Button button)
     default:;
     }
 }
-#endif

@@ -45,9 +45,7 @@ void showAnimation();
 void showBetterRainbow();
 void showSpeedSyncAnimation();
 void showCustomColor();
-#ifdef FEATURE_OTA
 void showOtaAnimation();
-#endif
 
 void initLedStrip();
 void updateLedStrip();

@@ -17,14 +17,12 @@
 #include <espstrutils.h>
 
 // local includes
-#ifdef FEATURE_OTA
 #include "ota.h"
-#endif
 #include "webserver_lock.h"
 #include "globals.h"
 #include "newsettings.h"
 
-#if defined(FEATURE_WEBSERVER) && defined(FEATURE_OTA)
+#ifdef FEATURE_WEBSERVER
 using namespace std::chrono_literals;
 using esphttpdutils::HtmlTag;
 

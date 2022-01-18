@@ -7,7 +7,6 @@
 // local includes
 #include "bobbydisplay.h"
 
-#ifdef FEATURE_OTA
 class UpdateDisplay : public BobbyDisplay
 {
     using Base = BobbyDisplay;
@@ -28,4 +27,3 @@ private:
 
     espgui::Label m_newVersionLabel{20, 275};
 };
-#endif

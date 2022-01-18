@@ -317,9 +317,7 @@ esp_err_t webserver_newSettings_handler(httpd_req_t *req)
             {
                 HtmlTag pTag{"p", body};
                 body += "<a href=\"/\">Display control</a> - "
-#ifdef FEATURE_OTA
                         "<a href=\"/ota\">Update</a> - "
-#endif
                         "<a href=\"/settings\">Settings</a> - "
                         "<b>New Settings</b> - "
                         "<a href=\"/dumpnvs\">Dump NVS</a>";

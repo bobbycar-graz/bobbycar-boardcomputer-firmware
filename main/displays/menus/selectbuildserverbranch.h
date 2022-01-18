@@ -3,8 +3,6 @@
 // local includes
 #include "displays/bobbymenudisplay.h"
 
-#ifdef FEATURE_OTA
-
 class SelectBuildserverBranchMenu : public BobbyMenuDisplay
 {
     using Base = espgui::MenuDisplay;
@@ -17,5 +15,3 @@ public:
     void update() override;
     void back() override;
 };
-
-#endif

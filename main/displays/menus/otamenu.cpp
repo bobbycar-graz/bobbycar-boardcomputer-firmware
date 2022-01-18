@@ -15,7 +15,6 @@
 #include "displays/menus/mainmenu.h"
 #include "displays/updatedisplay.h"
 
-#ifdef FEATURE_OTA
 namespace {
 constexpr char TEXT_UPDATE[] = "Update";
 constexpr char TEXT_UPDATENOW[] = "Update now";
@@ -44,4 +43,3 @@ void OtaMenu::back()
 {
     espgui::switchScreen<MainMenu>();
 }
-#endif

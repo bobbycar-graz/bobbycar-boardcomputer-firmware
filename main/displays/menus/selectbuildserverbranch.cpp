@@ -1,4 +1,3 @@
-#ifdef FEATURE_OTA
 #include "selectbuildserverbranch.h"
 
 // 3rd party includes
@@ -164,4 +163,3 @@ void SelectBuildserverBranchMenu::buildMenuRequestError(std::string error)
     item.setTitle(error);
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
-#endif

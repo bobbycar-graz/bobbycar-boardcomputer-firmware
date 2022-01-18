@@ -3,8 +3,6 @@
 // local includes
 #include "displays/bobbymenudisplay.h"
 
-#ifdef FEATURE_OTA
-
 class SelectBuildMenu : public BobbyMenuDisplay
 {
     using Base = BobbyMenuDisplay;
@@ -21,4 +19,3 @@ private:
     void buildMenuFromJson();
     void buildMenuRequestError(std::string error);
 };
-#endif

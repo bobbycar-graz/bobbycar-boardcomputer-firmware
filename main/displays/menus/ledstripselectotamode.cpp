@@ -10,7 +10,6 @@
 #include "utils.h"
 #include "ledstripmenu.h"
 
-#ifdef FEATURE_OTA
 namespace {
 constexpr char TEXT_BLINKANIMATION[] = "Blink animation";
 constexpr char TEXT_OTAANIM_NONE[] = "None";
@@ -47,4 +46,3 @@ void LedstripOtaAnimationChangeMenu::back()
 {
     espgui::switchScreen<LedstripMenu>();
 }
-#endif
