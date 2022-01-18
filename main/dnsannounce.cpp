@@ -1,14 +1,16 @@
-// 3rd party
-#ifdef FEATURE_DNS_NS
+#include "dnsannounce.h"
+
+// system includes
+#include "lwip/dns.h"
+
+// 3rdparty includes
+#include <cpputils.h>
 #include <randomutils.h>
 #include <esprandom.h>
+#include <espwifistack.h>
 #include <FastLED.h>
 
-// local
-#include "dnsannounce.h"
-#include "espwifistack.h"
-#include "cpputils.h"
-#include "lwip/dns.h"
+// local includes
 #include "globals.h"
 #include "newsettings.h"
 
@@ -22,7 +24,7 @@ void init_dns_announce()
 
 void handle_dns_announce()
 {
-    if (!configs.dns_announce_enabled.value)
+    if (!configs.feature.dnsannounce.value || !configs.dns_announce_enabled.value)
         return;
 
     if (wifi_stack::get_sta_status() != wifi_stack::WiFiStaStatus::CONNECTED)
