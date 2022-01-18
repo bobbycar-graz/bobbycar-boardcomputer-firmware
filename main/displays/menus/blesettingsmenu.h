@@ -3,8 +3,6 @@
 // local includes
 #include "displays/bobbymenudisplay.h"
 
-#ifdef FEATURE_BLE
-
 class BleSettingsMenu : public BobbyMenuDisplay
 {
 public:
@@ -14,4 +12,3 @@ public:
 
     void back() override;
 };
-#endif

@@ -15,7 +15,6 @@
 #include "displays/menus/settingsmenu.h"
 #include "bobbycheckbox.h"
 
-#ifdef FEATURE_BLE
 namespace {
 constexpr char TEXT_BLESETTINGS[] = "BLE settings";
 constexpr char TEXT_ENABLED[] = "Enabled";
@@ -51,4 +50,3 @@ void BleSettingsMenu::back()
 {
     espgui::switchScreen<SettingsMenu>();
 }
-#endif

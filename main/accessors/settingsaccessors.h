@@ -38,9 +38,7 @@ struct FieldWeakMaxAccessor : public RefAccessorSaveSettings<int16_t> { int16_t 
 struct PhaseAdvMaxAccessor : public RefAccessorSaveSettings<int16_t> { int16_t &getRef() const override { return profileSettings.limits.phaseAdvMax; } };
 
 // Bluetooth Low Energy
-#ifdef FEATURE_BLE
 struct BleEnabledAccessor : public NewSettingsAccessor<bool> { ConfigWrapper<bool> &getConfig() const override { return configs.bleSettings.bleEnabled; } };
-#endif
 
 // Cloud
 struct CloudEnabledAccessor : public NewSettingsAccessor<bool> { ConfigWrapper<bool> &getConfig() const override { return configs.cloudSettings.cloudEnabled; } };
