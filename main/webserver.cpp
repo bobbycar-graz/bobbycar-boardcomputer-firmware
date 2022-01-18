@@ -25,9 +25,7 @@
 #endif
 #include "webserver_settings.h"
 #include "webserver_newsettings.h"
-#ifdef OLD_NVS
 #include "webserver_dumpnvs.h"
-#endif
 #include "globals.h"
 #include "newsettings.h"
 
@@ -86,9 +84,7 @@ void initWebserver()
              httpd_uri_t { .uri = "/newSettings",        .method = HTTP_GET, .handler = webserver_newSettings_handler,        .user_ctx = NULL },
              httpd_uri_t { .uri = "/saveNewSettings",    .method = HTTP_GET, .handler = webserver_saveNewSettings_handler,    .user_ctx = NULL },
              httpd_uri_t { .uri = "/resetNewSettings",   .method = HTTP_GET, .handler = webserver_resetNewSettings_handler,   .user_ctx = NULL },
-#ifdef OLD_NVS
              httpd_uri_t { .uri = "/dumpnvs",            .method = HTTP_GET, .handler = webserver_dump_nvs_handler,           .user_ctx = NULL },
-#endif
              httpd_uri_t { .uri = "/check",              .method = HTTP_GET, .handler = webserver_status_handler,             .user_ctx = NULL },
          })
     {
