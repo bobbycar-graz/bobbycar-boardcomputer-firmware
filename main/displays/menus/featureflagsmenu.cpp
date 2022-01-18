@@ -1,7 +1,5 @@
 #include "featureflagsmenu.h"
 
-constexpr const char * const TAG = "FEATUREFLAGSMENU";
-
 // 3rdparty lib includes
 #include <fmt/core.h>
 #include <actions/switchscreenaction.h>
@@ -15,13 +13,14 @@ constexpr const char * const TAG = "FEATUREFLAGSMENU";
 using namespace espgui;
 
 namespace {
+constexpr const char * const TAG = "FEATUREFLAGSMENU";
 
 constexpr char TEXT_FEATUREFLAGS[] = "Feature Flags";
 constexpr char TEXT_BACK[] = "Back";
 
 class FeatureFlagMenuItem : public MenuItem {
 public:
-    FeatureFlagMenuItem(ConfigWrapper<bool> *config) : m_config{*config} {}
+    explicit FeatureFlagMenuItem(ConfigWrapper<bool> *config) : m_config{*config} {}
 
     std::string text() const override { return m_config.nvsName(); }
 
