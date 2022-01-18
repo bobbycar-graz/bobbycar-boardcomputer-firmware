@@ -6,6 +6,7 @@
 #include <icons/back.h>
 
 // local includes
+#include "displays/bobbypopupdisplay.h"
 #include "displays/menus/settingsmenu.h"
 #include "bobbycheckbox.h"
 #include "newsettings.h"
@@ -36,6 +37,18 @@ public:
 private:
     ConfigWrapper<bool> &m_config;
 };
+
+// TODO: Replace SwitchScreenAction / switchScreen with this action. Needs: BobbyPopupDisplayWithCustomExitAction => pass SwitchScreenAction<SettingsMenu> into it
+
+class ExitFeatureFlagsMenuAction : public virtual ActionInterface {
+public:
+    void triggered() override {
+        auto newDisplay = std::make_unique<BobbyPopupDisplay>(std::move("Please reboot if you have changed something"), std::move(espgui::currentDisplay));
+        newDisplay->initOverlay();
+        espgui::currentDisplay = std::move(newDisplay);
+    }
+};
+
 } // namespace
 
 FeatureFlagsMenu::FeatureFlagsMenu()
