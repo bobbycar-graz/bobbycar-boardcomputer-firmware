@@ -47,7 +47,6 @@
 #endif
 #include "ota.h"
 #include "ble_bobby.h"
-#ifdef FEATURE_WEBSERVER
 #include "webserver.h"
 #include "ledstrip.h"
 #ifdef FEATURE_ESPNOW
@@ -107,7 +106,6 @@ BobbySchedulerTask schedulerTasksArr[] {
 #endif
     BobbySchedulerTask { "ota",            initOta,               handleOta,               50ms  },
     BobbySchedulerTask { "ble",            initBle,               handleBle,               100ms },
-#ifdef FEATURE_WEBSERVER
     BobbySchedulerTask { "webserver",      initWebserver,         handleWebserver,         100ms },
     BobbySchedulerTask { "ledstrip",       initLedStrip,          updateLedStrip,          30ms },
 #ifdef FEATURE_ESPNOW

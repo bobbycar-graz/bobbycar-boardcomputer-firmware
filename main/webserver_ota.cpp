@@ -20,7 +20,6 @@
 #include "globals.h"
 #include "newsettings.h"
 
-#ifdef FEATURE_WEBSERVER
 using namespace std::chrono_literals;
 using esphttpdutils::HtmlTag;
 
