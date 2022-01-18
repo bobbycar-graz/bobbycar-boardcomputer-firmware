@@ -115,4 +115,3 @@ void handle_dns_announce()
         dns_lastIpAddress_v6_global = "-";
     }
 }
-#endif
