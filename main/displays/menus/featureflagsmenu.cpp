@@ -18,16 +18,10 @@ constexpr const char * const TAG = "FEATUREFLAGSMENU";
 constexpr char TEXT_FEATUREFLAGS[] = "Feature Flags";
 constexpr char TEXT_BACK[] = "Back";
 
-class FeatureFlagMenuItem : public MenuItem {
+class FeatureFlagMenuItem : public MenuItem, public BobbyCheckbox {
 public:
     explicit FeatureFlagMenuItem(ConfigWrapper<bool> *config) : m_config{*config} {}
-
     std::string text() const override { return m_config.nvsName(); }
-
-    void triggered() override
-    {
-        ESP_LOGI(TAG, "changed value of %s", m_config.nvsName());
-    }
 private:
     ConfigWrapper<bool> &m_config;
 };
