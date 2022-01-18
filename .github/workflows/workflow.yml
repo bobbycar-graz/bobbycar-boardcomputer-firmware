@@ -205,18 +205,13 @@ jobs:
 
       - name: Build firmware
         run: |
+          ccache -s
           cd repository
           export CCACHE_MAXSIZE=1024M CCACHE_BASEDIR="$(pwd)"
           . export.sh
           ./switchconf.sh ${{ matrix.node }}
           idf.py --ccache build
           ccache -s
-
-      - name: Set outputs
-        id: vars
-        run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v2.2.4
