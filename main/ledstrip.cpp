@@ -285,12 +285,6 @@ void fill_rainbow_invert_at( struct CRGB * pFirstLED, int numToFill, int invertA
 
 void showSpeedSyncAnimation()
 {
-#ifdef LEDS_PER_METER
-    const float leds_per_meter = LEDS_PER_METER;
-#else
-    const float leds_per_meter = 144;
-#endif
-
     static auto last_interval = espchrono::millis_clock::now();
     const auto difference_ms = espchrono::ago(last_interval) / 1ms;
 
@@ -298,7 +292,7 @@ void showSpeedSyncAnimation()
 
     const float hue_per_led = 1. / std::max(uint8_t(1), uint8_t(configs.ledstrip.animationMultiplier.value));
     const float meter_per_second = avgSpeedKmh / 3.6;
-    const float leds_per_second = meter_per_second * leds_per_meter;
+    const float leds_per_second = meter_per_second * configs.ledstrip.leds_per_meter.value;
     const float hue_per_second = leds_per_second * hue_per_led;
 
     hue_result += hue_per_second * difference_ms / 1000.f;
