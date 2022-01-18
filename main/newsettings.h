@@ -326,6 +326,7 @@ public:
         ConfigWrapper<bool> udpcloud              {false,                                  DoReset,   {},                         "f_udpcloud"          };
         ConfigWrapper<bool> dnsannounce           {false,                                  DoReset,   {},                         "f_dnsannounce"       };
         ConfigWrapper<bool> ntp                   {false,                                  DoReset,   {},                         "f_ntp"               };
+        ConfigWrapper<bool> ble                   {false,                                  DoReset,   {},                         "f_ble"               };
         ConfigWrapper<bool> gschissene_diode      {false,                                  DoReset,   {},                         "f_gschissDiode"      };
     } feature;
 
@@ -623,7 +624,9 @@ public:
     x(feature.udpcloud) \
     x(feature.cloud) \
     x(feature.dnsannounce) \
-    x(feature.ntp)
+    x(feature.ntp) \
+    x(feature.ble) \
+    x(feature.gschissene_diode)
     //x(bleSettings.bleEnabled)
 
 #define FEATURES(x) \
@@ -633,7 +636,8 @@ public:
     x(feature.udpcloud) \
     x(feature.cloud) \
     x(feature.dnsannounce) \
-    x(feature.ntp)
+    x(feature.ntp) \
+    x(feature.ble)
     //x(feature.gschisseneDiode)
 
     template<typename T>
