@@ -255,6 +255,7 @@ public:
             ConfigWrapper<uint32_t>                   {0,                                  DoReset,   {},                         "ledCustomCol7"       },
             ConfigWrapper<uint32_t>                   {0,                                  DoReset,   {},                         "ledCustomCol8"       },
         };
+        ConfigWrapper<uint8_t> leds_per_meter     {144,                                    DoReset,   {},                         "ledsPerMeter"        };
     } ledstrip;
 
     struct {
@@ -551,6 +552,17 @@ public:
     x(ledstrip.otaMode) \
     x(ledstrip.maxMilliamps) \
     x(ledstrip.enableVisualizeBlink) \
+    \
+    x(ledstrip.custom_color[0]) \
+    x(ledstrip.custom_color[1]) \
+    x(ledstrip.custom_color[2]) \
+    x(ledstrip.custom_color[3]) \
+    x(ledstrip.custom_color[4]) \
+    x(ledstrip.custom_color[5]) \
+    x(ledstrip.custom_color[6]) \
+    x(ledstrip.custom_color[7]) \
+    \
+    x(ledstrip.leds_per_meter) \
     \
     x(battery.cellsSeries) \
     x(battery.cellsParallel) \
