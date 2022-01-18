@@ -146,6 +146,14 @@ esp_err_t webserver_dump_nvs_handler(httpd_req_t *req)
         }
     }
     DynamicJsonDocument doc(6144);
+
+    JsonObject settings = doc.createNestedObject("settings");
+
+    configs.callForEveryConfig([&](auto &config){
+        const std::string_view nvsName{config.nvsName()};
+        showInputForSetting(nvsName, config.value, settings);
+    });
+
     const auto profile = settingsPersister.currentlyOpenProfileIndex();
     const auto switchBackProfile = profile ? int(*profile) : 0;
 
@@ -165,10 +173,9 @@ esp_err_t webserver_dump_nvs_handler(httpd_req_t *req)
         const auto profile_str = cur_profile ? std::to_string(*cur_profile) : "-";
 
         JsonObject profile = profiles.createNestedObject(profile_str);
-        JsonObject profile_settings = profile.createNestedObject("settings");
 
         profileSettings.executeForEveryProfileSetting([&](const char *key, auto &value){
-            showInputForSetting(key, value, profile_settings);
+            showInputForSetting(key, value, profile);
         });
     }
 
