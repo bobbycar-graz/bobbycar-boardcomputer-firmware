@@ -2,21 +2,8 @@
 
 // system includes
 #include <cstdint>
-#include <array>
-#include <FastLED.h>
-
-// esp-idf includes
-#include <esp_wifi_types.h>
-#ifdef FEATURE_NTP
-#include <lwip/apps/snmp.h>
-#include <esp_sntp.h>
-#endif
-
-// 3rdparty lib includes
-#include <espchrono.h>
 
 // local includes
-#include "bobbycar-common.h"
 #include "unifiedmodelmode.h"
 #include "modes/larsmmode.h"
 

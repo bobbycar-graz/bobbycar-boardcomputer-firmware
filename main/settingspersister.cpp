@@ -6,10 +6,8 @@
 // esp-idf includes
 #include <esp_log.h>
 #include <nvs_flash.h>
-#ifdef FEATURE_NTP
 #include <lwip/apps/snmp.h>
 #include <esp_sntp.h>
-#endif
 
 // 3rdparty lib includes
 #include <fmt/core.h>
@@ -209,7 +207,6 @@ template<> struct nvsGetterHelper<espchrono::hours32> { static esp_err_t nvs_get
         *out_value = espchrono::hours32(tempValue);
     return err;
 }};
-#ifdef FEATURE_NTP
 template<> struct nvsGetterHelper<sntp_sync_mode_t> { static esp_err_t nvs_get(nvs_handle handle, const char* key, sntp_sync_mode_t* out_value)
 {
     uint8_t tempValue;
@@ -218,7 +215,6 @@ template<> struct nvsGetterHelper<sntp_sync_mode_t> { static esp_err_t nvs_get(n
         *out_value = sntp_sync_mode_t(tempValue);
     return err;
 }};
-#endif
 template<> struct nvsGetterHelper<std::array<int8_t, 4>> { static esp_err_t nvs_get(nvs_handle handle, const char* key, std::array<int8_t, 4>* out_value)
 {
     uint32_t tempValue;
@@ -322,12 +318,10 @@ template<> struct nvsSetterHelper<espchrono::hours32> { static esp_err_t nvs_set
 {
     return nvs_set_i32(handle, key, value.count());
 }};
-#ifdef FEATURE_NTP
 template<> struct nvsSetterHelper<sntp_sync_mode_t> { static esp_err_t nvs_set(nvs_handle handle, const char* key, sntp_sync_mode_t value)
 {
     return nvs_set_u8(handle, key, uint8_t(value));
 }};
-#endif
 template<> struct nvsSetterHelper<std::array<int8_t, 4>> { static esp_err_t nvs_set(nvs_handle handle, const char* key, std::array<int8_t, 4> value)
 {
     return nvs_set_u32(handle, key, std::bit_cast<uint32_t>(value));

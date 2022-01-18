@@ -1,18 +1,7 @@
 #pragma once
 
-// esp-idf includes
-#ifdef FEATURE_NTP
-#include <lwip/apps/snmp.h>
-#include <esp_sntp.h>
-#endif
-
-// 3rdparty lib includes
-#include <espchrono.h>
-
 // local includes
 #include "profilesettings.h"
-#include "ledstripdefines.h"
-#include "ledstrip.h"
 
 using namespace std::chrono_literals;
 
