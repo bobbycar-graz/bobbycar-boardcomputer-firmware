@@ -48,9 +48,7 @@
 #ifdef FEATURE_OTA
 #include "ota.h"
 #endif
-#ifdef FEATURE_BLE
 #include "ble_bobby.h"
-#endif
 #ifdef FEATURE_WEBSERVER
 #include "webserver.h"
 #endif
@@ -113,9 +111,7 @@ BobbySchedulerTask schedulerTasksArr[] {
 #ifdef FEATURE_OTA
     BobbySchedulerTask { "ota",            initOta,               handleOta,               50ms  },
 #endif
-#ifdef FEATURE_BLE
     BobbySchedulerTask { "ble",            initBle,               handleBle,               100ms },
-#endif
 #ifdef FEATURE_WEBSERVER
     BobbySchedulerTask { "webserver",      initWebserver,         handleWebserver,         100ms },
 #endif

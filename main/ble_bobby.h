@@ -1,7 +1,5 @@
 #pragma once
 
-#ifdef FEATURE_BLE
-
 // esp-idf includes
 #include <NimBLEDevice.h>
 
@@ -15,5 +13,3 @@ extern BLECharacteristic *getwifilist;
 void initBle();
 
 void handleBle();
-
-#endif

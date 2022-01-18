@@ -10,9 +10,7 @@
 // local includes
 #include "utils.h"
 #include "icons/wifi.h"
-#if defined(FEATURE_BLUETOOTH) || defined(FEATURE_BLE)
 #include "icons/bluetooth.h"
-#endif
 #include "icons/time.h"
 #include "icons/hardware.h"
 #include "icons/buzzer.h"
@@ -92,17 +90,12 @@ SettingsMenu::SettingsMenu()
 #ifdef FEATURE_BLUETOOTH
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BLUETOOTHSETTINGS>,             SwitchScreenAction<BluetoothSettingsMenu>, StaticMenuItemIcon<&bobbyicons::bluetooth>>>();
 #endif
-#ifdef FEATURE_BLE
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BLESETTINGS>,                   SwitchScreenAction<BleSettingsMenu>, StaticMenuItemIcon<&bobbyicons::bluetooth>>>();
-#endif
+    if (configs.feature.ble.value)
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BLESETTINGS>,                   SwitchScreenAction<BleSettingsMenu>, StaticMenuItemIcon<&bobbyicons::bluetooth>>>();
     if (configs.feature.cloud.value)
-    {
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CLOUDSETTINGS>,                 SwitchScreenAction<CloudSettingsMenu>>>();
-    }
     if (configs.feature.udpcloud.value)
-    {
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UDPCLOUDSETTINGS>,              SwitchScreenAction<UdpCloudSettingsMenu>>>();
-    }
 #ifdef FEATURE_OTA
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECTBUILDSERVERMENU>,         SwitchScreenAction<SelectBuildServerMenu>, StaticMenuItemIcon<&bobbyicons::update>>>();
 #endif

@@ -4,7 +4,6 @@
 #include "textinterface.h"
 #include "ble_bobby.h"
 
-#ifdef FEATURE_BLE
 struct BleServerPeerDevicesText : public virtual espgui::TextInterface {
 public:
     std::string text() const override
@@ -26,4 +25,3 @@ public:
         return text;
     }
 };
-#endif

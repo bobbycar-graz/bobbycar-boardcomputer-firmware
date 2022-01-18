@@ -15,7 +15,6 @@
 #include "utils.h"
 #include "newsettings.h"
 
-#ifdef FEATURE_BLE
 namespace {
 constexpr const char * const TAG = "BOBBYBLE";
 
@@ -105,6 +104,9 @@ void initBle()
 
 void handleBle()
 {
+    if (!configs.feature.ble.value)
+        return;
+
     if (configs.bleSettings.bleEnabled.value)
     {
         if (!pServer)
@@ -293,5 +295,3 @@ void WiFiListCallbacks::onRead(NimBLECharacteristic *pCharacteristic)
     pCharacteristic->setValue(json);
 }
 } // namespace
-
-#endif
