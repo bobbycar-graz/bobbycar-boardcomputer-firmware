@@ -10,6 +10,7 @@
 #include "can.h"
 #endif
 #include "newsettings.h"
+#include "utils.h"
 
 using namespace std::chrono_literals;
 
@@ -65,6 +66,7 @@ void readPotis()
         raw_brems = sampleMultipleTimes(PINS_BREMS);
 #endif
 
+#ifndef FEATURE_JOYSTICK
     if (raw_gas)
         gas = cpputils::mapValueClamped<float>(*raw_gas, configs.gasMin.value, configs.gasMax.value, 0., 1000.);
     else
@@ -73,6 +75,20 @@ void readPotis()
         brems = cpputils::mapValueClamped<float>(*raw_brems, configs.bremsMin.value, configs.bremsMax.value, 0., 1000.);
     else
         brems = std::nullopt;
+#else
+    if (raw_gas)
+    {
+        gas = map_analog_stick(configs.gasMitte.value, configs.gasMin.value, configs.gasMax.value, *raw_gas);
+    }
+    else
+        gas = std::nullopt;
+    if (raw_brems)
+    {
+        brems = map_analog_stick(configs.bremsMitte.value, configs.bremsMin.value, configs.bremsMax.value, *raw_brems);
+    }
+    else
+        brems = std::nullopt;
+#endif
 
 #ifdef FEATURE_GAMETRAK
     raw_gametrakX = sampleMultipleTimes(PINS_GAMETRAKX);

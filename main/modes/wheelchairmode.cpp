@@ -33,8 +33,8 @@ void WheelchairMode::update()
     }
     else
     {
-        const auto left_right = configs.gasMin.value == configs.gasMax.value ? 0 : map_analog_stick(configs.gasMitte.value, configs.gasMin.value, configs.gasMax.value, *raw_gas);
-        const auto front_back = configs.bremsMin.value == configs.bremsMax.value ? 0 : map_analog_stick(configs.bremsMitte.value, configs.bremsMin.value, configs.bremsMax.value, *raw_brems);
+        const int16_t left_right = configs.gasMin.value == configs.gasMax.value ? 0 : *gas;
+        const int16_t front_back = configs.bremsMin.value == configs.bremsMax.value ? 0 : -*brems;
 
         float local_gas = 0;
         float local_brems = 0;
@@ -60,7 +60,7 @@ void WheelchairMode::update()
                 local_brems = 0;
         }
 
-        ESP_LOGI("BOBBY", "left_right: %i, front_back: %i, local_gas: %.2f, local_brems: %.2f gas: %.2f, brems: %.2f", left_right, front_back, local_gas, local_brems, *gas, *brems);
+        // ESP_LOGI("BOBBY", "left_right: %i, front_back: %i, local_gas: %.2f, local_brems: %.2f gas: %.2f, brems: %.2f", left_right, front_back, local_gas, local_brems, *gas, *brems);
 
         auto gas_processed = profileSettings.defaultMode.squareGas ? (local_gas * local_gas) / 1000.f : local_gas;
         auto brems_processed = profileSettings.defaultMode.squareBrems ? (local_brems * local_brems) / 1000 : local_brems;
@@ -240,13 +240,13 @@ void WheelchairMode::update()
 
                 controller.command.left.ctrlTyp = pair.first;
                 controller.command.left.ctrlMod = pair.second;
-                controller.command.left.pwm = (pwm + steer);
+                controller.command.left.pwm = (pwm - steer);
                 controller.command.left.cruiseCtrlEna = false;
                 controller.command.left.nCruiseMotTgt = 0;
 
                 controller.command.right.ctrlTyp = pair.first;
                 controller.command.right.ctrlMod = pair.second;
-                controller.command.right.pwm = (pwm - steer);
+                controller.command.right.pwm = (pwm + steer);
                 controller.command.right.cruiseCtrlEna = false;
                 controller.command.right.nCruiseMotTgt = 0;
             }
