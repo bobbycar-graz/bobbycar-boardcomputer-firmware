@@ -293,7 +293,7 @@ int16_t map_analog_stick(uint16_t middle, uint16_t start, uint16_t end, uint16_t
     if (raw < middle)
     {
         raw += configs.deadband.value;
-        end += configs.deadband.value;
+        start += configs.deadband.value;
         const auto return_val = map(raw, start, middle, -1000, 0);
         if (return_val > 0)
             return 0;
