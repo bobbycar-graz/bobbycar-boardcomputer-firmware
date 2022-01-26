@@ -177,12 +177,13 @@ StatisticsMenu::StatisticsMenu()
     constructMenuItem<makeComponent<MenuItem, CurrentKilometersText,               DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, CurrentDrivingTimeText,              DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, TotalKilometersText,                 DummyAction>>();
-    constructMenuItem<makeComponent<MenuItem, TotalMetersText,                     DummyAction>>();
 //  constructMenuItem<makeComponent<MenuItem, SavedTotalCentimetersText,           DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, CurrentWhUsedText,                   DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, AverageWhUsedText,                   DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, AverageSpeedKmhOverTime,             DummyAction>>();
+    constructMenuItem<makeComponent<MenuItem, EstimatedKmLeft,                     DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, EfficiencyText, EfficiencyTextColor, DummyAction>>();
+    constructMenuItem<makeComponent<MenuItem, TotalMetersText,                     DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, EmptyText,                           DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_STATSSAVE>,          SaveKilometersAction, StaticMenuItemIcon<&bobbyicons::update>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_STATSCLEAR>,         ClearCurrentStatsAction, StaticMenuItemIcon<&bobbyicons::reboot>>>();
