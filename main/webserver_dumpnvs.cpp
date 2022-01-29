@@ -128,16 +128,16 @@ showInputForSetting(std::string_view key, T value, JsonObject &body)
 
 esp_err_t webserver_dump_nvs_handler(httpd_req_t *req)
 {
-    if (!configs.feature.webserver_disable_lock.value)
+#ifndef FEATURE_IS_MIR_EGAL_OB_DER_WEBSERVER_KORREKT_ARBEITET
+    espcpputils::LockHelper helper{webserver_lock->handle, std::chrono::ceil<espcpputils::ticks>(5s).count()};
+    if (!helper.locked())
     {
-        espcpputils::LockHelper helper{webserver_lock->handle, std::chrono::ceil<espcpputils::ticks>(5s).count()};
-        if (!helper.locked())
-        {
-            constexpr const std::string_view msg = "could not lock webserver_lock";
-            ESP_LOGE(TAG, "%.*s", msg.size(), msg.data());
-            CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", msg);
-        }
+        constexpr const std::string_view msg = "could not lock webserver_lock";
+        ESP_LOGE(TAG, "%.*s", msg.size(), msg.data());
+        CALL_AND_EXIT(esphttpdutils::webserver_resp_send, req, esphttpdutils::ResponseStatus::BadRequest, "text/plain", msg);
     }
+#endif
+
     DynamicJsonDocument doc(6144);
 
     JsonObject settings = doc.createNestedObject("settings");
