@@ -17,6 +17,10 @@ float avgSpeedKmh{};
 float sumCurrent{};
 bool isLocked{};
 
+#ifdef GLOBALS_SOURCE
+GLOBALS_SOURCE
+#endif
+
 bool simplified =
 #if defined(HAS_SIMPLIFIED)
     true

@@ -47,6 +47,7 @@ extern bool isLocked;
 
 #ifdef GLOBALS_PLUGIN
 #include GLOBALS_PLUGIN
+GLOBALS_HEADER
 #endif
 
 extern bool simplified;
