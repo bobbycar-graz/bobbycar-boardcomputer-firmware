@@ -373,12 +373,18 @@ void sendCanCommands()
         if (back) send(MotorController<true, true>::Command::Enable, back->command.right.enable);
         break;
     case 1:
+#ifdef HAS_SIMPLIFIED
+        SIMPLIFIED_CONTROLTYPE
+#endif
         if (front) send(MotorController<false, false>::Command::CtrlTyp, front->command.left.ctrlTyp);
         if (front) send(MotorController<false, true>::Command::CtrlTyp, front->command.right.ctrlTyp);
         if (back) send(MotorController<true, false>::Command::CtrlTyp, back->command.left.ctrlTyp);
         if (back) send(MotorController<true, true>::Command::CtrlTyp, back->command.right.ctrlTyp);
         break;
     case 2:
+#ifdef HAS_SIMPLIFIED
+        SIMPLIFIED_CONTROLMODE
+#endif
         if (front) send(MotorController<false, false>::Command::CtrlMod, front->command.left.ctrlMod);
         if (front) send(MotorController<false, true>::Command::CtrlMod, front->command.right.ctrlMod);
         if (back) send(MotorController<true, false>::Command::CtrlMod, back->command.left.ctrlMod);
@@ -386,7 +392,7 @@ void sendCanCommands()
         handbremse::finishedMotorUpdate = true;
         break;
     case 3:
-#if defined(HAS_SIMPLIFIED)
+#ifdef HAS_SIMPLIFIED
         SIMPLIFIED_IMOTMAX
 #endif
             if (front) send(MotorController<false, false>::Command::IMotMax, front->command.left.iMotMax);
@@ -395,7 +401,7 @@ void sendCanCommands()
             if (back) send(MotorController<true, true>::Command::IMotMax, back->command.right.iMotMax);
         break;
     case 4:
-#if defined(HAS_SIMPLIFIED)
+#ifdef HAS_SIMPLIFIED
         SIMPLIFIED_IDCMAX
 #endif
             if (front) send(MotorController<false, false>::Command::IDcMax, front->command.left.iDcMax);
@@ -404,7 +410,7 @@ void sendCanCommands()
             if (back) send(MotorController<true, true>::Command::IDcMax, back->command.right.iDcMax);
         break;
     case 5:
-#if defined(HAS_SIMPLIFIED)
+#ifdef HAS_SIMPLIFIED
         SIMPLIFIED_NMOTMAX
 #endif
             if (front) send(MotorController<false, false>::Command::NMotMax, front->command.left.nMotMax);
@@ -413,7 +419,7 @@ void sendCanCommands()
             if (back) send(MotorController<true, true>::Command::NMotMax, back->command.right.nMotMax);
         break;
     case 6:
-#if defined(HAS_SIMPLIFIED)
+#ifdef HAS_SIMPLIFIED
         SIMPLIFIED_FIELDWEAKMAX
 #endif
             if (front) send(MotorController<false, false>::Command::FieldWeakMax, front->command.left.fieldWeakMax);

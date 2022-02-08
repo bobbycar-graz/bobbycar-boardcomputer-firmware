@@ -9,7 +9,6 @@
 #include <espchrono.h>
 
 #ifdef CAN_PLUGIN
-#pragma message "Activating Can Plugin"
 #include CAN_PLUGIN
 #endif
 

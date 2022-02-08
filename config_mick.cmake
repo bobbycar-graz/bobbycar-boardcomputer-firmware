@@ -74,5 +74,5 @@ set(BOBBYCAR_BUILDFLAGS
 
 if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/ignore/lockscreen_plugin.cmake")
     include("${CMAKE_CURRENT_SOURCE_DIR}/ignore/lockscreen_plugin.cmake")
-    message(WARNING "Including lockscreen_plugin")
+    message(WARNING "Including plugins")
 endif()

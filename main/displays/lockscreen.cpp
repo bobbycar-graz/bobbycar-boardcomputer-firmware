@@ -102,7 +102,6 @@ void Lockscreen::redraw()
                 else
                     espgui::switchScreen<MainMenu>();
 #ifdef LOCKSCREEN_PLUGIN
-#pragma message "Activating Lockscreen Plugin"
 #include LOCKSCREEN_PLUGIN
 #endif
                 return;
