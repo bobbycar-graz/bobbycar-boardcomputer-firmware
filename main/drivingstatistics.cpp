@@ -72,53 +72,51 @@ void initStatistics()
 
 void calculateStatistics()
 {
-    EVERY_N_MILLIS( 10 ) {
-        static bool saveTotal = false;
+    static bool saveTotal = false;
 
-        if ((configs.savedStatistics.totalCentimeters.value / 100.f) > drivingStatistics.totalMeters)
+    if ((configs.savedStatistics.totalCentimeters.value / 100.f) > drivingStatistics.totalMeters)
+    {
+        drivingStatistics.totalMeters = configs.savedStatistics.totalCentimeters.value / 100.f;
+        drivingStatistics.last_cm_written = configs.savedStatistics.totalCentimeters.value;
+    }
+
+    static auto last_km_calculation = espchrono::millis_clock::now();
+    const auto duration = espchrono::ago(last_km_calculation);
+    last_km_calculation = espchrono::millis_clock::now();
+
+    const float meters_driven_now = (abs(avgSpeedKmh) / 3.6) * ((duration / 1ms) / 1000.);
+    drivingStatistics.meters_driven += meters_driven_now;
+    drivingStatistics.totalMeters += meters_driven_now; // Udate meters driven
+
+    if (abs(avgSpeedKmh) > 1)
+    {
+        if (!saveTotal && abs(avgSpeedKmh) > 5)
         {
-            drivingStatistics.totalMeters = configs.savedStatistics.totalCentimeters.value / 100.f;
-            drivingStatistics.last_cm_written = configs.savedStatistics.totalCentimeters.value;
+            saveTotal = true;
         }
+        drivingStatistics.currentDrivingTime += duration;
 
-        static auto last_km_calculation = espchrono::millis_clock::now();
-        const auto duration = espchrono::ago(last_km_calculation);
-        last_km_calculation = espchrono::millis_clock::now();
-
-        const float meters_driven_now = (abs(avgSpeedKmh) / 3.6) * ((duration / 1ms) / 1000.);
-        drivingStatistics.meters_driven += meters_driven_now;
-        drivingStatistics.totalMeters += meters_driven_now; // Udate meters driven
-
-        if (abs(avgSpeedKmh) > 1)
+        if (const auto avgVoltage = controllers.getAvgVoltage(); avgVoltage)
         {
-            if (!saveTotal && abs(avgSpeedKmh) > 5)
-            {
-                saveTotal = true;
-            }
-            drivingStatistics.currentDrivingTime += duration;
+            auto watt = sumCurrent * *avgVoltage;
+            const float ws_driven_now = watt * ((duration / 1ms) / 1000.);
+            drivingStatistics.wh_used += ws_driven_now / 3600; // Wh
+            drivingStatistics.batteryWhEstimate -= ws_driven_now / 3600;
+        }
+    }
+    else
+    {
+        drivingStatistics.wh_used += (13 * ((duration / 1ms) / 1000.)) / 3600; // Wh
+        drivingStatistics.batteryWhEstimate = getRemainingWattHours();
+    }
 
-            if (const auto avgVoltage = controllers.getAvgVoltage(); avgVoltage)
-            {
-                auto watt = sumCurrent * *avgVoltage;
-                const float ws_driven_now = watt * ((duration / 1ms) / 1000.);
-                drivingStatistics.wh_used += ws_driven_now / 3600; // Wh
-                drivingStatistics.batteryWhEstimate -= ws_driven_now / 3600;
-            }
-        }
-        else
+    if ((drivingStatistics.totalMeters > ((drivingStatistics.last_cm_written / 100.f) + 100)) || (saveTotal && abs(avgSpeedKmh) < 0.5))
+    {
+        if (saveTotal)
         {
-            drivingStatistics.wh_used += (13 * ((duration / 1ms) / 1000.)) / 3600; // Wh
-            drivingStatistics.batteryWhEstimate = getRemainingWattHours();
+            saveTotal = false;
         }
-
-        if ((drivingStatistics.totalMeters > ((drivingStatistics.last_cm_written / 100.f) + 100)) || (saveTotal && abs(avgSpeedKmh) < 0.5))
-        {
-            if (saveTotal)
-            {
-                saveTotal = false;
-            }
-            drivingStatistics.last_cm_written = drivingStatistics.totalMeters * 100; // Save total Meters
-            configs.write_config(configs.savedStatistics.totalCentimeters, drivingStatistics.last_cm_written);
-        }
+        drivingStatistics.last_cm_written = drivingStatistics.totalMeters * 100; // Save total Meters
+        configs.write_config(configs.savedStatistics.totalCentimeters, drivingStatistics.last_cm_written);
     }
 }

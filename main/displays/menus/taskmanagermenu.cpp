@@ -12,6 +12,7 @@
 #include "taskmanager.h"
 
 using namespace espgui;
+using namespace std::chrono_literals;
 
 namespace {
 constexpr char TEXT_TASKMANAGER[] = "Taskmanager";
@@ -25,7 +26,7 @@ public:
     std::string text() const override
     {
         const std::string_view name{m_task.name()};
-        return fmt::format("{}{}&f &2{} &1{}ms", name.size() > 6 ? "&s" : "", name, m_task.callCount(), m_task.maxElapsed().count());
+        return fmt::format("{}{}&f &2{} &1{}ms", name.size() > 6 ? "&s" : "", name, m_task.callCount(), m_task.maxElapsed() / 1ms);
     }
 
 private:
