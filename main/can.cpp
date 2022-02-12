@@ -331,10 +331,14 @@ void sendCanCommands()
 
     using namespace bobbycar::protocol::can;
 
+#ifdef HAS_SIMPLIFIED
+    SIMPLIFIED_PWM
+#else
     if (front) send(MotorController<false, false>::Command::InpTgt, front->command.left.pwm);
     if (front) send(MotorController<false, true>::Command::InpTgt, front->command.right.pwm);
     if (back) send(MotorController<true, false>::Command::InpTgt, back->command.left.pwm);
     if (back) send(MotorController<true, true>::Command::InpTgt, back->command.right.pwm);
+#endif
 
     uint16_t buttonLeds{};
     if (const auto index = settingsPersister.currentlyOpenProfileIndex())

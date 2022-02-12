@@ -21,7 +21,7 @@ float getAvgWhPerKm()
 
 float getAvgKmh()
 {
-    return (drivingStatistics.meters_driven / 1000.) / ((drivingStatistics.currentDrivingTime / 1ms) / 1000 / 60 / 60); // (meter / 1000) / (ms / 1000 / 60 / 60)
+    return (drivingStatistics.meters_driven / 1000.f) / ((drivingStatistics.currentDrivingTime / 1ms) / 1000.f / 60.f / 60.f); // (meter / 1000) / (ms / 1000 / 60 / 60)
 }
 
 float getEstimatedKmLeft()

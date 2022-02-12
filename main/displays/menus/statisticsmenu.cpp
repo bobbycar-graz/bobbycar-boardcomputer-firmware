@@ -42,6 +42,7 @@ class UptimeText : public virtual espgui::TextInterface
 public:
     std::string text() const override
     {
+        using namespace std::chrono_literals;
         const auto uptime = espchrono::millis_clock::now().time_since_epoch();
         auto converted = date::make_time(uptime);
         auto msecs = uptime
@@ -52,7 +53,7 @@ public:
                            converted.hours().count(),
                            converted.minutes().count(),
                            converted.seconds().count(),
-                           msecs.count());
+                           msecs / 1ms);
     }
 };
 
