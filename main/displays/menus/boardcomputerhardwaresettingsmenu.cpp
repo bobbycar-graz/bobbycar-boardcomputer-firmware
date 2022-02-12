@@ -40,6 +40,7 @@ constexpr char TEXT_GASMAX[] = "gasMax";
 constexpr char TEXT_BREMSMIN[] = "bremsMin";
 constexpr char TEXT_BREMSMAX[] = "bremsMax";
 constexpr char TEXT_DPADDEBOUNCE[] = "dpadDebounce";
+constexpr char TEXT_BUTTONDELAY[] = "button read delay";
 constexpr char TEXT_GAMETRAKCALIBRATE[] = "Gametrak calibrate";
 constexpr char TEXT_SETGAMETRAKXMIN[] = "Set gametrakXMin";
 constexpr char TEXT_SETGAMETRAKXMAX[] = "Set gametrakXMax";
@@ -113,6 +114,13 @@ using DPadDebounceChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
     espgui::StaticText<TEXT_DPADDEBOUNCE>,
     DPadDebounceAccessor,
+    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<BoardcomputerHardwareSettingsMenu>>,
+    espgui::BackActionInterface<espgui::SwitchScreenAction<BoardcomputerHardwareSettingsMenu>>
+>;
+using ButtonDelayChangeScreen = espgui::makeComponent<
+    BobbyChangeValueDisplay<uint16_t>,
+    espgui::StaticText<TEXT_BUTTONDELAY>,
+    ButtonDelayAccessor,
     espgui::ConfirmActionInterface<espgui::SwitchScreenAction<BoardcomputerHardwareSettingsMenu>>,
     espgui::BackActionInterface<espgui::SwitchScreenAction<BoardcomputerHardwareSettingsMenu>>
 >;
@@ -198,6 +206,7 @@ BoardcomputerHardwareSettingsMenu::BoardcomputerHardwareSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_BREMSMAX, BremsMaxAccessor>,         SwitchScreenAction<BremsMaxChangeScreen>>>();
 #if defined(FEATURE_DPAD) || defined(FEATURE_DPAD_3WIRESW) || defined(FEATURE_DPAD_5WIRESW) || defined(FEATURE_DPAD_5WIRESW_2OUT) || defined (FEATURE_DPAD_6WIRESW)
     constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_DPADDEBOUNCE, DPadDebounceAccessor>, SwitchScreenAction<DPadDebounceChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_BUTTONDELAY, ButtonDelayAccessor>, SwitchScreenAction<ButtonDelayChangeScreen>>>();
 #endif
 #ifdef FEATURE_GAMETRAK
     constructMenuItem<makeComponent<MenuItem, EmptyText,                                                    DummyAction>,

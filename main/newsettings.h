@@ -138,6 +138,7 @@ public:
     ConfigWrapper<uint16_t>    deadband           {20,                                     DoReset,  MinMaxValue<uint16_t, 0, 4095>,"deadband"            };
 
     ConfigWrapper<uint8_t>     dpadDebounce       {25,                                     DoReset,   {},                           "dpadDebounce"        };
+    ConfigWrapper<uint16_t>    buttonReadDelay    {1,                                      DoReset,   {},                           "buttonDelay"         };
 
     ConfigWrapper<uint8_t>     dpadMappingLeft    {INPUT_MAPPING_NONE,                     DoReset,   {},                           "dpadMapLeft"         };
     ConfigWrapper<uint8_t>     dpadMappingRight   {INPUT_MAPPING_NONE,                     DoReset,   {},                           "dpadMapRight"        };
@@ -432,6 +433,7 @@ public:
     x(deadband) \
     \
     x(dpadDebounce) \
+    x(buttonReadDelay) \
     \
     x(dpadMappingLeft) \
     x(dpadMappingRight) \

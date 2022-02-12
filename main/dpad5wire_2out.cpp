@@ -52,7 +52,11 @@ std::array<bool, 12> Helper<OUT1, OUT2, IN1, IN2, IN3>::read()
     pinMode(IN2, INPUT_PULLUP);
     pinMode(IN3, INPUT_PULLUP);
 
-    vPortYield();
+    if (configs.buttonReadDelay.value != 0) {
+        delayMicroseconds(configs.buttonReadDelay.value);
+    } else {
+        vPortYield();
+    }
 
     result[0] = digitalRead(IN1)==LOW;
     result[1] = digitalRead(IN2)==LOW;
@@ -64,7 +68,11 @@ std::array<bool, 12> Helper<OUT1, OUT2, IN1, IN2, IN3>::read()
     pinMode(IN2, INPUT_PULLDOWN);
     pinMode(IN3, INPUT_PULLDOWN);
 
-    vPortYield();
+    if (configs.buttonReadDelay.value != 0) {
+        delayMicroseconds(configs.buttonReadDelay.value);
+    } else {
+        vPortYield();
+    }
 
     result[3] = digitalRead(IN1);
     result[4] = digitalRead(IN2);
@@ -79,7 +87,11 @@ std::array<bool, 12> Helper<OUT1, OUT2, IN1, IN2, IN3>::read()
     pinMode(IN2, INPUT_PULLUP);
     pinMode(IN3, INPUT_PULLUP);
 
-    vPortYield();
+    if (configs.buttonReadDelay.value != 0) {
+        delayMicroseconds(configs.buttonReadDelay.value);
+    } else {
+        vPortYield();
+    }
 
     result[6] = digitalRead(IN1)==LOW;
     result[7] = digitalRead(IN2)==LOW;
@@ -91,7 +103,11 @@ std::array<bool, 12> Helper<OUT1, OUT2, IN1, IN2, IN3>::read()
     pinMode(IN2, INPUT_PULLDOWN);
     pinMode(IN3, INPUT_PULLDOWN);
 
-    vPortYield();
+    if (configs.buttonReadDelay.value != 0) {
+        delayMicroseconds(configs.buttonReadDelay.value);
+    } else {
+        vPortYield();
+    }
 
     result[9] = digitalRead(IN1);
     result[10] = digitalRead(IN2);
