@@ -101,8 +101,3 @@ set(BOBBYCAR_BUILDFLAGS
         -DFEATURE_ESPNOW
         -DFEATURE_IS_MIR_EGAL_OB_DER_WEBSERVER_KORREKT_ARBEITET
         )
-
-if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/ignore/lockscreen_plugin.cmake")
-    include("${CMAKE_CURRENT_SOURCE_DIR}/ignore/lockscreen_plugin.cmake")
-    message(WARNING "Including lockscreen_plugin")
-endif()
