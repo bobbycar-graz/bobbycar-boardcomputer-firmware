@@ -10,7 +10,7 @@
 
 namespace {
 //constexpr const char * const TAG = "CONFIG";
-}
+} // namespace
 
 std::string defaultHostname()
 {
