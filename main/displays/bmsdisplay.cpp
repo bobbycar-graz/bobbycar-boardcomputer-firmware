@@ -100,9 +100,11 @@ void BmsDisplay::buttonPressed(espgui::Button button)
 
     switch (button)
     {
-    case Button::Right: switchScreen<MainMenu>(); break;
+    using espgui::Button;
+    case Button::Right: pushScreen<MainMenu>(); break;
     case Button::Up: switchScreen<MetersDisplay>(); break;
-    case Button::Down: switchScreen<StatusDisplay>();
+    case Button::Down: switchScreen<StatusDisplay>(); break;
+    default:;
     }
 }
 #endif

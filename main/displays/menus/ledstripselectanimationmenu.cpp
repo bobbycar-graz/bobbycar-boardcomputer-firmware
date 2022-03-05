@@ -3,7 +3,7 @@
 // Local includes
 #include "actions/dummyaction.h"
 #include "actions/ledstripanimationactions.h"
-#include "actions/switchscreenaction.h"
+#include "actions/popscreenaction.h"
 #include "icons/back.h"
 #include "ledstripdefines.h"
 #include "ledstripmenu.h"
@@ -36,7 +36,7 @@ LedstripSelectAnimationMenu::LedstripSelectAnimationMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_ANIMATION_BETTERRAINBOW>,      LedStripSetAnimationAction<LedstripAnimation::BetterRainbow>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_ANIMATION_SPEEDSYNCANIMATION>, LedStripSetAnimationAction<LedstripAnimation::SpeedSync>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_ANIMATION_CUSTOMCOLOR>,        LedStripSetAnimationAction<LedstripAnimation::CustomColor>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                         SwitchScreenAction<LedstripMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                         PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string LedstripSelectAnimationMenu::text() const
@@ -46,7 +46,7 @@ std::string LedstripSelectAnimationMenu::text() const
 
 void LedstripSelectAnimationMenu::back()
 {
-    espgui::switchScreen<LedstripMenu>();
+    espgui::popScreen();
 }
 
 namespace {

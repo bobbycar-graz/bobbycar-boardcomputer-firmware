@@ -223,9 +223,7 @@ void StatusDisplay::buttonPressed(espgui::Button button)
     switch (button)
     {
     using espgui::Button;
-    case Button::Right:
-        switchScreen<MainMenu>();
-        break;
+    case Button::Right: pushScreen<MainMenu>(); break;
     case Button::Up:
 #ifdef FEATURE_BMS
         switchScreen<BmsDisplay>();
@@ -233,11 +231,8 @@ void StatusDisplay::buttonPressed(espgui::Button button)
         switchScreen<MetersDisplay>();
 #endif
         break;
-    case Button::Down:
-        switchScreen<MetersDisplay>();
-        break;
-    default:
-        break;
+    case Button::Down: switchScreen<MetersDisplay>(); break;
+    default:;
     }
 }
 

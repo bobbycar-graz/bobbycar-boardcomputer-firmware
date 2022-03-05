@@ -3,7 +3,8 @@
 // 3rdparty lib includes
 #include <changevaluedisplay.h>
 #include <menuitem.h>
-#include <actions/switchscreenaction.h>
+#include <actions/pushscreenaction.h>
+#include <actions/popscreenaction.h>
 #include <icons/back.h>
 #include <textwithvaluehelper.h>
 
@@ -14,7 +15,6 @@
 #include "accessors/settingsaccessors.h"
 #include "accessors/globalaccessors.h"
 #include "actions/tempomatmodeapplycurrentpeedaction.h"
-#include "displays/menus/modessettingsmenu.h"
 
 namespace {
 constexpr char TEXT_TEMPOMATMODESETTINGS[] = "Tempomat mode settings";
@@ -27,16 +27,16 @@ using TempomatModeCruiseMotTgtChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
     espgui::StaticText<TEXT_NCRUISEMOTTGT>,
     TempomatModeCruiseMotTgtAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<TempomatModeSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<TempomatModeSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 
 using TempomatModeModelModeChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<UnifiedModelMode>,
     espgui::StaticText<TEXT_MODELMODE>,
     TempomatModeModelModeAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<TempomatModeSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<TempomatModeSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 } // namespace
 
@@ -45,9 +45,9 @@ using namespace espgui;
 TempomatModeSettingsMenu::TempomatModeSettingsMenu()
 {
     constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_APPLY, AvgSpeedAccessor>, TempomatModeApplyCurrentSpeedAction>>();
-    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_NCRUISEMOTTGT, TempomatModeCruiseMotTgtAccessor>, SwitchScreenAction<TempomatModeModelModeChangeScreen>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MODELMODE>, SwitchScreenAction<TempomatModeModelModeChangeScreen>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,      SwitchScreenAction<ModesSettingsMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_NCRUISEMOTTGT, TempomatModeCruiseMotTgtAccessor>, PushScreenAction<TempomatModeModelModeChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MODELMODE>, PushScreenAction<TempomatModeModelModeChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,      PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string TempomatModeSettingsMenu::text() const
@@ -57,5 +57,5 @@ std::string TempomatModeSettingsMenu::text() const
 
 void TempomatModeSettingsMenu::back()
 {
-    switchScreen<ModesSettingsMenu>();
+    popScreen();
 }

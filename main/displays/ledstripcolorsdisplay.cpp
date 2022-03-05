@@ -7,19 +7,16 @@
 #include <TFT_eSPI.h>
 #include <cpputils.h>
 #include <menuitem.h>
-#include <actions/switchscreenaction.h>
 #include <actioninterface.h>
 #include <tftinstance.h>
 #include <screenmanager.h>
+#include <actions/dummyaction.h>
 
 // local includes
-#include "menudisplay.h"
 #include "utils.h"
 #include "icons/back.h"
 #include "icons/bobbycar.h"
-#include "actions/dummyaction.h"
 #include "globals.h"
-#include "displays/menus/ledstripmenu.h"
 
 #ifdef FEATURE_LEDSTRIP
 namespace {
@@ -102,7 +99,7 @@ void LedstripColorsDisplay::buttonPressed(espgui::Button button)
     case Button::Left:
         if(!state_select_color)
         {
-            espgui::switchScreen<LedstripMenu>();
+            espgui::popScreen();
         }
         else
         {

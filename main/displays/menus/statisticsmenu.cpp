@@ -3,13 +3,12 @@
 // 3rdparty lib includes
 #include <menuitem.h>
 #include "actions/dummyaction.h"
-#include "actions/switchscreenaction.h"
+#include "actions/popscreenaction.h"
 #include "actioninterface.h"
 #include "fmt/core.h"
 #include "icons/back.h"
 
 // local includes
-#include "mainmenu.h"
 #include "utils.h"
 #include "icons/time.h"
 #include "icons/reboot.h"
@@ -173,7 +172,7 @@ StatisticsMenu::StatisticsMenu()
     constructMenuItem<makeComponent<MenuItem, EmptyText,                           DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_STATSSAVE>,          SaveKilometersAction, StaticMenuItemIcon<&bobbyicons::update>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_STATSCLEAR>,         ClearCurrentStatsAction, StaticMenuItemIcon<&bobbyicons::reboot>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,               SwitchScreenAction<MainMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,               PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string StatisticsMenu::text() const
@@ -183,5 +182,5 @@ std::string StatisticsMenu::text() const
 
 void StatisticsMenu::back()
 {
-    espgui::switchScreen<MainMenu>();
+    espgui::popScreen();
 }

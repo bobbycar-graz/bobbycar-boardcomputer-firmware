@@ -3,7 +3,8 @@
 // 3rdparty lib includes
 #include "changevaluedisplay.h"
 #include "menuitem.h"
-#include "actions/switchscreenaction.h"
+#include "actions/pushscreenaction.h"
+#include "actions/popscreenaction.h"
 #include "icons/back.h"
 
 // local includes
@@ -12,7 +13,6 @@
 #include "changevaluedisplay_larsmmode_mode.h"
 #include "changevaluedisplay_unifiedmodelmode.h"
 #include "accessors/settingsaccessors.h"
-#include "displays/menus/modessettingsmenu.h"
 
 namespace {
 constexpr char TEXT_LARSMMODESETTINGS[] = "Larsm mode settings";
@@ -25,22 +25,22 @@ using LarsmModeModelModeChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<UnifiedModelMode>,
     espgui::StaticText<TEXT_MODELMODE>,
     LarsmModeModelModeAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<LarsmModeSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<LarsmModeSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using LarsmModeModeChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<LarsmModeMode>,
     espgui::StaticText<TEXT_SETMODE>,
     LarsmModeModeAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<LarsmModeSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<LarsmModeSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using LarsmModeIterationsChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
     espgui::StaticText<TEXT_SETITERATIONS>,
     LarsmModeIterationsAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<LarsmModeSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<LarsmModeSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 } // namespace
 
@@ -48,10 +48,10 @@ using namespace espgui;
 
 LarsmModeSettingsMenu::LarsmModeSettingsMenu()
 {
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MODELMODE>,     SwitchScreenAction<LarsmModeModelModeChangeDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETMODE>,       SwitchScreenAction<LarsmModeModeChangeDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETITERATIONS>, SwitchScreenAction<LarsmModeIterationsChangeDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,          SwitchScreenAction<ModesSettingsMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MODELMODE>,     PushScreenAction<LarsmModeModelModeChangeDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETMODE>,       PushScreenAction<LarsmModeModeChangeDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SETITERATIONS>, PushScreenAction<LarsmModeIterationsChangeDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,          PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string LarsmModeSettingsMenu::text() const
@@ -61,5 +61,5 @@ std::string LarsmModeSettingsMenu::text() const
 
 void LarsmModeSettingsMenu::back()
 {
-    switchScreen<ModesSettingsMenu>();
+    popScreen();
 }
