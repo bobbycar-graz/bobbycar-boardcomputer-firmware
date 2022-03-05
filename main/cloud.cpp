@@ -95,8 +95,8 @@ void cloudCollect()
         cloudBuffer += ',';
 
     cloudBuffer += fmt::format("[{},{},{}",
-                      std::chrono::milliseconds{espchrono::millis_clock::now().time_since_epoch()}.count(),
-                      std::chrono::milliseconds{espchrono::utc_clock::now().time_since_epoch()}.count(),
+                        std::chrono::floor<std::chrono::milliseconds>(espchrono::millis_clock::now().time_since_epoch()).count(),
+                        std::chrono::floor<std::chrono::milliseconds>(espchrono::utc_clock::now().time_since_epoch()).count(),
                       heap_caps_get_free_size(MALLOC_CAP_INTERNAL|MALLOC_CAP_8BIT));
     if (wifi_stack::get_sta_status() == wifi_stack::WiFiStaStatus::CONNECTED)
     {

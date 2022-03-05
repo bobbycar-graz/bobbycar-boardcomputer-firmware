@@ -177,13 +177,13 @@ void DefaultMode::update()
                 {
                     if (m_lastPwm < pwm && profileSettings.defaultMode.enableSmoothingUp)
                     {
-                        pwm = std::min(pwm, m_lastPwm + (profileSettings.defaultMode.smoothing * std::chrono::milliseconds{now - m_lastTime}.count() / 100.f));
+                        pwm = std::min(pwm, m_lastPwm + (profileSettings.defaultMode.smoothing * std::chrono::floor<std::chrono::milliseconds>(now - m_lastTime).count() / 100.f));
                         if (pwm < 1000.)
                             pwm = 1000.;
                     }
                     else if (m_lastPwm > pwm && profileSettings.defaultMode.enableSmoothingDown)
                     {
-                        pwm = std::max(pwm, m_lastPwm - (profileSettings.defaultMode.smoothing * std::chrono::milliseconds{now - m_lastTime}.count() / 100.f));
+                        pwm = std::max(pwm, m_lastPwm - (profileSettings.defaultMode.smoothing * std::chrono::floor<std::chrono::milliseconds>(now - m_lastTime).count() / 100.f));
                     }
                 }
             }
@@ -201,7 +201,7 @@ void DefaultMode::update()
                         auto difference_to_target = std::abs(pwm-m_lastPwm);
                         effective_smoothing *= std::max((difference_to_target / 500),0.5f);
 
-                        pwm = std::min(pwm, m_lastPwm + (effective_smoothing * std::chrono::milliseconds{now - m_lastTime}.count() / 100.f));
+                        pwm = std::min(pwm, m_lastPwm + (effective_smoothing * std::chrono::floor<std::chrono::milliseconds>(now - m_lastTime).count() / 100.f));
                     }
                     else if (m_lastPwm > pwm && profileSettings.defaultMode.enableFieldWeakSmoothingDown)
                     {
@@ -209,7 +209,7 @@ void DefaultMode::update()
                         auto difference_to_target = std::abs(pwm-m_lastPwm);
                         effective_smoothing *= std::max((difference_to_target / 500),0.5f);
 
-                        pwm = std::max(pwm, m_lastPwm - (effective_smoothing * std::chrono::milliseconds{now - m_lastTime}.count() / 100.f));
+                        pwm = std::max(pwm, m_lastPwm - (effective_smoothing * std::chrono::floor<std::chrono::milliseconds>(now - m_lastTime).count() / 100.f));
                     }
                 }
             }

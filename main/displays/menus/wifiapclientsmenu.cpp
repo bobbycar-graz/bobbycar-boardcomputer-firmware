@@ -134,7 +134,7 @@ std::string WifiApClientMenuItem::text() const
     return fmt::format("{}{}&c {}",
                        rssiToColor(m_info.rssi),
                        m_info.rssi,
-                       (std::chrono::milliseconds{espchrono::millis_clock::now().time_since_epoch()} % 4000ms) < 2000ms ?
+                       (std::chrono::floor<std::chrono::milliseconds>(espchrono::millis_clock::now().time_since_epoch()) % 4000ms) < 2000ms ?
                            wifi_stack::toString(wifi_stack::mac_t{m_info.mac}) :
                            wifi_stack::toString(m_ip)
                        );

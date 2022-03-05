@@ -79,7 +79,7 @@ void calculateStatistics()
             {
                 saveTotal = true;
             }
-            drivingStatistics.currentDrivingTime += duration;
+            drivingStatistics.currentDrivingTime += std::chrono::floor<typeof(drivingStatistics.currentDrivingTime)>(duration);
 
             float avgVoltage = 0;
             for (auto &controller : controllers)
