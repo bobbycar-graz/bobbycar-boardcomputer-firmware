@@ -1,5 +1,5 @@
 #if defined(FEATURE_GARAGE) && defined (FEATURE_ESPNOW)
-#include "garagenmenu.h"
+#include "garagemenu.h"
 
 // 3rd party libs
 #include <icons/back.h>
@@ -9,8 +9,7 @@
 #include <menuitem.h>
 
 // local includes
-#include "actions/switchscreenaction.h"
-#include "displays/menus/mainmenu.h"
+#include "actions/popscreenaction.h"
 #include "espnowfunctions.h"
 #include "globals.h"
 #include "newsettings.h"
@@ -43,7 +42,7 @@ GarageMenu::GarageMenu()
         menuitem.setTitle(wirelessDoor.doorId.value);
     }
 
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<MainMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string GarageMenu::text() const
@@ -53,7 +52,7 @@ std::string GarageMenu::text() const
 
 void GarageMenu::back()
 {
-    espgui::switchScreen<MainMenu>();
+    espgui::popScreen();
 }
 
 namespace {

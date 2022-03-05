@@ -3,7 +3,7 @@
 // 3rdparty lib includes
 #include <menuitem.h>
 #include <icons/back.h>
-#include <actions/switchscreenaction.h>
+#include <actions/popscreenaction.h>
 #include <actioninterface.h>
 #include <actions/dummyaction.h>
 
@@ -57,7 +57,7 @@ BatteryTypeMenu::BatteryTypeMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BATTERY_TYPE_MH1>,  BatterySelectTypeAction<BatteryCellType::MH1>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BATTERY_TYPE_VTC5>, BatterySelectTypeAction<BatteryCellType::VTC5>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BATTERY_TYPE_BAK_25R>, BatterySelectTypeAction<BatteryCellType::BAK_25R>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,              SwitchScreenAction<MainMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,              PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string BatteryTypeMenu::text() const
@@ -67,5 +67,5 @@ std::string BatteryTypeMenu::text() const
 
 void BatteryTypeMenu::back()
 {
-    espgui::switchScreen<BatteryMenu>();
+    espgui::popScreen();
 }

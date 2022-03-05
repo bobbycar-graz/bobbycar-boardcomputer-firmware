@@ -98,7 +98,7 @@ set(headers
     displays/menus/extrabuttoncalibratemenu.h
     displays/menus/feedbackdebugmenu.h
     displays/menus/gametrakmodesettingsmenu.h
-    displays/menus/garagenmenu.h
+    displays/menus/garagemenu.h
     displays/menus/graphsmenu.h
     displays/menus/greenpassmenu.h
     displays/menus/handbremssettingsmenu.h
@@ -328,7 +328,7 @@ set(sources
     displays/menus/extrabuttoncalibratemenu.cpp
     displays/menus/feedbackdebugmenu.cpp
     displays/menus/gametrakmodesettingsmenu.cpp
-    displays/menus/garagenmenu.cpp
+    displays/menus/garagemenu.cpp
     displays/menus/graphsmenu.cpp
     displays/menus/greenpassmenu.cpp
     displays/menus/handbremssettingsmenu.cpp

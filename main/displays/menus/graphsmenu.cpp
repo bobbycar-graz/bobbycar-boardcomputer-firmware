@@ -1,7 +1,8 @@
 #include "graphsmenu.h"
 
 // 3rdparty lib includes
-#include "actions/switchscreenaction.h"
+#include "actions/pushscreenaction.h"
+#include "actions/popscreenaction.h"
 #include "icons/back.h"
 #include "graphdisplay.h"
 #include "splitgraphdisplay.h"
@@ -11,7 +12,6 @@
 #include "displays/bobbysplitgraphdisplay.h"
 #include "utils.h"
 #include "statistics.h"
-#include "displays/menus/mainmenu.h"
 
 namespace {
 constexpr char TEXT_GRAPHS[] = "Graphs";
@@ -36,83 +36,83 @@ using GasGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<1>,
     espgui::StaticText<TEXT_GAS>,
     espgui::SingleGraphAccessor<GasStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using BremsGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<1>,
     espgui::StaticText<TEXT_BREMS>,
     espgui::SingleGraphAccessor<BremsStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using PotisGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<2>,
     espgui::StaticText<TEXT_POTIS>,
     espgui::DualGraphAccessor<GasStatistics, BremsStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using PotisSplitGraphDisplay = espgui::makeComponent<
     BobbySplitGraphDisplay<1, 1>,
     espgui::StaticText<TEXT_POTIS>,
     espgui::SingleTopGraphAccessor<GasStatistics>,
     espgui::SingleBottomGraphAccessor<BremsStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 
 using AvgSpeedGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<1>,
     espgui::StaticText<TEXT_AVGSPEED>,
     espgui::SingleGraphAccessor<AvgSpeedStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using AvgSpeedKmhGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<1>,
     espgui::StaticText<TEXT_AVGSPEEDKMH>,
     espgui::SingleGraphAccessor<AvgSpeedKmhStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 
 using SumCurrentGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<1>,
     espgui::StaticText<TEXT_SUMCURRENT>,
     espgui::SingleGraphAccessor<SumCurrentStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 
 using FrontVoltageGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<1>,
     espgui::StaticText<TEXT_FRONTVOLTAGE>,
     espgui::SingleGraphAccessor<FrontVoltageStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using BackVoltageGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<1>,
     espgui::StaticText<TEXT_BACKVOLTAGE>,
     espgui::SingleGraphAccessor<BackVoltageStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using VoltagesGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<2>,
     espgui::StaticText<TEXT_VOLTAGES>,
     espgui::DualGraphAccessor<FrontVoltageStatistics, BackVoltageStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using VoltagesSplitGraphDisplay = espgui::makeComponent<
     BobbySplitGraphDisplay<1, 1>,
     espgui::StaticText<TEXT_VOLTAGES>,
     espgui::SingleTopGraphAccessor<FrontVoltageStatistics>,
     espgui::SingleBottomGraphAccessor<BackVoltageStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 
 #ifdef FEATURE_BMS
@@ -120,29 +120,29 @@ using BmsVoltageGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<1>,
     espgui::StaticText<TEXT_BMSVOLTAGE>,
     espgui::SingleGraphAccessor<BmsVoltageStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using BmsCurrentGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<1>,
     espgui::StaticText<TEXT_BMSCURRENT>,
     espgui::SingleGraphAccessor<BmsCurrentStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using BmsPowerGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<1>,
     espgui::StaticText<TEXT_BMSPOWER>,
     espgui::SingleGraphAccessor<BmsPowerStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using SumCurrentsComparisonGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<2>,
     espgui::StaticText<TEXT_SUMCURRENTSCOMPARISON>,
     DualGraphAccessor<SumCurrentStatistics, BmsCurrentStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 #endif
 
@@ -157,42 +157,42 @@ using MotorCurrentsGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<4>,
     espgui::StaticText<TEXT_MOTORCURRENTS>,
     MotorCurrentsStatistics,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 
 using RssiGraphDisplay = espgui::makeComponent<
     BobbyGraphDisplay<1>,
     espgui::StaticText<TEXT_RSSI>,
     espgui::SingleGraphAccessor<RssiStatistics>,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<GraphsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<GraphsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 } // namespace
 
 GraphsMenu::GraphsMenu()
 {
     using namespace espgui;
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_GAS>,                   SwitchScreenAction<GasGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BREMS>,                 SwitchScreenAction<BremsGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_POTIS>,                 SwitchScreenAction<PotisGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_POTIS>,                 SwitchScreenAction<PotisSplitGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_AVGSPEED>,              SwitchScreenAction<AvgSpeedGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_AVGSPEEDKMH>,           SwitchScreenAction<AvgSpeedKmhGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SUMCURRENT>,            SwitchScreenAction<SumCurrentGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_FRONTVOLTAGE>,          SwitchScreenAction<FrontVoltageGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACKVOLTAGE>,           SwitchScreenAction<BackVoltageGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_VOLTAGES>,              SwitchScreenAction<VoltagesGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_VOLTAGES>,              SwitchScreenAction<VoltagesSplitGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_GAS>,                   PushScreenAction<GasGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BREMS>,                 PushScreenAction<BremsGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_POTIS>,                 PushScreenAction<PotisGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_POTIS>,                 PushScreenAction<PotisSplitGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_AVGSPEED>,              PushScreenAction<AvgSpeedGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_AVGSPEEDKMH>,           PushScreenAction<AvgSpeedKmhGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SUMCURRENT>,            PushScreenAction<SumCurrentGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_FRONTVOLTAGE>,          PushScreenAction<FrontVoltageGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACKVOLTAGE>,           PushScreenAction<BackVoltageGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_VOLTAGES>,              PushScreenAction<VoltagesGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_VOLTAGES>,              PushScreenAction<VoltagesSplitGraphDisplay>>>();
 #ifdef FEATURE_BMS
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BMSVOLTAGE>,            SwitchScreenAction<BmsVoltageGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BMSCURRENT>,            SwitchScreenAction<BmsCurrentGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BMSPOWER>,              SwitchScreenAction<BmsPowerGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SUMCURRENTSCOMPARISON>, SwitchScreenAction<SumCurrentsComparisonGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BMSVOLTAGE>,            PushScreenAction<BmsVoltageGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BMSCURRENT>,            PushScreenAction<BmsCurrentGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BMSPOWER>,              PushScreenAction<BmsPowerGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SUMCURRENTSCOMPARISON>, PushScreenAction<SumCurrentsComparisonGraphDisplay>>>();
 #endif
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MOTORCURRENTS>,         SwitchScreenAction<MotorCurrentsGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_RSSI>,                  SwitchScreenAction<RssiGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                  SwitchScreenAction<MainMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MOTORCURRENTS>,         PushScreenAction<MotorCurrentsGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_RSSI>,                  PushScreenAction<RssiGraphDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                  PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string GraphsMenu::text() const
@@ -202,5 +202,5 @@ std::string GraphsMenu::text() const
 
 void GraphsMenu::back()
 {
-    espgui::switchScreen<MainMenu>();
+    espgui::popScreen();
 }

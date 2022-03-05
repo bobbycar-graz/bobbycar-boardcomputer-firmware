@@ -18,7 +18,6 @@
 // local includes
 #include "globals.h"
 #include "ota.h"
-#include "displays/menus/otamenu.h"
 #include "newsettings.h"
 
 #ifdef FEATURE_OTA
@@ -109,7 +108,7 @@ void UpdateDisplay::buttonPressed(espgui::Button button)
     {
     using espgui::Button;
     case Button::Left:
-        espgui::switchScreen<OtaMenu>();
+        espgui::popScreen();
         break;
     case Button::Right:
         if (const auto result = triggerOta(configs.otaUrl.value); !result)

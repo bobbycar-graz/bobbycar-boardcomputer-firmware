@@ -3,7 +3,8 @@
 // 3rdparty lib includes
 #include "actioninterface.h"
 #include "actions/dummyaction.h"
-#include "actions/switchscreenaction.h"
+#include "actions/pushscreenaction.h"
+#include "actions/popscreenaction.h"
 
 // local includes
 #include "icons/back.h"
@@ -12,7 +13,6 @@
 #include "displays/menus/selectotabuildmenu.h"
 #include "displays/menus/selectbuildserverbranch.h"
 #include "displays/menus/selectbuildservermenu.h"
-#include "displays/menus/mainmenu.h"
 #include "displays/updatedisplay.h"
 
 #ifdef FEATURE_OTA
@@ -28,11 +28,11 @@ constexpr char TEXT_BACK[] = "Back";
 OtaMenu::OtaMenu()
 {
     using namespace espgui;
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECTBUILD>,             SwitchScreenAction<SelectBuildMenu>, StaticMenuItemIcon<&bobbyicons::presets>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECT_BRANCH>,           SwitchScreenAction<SelectBuildserverBranchMenu>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UPDATENOW>,               SwitchScreenAction<UpdateDisplay>, StaticMenuItemIcon<&bobbyicons::update>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECTBUILDSERVERMENU>,   SwitchScreenAction<SelectBuildServerMenu>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                    SwitchScreenAction<MainMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECTBUILD>,             PushScreenAction<SelectBuildMenu>, StaticMenuItemIcon<&bobbyicons::presets>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECT_BRANCH>,           PushScreenAction<SelectBuildserverBranchMenu>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_UPDATENOW>,               PushScreenAction<UpdateDisplay>, StaticMenuItemIcon<&bobbyicons::update>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECTBUILDSERVERMENU>,   PushScreenAction<SelectBuildServerMenu>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                    PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string OtaMenu::text() const
@@ -42,6 +42,6 @@ std::string OtaMenu::text() const
 
 void OtaMenu::back()
 {
-    espgui::switchScreen<MainMenu>();
+    espgui::popScreen();
 }
 #endif

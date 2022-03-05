@@ -10,10 +10,9 @@
 #include "actions/bmsturnoffchargeaction.h"
 #include "actions/bmsturnondischargeaction.h"
 #include "actions/bmsturnoffdischargeaction.h"
-#include "actions/switchscreenaction.h"
+#include "actions/popscreenaction.h"
 #include "bluetoothtexthelpers.h"
 #include "icons/back.h"
-#include "displays/menus/mainmenu.h"
 
 using namespace espgui;
 using namespace bluetoothtexthelpers;
@@ -27,11 +26,11 @@ BmsMenu::BmsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_TURNOFFCHARGE>,    BmsTurnOffChargeAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_TURNONDISCHARGE>,  BmsTurnOnDischargeAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_TURNOFFDISCHARGE>, BmsTurnOffDischargeAction>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,             SwitchScreenAction<MainMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,             PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 void BmsMenu::back()
 {
-    switchSreen<MainMenu>();
+    popSreen();
 }
 #endif

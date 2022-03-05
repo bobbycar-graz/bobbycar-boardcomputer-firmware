@@ -10,7 +10,6 @@
 // local includes
 #include "globals.h"
 #include "utils.h"
-#include "displays/menus/mainmenu.h"
 #include "displays/potiscalibratedisplay.h"
 #include "bobbybuttons.h"
 
@@ -100,7 +99,7 @@ void Lockscreen::redraw()
                 if (!gas || !brems || *gas > 200.f || *brems > 200.f)
                     espgui::switchScreen<PotisCalibrateDisplay>(true);
                 else
-                    espgui::switchScreen<MainMenu>();
+                    espgui::popScreen();
 #ifdef LOCKSCREEN_PLUGIN
 #pragma message "Activating Lockscreen Plugin"
 #include LOCKSCREEN_PLUGIN

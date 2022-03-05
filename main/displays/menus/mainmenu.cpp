@@ -23,7 +23,7 @@
 #include "displays/menus/greenpassmenu.h"
 #include "displays/lockscreen.h"
 #if defined(FEATURE_GARAGE) && defined (FEATURE_ESPNOW)
-#include "displays/menus/garagenmenu.h"
+#include "displays/menus/garagemenu.h"
 #endif
 #include "displays/menus/otamenu.h"
 #include "displays/poweroffdisplay.h"

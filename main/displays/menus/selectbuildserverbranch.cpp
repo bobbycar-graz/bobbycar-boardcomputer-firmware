@@ -3,14 +3,13 @@
 
 // 3rd party includes
 #include <espwifistack.h>
+#include "actions/dummyaction.h"
+#include "actions/popscreenaction.h"
+#include "icons/back.h"
 
 // local includes
-#include "actions/dummyaction.h"
-#include "actions/switchscreenaction.h"
 #include "buildserver.h"
-#include "displays/menus/otamenu.h"
 #include "globals.h"
-#include "icons/back.h"
 #include "icons/reboot.h"
 #include "utils.h"
 #include "newsettings.h"
@@ -87,7 +86,7 @@ SelectBuildserverBranchMenu::SelectBuildserverBranchMenu()
 
 #define ERR_MESSAGE(text)                                                                                                                       \
     constructMenuItem<makeComponent<MenuItem, StaticText<text>, DefaultFont, StaticColor<TFT_RED>, DummyAction>>();                             \
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>(); \
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>(); \
     return;
 
     if (count_available_buildserver() < 1)
@@ -146,14 +145,14 @@ void SelectBuildserverBranchMenu::update()
 
         constructMenuItem<makeComponent<MenuItem, EmptyText, DummyAction>>();
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SELECT_BRANCH_CLEAR>, ClearBranchAction, StaticMenuItemIcon<&bobbyicons::reboot>>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
     }
     Base::update();
 }
 
 void SelectBuildserverBranchMenu::back()
 {
-    espgui::switchScreen<OtaMenu>();
+    espgui::popScreen();
 }
 
 void SelectBuildserverBranchMenu::buildMenuRequestError(std::string error)
@@ -162,6 +161,6 @@ void SelectBuildserverBranchMenu::buildMenuRequestError(std::string error)
 
     auto &item = constructMenuItem<makeComponent<MenuItem, ChangeableText, DefaultFont, StaticColor<TFT_RED>, DummyAction>>();
     item.setTitle(error);
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 #endif

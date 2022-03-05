@@ -4,14 +4,13 @@
 #include <esp_log.h>
 
 // 3rdparty lib includes
-#include <actions/switchscreenaction.h>
+#include <actions/popscreenaction.h>
 #include <fmt/core.h>
 #include <icons/back.h>
 #include <actions/dummyaction.h>
 
 // local includes
 #include "buildserver.h"
-#include "displays/menus/otamenu.h"
 #include "utils.h"
 #include "newsettings.h"
 
@@ -72,7 +71,7 @@ SelectBuildServerMenu::SelectBuildServerMenu()
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_NOBUILDSERVERCONFIGURED>, DefaultFont, StaticColor<TFT_RED>, DummyAction>>();
     }
 
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string SelectBuildServerMenu::text() const
@@ -82,6 +81,6 @@ std::string SelectBuildServerMenu::text() const
 
 void SelectBuildServerMenu::back()
 {
-    espgui::switchScreen<OtaMenu>();
+    espgui::popScreen();
 }
 #endif

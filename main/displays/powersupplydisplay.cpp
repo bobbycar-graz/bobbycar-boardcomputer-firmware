@@ -3,11 +3,9 @@
 // 3rdparty lib includes
 #include <tftinstance.h>
 #include <screenmanager.h>
-#include "actions/switchscreenaction.h"
 
 // local includes
 #include "globals.h"
-#include "displays/menus/mainmenu.h"
 
 #if defined(FEATURE_CAN) && defined(FEATURE_POWERSUPPLY)
 void PowerSupplyDisplay::initScreen()
@@ -42,7 +40,7 @@ void PowerSupplyDisplay::buttonPressed(espgui::Button button)
     using espgui::Button;
     case Button::Left:
     case Button::Right:
-        espgui::switchScreen<MainMenu>();
+        espgui::popScreen();
         break;
     default:;
     }

@@ -3,11 +3,10 @@
 #ifdef FEATURE_MOSFETS
 // 3rdparty lib includes
 #include "accessorinterface.h"
-#include "actions/switchscreenaction.h"
+#include "actions/popscreenaction.h"
 #include "icons/back.h"
 
 // local includes
-#include "displays/menus/mainmenu.h"
 #include "bobbycheckbox.h"
 #include "types.h"
 
@@ -37,7 +36,7 @@ MosfetsMenu::MosfetsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MOSFET0>, BobbyCheckbox, Mosfet0Accessor>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MOSFET1>, BobbyCheckbox, Mosfet1Accessor>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MOSFET2>, BobbyCheckbox, Mosfet2Accessor>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,    SwitchScreenAction<MainMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,    PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string MosfetsMenu::text() const
@@ -47,7 +46,7 @@ std::string MosfetsMenu::text() const
 
 void MosfetsMenu::back()
 {
-    espgui::switchScreen<MainMenu>();
+    espgui::popScreen();
 }
 
 #endif

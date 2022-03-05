@@ -4,14 +4,13 @@
 #include <TFT_eSPI.h>
 #include "esp_log.h"
 #include "fmt/core.h"
+#include "actions/popscreenaction.h"
+#include "actions/dummyaction.h"
+#include "icons/back.h"
 
 // local includes
 #include "buildserver.h"
 #include "utils.h"
-#include "actions/dummyaction.h"
-#include "actions/switchscreenaction.h"
-#include "icons/back.h"
-#include "displays/menus/otamenu.h"
 #include "globals.h"
 #include "newsettings.h"
 
@@ -60,12 +59,12 @@ SelectBuildMenu::SelectBuildMenu()
     if (buildserver::count_available_buildserver() < 1)
     {
         MESSAGE(TEXT_OTA_NOBUILDSERVERAVAILABLE);
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
     }
     else if (configs.otaServerUrl.value.empty())
     {
         MESSAGE(TEXT_OTA_NOBUILDSERVERSELECTED);
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
     }
     else
     {
@@ -73,7 +72,7 @@ SelectBuildMenu::SelectBuildMenu()
         if (staStatus != wifi_stack::WiFiStaStatus::CONNECTED)
         {
             MESSAGE(TEXT_OTA_NOCONNECTION);
-            constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+            constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
         }
         else
         {
@@ -86,7 +85,7 @@ SelectBuildMenu::SelectBuildMenu()
                 auto hash = filename.substr(0, filename.length() - 4);
                 menuitem.setHash(hash);
                 menuitem.setUrl(serverUrl);
-                constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+                constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
             }
             else
             {
@@ -137,18 +136,18 @@ void SelectBuildMenu::buildMenuFromJson()
         menuitem.setHash(hash);
         menuitem.setUrl(fmt::format(url_for_hashes, hash));
     }
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 void SelectBuildMenu::buildMenuRequestError(std::string error)
 {
     auto &item = constructMenuItem<makeComponent<MenuItem, ChangeableText, DefaultFont, StaticColor<TFT_RED>, DummyAction>>();
     item.setTitle(error);
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<OtaMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 void SelectBuildMenu::back()
 {
-    switchScreen<OtaMenu>();
+    popScreen();
 }
 #endif
