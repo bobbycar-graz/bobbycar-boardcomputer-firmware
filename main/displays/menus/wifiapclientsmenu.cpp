@@ -8,7 +8,7 @@
 // 3rdparty lib includes
 #include <menuitem.h>
 #include <actions/dummyaction.h>
-#include <actions/switchscreenaction.h>
+#include <actions/popscreenaction.h>
 #include <icons/back.h>
 #include <screenmanager.h>
 #include <fmt/format.h>
@@ -49,12 +49,12 @@ private:
 WifiApClientsMenu::WifiApClientsMenu() :
     espgui::ChangeableText{"AP Clients"s}
 {
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<WifiApSettingsMenu>, StaticMenuItemIcon<&icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&icons::back>>>();
 }
 
 void WifiApClientsMenu::back()
 {
-    switchScreen<WifiApSettingsMenu>();
+    popScreen();
 }
 
 void WifiApClientsMenu::start()

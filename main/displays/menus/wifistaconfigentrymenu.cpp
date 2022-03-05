@@ -3,7 +3,8 @@
 // 3rdparty lib includes
 #include <menuitem.h>
 #include <actions/dummyaction.h>
-#include <actions/switchscreenaction.h>
+#include <actions/pushscreenaction.h>
+#include <actions/popscreenaction.h>
 #include <icons/back.h>
 #include <screenmanager.h>
 #include <changevaluedisplay.h>
@@ -48,8 +49,8 @@ class StaChangeScreen :
 public:
     explicit StaChangeScreen(int index) : Taccessor{index}, m_index{index} {}
     std::string text() const override { return fmt::format(Ttitle, m_index + 1); }
-    void confirm() override { espgui::switchScreen<WifiStaConfigEntryMenu>(m_index); }
-    void back() override { espgui::switchScreen<WifiStaConfigEntryMenu>(m_index); }
+    void confirm() override { espgui::popScreen(); }
+    void back() override { espgui::popScreen(); }
 
 private:
     const int m_index;
@@ -66,7 +67,7 @@ public:
         m_index{index}
     {}
 
-    void triggered() override { espgui::switchScreen<TchangeScreen>(m_index); }
+    void triggered() override { espgui::pushScreen<TchangeScreen>(m_index); }
 
 private:
     const int m_index;
@@ -123,7 +124,7 @@ WifiStaConfigEntryMenu::WifiStaConfigEntryMenu(int index) :
     constructMenuItem<StaStaticDns1MenuItem>(index);
     constructMenuItem<StaStaticDns2MenuItem>(index);
     constructMenuItem<makeComponentArgs<MenuItem, ClearConfigAction,                 StaticText<TEXT_DELETECONFIG>>>(index);
-    constructMenuItem<makeComponent<MenuItem,     StaticText<TEXT_BACK>,             SwitchScreenAction<WifiStaConfigsMenu>, StaticMenuItemIcon<&icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem,     StaticText<TEXT_BACK>,             PopScreenAction, StaticMenuItemIcon<&icons::back>>>();
 }
 
 std::string WifiStaConfigEntryMenu::text() const
@@ -133,7 +134,7 @@ std::string WifiStaConfigEntryMenu::text() const
 
 void WifiStaConfigEntryMenu::back()
 {
-    espgui::switchScreen<WifiStaConfigsMenu>();
+    espgui::popScreen();
 }
 
 namespace {

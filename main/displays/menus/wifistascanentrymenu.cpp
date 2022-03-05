@@ -9,7 +9,8 @@
 // 3rdparty lib includes
 #include <menuitem.h>
 #include <actions/dummyaction.h>
-#include <actions/switchscreenaction.h>
+#include <actions/pushscreenaction.h>
+#include <actions/popscreenaction.h>
 #include <icons/back.h>
 #include <screenmanager.h>
 #include <fmt/format.h>
@@ -97,7 +98,7 @@ WifiStaScanEntryMenu::WifiStaScanEntryMenu(const wifi_ap_record_t &info) :
                                                                                                 default: return std::to_string(m_info.country.policy);
                                                                                                 }
                                                                                             }()));
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<WifiStaScanMenu>, StaticMenuItemIcon<&icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&icons::back>>>();
 }
 
 std::string WifiStaScanEntryMenu::text() const
@@ -107,7 +108,7 @@ std::string WifiStaScanEntryMenu::text() const
 
 void WifiStaScanEntryMenu::back()
 {
-    switchScreen<WifiStaScanMenu>();
+    popScreen();
 }
 
 namespace {
@@ -128,7 +129,7 @@ void SaveNewWifiConfigAction::triggered()
         return;
     }
 
-    switchScreen<WifiStaConfigEntryMenu>(std::distance(std::begin(configs.wifi_configs), iter));
+    pushScreen<WifiStaConfigEntryMenu>(std::distance(std::begin(configs.wifi_configs), iter));
 }
 
 } // namespace

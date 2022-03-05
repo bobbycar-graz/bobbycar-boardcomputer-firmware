@@ -6,7 +6,8 @@
 // 3rdparty lib includes
 #include <menuitem.h>
 #include <actions/dummyaction.h>
-#include <actions/switchscreenaction.h>
+#include <actions/pushscreenaction.h>
+#include <actions/popscreenaction.h>
 #include <icons/back.h>
 #include <screenmanager.h>
 #include <espwifistack.h>
@@ -56,48 +57,48 @@ using ApSsidChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<std::string>,
     espgui::StaticText<TEXT_SSID>,
     WifiApSsidAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<WifiApSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<WifiApSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 
 using ApKeyChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<std::string>,
     espgui::StaticText<TEXT_KEY>,
     WifiApKeyAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<WifiApSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<WifiApSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 
 using ApIpChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<wifi_stack::ip_address_t>,
     espgui::StaticText<TEXT_IP>,
     WifiApIpAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<WifiApSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<WifiApSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 
 using ApMaskChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<wifi_stack::ip_address_t>,
     espgui::StaticText<TEXT_MASK>,
     WifiApMaskAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<WifiApSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<WifiApSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 
 using ApChannelChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
     espgui::StaticText<TEXT_CHANNEL>,
     WifiApChannelAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<WifiApSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<WifiApSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 
 using ApAuthmodeChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<wifi_auth_mode_t>,
     espgui::StaticText<TEXT_AUTHMODE>,
     WifiApAuthmodeAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<WifiApSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<WifiApSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 } // namespace
 
@@ -105,16 +106,16 @@ WifiApSettingsMenu::WifiApSettingsMenu()
 {
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_ENABLED>,            BobbyCheckbox, WifiApEnabledAccessor>>();
   //constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_DISABLEWHENONLINE>,  BobbyCheckbox, WifiApDisableWhenOnlineAccessor>>();
-    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_SSID_FORMATTED, WifiApSsidAccessor>,         SwitchScreenAction<ApSsidChangeScreen>>>();
-    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_KEY_FORMATTED, WifiApKeyAccessor>,           SwitchScreenAction<ApKeyChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_SSID_FORMATTED, WifiApSsidAccessor>,         PushScreenAction<ApSsidChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_KEY_FORMATTED, WifiApKeyAccessor>,           PushScreenAction<ApKeyChangeScreen>>>();
     constructMenuItem<makeComponent<MenuItem, WifiApMacText,                       DummyAction>>();
-    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_IP_FORMATTED, WifiApIpAccessor>,             SwitchScreenAction<ApIpChangeScreen>>>();
-    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_MASK_FORMATTED, WifiApMaskAccessor>,         SwitchScreenAction<ApMaskChangeScreen>>>();
-    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_CHANNEL_FORMATTED, WifiApChannelAccessor>,   SwitchScreenAction<ApChannelChangeScreen>>>();
-    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_AUTHMODE_FORMATTED, WifiApAuthmodeAccessor>, SwitchScreenAction<ApAuthmodeChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_IP_FORMATTED, WifiApIpAccessor>,             PushScreenAction<ApIpChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_MASK_FORMATTED, WifiApMaskAccessor>,         PushScreenAction<ApMaskChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_CHANNEL_FORMATTED, WifiApChannelAccessor>,   PushScreenAction<ApChannelChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_AUTHMODE_FORMATTED, WifiApAuthmodeAccessor>, PushScreenAction<ApAuthmodeChangeScreen>>>();
     constructMenuItem<makeComponent<MenuItem, WifiApHostnameText,                                                   DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, WifiApClientsText,                                                    WifiApClientsAction>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<NetworkSettingsMenu>, StaticMenuItemIcon<&icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&icons::back>>>();
 }
 
 std::string WifiApSettingsMenu::text() const
@@ -124,7 +125,7 @@ std::string WifiApSettingsMenu::text() const
 
 void WifiApSettingsMenu::back()
 {
-    switchScreen<NetworkSettingsMenu>();
+    popScreen();
 }
 
 namespace {
@@ -132,7 +133,7 @@ void WifiApClientsAction::triggered()
 {
     wifi_sta_list_t clients;
     if (const auto result = esp_wifi_ap_get_sta_list(&clients); result == ESP_OK)
-        switchScreen<WifiApClientsMenu>();
+        pushScreen<WifiApClientsMenu>();
     else
         ESP_LOGW(TAG, "esp_wifi_ap_get_sta_list() failed with %s", esp_err_to_name(result));
 }

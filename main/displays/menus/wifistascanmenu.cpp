@@ -5,7 +5,8 @@
 
 // 3rdparty lib includes
 #include <menuitem.h>
-#include <actions/switchscreenaction.h>
+#include <actions/pushscreenaction.h>
+#include <actions/popscreenaction.h>
 #include <icons/back.h>
 #include <screenmanager.h>
 #include <fmt/format.h>
@@ -17,7 +18,6 @@
 // local includes
 #include "actions/wifistascanaction.h"
 #include "actions/wifistascanclearaction.h"
-#include "wifistasettingsmenu.h"
 #include "wifiguiutils.h"
 #include "wifistascanentrymenu.h"
 #include "newsettings.h"
@@ -50,7 +50,7 @@ WifiStaScanMenu::WifiStaScanMenu()
 {
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_STARTSCAN>, WifiStaScanAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_CLEARRESULTS>, WifiStaScanClearAction>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<WifiStaSettingsMenu>, StaticMenuItemIcon<&icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&icons::back>>>();
 }
 
 std::string WifiStaScanMenu::text() const
@@ -77,7 +77,7 @@ std::string WifiStaScanMenu::text() const
 
 void WifiStaScanMenu::back()
 {
-    switchScreen<WifiStaSettingsMenu>();
+    popScreen();
 }
 
 void WifiStaScanMenu::start()
@@ -124,7 +124,7 @@ namespace {
 
 void WifiStaScanMenuItem::triggered()
 {
-    switchScreen<WifiStaScanEntryMenu>(m_info);
+    pushScreen<WifiStaScanEntryMenu>(m_info);
 }
 
 std::string WifiStaScanMenuItem::text() const

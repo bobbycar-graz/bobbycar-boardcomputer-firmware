@@ -3,7 +3,8 @@
 // 3rdparty lib includes
 #include <menuitem.h>
 #include <actions/dummyaction.h>
-#include <actions/switchscreenaction.h>
+#include <actions/pushscreenaction.h>
+#include <actions/popscreenaction.h>
 #include <icons/back.h>
 #include <screenmanager.h>
 #include <fmt/core.h>
@@ -37,7 +38,7 @@ WifiStaConfigsMenu::WifiStaConfigsMenu()
 {
     for (int i = 0; i < configs.wifi_configs.size(); i++)
         constructMenuItem<WifiStaConfigurationMenuItem>(i);
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,           SwitchScreenAction<WifiStaSettingsMenu>, StaticMenuItemIcon<&icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,           PopScreenAction, StaticMenuItemIcon<&icons::back>>>();
 }
 
 std::string WifiStaConfigsMenu::text() const
@@ -47,14 +48,14 @@ std::string WifiStaConfigsMenu::text() const
 
 void WifiStaConfigsMenu::back()
 {
-    switchScreen<WifiStaSettingsMenu>();
+    popScreen();
 }
 
 namespace {
 
 void WifiStaConfigurationMenuItem::triggered()
 {
-    switchScreen<WifiStaConfigEntryMenu>(m_index);
+    pushScreen<WifiStaConfigEntryMenu>(m_index);
 }
 
 std::string WifiStaConfigurationMenuItem::text() const

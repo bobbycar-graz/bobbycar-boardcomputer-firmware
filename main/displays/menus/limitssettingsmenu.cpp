@@ -3,7 +3,8 @@
 // 3rdparty lib includes
 #include <changevaluedisplay.h>
 #include <menuitem.h>
-#include <actions/switchscreenaction.h>
+#include <actions/pushscreenaction.h>
+#include <actions/popscreenaction.h>
 #include <icons/back.h>
 #include <textwithvaluehelper.h>
 
@@ -11,7 +12,6 @@
 #include "displays/bobbychangevaluedisplay.h"
 #include "utils.h"
 #include "accessors/settingsaccessors.h"
-#include "displays/menus/settingsmenu.h"
 
 namespace {
 constexpr char TEXT_LIMITSSETTINGS[] = "Limit settings";
@@ -27,43 +27,43 @@ using IMotMaxChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
     espgui::StaticText<TEXT_IMOTMAX>,
     IMotMaxAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<LimitsSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<LimitsSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using IDcMaxChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
     espgui::StaticText<TEXT_IDCMAX>,
     IDcMaxAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<LimitsSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<LimitsSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using NMotMaxKmhChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
     espgui::StaticText<TEXT_NMOTMAXKMH>,
     NMotMaxKmhAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<LimitsSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<LimitsSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using NMotMaxRpmChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
     espgui::StaticText<TEXT_NMOTMAX>,
     NMotMaxRpmAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<LimitsSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<LimitsSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using FieldWeakMaxChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
     espgui::StaticText<TEXT_FIELDWEAKMAX>,
     FieldWeakMaxAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<LimitsSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<LimitsSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using PhaseAdvMaxChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
     espgui::StaticText<TEXT_PHASEADVMAX>,
     PhaseAdvMaxAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<LimitsSettingsMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<LimitsSettingsMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 } // namespace
 
@@ -71,13 +71,13 @@ using namespace espgui;
 
 LimitsSettingsMenu::LimitsSettingsMenu()
 {
-    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_IMOTMAX, IMotMaxAccessor>,           SwitchScreenAction<IMotMaxChangeScreen>>>();
-    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_IDCMAX, IDcMaxAccessor>,             SwitchScreenAction<IDcMaxChangeScreen>>>();
-    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_NMOTMAXKMH, NMotMaxKmhAccessor>,     SwitchScreenAction<NMotMaxKmhChangeScreen>>>();
-    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_NMOTMAX, NMotMaxRpmAccessor>,        SwitchScreenAction<NMotMaxRpmChangeScreen>>>();
-    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_FIELDWEAKMAX, FieldWeakMaxAccessor>, SwitchScreenAction<FieldWeakMaxChangeScreen>>>();
-    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_PHASEADVMAX, PhaseAdvMaxAccessor>,   SwitchScreenAction<PhaseAdvMaxChangeScreen>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                                        SwitchScreenAction<SettingsMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_IMOTMAX, IMotMaxAccessor>,           PushScreenAction<IMotMaxChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_IDCMAX, IDcMaxAccessor>,             PushScreenAction<IDcMaxChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_NMOTMAXKMH, NMotMaxKmhAccessor>,     PushScreenAction<NMotMaxKmhChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_NMOTMAX, NMotMaxRpmAccessor>,        PushScreenAction<NMotMaxRpmChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_FIELDWEAKMAX, FieldWeakMaxAccessor>, PushScreenAction<FieldWeakMaxChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_PHASEADVMAX, PhaseAdvMaxAccessor>,   PushScreenAction<PhaseAdvMaxChangeScreen>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                                        PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string LimitsSettingsMenu::text() const
@@ -87,5 +87,5 @@ std::string LimitsSettingsMenu::text() const
 
 void LimitsSettingsMenu::back()
 {
-    switchScreen<SettingsMenu>();
+    popScreen();
 }

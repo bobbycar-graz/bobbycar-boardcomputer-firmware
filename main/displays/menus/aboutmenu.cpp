@@ -3,7 +3,7 @@
 // local includes
 #include "utils.h"
 #include "actions/dummyaction.h"
-#include "actions/switchscreenaction.h"
+#include "actions/popscreenaction.h"
 #include "icons/back.h"
 #include "esptexthelpers.h"
 #include "displays/menus/settingsmenu.h"
@@ -62,7 +62,7 @@ AboutMenu::AboutMenu()
     constructMenuItem<makeComponent<MenuItem, EspSketchSizeText,            StaticFont<2>, DisabledColor, DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, EspSketchMd5Text,             StaticFont<2>, DisabledColor, DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, EspFreeSketchSpaceText,       StaticFont<2>, DisabledColor, DummyAction>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,        SwitchScreenAction<SettingsMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,        PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string AboutMenu::text() const
@@ -72,5 +72,5 @@ std::string AboutMenu::text() const
 
 void AboutMenu::back()
 {
-    espgui::switchScreen<SettingsMenu>();
+    espgui::popScreen();
 }
