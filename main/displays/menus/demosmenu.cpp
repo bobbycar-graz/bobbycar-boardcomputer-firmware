@@ -2,13 +2,13 @@
 
 // 3rdparty lib includes
 #include "menuitem.h"
-#include "actions/switchscreenaction.h"
+#include "actions/pushscreenaction.h"
+#include "actions/popscreenaction.h"
 #include "icons/back.h"
 #include "displays/starfielddisplay.h"
 #include "displays/pingpongdisplay.h"
 #include "displays/spirodisplay.h"
 #include "displays/gameoflifedisplay.h"
-#include "displays/menus/mainmenu.h"
 
 // local includes
 #include "utils.h"
@@ -25,11 +25,11 @@ constexpr char TEXT_BACK[] = "Back";
 DemosMenu::DemosMenu()
 {
     using namespace espgui;
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_STARFIELD>,  SwitchScreenAction<StarfieldDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_PINGPONG>,   SwitchScreenAction<PingPongDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SPIRO>,      SwitchScreenAction<SpiroDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_GAMEOFLIFE>, SwitchScreenAction<GameOfLifeDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,       SwitchScreenAction<MainMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_STARFIELD>,  PushScreenAction<StarfieldDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_PINGPONG>,   PushScreenAction<PingPongDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SPIRO>,      PushScreenAction<SpiroDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_GAMEOFLIFE>, PushScreenAction<GameOfLifeDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,       PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string DemosMenu::text() const
@@ -39,5 +39,5 @@ std::string DemosMenu::text() const
 
 void DemosMenu::back()
 {
-    espgui::switchScreen<MainMenu>();
+    espgui::popScreen();
 }

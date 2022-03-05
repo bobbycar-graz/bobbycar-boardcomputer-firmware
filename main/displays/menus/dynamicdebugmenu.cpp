@@ -14,6 +14,8 @@
 #include <icons/back.h>
 #include <changevaluedisplay.h>
 #include <changevaluedisplay_bool.h>
+#include <actions/pushscreenaction.h>
+#include <actions/popscreenaction.h>
 
 // local includes
 #include "displays/bobbychangevaluedisplay.h"
@@ -90,8 +92,8 @@ using ToggleChangeValueDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<bool>,
     espgui::StaticText<TEXT_DEBUGTOGGLEMENU>,
     ToggleAccessor,
-    espgui::ConfirmActionInterface<espgui::SwitchScreenAction<DynamicDebugMenu>>,
-    espgui::BackActionInterface<espgui::SwitchScreenAction<DynamicDebugMenu>>
+    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
+    espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 
 class OpenPopupAction : public virtual espgui::ActionInterface
@@ -135,7 +137,7 @@ DynamicDebugMenu::DynamicDebugMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_STATICICON>,   StaticMenuItemIcon<&bobbyicons::lock>, DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_LOCKTOGGLE>,   BobbyCheckbox, ToggleLockedAccessor>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_DEBUGTOGGLE>,  BobbyCheckbox, ToggleAccessor>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_DEBUGTOGGLEMENU>, SwitchScreenAction<ToggleChangeValueDisplay>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_DEBUGTOGGLEMENU>, PushScreenAction<ToggleChangeValueDisplay>>>();
     constructMenuItem<makeComponent<MenuItem, RandomText,                    RandomColor, RandomFont, RandomIcon, DummyAction>>();
 
     // more scrolling
@@ -146,7 +148,12 @@ DynamicDebugMenu::DynamicDebugMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_DUMMYITEM>,    DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_DUMMYITEM>,    DummyAction>>();
 
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,         SwitchScreenAction<DebugMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,         PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
+}
+
+void DynamicDebugMenu::back()
+{
+    espgui::popScreen();
 }
 
 namespace {

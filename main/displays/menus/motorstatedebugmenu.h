@@ -3,12 +3,11 @@
 // 3rdparty lib includes
 #include "menuitem.h"
 #include "actions/dummyaction.h"
-#include "actions/switchscreenaction.h"
+#include "actions/popscreenaction.h"
 #include "icons/back.h"
 
 // local includes
 #include "displays/bobbymenudisplay.h"
-#include "debugmenu.h"
 #include "utils.h"
 #include "debugtexthelpers.h"
 
@@ -16,7 +15,7 @@ template<const char *Ttext, typename Ttexts>
 class MotorStateDebugMenu :
     public BobbyMenuDisplay,
     public espgui::StaticText<Ttext>,
-    public espgui::BackActionInterface<espgui::SwitchScreenAction<DebugMenu>>
+    public espgui::BackActionInterface<espgui::PopScreenAction>
 {
 public:
     MotorStateDebugMenu()
@@ -33,7 +32,7 @@ public:
         constructMenuItem<makeComponent<MenuItem, typename Ttexts::PhaseAdvMaxText,   DisabledColor, DummyAction>>();
         constructMenuItem<makeComponent<MenuItem, typename Ttexts::CruiseCtrlEnaText, DisabledColor, DummyAction>>();
         constructMenuItem<makeComponent<MenuItem, typename Ttexts::NCruiseMotTgtText, DisabledColor, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,    SwitchScreenAction<DebugMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,    PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
     }
 
 private:

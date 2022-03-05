@@ -3,13 +3,11 @@
 // 3rdparty lib includes
 #include <tftinstance.h>
 #include <screenmanager.h>
-#include <actions/switchscreenaction.h>
 #include <esprandom.h>
 #include <randomutils.h>
 
 // local includes
 #include "globals.h"
-#include "displays/menus/mainmenu.h"
 #include "icons/shortcircuit.h"
 
 using namespace std::chrono_literals;
@@ -102,10 +100,8 @@ void ConfiscationDisplay::buttonPressed(espgui::Button button)
 
     switch (button)
     {
-        using espgui::Button;
-    case Button::Left:
-        espgui::switchScreen<MainMenu>();
-        break;
+    using espgui::Button;
+    case Button::Left: espgui::popScreen(); break;
     default:;
     }
 }

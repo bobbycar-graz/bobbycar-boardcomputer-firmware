@@ -1,9 +1,10 @@
 #include "qrcodedebug.h"
 
+// 3rdparty lib includes
 #include <fmt/core.h>
 #include <tftinstance.h>
 
-#include "displays/menus/debugmenu.h"
+// local includes
 #include "globals.h"
 #include "screenmanager.h"
 #include "newsettings.h"
@@ -26,9 +27,7 @@ void QrCodeDebugDisplay::buttonPressed(espgui::Button button)
     switch (button)
     {
     using espgui::Button;
-    case Button::Left:
-        switchScreen<DebugMenu>();
-        break;
+    case Button::Left: popScreen(); break;
     case Button::Right:
     {
         uint8_t qrcodeBytes[qrcode_getBufferSize(7)];

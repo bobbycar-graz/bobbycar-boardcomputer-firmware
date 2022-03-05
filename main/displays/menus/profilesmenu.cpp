@@ -2,8 +2,7 @@
 
 // local includes
 #include "actions/switchprofileaction.h"
-#include "actions/switchscreenaction.h"
-#include "displays/menus/mainmenu.h"
+#include "actions/popscreenaction.h"
 #include "icons/back.h"
 #include "menudisplay.h"
 
@@ -22,7 +21,7 @@ ProfilesMenu::ProfilesMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_PROFILE1>, SwitchProfileAction<1>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_PROFILE2>, SwitchProfileAction<2>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_PROFILE3>, SwitchProfileAction<3>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,     SwitchScreenAction<MainMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,     PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string ProfilesMenu::text() const
@@ -32,5 +31,5 @@ std::string ProfilesMenu::text() const
 
 void ProfilesMenu::back()
 {
-    switchScreen<MainMenu>();
+    popScreen();
 }

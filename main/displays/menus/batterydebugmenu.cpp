@@ -4,11 +4,10 @@
 #include <menuitem.h>
 #include <icons/back.h>
 #include <actions/dummyaction.h>
-#include <actions/switchscreenaction.h>
+#include <actions/popscreenaction.h>
 #include <fmt/core.h>
 
 // local includes
-#include "debugmenu.h"
 #include "accessors/settingsaccessors.h"
 #include "utils.h"
 #include "icons/settings.h"
@@ -84,7 +83,7 @@ BatteryDebugMenu::BatteryDebugMenu()
     constructMenuItem<makeComponent<MenuItem, BatteryDebug2Text,                                                        DisabledColor, DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, BatteryDebug3Text,                                                        DisabledColor, DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, CurrentAdvancedBatteryPercentageText,                                     DisabledColor, DummyAction>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                                                    SwitchScreenAction<DebugMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                                                    PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string BatteryDebugMenu::text() const
@@ -94,5 +93,5 @@ std::string BatteryDebugMenu::text() const
 
 void BatteryDebugMenu::back()
 {
-    espgui::switchScreen<DebugMenu>();
+    espgui::popScreen();
 }

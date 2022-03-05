@@ -2,11 +2,10 @@
 
 // local includes
 #include "displays/bobbymenudisplay.h"
-#include "debugmenu.h"
 #include "utils.h"
 #include "menuitem.h"
 #include "actions/dummyaction.h"
-#include "actions/switchscreenaction.h"
+#include "actions/popscreenaction.h"
 #include "icons/back.h"
 #include "debugtexthelpers.h"
 #include "debugcolorhelpers.h"
@@ -16,7 +15,7 @@ template<const char *Ttext, typename Ttexts, template<int> class ColorInterface>
 class FeedbackDebugMenu :
     public BobbyMenuDisplay,
     public espgui::StaticText<Ttext>,
-    public espgui::BackActionInterface<espgui::SwitchScreenAction<DebugMenu>>
+    public espgui::BackActionInterface<espgui::PopScreenAction>
 {
 public:
     FeedbackDebugMenu()
@@ -27,7 +26,7 @@ public:
         //constructMenuItem<makeComponent<MenuItem, typename Ttexts::BoardTempText,        ColorInterface<TFT_DARKGREY>, DummyAction>>();
         constructMenuItem<makeComponent<MenuItem, typename Ttexts::BoardTempFixedText,   ColorInterface<TFT_DARKGREY>, DummyAction>>();
         constructMenuItem<makeComponent<MenuItem, typename Ttexts::TimeoutCntSerialText, StaticFont<2>, ColorInterface<TFT_DARKGREY>, DummyAction>>();
-        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                 SwitchScreenAction<DebugMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+        constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                 PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
     }
 
 private:

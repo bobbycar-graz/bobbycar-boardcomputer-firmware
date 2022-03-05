@@ -6,9 +6,6 @@
 #include <tftinstance.h>
 #include <screenmanager.h>
 
-// local includes
-#include "displays/menus/demosmenu.h"
-
 void SpiroDisplay::initScreen()
 {
     Base::initScreen();
@@ -88,8 +85,7 @@ void SpiroDisplay::buttonPressed(espgui::Button button)
     {
         using espgui::Button;
     case Button::Left:
-    case Button::Right:
-        espgui::switchScreen<DemosMenu>();
+        espgui::popScreen();
         break;
     default:;
     }

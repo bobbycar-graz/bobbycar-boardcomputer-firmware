@@ -17,7 +17,7 @@ public:
     void redraw() override;
     void stop() override;
 
-    void buttonPressed(espgui::Button button);
+    void buttonPressed(espgui::Button button) override;
 
 private:
 

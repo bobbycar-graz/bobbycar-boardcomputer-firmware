@@ -3,11 +3,9 @@
 // 3rdparty lib includes
 #include <textinterface.h>
 #include <espchrono.h>
-#include <actions/switchscreenaction.h>
 
 // local includes
 #include "displays/bobbymenudisplay.h"
-#include "debugmenu.h"
 
 class RandomText : public virtual espgui::TextInterface
 {
@@ -21,9 +19,10 @@ private:
 
 class DynamicDebugMenu :
     public BobbyMenuDisplay,
-    public RandomText,
-    public espgui::BackActionInterface<espgui::SwitchScreenAction<DebugMenu>>
+    public RandomText
 {
 public:
     DynamicDebugMenu();
+
+    void back() override;
 };

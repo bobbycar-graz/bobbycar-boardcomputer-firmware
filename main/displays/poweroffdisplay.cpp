@@ -7,7 +7,6 @@
 // local includes
 #include "utils.h"
 #include "globals.h"
-#include "displays/menus/mainmenu.h"
 
 using namespace std::chrono_literals;
 
@@ -43,7 +42,7 @@ void PoweroffDisplay::update()
     Base::update();
 
     if (espchrono::millis_clock::now() - m_startTime >= 1000ms)
-        espgui::switchScreen<MainMenu>();
+        espgui::popScreen();
 }
 
 void PoweroffDisplay::stop()

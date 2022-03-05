@@ -10,14 +10,13 @@
 
 // 3rdparty lib includes
 #include <menuitem.h>
-#include <actions/switchscreenaction.h>
+#include <actions/popscreenaction.h>
 #include <actions/dummyaction.h>
 #include <icons/back.h>
 #include <screenmanager.h>
 #include <futurecpp.h>
 
 // local includes
-#include "displays/menus/debugmenu.h"
 #include "bobbyerrorhandler.h"
 
 namespace {
@@ -256,7 +255,7 @@ CanDebugMenu::CanDebugMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_TWAI_START>, CanStartAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_TWAI_UNINSTALL>, CanUninstallAction>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_TWAI_INSTALL>, CanInstallAction>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, SwitchScreenAction<DebugMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
 std::string CanDebugMenu::text() const
@@ -285,7 +284,7 @@ void CanDebugMenu::update()
 
 void CanDebugMenu::back()
 {
-    espgui::switchScreen<DebugMenu>();
+    espgui::popScreen();
 }
 
 #endif

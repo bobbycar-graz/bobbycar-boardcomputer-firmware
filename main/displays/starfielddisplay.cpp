@@ -87,8 +87,7 @@ void StarfieldDisplay::buttonPressed(espgui::Button button)
     {
     using espgui::Button;
     case Button::Left:
-    case Button::Right:
-        espgui::switchScreen<DemosMenu>();
+        espgui::popScreen();
         break;
     default:;
     }

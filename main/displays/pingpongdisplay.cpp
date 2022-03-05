@@ -6,9 +6,6 @@
 #include <tftinstance.h>
 #include <screenmanager.h>
 
-// local includes
-#include "displays/menus/demosmenu.h"
-
 PingPongDisplay::PingPongDisplay() :
     lpaddle_y(cpputils::randomNumber<uint8_t>(0, h - paddle_h, espcpputils::esp_random_device{})),
     rpaddle_y(cpputils::randomNumber<uint8_t>(0, h - paddle_h, espcpputils::esp_random_device{})),
@@ -55,8 +52,7 @@ void PingPongDisplay::buttonPressed(espgui::Button button)
     {
         using espgui::Button;
     case Button::Left:
-    case Button::Right:
-        espgui::switchScreen<DemosMenu>();
+        espgui::popScreen();
         break;
     default:;
     }
