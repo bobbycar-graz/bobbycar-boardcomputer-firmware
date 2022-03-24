@@ -105,23 +105,59 @@ namespace {
 extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len)
 {
     const std::string message(data, data + len);
-    ESP_LOGI(TAG, "Received data (%s)", message.c_str());
+    // ESP_LOGI(TAG, "Received data (%s)", message.c_str());
 
-    ESP_LOGI(TAG, "ID: %s - Token: %s", stringSettings.esp_now_door_id.c_str(), stringSettings.esp_now_door_token.c_str());
+    // ESP_LOGI(TAG, "ID: %s - Token: %s", stringSettings.esp_now_door_id.c_str(), stringSettings.esp_now_door_token.c_str());
 
     // Parse the message (msg format: "msg_type:msg_value:msg_token") via find and npos
     const size_t pos = message.find(":");
     if (pos == std::string::npos) {
-        ESP_LOGW(TAG, "Invalid message format");
+        // ESP_LOGW(TAG, "Invalid message format");
         return;
     }
     const size_t pos2 = message.find(":", pos + 1);
     if (pos2 == std::string::npos) {
-        ESP_LOGW(TAG, "Invalid message format");
+        // ESP_LOGW(TAG, "Invalid message format");
         return;
     }
     const std::string msg_type = message.substr(0, pos);
     const std::string msg_value = message.substr(pos + 1, pos2 - pos - 1);
+
+    if (msg_type == "BOBBYHUPE_AN" || msg_type == "BOBBYHUP_AN")
+    {
+        ESP_LOGI(TAG, "Activating hupe");
+        hupe_state = true;
+        relayHupeTimer = espchrono::millis_clock::now();
+        return;
+    }
+    else if (msg_type == "BOBBYHUPE_AUS")
+    {
+        ESP_LOGI(TAG, "Deactivating hupe");
+        hupe_state = false;
+        relayHupeTimer = std::nullopt;
+        return;
+    }
+    else if (msg_type == "COMPRESSOR_AN")
+    {
+        ESP_LOGI(TAG, "Activating compressor");
+        compressor_is_an = true;
+        return;
+    }
+    else if (msg_type == "COMPRESSOR_AUS")
+    {
+        ESP_LOGI(TAG, "Deactivating compressor");
+        compressor_is_an = false;
+        return;
+    }
+    else if (msg_type == "COMPRESSOR_TOGGLE")
+    {
+        ESP_LOGI(TAG, "Toggling compressor");
+        compressor_is_an = !compressor_is_an;
+        return;
+    }
+
+    ESP_LOGI(TAG, "Received message: %s, Type: %s, Value: %s", message.c_str(), msg_type.c_str(), msg_value.c_str());
+
     std::string msg_token{};
     if (pos2 + 1 < message.size()) {
         msg_token = message.substr(pos2 + 1);
@@ -135,30 +171,6 @@ extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len)
     if (msg_token != stringSettings.esp_now_door_token) {
         ESP_LOGW(TAG, "Invalid token (%s)", msg_token.c_str());
         return;
-    }
-
-    if (msg_type == "BOBBYHUPE_AN")
-    {
-        //Serial.println("Bob is opening the door");
-        hupe_state = true;
-        relayHupeTimer = espchrono::millis_clock::now();
-    }
-    else if (msg_type == "BOBBYHUPE_AUS")
-    {
-        hupe_state = false;
-        relayHupeTimer = std::nullopt;
-    }
-    else if (msg_type == "COMPRESSOR_AN")
-    {
-        compressor_is_an = true;
-    }
-    else if (msg_type == "COMPRESSOR_AUS")
-    {
-        compressor_is_an = false;
-    }
-    else if (msg_type == "COMPRESSOR_TOGGLE")
-    {
-        compressor_is_an = !compressor_is_an;
     }
     /*const std::string_view data_str{(const char *)data, size_t(data_len)};
 
@@ -267,11 +279,13 @@ void handle()
         hupe_state = true;
     }
 
+    /*
     if (!last_send_ms || espchrono::ago(*last_send_ms) > 1s) {
         const auto message = fmt::format("T:{}", espchrono::utc_clock::now().time_since_epoch().count());
         send_espnow_message(message);
         last_send_ms = espchrono::millis_clock::now();
     }
+     */
 
 
     if (initialized < 255 && !(!settings.wifiSettings.wifiApEnabled && (!settings.wifiSettings.wifiStaEnabled && wifi_stack::get_sta_status() == wifi_stack::WiFiStaStatus::NO_SHIELD) || (wifi_stack::get_wifi_mode() != wifi_mode_t::WIFI_MODE_STA && wifi_stack::get_wifi_mode() != wifi_mode_t::WIFI_MODE_AP && wifi_stack::get_wifi_mode() != wifi_mode_t::WIFI_MODE_APSTA)))
