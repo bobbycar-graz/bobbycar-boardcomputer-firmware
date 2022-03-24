@@ -14,7 +14,8 @@
 #include "globals.h"
 #include "utils.h"
 #include "time_bobbycar.h"
-#define PIN_RELAY 17
+#define PIN_RELAY_HUPE 14
+#define PIN_RELAY_COMPRESSOR 27
 
 using namespace std::chrono_literals;
 
@@ -23,7 +24,7 @@ namespace {
 constexpr const char * const TAG = "BOBBY_ESP_NOW";
 } // namespace
 
-std::optional<espchrono::millis_clock::time_point> ledtimer;
+std::optional<espchrono::millis_clock::time_point> relayHupeTimer;
 std::optional<espchrono::millis_clock::time_point> last_send_ms;
 
 uint16_t lastYear; // Used for esp-now timesync
@@ -31,6 +32,9 @@ uint16_t lastYear; // Used for esp-now timesync
 std::deque<esp_now_message_t> message_queue{};
 std::vector<esp_now_peer_info_t> peers{};
 uint8_t initialized{0};
+
+bool compressor_is_an{false};
+bool hupe_state{false};
 
 bool receiveTimeStamp{true};
 bool receiveTsFromOtherBobbycars{true};
@@ -133,15 +137,24 @@ extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len)
         return;
     }
 
-    if (msg_type == "BOBBYOPEN" && msg_value == stringSettings.esp_now_door_id)
+    if (msg_type == "BOBBYHUPE_AN")
     {
         //Serial.println("Bob is opening the door");
-        digitalWrite(PIN_RELAY, HIGH);
-        ledtimer = espchrono::millis_clock::now();
+        hupe_state = true;
+        relayHupeTimer = espchrono::millis_clock::now();
     }
-    else if(msg_type == "BOBBYOPEN" && msg_value == stringSettings.esp_now_ifttt_door_id)
+    else if (msg_type == "BOBBYHUPE_AUS")
     {
-
+        hupe_state = false;
+        relayHupeTimer = std::nullopt;
+    }
+    else if (msg_type == "COMPRESSOR_AN")
+    {
+        compressor_is_an = true;
+    }
+    else if (msg_type == "COMPRESSOR_AUS")
+    {
+        compressor_is_an = false;
     }
     /*const std::string_view data_str{(const char *)data, size_t(data_len)};
 
@@ -166,8 +179,10 @@ extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len)
 
 void initESPNow()
 {
-    pinMode(PIN_RELAY, OUTPUT);
-    digitalWrite(PIN_RELAY, LOW);
+    pinMode(PIN_RELAY_COMPRESSOR, OUTPUT);
+    pinMode(PIN_RELAY_HUPE, OUTPUT);
+    digitalWrite(PIN_RELAY_COMPRESSOR, HIGH);
+    digitalWrite(PIN_RELAY_HUPE, HIGH);
 
     ESP_LOGI(TAG, "Initializing esp-now...");
 
@@ -236,8 +251,17 @@ void initESPNow()
 
 void handle()
 {
-    if (!ledtimer || espchrono::ago(*ledtimer) > 3s) {
-        digitalWrite(PIN_RELAY, LOW);
+    digitalWrite(PIN_RELAY_COMPRESSOR, !compressor_is_an);
+    digitalWrite(PIN_RELAY_HUPE, !hupe_state);
+    ESP_LOGI(TAG, "Compressor: %d, Hupe: %d", compressor_is_an, hupe_state);
+    if (relayHupeTimer && espchrono::ago(*relayHupeTimer) > 3s)
+    {
+        hupe_state = false;
+        relayHupeTimer = std::nullopt;
+    }
+    else if (relayHupeTimer && espchrono::ago(*relayHupeTimer) <= 3s)
+    {
+        hupe_state = true;
     }
 
     if (!last_send_ms || espchrono::ago(*last_send_ms) > 1s) {
