@@ -156,6 +156,10 @@ extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len)
     {
         compressor_is_an = false;
     }
+    else if (msg_type == "COMPRESSOR_TOGGLE")
+    {
+        compressor_is_an = !compressor_is_an;
+    }
     /*const std::string_view data_str{(const char *)data, size_t(data_len)};
 
     size_t sep_pos = data_str.find(":");
@@ -253,7 +257,6 @@ void handle()
 {
     digitalWrite(PIN_RELAY_COMPRESSOR, !compressor_is_an);
     digitalWrite(PIN_RELAY_HUPE, !hupe_state);
-    ESP_LOGI(TAG, "Compressor: %d, Hupe: %d", compressor_is_an, hupe_state);
     if (relayHupeTimer && espchrono::ago(*relayHupeTimer) > 3s)
     {
         hupe_state = false;
