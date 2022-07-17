@@ -75,6 +75,7 @@ set(headers
     displays/buttoncalibratedisplay.h
     displays/calibratevoltagedisplay.h
     displays/confiscationdisplay.h
+    displays/measurementdisplay.h
     displays/gameoflifedisplay.h
     displays/gametrakcalibratedisplay.h
     displays/joystickdebugdisplay.h
@@ -328,6 +329,7 @@ set(sources
     displays/buttoncalibratedisplay.cpp
     displays/calibratevoltagedisplay.cpp
     displays/confiscationdisplay.cpp
+    displays/measurementdisplay.cpp
     displays/gameoflifedisplay.cpp
     displays/gametrakcalibratedisplay.cpp
     displays/joystickdebugdisplay.cpp
