@@ -233,6 +233,7 @@ struct Settings
         bool syncBlink;
     } espnow;
 #endif
+    bool repeatESPNow;
 
     template<typename T>
     void executeForEveryCommonSetting(T &&callable);
@@ -379,6 +380,7 @@ void Settings::executeForEveryCommonSetting(T &&callable)
     callable("espnowSyncBl", espnow.syncBlink);
 #endif
 #endif
+    callable("repeat", repeatESPNow);
 }
 
 template<typename T>

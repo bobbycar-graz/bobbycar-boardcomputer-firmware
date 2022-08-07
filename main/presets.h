@@ -352,6 +352,7 @@ constexpr Settings defaultSettings {
 #ifdef FEATURE_ESPNOW
     .espnow = defaultEspNowSettings,
 #endif
+    .repeatESPNow = false,
 };
 
 StringSettings makeDefaultStringSettings();

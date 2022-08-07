@@ -105,6 +105,12 @@ extern "C" void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len)
 
     ESP_LOGI(TAG, "ID: %s - Token: %s", stringSettings.esp_now_door_id.c_str(), stringSettings.esp_now_door_token.c_str());
 
+    if (settings.repeatESPNow)
+    {
+        ESP_LOGI(TAG, "Repeat ESP-NOW message \"%s\"", message.c_str());
+        send_espnow_message(message);
+    }
+
     // Parse the message (msg format: "msg_type:msg_value:msg_token") via find and npos
     const size_t pos = message.find(":");
     if (pos == std::string::npos) {
@@ -240,7 +246,7 @@ void handle()
         digitalWrite(PIN_RELAY, LOW);
     }
 
-    if (!last_send_ms || espchrono::ago(*last_send_ms) > 1s) {
+    if (!last_send_ms || espchrono::ago(*last_send_ms) > 1s && !settings.repeatESPNow) {
         const auto message = fmt::format("T:{}", espchrono::utc_clock::now().time_since_epoch().count());
         send_espnow_message(message);
         last_send_ms = espchrono::millis_clock::now();
