@@ -228,6 +228,7 @@ set(headers
     presets.h
     profilesettings.h
     qrimport.h
+    remotedisplaywebsocket.h
     rotary.h
     screens.h
     serial_bobby.h
@@ -480,6 +481,7 @@ set(sources
     presets.cpp
     profilesettings.cpp
     qrimport.cpp
+    remotedisplaywebsocket.cpp
     rotary.cpp
     screens.cpp
     serial_bobby.cpp

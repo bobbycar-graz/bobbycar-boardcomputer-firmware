@@ -721,6 +721,9 @@ void cloudSend()
     if (configs.cloudUrl.value().empty())
         return;
 
+    if (!configs.cloudSettings.sendStatistic.value() && !configs.cloudSettings.sendScreen.value())
+        return;
+
     if (!cloudStarted)
     {
         if (espchrono::ago(lastStartTry) < 10s)
@@ -771,6 +774,43 @@ std::string getLoginMessage()
     using namespace espgui;
     return fmt::format(R"({{"type": "hello", "name": "{}", "res": "{}x{}", "pass": "{}", "key": "{}"}})",
                        configs.otaUsername.value(), tft.width(), tft.height(), configs.webserverPassword.value(), configs.cloudSettings.cloudKey.value());
+}
+
+
+void cloudSendDisplay(std::string_view data)
+{
+    static std::string screenBuffer;
+    static uint64_t msg_id{0};
+
+    if (!cloudStarted || !cloudClient || !cloudClient.is_connected() || espchrono::ago(isSendingNvs) < 4s)
+        return;
+
+    /* custom menu display handling
+    if (!espgui::currentDisplay)
+        return;
+
+    if (const auto &menuDisplay = espgui::currentDisplay->asMenuDisplay(); menuDisplay)
+    {
+        // custom handle menu display
+        return;
+    }
+     */
+
+    // fill 1024 bytes with the data
+    screenBuffer += std::string{data} + '\u0000';
+
+    if (screenBuffer.length() > 1024)
+    {
+        // send data
+        const auto timeout = std::chrono::ceil<espcpputils::ticks>(
+                espchrono::milliseconds32{configs.cloudSettings.cloudTransmitTimeout.value()}).count();
+        cloudClient.send_text(screenBuffer, timeout);
+
+        // clear buffer
+        screenBuffer.clear();
+        ESP_LOGI(TAG, "sent screen data %lu", msg_id);
+        msg_id++;
+    }
 }
 
 void cloudEventHandler(void *event_handler_arg, esp_event_base_t event_base, int32_t event_id, void *event_data)

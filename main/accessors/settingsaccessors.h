@@ -47,6 +47,7 @@ struct CloudTransmitTimeoutAccessor : public NewSettingsAccessor<int16_t> { Conf
 struct CloudSendStatisticsAccessor : public NewSettingsAccessor<bool> { ConfigWrapper<bool> &getConfig() const override { return configs.cloudSettings.sendStatistic; } };
 struct CloudURLAccessor : public NewSettingsAccessor<std::string> { ConfigWrapper<std::string> &getConfig() const override { return configs.cloudUrl; } };
 struct CloudKeyAccessor : public NewSettingsAccessor<std::string> { ConfigWrapper<std::string> &getConfig() const override { return configs.cloudSettings.cloudKey; } };
+struct CloudSendScreenAccessor : public NewSettingsAccessor<bool> { ConfigWrapper<bool> &getConfig() const override { return configs.cloudSettings.sendScreen; } };
 
 // Time
 //struct TimezoneOffsetAccessor : public NewSettingsAccessor<int32_t> { ConfigWrapper<int32_t> &getConfig() const override { return configs.timezoneOffset; } };
