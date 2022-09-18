@@ -552,6 +552,11 @@ if(NOT DEFINED BOBBY_DEFAULT_USERNAME)
     message(FATAL_ERROR "Please define BOBBY_DEFAULT_USERNAME")
 endif()
 
+message(WARNING "Git revision: ${GIT_REV}")
+message(WARNING "Git short revision: ${GIT_SHORT_REV}")
+message(WARNING "Git message: ${GIT_MESSAGE}")
+message(WARNING "Git branch: ${GIT_BRANCH}")
+
 target_compile_options(${COMPONENT_TARGET}
     PRIVATE
         -fstack-reuse=all
