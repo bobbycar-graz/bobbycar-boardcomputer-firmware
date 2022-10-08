@@ -38,6 +38,7 @@ using namespace std::chrono_literals;
 #include "displays/statusdisplay.h"
 #include "newsettings.h"
 #include "taskmanager.h"
+#include "buzzer.h"
 
 namespace {
 espchrono::millis_clock::time_point lastStatsPush;
@@ -154,6 +155,8 @@ extern "C" void app_main()
 
     esp_chip_info(&chip_info);
     esp_pm_get_configuration(&pm_config);
+
+    buzzer::init();
 
     while (true)
     {

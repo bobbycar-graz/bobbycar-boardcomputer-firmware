@@ -48,6 +48,7 @@ set(headers
     bobbyschedulertask.h
     bobbytypesafeenum.h
     buildserver.h
+    buzzer.h
     can.h
     changevaluedisplay_bluetoothmode.h
     changevaluedisplay_bobbyquickactions.h
@@ -301,6 +302,7 @@ set(sources
     bobbyhupe.cpp
     bobbyquickactions.cpp
     buildserver.cpp
+    buzzer.cpp
     can.cpp
     changevaluedisplay_bluetoothmode.cpp
     changevaluedisplay_bobbyquickactions.cpp

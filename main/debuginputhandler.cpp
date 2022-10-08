@@ -15,6 +15,7 @@
 #include <changevaluedisplay_string.h>
 
 // local includes
+#include "buzzer.h"
 #include "globals.h"
 #include "utils.h"
 #include "bobbybuttons.h"
@@ -22,6 +23,7 @@
 
 namespace {
 constexpr const char * const TAG = "DEBUG";
+constexpr int notes[] = {0, 523, 587, 659, 698, 784, 880, 988, 1047, 1175};
 
 uint8_t consoleControlCharsReceived{};
 bool uart0Initialized{};
@@ -155,6 +157,8 @@ void handleNormalChar(char c)
         case '9':
             for (Controller &controller : controllers)
                 controller.command.buzzer.freq = c-'0';
+            //buzzer::set_frequency(notes[c-'0']);
+            buzzer::set_frequency(500 * (c-'0'));
             break;
         case 'z':
         case 'Z':
