@@ -454,8 +454,6 @@ public:
         ConfigWrapperLegacy<uint8_t> measurementInterval{1,                                      DoReset,   {},                         "measurementiv"       };
     } measurementMode;
 
-
-
     struct {
         ConfigWrapperLegacy<HandbremseMode> mode        {HandbremseMode::MOSFETS_OFF,            DoReset,   {},                         "handBremsM"          };
         ConfigWrapperLegacy<uint16_t> triggerTimeout    {10,                                     DoReset,   {},                         "handBremsT"          };

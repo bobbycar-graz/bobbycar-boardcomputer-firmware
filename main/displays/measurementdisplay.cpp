@@ -41,8 +41,6 @@ namespace {
         }
     };
 
-
-
     class MeasurementDisplayItem : public MenuItem {
     public:
         MeasurementDisplayItem(const MeasurementDisplay::Result result) : m_result{result} {}
@@ -62,10 +60,10 @@ namespace {
 
     std::string MeasurementDisplayItem::text() const
     {
-        if(showAcceleration){
+        if (showAcceleration) {
             return fmt::format("{}: {}ms {:.2f}m/s² ", m_result.speed, m_result.time.count(),
                                m_result.speed / (m_result.time.count() * 1e-3));
-        }else{
+        } else {
             return fmt::format("{}: {}ms {:.2f}m ", m_result.speed, m_result.time.count(), m_result.distance);
         }
     }
@@ -80,7 +78,6 @@ namespace {
             espgui::BackActionInterface<espgui::PopScreenAction>
     >;
 } // namespace
-
 
 MeasurementDisplay::MeasurementDisplay() {
     clearMeasurements();
