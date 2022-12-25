@@ -6,16 +6,6 @@ set(BOBBY_HEADERS
     accessors/wifiapconfigaccessors.h
     accessors/wifistaconfigaccessors.h
     actions/assertaction.h
-    actions/bluetoothbeginaction.h
-    actions/bluetoothbeginmasteraction.h
-    actions/bluetoothconnectbmsaction.h
-    actions/bluetoothdisconnectaction.h
-    actions/bluetoothendaction.h
-    actions/bluetoothflushaction.h
-    actions/bmsturnoffchargeaction.h
-    actions/bmsturnoffdischargeaction.h
-    actions/bmsturnonchargeaction.h
-    actions/bmsturnondischargeaction.h
     actions/dividebyzeroaction.h
     actions/erasenvsaction.h
     actions/ledstripanimationactions.h
@@ -34,8 +24,6 @@ set(BOBBY_HEADERS
     actions/wifistascanclearaction.h
     battery.h
     ble_bobby.h
-    bluetooth_bobby.h
-    bluetoothmode.h
     bmsutils.h
     bobbyblinker.h
     bobbybuttons.h
@@ -45,7 +33,6 @@ set(BOBBY_HEADERS
     bobbytypesafeenum.h
     buildserver.h
     can.h
-    changevaluedisplay_bluetoothmode.h
     changevaluedisplay_bobbyquickactions.h
     changevaluedisplay_controlmode.h
     changevaluedisplay_controltype.h
@@ -140,9 +127,6 @@ set(BOBBY_HEADERS
     screens/batteryinfodisplay.h
     screens/batterymenu.h
     screens/blesettingsmenu.h
-    screens/bluetoothsettingsmenu.h
-    screens/bmsdisplay.h
-    screens/bmsmenu.h
     screens/boardcomputerhardwaresettingsmenu.h
     screens/buzzermenu.h
     screens/calibratevoltagedisplay.h
@@ -244,7 +228,6 @@ set(BOBBY_HEADERS
     taskmanager.h
     tempomat.h
     texthelpers/bletexthelpers.h
-    texthelpers/bluetoothtexthelpers.h
     texthelpers/cloudtexthelpers.h
     texthelpers/debugtexthelpers.h
     texthelpers/esptexthelpers.h
@@ -283,7 +266,7 @@ set(BOBBY_SOURCES
     actions/wifistascanclearaction.cpp
     battery.cpp
     ble_bobby.cpp
-    bluetooth_bobby.cpp
+    bmsutils.cpp
     bobbyblinker.cpp
     bobbybuttons.cpp
     bobbyhupe.cpp
@@ -373,8 +356,6 @@ set(BOBBY_SOURCES
     screens/batteryinfodisplay.cpp
     screens/batterymenu.cpp
     screens/blesettingsmenu.cpp
-    screens/bmsdisplay.cpp
-    screens/bmsmenu.cpp
     screens/boardcomputerhardwaresettingsmenu.cpp
     screens/buzzermenu.cpp
     screens/calibratevoltagedisplay.cpp

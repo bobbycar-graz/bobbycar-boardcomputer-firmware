@@ -18,12 +18,6 @@
 #endif
 #include "time_bobbycar.h"
 #include "potis.h"
-#ifdef FEATURE_BLUETOOTH
-#include "bluetooth_bobby.h"
-#ifdef FEATURE_BMS
-#include "bmsutils.h"
-#endif
-#endif
 #ifdef FEATURE_CAN
 #include "can.h"
 #endif
@@ -65,12 +59,6 @@ BobbySchedulerTask schedulerTasksArr[] {
 #endif
     BobbySchedulerTask { "time",           initTime,              updateTime,              100ms, false },
     BobbySchedulerTask { "potis",          initPotis,             readPotis,               20ms, false  },
-#ifdef FEATURE_BLUETOOTH
-    BobbySchedulerTask { "bluetooth",      bluetooth_init,        bluetooth_update,        100ms, false },
-#ifdef FEATURE_BMS
-    BobbySchedulerTask { "bms",            bms::init,             bms::update,             100ms, false },
-#endif
-#endif
 #ifdef FEATURE_CAN
     BobbySchedulerTask { "can",            can::initCan,          can::updateCan,          10ms, false  },
 #endif

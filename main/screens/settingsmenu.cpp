@@ -24,7 +24,6 @@
 #include "icons/wifi.h"
 #include "screens/aboutmenu.h"
 #include "screens/blesettingsmenu.h"
-#include "screens/bluetoothsettingsmenu.h"
 #include "screens/boardcomputerhardwaresettingsmenu.h"
 #include "screens/buzzermenu.h"
 #include "screens/cloudsettingsmenu.h"
@@ -48,7 +47,6 @@ constexpr char TEXT_BACKLIGHT[] = "Backlight";
 constexpr char TEXT_LIMITSSETTINGS[] = "Limits settings";
 constexpr char TEXT_NETWORKSETTINGS[] = "Network settings";
 constexpr char TEXT_ESPNOW[] = "ESPNOW settings";
-constexpr char TEXT_BLUETOOTHSETTINGS[] = "Bluetooth settings";
 constexpr char TEXT_BLESETTINGS[] = "BLE settings";
 constexpr char TEXT_CLOUDSETTINGS[] = "Cloud settings";
 constexpr char TEXT_UDPCLOUDSETTINGS[] = "UDP Cloud settings";
@@ -60,7 +58,6 @@ constexpr char TEXT_BOARDCOMPUTERHARDWARESETTINGS[] = "Boardcomputer H/W setting
 constexpr char TEXT_FEATUREFLAGS[] = "Feature flags";
 constexpr char TEXT_USERNAME[] = "Username"; // ota-name
 constexpr char TEXT_ANHAENGER_ID[] = "Anhaenger ID";
-constexpr char TEXT_AUTOCONNECTBMS[] = "Auto connect BMS";
 constexpr char TEXT_BUZZER[] = "Buzzer";
 constexpr char TEXT_FRONTLED[] = "Front LED";
 constexpr char TEXT_BACKLED[] = "Back LED";
@@ -109,9 +106,6 @@ SettingsMenu::SettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_NETWORKSETTINGS>,               PushScreenAction<NetworkSettingsMenu>, StaticMenuItemIcon<&bobbyicons::wifi>>>();
     if (configs.feature.esp_now.isEnabled.value())
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_ESPNOW>,                    PushScreenAction<EspNowMenu>, StaticMenuItemIcon<&bobbyicons::wifi>>>();
-#ifdef FEATURE_BLUETOOTH
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BLUETOOTHSETTINGS>,             PushScreenAction<BluetoothSettingsMenu>, StaticMenuItemIcon<&bobbyicons::bluetooth>>>();
-#endif
     if (configs.feature.ble.isEnabled.value())
         constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BLESETTINGS>,               PushScreenAction<BleSettingsMenu>, StaticMenuItemIcon<&bobbyicons::bluetooth>>>();
     if (configs.feature.cloud.isEnabled.value())
@@ -130,9 +124,6 @@ SettingsMenu::SettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_FEATUREFLAGS>,                  PushScreenAction<FeatureFlagsMenu>, StaticMenuItemIcon<&bobbyicons::demos>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_USERNAME>,                      PushScreenAction<UsernameChangeScreen>>>();
     constructMenuItem<makeComponent<MenuItem, TextWithValueHelper<TEXT_ANHAENGER_ID, AnhaengerIdAccessor>, PushScreenAction<AnhaengerIdChangeScreen>>>();
-//#if defined(FEATURE_BLUETOOTH) && defined(FEATURE_BMS)
-//    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_AUTOCONNECTBMS>,                BobbyCheckbox, AutoConnectBmsAccessor>>();
-//#endif
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BUZZER>,                        PushScreenAction<BuzzerMenu>, StaticMenuItemIcon<&bobbyicons::buzzer>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_FRONTLED>,                      BobbyCheckbox, FrontLedAccessor>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACKLED>,                       BobbyCheckbox, BackLedAccessor>>();

@@ -13,7 +13,6 @@
 #include "screens/graphsmenu.h"
 #include "screens/batterymenu.h"
 #include "screens/powersupplydisplay.h"
-#include "screens/bmsmenu.h"
 #include "screens/settingsmenu.h"
 #include "screens/manageprofilesmenu.h"
 #include "screens/mosfetsmenu.h"
@@ -31,9 +30,6 @@
 #include "icons/modes.h"
 #include "icons/presets.h"
 #include "icons/graph.h"
-#ifdef FEATURE_BMS
-#include "icons/bms.h"
-#endif
 #include "icons/settings.h"
 #include "icons/lock.h"
 #include "icons/demos.h"
@@ -59,11 +55,9 @@ constexpr char TEXT_LEDSTRIP[] = "Ledstrip";
 constexpr char TEXT_STATISTICSMENU[] = "Statistics";
 constexpr char TEXT_SELECTMODE[] = "Select mode";
 constexpr char TEXT_MODESETTINGS[] = "Mode settings";
-constexpr char TEXT_PRESETS[] = "Presets";
 constexpr char TEXT_PROFILES[] = "Profiles";
 constexpr char TEXT_GRAPHS[] = "Graphs";
 constexpr char TEXT_POWERSUPPLY[] = "Powersupply";
-constexpr char TEXT_BMS[] = "BMS";
 constexpr char TEXT_SETTINGS[] = "Settings";
 constexpr char TEXT_GREENPASS[] = "Green Pass";
 constexpr char TEXT_LOCKVEHICLE[] = "Lock vehicle";
@@ -111,9 +105,6 @@ MainMenu::MainMenu()
 #endif
 #ifdef FEATURE_MOSFETS
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MOSFETS>,      PushScreenAction<MosfetsMenu>>>();
-#endif
-#if defined(FEATURE_BLUETOOTH) && defined(FEATURE_BMS)
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BMS>,          PushScreenAction<BmsMenu>, StaticMenuItemIcon<&bobbyicons::bms>>>();
 #endif
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_DEMOS>,        PushScreenAction<DemosMenu>, StaticMenuItemIcon<&bobbyicons::demos>>>();
     if (SHOWITEM)   { constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_PROFILES>,     PushScreenAction<ProfilesMenu>, StaticMenuItemIcon<&bobbyicons::presets>>>(); }

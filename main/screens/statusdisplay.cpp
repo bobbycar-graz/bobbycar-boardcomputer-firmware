@@ -10,16 +10,13 @@
 #include <tftinterface.h>
 
 // local includes
-#include "screens/batteryinfodisplay.h"
-#include "screens/speedinfodisplay.h"
-#ifdef FEATURE_BMS
-#include "screens/bmsdisplay.h"
-#endif
-#include "screens/mainmenu.h"
-#include "screens/metersdisplay.h"
 #include "drivingstatistics.h"
 #include "modes/defaultmode.h"
 #include "newsettings.h"
+#include "screens/batteryinfodisplay.h"
+#include "screens/mainmenu.h"
+#include "screens/metersdisplay.h"
+#include "screens/speedinfodisplay.h"
 #include "taskmanager.h"
 #include "udpcloud.h"
 
@@ -217,11 +214,7 @@ void StatusDisplay::buttonPressed(espgui::Button button)
     case Button::Up:
         if (simplified)
             return;
-#ifdef FEATURE_BMS
-        switchScreen<BmsDisplay>();
-#else
         switchScreen<SpeedInfoDisplay>();
-#endif
         break;
     case Button::Down:
         if (simplified)

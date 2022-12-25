@@ -6,15 +6,11 @@
 
 // local includes
 #include "globals.h"
-#include "bmsutils.h"
 #include "utils.h"
 
 namespace statistics {
 using ContainerType = ring_buffer<float, 200>;
 extern ContainerType raw_gas, raw_brems, gas, brems, avgSpeed, avgSpeedKmh, sumCurrent, frontVoltage, backVoltage, frontLeftCurrent, frontRightCurrent, backLeftCurrent, backRightCurrent,
-#ifdef FEATURE_BMS
-    bmsVoltage, bmsCurrent, bmsPower,
-#endif
     rssi;
 } // namespace statistics
 
@@ -42,11 +38,6 @@ using AvgSpeedKmhStatistics = BufferAccessorImpl<statistics::avgSpeedKmh>;
 using SumCurrentStatistics = BufferAccessorImpl<statistics::sumCurrent>;
 using FrontVoltageStatistics = BufferAccessorImpl<statistics::frontVoltage>;
 using BackVoltageStatistics = BufferAccessorImpl<statistics::backVoltage>;
-#ifdef FEATURE_BMS
-using BmsVoltageStatistics = BufferAccessorImpl<statistics::bmsVoltage>;
-using BmsCurrentStatistics = BufferAccessorImpl<statistics::bmsCurrent>;
-using BmsPowerStatistics = BufferAccessorImpl<statistics::bmsPower>;
-#endif
 using FrontLeftCurrentStatistics = BufferAccessorImpl<statistics::frontLeftCurrent>;
 using FrontRightCurrentStatistics = BufferAccessorImpl<statistics::frontRightCurrent>;
 using BackLeftCurrentStatistics = BufferAccessorImpl<statistics::backLeftCurrent>;

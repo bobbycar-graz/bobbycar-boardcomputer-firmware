@@ -85,11 +85,7 @@ void SpeedInfoDisplay::buttonPressed(espgui::Button button)
         espgui::switchScreen<BatteryInfoDisplay>();
         break;
     case Button::Down:
-#ifdef FEATURE_BMS
-        espgui::switchScreen<BmsDisplay>();
-#else
         espgui::switchScreen<StatusDisplay>();
-#endif
         break;
     default:;
     }

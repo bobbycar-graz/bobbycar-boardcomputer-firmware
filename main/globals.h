@@ -7,9 +7,6 @@
 #include <optional>
 
 // Arduino includes
-#ifdef FEATURE_BLUETOOTH
-#include <BluetoothSerial.h>
-#endif
 #ifdef FEATURE_SERIAL
 #include <HardwareSerial.h>
 #endif
@@ -122,10 +119,6 @@ public:
 extern Controllers controllers;
 struct FrontControllerGetter { static Controller &get() { return controllers.front; }};
 struct BackControllerGetter { static Controller &get() { return controllers.back; }};
-
-#ifdef FEATURE_BLUETOOTH
-extern BluetoothSerial bluetoothSerial;
-#endif
 
 extern ModeInterface *lastMode;
 extern ModeInterface *currentMode;

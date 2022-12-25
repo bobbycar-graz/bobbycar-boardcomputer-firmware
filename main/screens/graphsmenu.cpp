@@ -27,10 +27,6 @@ constexpr char TEXT_SUMCURRENT[] = "Sum current";
 constexpr char TEXT_FRONTVOLTAGE[] = "Front voltage";
 constexpr char TEXT_BACKVOLTAGE[] = "Back voltage";
 constexpr char TEXT_VOLTAGES[] = "Voltages";
-constexpr char TEXT_BMSVOLTAGE[] = "BMS voltage";
-constexpr char TEXT_BMSCURRENT[] = "BMS current";
-constexpr char TEXT_BMSPOWER[] = "BMS power";
-constexpr char TEXT_SUMCURRENTSCOMPARISON[] = "Sum currents comparison";
 constexpr char TEXT_MOTORCURRENTS[] = "Motor currents";
 constexpr char TEXT_RSSI[] = "RSSI";
 constexpr char TEXT_BACK[] = "Back";
@@ -132,37 +128,6 @@ using VoltagesSplitGraphDisplay = espgui::makeComponent<
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 
-#ifdef FEATURE_BMS
-using BmsVoltageGraphDisplay = espgui::makeComponent<
-    BobbyGraphDisplay<1>,
-    espgui::StaticText<TEXT_BMSVOLTAGE>,
-    espgui::SingleGraphAccessor<BmsVoltageStatistics>,
-    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
-    espgui::BackActionInterface<espgui::PopScreenAction>
->;
-using BmsCurrentGraphDisplay = espgui::makeComponent<
-    BobbyGraphDisplay<1>,
-    espgui::StaticText<TEXT_BMSCURRENT>,
-    espgui::SingleGraphAccessor<BmsCurrentStatistics>,
-    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
-    espgui::BackActionInterface<espgui::PopScreenAction>
->;
-using BmsPowerGraphDisplay = espgui::makeComponent<
-    BobbyGraphDisplay<1>,
-    espgui::StaticText<TEXT_BMSPOWER>,
-    espgui::SingleGraphAccessor<BmsPowerStatistics>,
-    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
-    espgui::BackActionInterface<espgui::PopScreenAction>
->;
-using SumCurrentsComparisonGraphDisplay = espgui::makeComponent<
-    BobbyGraphDisplay<2>,
-    espgui::StaticText<TEXT_SUMCURRENTSCOMPARISON>,
-    DualGraphAccessor<SumCurrentStatistics, BmsCurrentStatistics>,
-    espgui::ConfirmActionInterface<espgui::PopScreenAction>,
-    espgui::BackActionInterface<espgui::PopScreenAction>
->;
-#endif
-
 class MotorCurrentsStatistics : public virtual espgui::GraphAccessorInterface<4>
 {
     std::array<std::reference_wrapper<const statistics::ContainerType>, 4> getBuffers() const override
@@ -203,12 +168,6 @@ GraphsMenu::GraphsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACKVOLTAGE>,           PushScreenAction<BackVoltageGraphDisplay>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_VOLTAGES>,              PushScreenAction<VoltagesGraphDisplay>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_VOLTAGES>,              PushScreenAction<VoltagesSplitGraphDisplay>>>();
-#ifdef FEATURE_BMS
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BMSVOLTAGE>,            PushScreenAction<BmsVoltageGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BMSCURRENT>,            PushScreenAction<BmsCurrentGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BMSPOWER>,              PushScreenAction<BmsPowerGraphDisplay>>>();
-    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_SUMCURRENTSCOMPARISON>, PushScreenAction<SumCurrentsComparisonGraphDisplay>>>();
-#endif
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_MOTORCURRENTS>,         PushScreenAction<MotorCurrentsGraphDisplay>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_RSSI>,                  PushScreenAction<RssiGraphDisplay>>>();
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                  PopScreenAction, StaticMenuItemIcon<&bobbyicons::back>>>();
