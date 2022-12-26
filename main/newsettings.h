@@ -487,7 +487,10 @@ public:
         ConfigWrapperLegacy<bool> bleFenceEnabled       {false,                                  DoReset,   {},                         "bleFenceEnabled"     };
     } bleSettings;
 
-    ConfigWrapperLegacy<bool> setupDone             {false,                                      DoReset,   {},                         "setupDone"           };
+    ConfigWrapperLegacy<bool> setupDone                 {false,                                  DoReset,   {},                         "setupDone"           };
+
+    ConfigWrapperLegacy<bool> bmsEnabled                {false,                                  DoReset,   {},                         "bmsEnabled"          };
+    ConfigWrapperLegacy<std::string> bmsAddress         {std::string{},                          DoReset,   {},                         "bmsAddress"          };
 
 #define NEW_SETTINGS(x) \
     x(baseMacAddressOverride) \
@@ -809,10 +812,12 @@ public:
     x(feature.webserver.isEnabled) \
     x(feature.webserver_disable_lock.isEnabled) \
     x(bleSettings.bleEnabled) \
-    x(emulateFeedback)
+    x(emulateFeedback)  \
+    x(setupDone)        \
+    x(bmsEnabled)
 
 #define FEATURES(x) \
-    x(feature.ble) \
+    x(feature.ble)  \
     x(feature.cloud) \
     x(feature.dnsannounce)\
     x(feature.esp_now) \
@@ -831,7 +836,7 @@ public:
 #define HELPER(x) callback(x);
         NEW_SETTINGS(HELPER)
 #undef HELPER
-        callback(bleSettings.bleFenceEnabled);
+        callback(bmsAddress);
     }
 
     auto getAllConfigParams()
@@ -840,7 +845,7 @@ public:
 #define HELPER(x) std::ref<ConfigWrapperInterface>(x),
             NEW_SETTINGS(HELPER)
 #undef HELPER
-            std::ref<ConfigWrapperInterface>(bleSettings.bleFenceEnabled)
+            std::ref<ConfigWrapperInterface>(bmsAddress)
         );
     }
 

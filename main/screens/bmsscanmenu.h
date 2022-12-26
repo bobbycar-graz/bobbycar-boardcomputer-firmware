@@ -5,20 +5,21 @@
 
 namespace bobby {
 
-class WifiStaScanMenu : public BobbyMenuDisplay
+class BMSScanMenu : public BobbyMenuDisplay
 {
     using Base = BobbyMenuDisplay;
-
 public:
-    WifiStaScanMenu();
+    BMSScanMenu();
 
     std::string text() const override;
-    void back() override;
 
     void start() override;
     void update() override;
 
+    void back() override;
+
 private:
     bool m_wasScanning{false};
 };
+
 } // namespace bobby

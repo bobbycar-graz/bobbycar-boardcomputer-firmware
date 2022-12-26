@@ -10,10 +10,10 @@
 
 // local includes
 #include "accessors/settingsaccessors.h"
+#include "bmsscanmenu.h"
 #include "guihelpers/bobbychangevaluedisplay.h"
 #include "guihelpers/bobbycheckbox.h"
 #include "icons/back.h"
-#include "screens/settingsmenu.h"
 #include "texthelpers/bletexthelpers.h"
 
 namespace bobby {
@@ -21,6 +21,8 @@ namespace bobby {
 namespace {
 constexpr char TEXT_BLESETTINGS[] = "BLE settings";
 constexpr char TEXT_ENABLED[] = "Enabled";
+constexpr char TEXT_BMS_ENABLED[] = "BMS enabled";
+constexpr char TEXT_BMS_SCANS[] = "BMS scans";
 constexpr char TEXT_FENCE_ENABLED[] = "Fence enabled";
 constexpr char TEXT_NAME[] = "Name";
 constexpr char TEXT_NAME_FORMATTED[] = "Name: &s";
@@ -39,6 +41,10 @@ BleSettingsMenu::BleSettingsMenu()
 {
     using namespace espgui;
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_ENABLED>, BobbyCheckbox, BleEnabledAccessor>>();
+
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BMS_ENABLED>, BobbyCheckbox, BMSEnabledAccessor>>();
+    constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BMS_SCANS>, PushScreenAction<BMSScanMenu>>>();
+
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_FENCE_ENABLED>, BobbyCheckbox, BleFenceEnabledAccessor>>();
     constructMenuItem<makeComponent<MenuItem, BleServerPeerDevicesText,    DisabledColor, DummyAction>>();
     constructMenuItem<makeComponent<MenuItem, BleCharacSubscribedText,     DisabledColor, DummyAction>>();

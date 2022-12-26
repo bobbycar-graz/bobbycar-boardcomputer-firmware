@@ -38,6 +38,7 @@
 #include "screens.h"
 #include "utils.h"
 #include "feedbackemulator.h"
+#include "bmsutils.h"
 
 using namespace std::chrono_literals;
 
@@ -68,6 +69,7 @@ BobbySchedulerTask schedulerTasksArr[] {
 #endif
     BobbySchedulerTask { "ota",            initOta,               handleOta,               75ms, false },
     BobbySchedulerTask { "ble",            initBle,               handleBle,               100ms, false },
+    BobbySchedulerTask { "bms",            bmsutils::init,        bmsutils::update,        100ms, false },
     BobbySchedulerTask { "webserver",      initWebserver,         handleWebserver,         100ms, false },
     BobbySchedulerTask { "ledstrip",       initLedStrip,          updateLedStrip,          24ms, false },
     BobbySchedulerTask { "espnow",         espnow::initESPNow,    espnow::handle,          150ms, false },

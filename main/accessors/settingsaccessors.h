@@ -274,3 +274,5 @@ struct FlipScreenAccessor : public NewSettingsAccessor<bool> { ConfigWrapper<boo
 // Other
 struct AnhaengerIdAccessor : public NewSettingsAccessor<uint16_t> { ConfigWrapper<uint16_t> &getConfig() const override { return configs.anhaenger_id; } };
 struct UsernameAccessor : public NewSettingsAccessor<std::string> { ConfigWrapper<std::string> &getConfig() const override { return configs.otaUsername; } };
+
+struct BMSEnabledAccessor : public NewSettingsAccessor<bool> { ConfigWrapper<bool> &getConfig() const override { return configs.bmsEnabled; } };

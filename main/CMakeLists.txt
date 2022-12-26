@@ -1,11 +1,14 @@
 set(BOBBY_HEADERS
     accessorhelpers.h
+    antbms.h
     accessors/globalaccessors.h
     accessors/settingsaccessors.h
     accessors/wifiaccessors.h
     accessors/wifiapconfigaccessors.h
     accessors/wifistaconfigaccessors.h
     actions/assertaction.h
+    actions/bmsclearscanaction.h
+    actions/bmsscanaction.h
     actions/dividebyzeroaction.h
     actions/erasenvsaction.h
     actions/ledstripanimationactions.h
@@ -127,6 +130,7 @@ set(BOBBY_HEADERS
     screens/batteryinfodisplay.h
     screens/batterymenu.h
     screens/blesettingsmenu.h
+    screens/bmsscanmenu.h
     screens/boardcomputerhardwaresettingsmenu.h
     screens/buzzermenu.h
     screens/calibratevoltagedisplay.h
@@ -254,8 +258,11 @@ set(BOBBY_HEADERS
 )
 
 set(BOBBY_SOURCES
+    antbms.cpp
     accessors/wifistaconfigaccessors.cpp
     actions/assertaction.cpp
+    actions/bmsclearscanaction.cpp
+    actions/bmsscanaction.cpp
     actions/dividebyzeroaction.cpp
     actions/ledstripanimationactions.cpp
     actions/ledstripblinkactions.cpp
@@ -356,6 +363,7 @@ set(BOBBY_SOURCES
     screens/batteryinfodisplay.cpp
     screens/batterymenu.cpp
     screens/blesettingsmenu.cpp
+    screens/bmsscanmenu.cpp
     screens/boardcomputerhardwaresettingsmenu.cpp
     screens/buzzermenu.cpp
     screens/calibratevoltagedisplay.cpp
