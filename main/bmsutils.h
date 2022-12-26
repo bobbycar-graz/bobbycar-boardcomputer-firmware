@@ -1,10 +1,10 @@
 #pragma once
 
 // local includes
-#include "antbms.h"
+#include "antbmsmanager.h"
 
 namespace bmsutils {
-extern ANTBms antBms;
+extern ANTBmsManager antBms;
 
 void init();
 

@@ -1,6 +1,7 @@
 set(BOBBY_HEADERS
     accessorhelpers.h
     antbms.h
+    antbmsmanager.h
     accessors/globalaccessors.h
     accessors/settingsaccessors.h
     accessors/wifiaccessors.h
@@ -259,6 +260,7 @@ set(BOBBY_HEADERS
 
 set(BOBBY_SOURCES
     antbms.cpp
+    antbmsmanager.cpp
     accessors/wifistaconfigaccessors.cpp
     actions/assertaction.cpp
     actions/bmsclearscanaction.cpp

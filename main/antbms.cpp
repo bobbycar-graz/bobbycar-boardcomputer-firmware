@@ -1,350 +1,108 @@
 #include "antbms.h"
 
-// local includes
-#include "bmsutils.h"
-#include "newsettings.h"
+// esp-idf includes
+#include <esp_log.h>
 
-using namespace std::chrono_literals;
+BmsInstruction::BmsInstruction(uint8_t b, uint8_t b2) :
+        functionCode{b},
+        length{b2}
+{}
 
-void ANTBms::init()
+void BmsInstruction::setData(uint8_t *_data, uint8_t _length)
 {
-    // init code
-    m_initialized = true;
-
-    // scan
-    startScan();
+    std::copy(_data, _data + _length, this->data);
 }
 
-void ANTBms::update()
+int BmsInstruction::getAddress() const
 {
-    if (!m_initialized)
-        return;
+    return address;
+}
 
-    handleConnect();
+void BmsInstruction::setAddress(int _address)
+{
+    address = _address;
+}
 
-    if (m_client && (*m_client)->isConnected())
+uint8_t *BmsInstruction::getInstruction()
+{
+    if (length == 0)
     {
-        requestData();
+        return BmsBluetoothInst::buildReadBmsInst(functionCode, address, 0);
     }
+    return BmsBluetoothInst::buildReadBmsInstWithData(this->functionCode, this->address, this->length, this->data);
 }
 
-void ANTBms::deinit()
+std::string BmsInstruction::toString() const
 {
-    // deinit code
-    m_initialized = false;
+    return "BmsInstruction{functionCode=" + std::to_string(functionCode) + ", address=" + std::to_string(address) + ", inst = " + ", data = " + "}";
+}
 
-    if (m_client)
+int CRC16::calcCrc16(const uint8_t *data, uint16_t len)
+{
+    // calculate crc16
+    uint16_t crc = 0xFFFF;
+
+    for (int pos = 0; pos < len; pos++)
     {
-        (*m_client)->disconnect();
-        m_client.reset();
-    }
+        crc ^= (uint16_t) data[pos];          // XOR byte into least sig. byte of crc
 
-    if (m_scanResults)
-    {
-        m_scanResults.reset();
-    }
-
-    if (m_service)
-    {
-        m_service.reset();
-    }
-
-    if (m_rxCharacteristic)
-    {
-        m_rxCharacteristic.reset();
-    }
-
-    if (m_txCharacteristic)
-    {
-        m_txCharacteristic.reset();
-    }
-
-    m_scanStarted = false;
-    m_initialized = false;
-}
-
-bool ANTBms::isInitialized() const
-{
-    return m_initialized;
-}
-
-void ANTBms::startScan()
-{
-    if (!m_initialized)
-        return;
-
-    ESP_LOGI(TAG, "starting scan");
-
-    NimBLEScan* pScan = NimBLEDevice::getScan();
-    pScan->setActiveScan(true);
-    pScan->setInterval(100);
-    pScan->setWindow(99);
-    pScan->setScanCallbacks(new ScanResultsCallback(this), false);
-    pScan->start(5000);
-
-    ESP_LOGI(TAG, "scan started");
-
-    m_scanStarted = true;
-}
-
-void ANTBms::clearScanResults()
-{
-    m_scanResults.reset();
-}
-
-bool ANTBms::getScanStatus() const
-{
-    return m_scanStarted;
-}
-
-const std::optional<scanResults_t> &ANTBms::getScanResults()
-{
-    return m_scanResults;
-}
-
-void ANTBms::handleConnect()
-{
-    if (!m_initialized)
-        return;
-
-    ESP_LOGD(TAG, "!m_initialized passed");
-
-    if (m_connected)
-        return;
-
-    ESP_LOGD(TAG, "m_connected passed");
-
-    if (!m_scanResults)
-        return;
-
-    ESP_LOGD(TAG, "!m_scanResults passed");
-
-    if (m_scanResults && m_scanResults->entries.empty())
-        return;
-
-    ESP_LOGD(TAG, "m_scanResults->entries.empty() passed");
-
-    if (m_client && (*m_client)->isConnected())
-        return;
-
-    ESP_LOGD(TAG, "!m_client.has_value() passed");
-
-    if (configs.bmsAddress.value().empty())
-        return;
-
-    ESP_LOGD(TAG, "configs.bmsAddress.value().empty() passed");
-
-    ESP_LOGI(TAG, "connecting to bms");
-
-    if (NimBLEDevice::getClientListSize())
-    {
-        m_client = NimBLEDevice::getClientByPeerAddress(configs.bmsAddress.value());
-
-        if (m_client)
-        {
-            if (!(*m_client)->connect(configs.bmsAddress.value()))
-            {
-                ESP_LOGE(TAG, "Reconnect failed");
-                m_client.reset();
-                m_service.reset();
-                m_rxCharacteristic.reset();
-                m_txCharacteristic.reset();
-
-                m_connected = false;
-                return;
+        for (int i = 8; i != 0; i--)
+        {    // Loop over each bit
+            if ((crc & 0x0001) != 0)
+            {      // If the LSB is set
+                crc >>= 1;                    // Shift right and XOR 0xA001
+                crc ^= 0xA001;
             }
-            ESP_LOGI(TAG, "Reconnected to client");
-        }
-        else
-        {
-            m_client = NimBLEDevice::getDisconnectedClient();
+            else                            // Else LSB is not set
+                crc >>= 1;                    // Just shift right
         }
     }
 
-    if (!m_client)
-    {
-        if (NimBLEDevice::getClientListSize() >= NIMBLE_MAX_CONNECTIONS)
-        {
-            ESP_LOGE(TAG, "Max clients reached - no more connections available!");
-            return;
-        }
-
-        m_client = NimBLEDevice::createClient();
-
-        const auto pClient = *m_client;
-
-        pClient->setClientCallbacks(new ClientCallbacks(this), false);
-        pClient->setConnectTimeout(10);
-        pClient->setConnectionParams(12, 12, 0, 51);
-
-        if (!pClient->connect(configs.bmsAddress.value()))
-        {
-            NimBLEDevice::deleteClient(pClient);
-            m_client.reset();
-            m_service.reset();
-            m_rxCharacteristic.reset();
-            m_txCharacteristic.reset();
-
-            m_connected = false;
-            return;
-        }
-    }
-
-    if (!(*m_client)->isConnected())
-    {
-        if (!(*m_client)->connect(configs.bmsAddress.value()))
-        {
-            ESP_LOGE(TAG, "Failed to connect");
-            m_client.reset();
-            m_service.reset();
-            m_rxCharacteristic.reset();
-            m_txCharacteristic.reset();
-
-            m_connected = false;
-            return;
-        }
-    }
-
-    ESP_LOGI(TAG, "Connected!");
-    m_connected = true;
-
-    m_service = (*m_client)->getService(serviceUUID);
-
-    if (!m_service)
-    {
-        ESP_LOGE(TAG, "Failed to find our service UUID: %s", serviceUUID.toString().c_str());
-        m_client.reset();
-        m_service.reset();
-        m_rxCharacteristic.reset();
-        m_txCharacteristic.reset();
-
-        m_connected = false;
-        return;
-    }
-
-    if (m_service && (*m_service))
-    {
-        ESP_LOGI(TAG, "Getting characteristic");
-        m_rxCharacteristic = (*m_service)->getCharacteristic(charRXUUID);
-        m_txCharacteristic = (*m_service)->getCharacteristic(charTXUUID);
-
-        if ((m_rxCharacteristic && (*m_rxCharacteristic)) && (m_txCharacteristic && (*m_txCharacteristic)))
-        {
-            const auto pChr = *m_rxCharacteristic;
-
-            if (pChr->canNotify())
-            {
-                ESP_LOGI(TAG, "Subscribing to notifications");
-                if (!pChr->subscribe(true, bmsutils::_notifyCB))
-                {
-                    (*m_client)->disconnect();
-                    ESP_LOGE(TAG, "Failed to subscribe for notifications");
-                    m_client.reset();
-                    m_service.reset();
-                    m_rxCharacteristic.reset();
-
-                    m_connected = false;
-                    return;
-                }
-                ESP_LOGI(TAG, "Subscribed for notifications");
-
-                m_connected = true;
-
-                // 7ea1010000be1855aa55
-                uint8_t data[10] = {0x7e, 0xa1, 0x01, 0x00, 0x00, 0xbe, 0x18, 0x55, 0xaa, 0x55};
-                sendCommand(data, sizeof(data));
-                return;
-            }
-            else
-            {
-                ESP_LOGE(TAG, "Characteristic can't notify, disconnecting");
-                (*m_client)->disconnect();
-                m_client.reset();
-                m_service.reset();
-                m_rxCharacteristic.reset();
-
-                m_connected = false;
-                return;
-            }
-        }
-        else
-        {
-            ESP_LOGE(TAG, "Failed to find our characteristic UUID: %s", charRXUUID.toString().c_str());
-            m_client.reset();
-            m_service.reset();
-            m_rxCharacteristic.reset();
-
-            m_connected = false;
-            return;
-        }
-    }
+    return crc;
 }
 
-void ANTBms::notifyCB(NimBLERemoteCharacteristic *pRemoteCharacteristic, uint8_t *pData, size_t length, bool isNotify)
+uint8_t *BmsBluetoothInst::buildReadBmsInst(uint8_t b, int i, uint8_t b2)
 {
-    ESP_LOGI(TAG, "Received %s: %s (%.*s)", isNotify ? "notification" : "indication", bmsutils::bytesToHex(pData, length).c_str(), length, pData);
+    auto *bArr = new uint8_t[64];
+    bArr[0] = PROTOCOL_FRAME_HEAD;
+    bArr[1] = PROTOCOL_ADD;
+    bArr[2] = b;
+    bArr[3] = (uint8_t) (i & 255);
+    bArr[4] = (uint8_t) ((i >> 8) & 255);
+    bArr[5] = b2;
+    int crc16 = CRC16::calcCrc16(bArr + 1, 5);
+    ESP_LOGI(TAG, "crc: %d", crc16);
+    bArr[6] = (uint8_t) (crc16 >> 8);
+    bArr[7] = (uint8_t) (crc16 & 255);
+    bArr[8] = -86;
+    bArr[9] = 85;
+    return bArr;
 }
 
-void ANTBms::requestData()
+uint8_t *BmsBluetoothInst::buildReadBmsInstWithData(uint8_t b, int i, uint8_t b2, uint8_t *bArr)
 {
-    if (!m_initialized)
-        return;
-
-    if (!m_connected)
-        return;
-
-    if (espchrono::ago(m_lastRequestTime) > 2000ms || m_newPacketReceived)
+    auto *bArr2 = new uint8_t[64 + sizeof(bArr)];
+    bArr2[0] = PROTOCOL_FRAME_HEAD;
+    bArr2[1] = PROTOCOL_ADD;
+    bArr2[2] = b;
+    bArr2[3] = (uint8_t) (i & 255);
+    bArr2[4] = (uint8_t) ((i >> 8) & 255);
+    bArr2[5] = b2;
+    int i2 = 5;
+    for (int _i = 0; _i < sizeof(bArr); _i++)
     {
-        m_lastRequestTime = espchrono::millis_clock::now();
-
-        if (m_toggle)
-        {
-            bmsGetInfo3();
-            m_newPacketReceived = false;
-        }
-        else
-        {
-            bmsGetInfo4();
-            m_newPacketReceived = false;
-        }
-        m_toggle = !m_toggle;
+        i2++;
+        bArr2[i2] = bArr[_i];
     }
-}
-
-void ANTBms::sendCommand(uint8_t *pData, size_t length)
-{
-    if (!m_initialized)
-        return;
-
-    if (!m_connected)
-        return;
-
-    if (!m_txCharacteristic)
-        return;
-
-    if (!(*m_txCharacteristic))
-        return;
-
-    if (!(*m_txCharacteristic)->canWrite())
-        return;
-
-    ESP_LOGI(TAG, "Sending command: %s", bmsutils::bytesToHex(pData, length).c_str());
-
-    (*m_txCharacteristic)->writeValue(pData, length, true);
-}
-
-void ANTBms::bmsGetInfo3()
-{
-    // DD A5 03 00 FF FD 77
-    uint8_t data[7] = {0xdd, 0xa5, 0x3, 0x0, 0xff, 0xfd, 0x77};
-
-    sendCommand(data, sizeof(data));
-}
-
-void ANTBms::bmsGetInfo4()
-{
-    // DD A5 04 00 FF FC 77
-    uint8_t data[7] = {0xdd, 0xa5, 0x4, 0x0, 0xff, 0xfc, 0x77};
-
-    sendCommand(data, sizeof(data));
+    int i3 = i2 + 1;
+    int crc16 = CRC16::calcCrc16(bArr2 + 1, (uint16_t) (sizeof(bArr) + 5));
+    ESP_LOGI(TAG, "crc: %d", crc16);
+    bArr2[i3] = (uint8_t) (crc16 >> 8);
+    int i4 = i3 + 1;
+    bArr2[i4] = (uint8_t) (crc16 & 255);
+    int i5 = i4 + 1;
+    bArr2[i5] = -86;
+    int i6 = i5 + 1;
+    bArr2[i6] = 85;
+    return bArr2;
 }

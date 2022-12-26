@@ -11,7 +11,7 @@
 
 namespace bmsutils {
 
-ANTBms antBms;
+ANTBmsManager antBms;
 
 void init() {}
 
@@ -24,7 +24,7 @@ void update()
         ESP_LOGI("bmsutils", "initializing bms");
         antBms.init();
     }
-    else if (!configs.bmsEnabled.value() && initialized)
+    else if ((!configs.bmsEnabled.value() || !configs.bleSettings.bleEnabled.value()) && initialized)
     {
         ESP_LOGI("bmsutils", "deinitializing bms");
         antBms.deinit();
