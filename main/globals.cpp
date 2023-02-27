@@ -48,10 +48,5 @@ std::atomic<int8_t> buttonRequest;
 bool initScreenRequest{false};
 
 Controllers controllers;
-
-#ifdef FEATURE_BLUETOOTH
-BluetoothSerial bluetoothSerial;
-#endif
-
 ModeInterface *lastMode{};
 ModeInterface *currentMode{};

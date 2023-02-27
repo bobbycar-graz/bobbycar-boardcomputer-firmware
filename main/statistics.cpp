@@ -2,9 +2,6 @@
 
 namespace statistics {
 ContainerType raw_gas, raw_brems, gas, brems, avgSpeed, avgSpeedKmh, sumCurrent, frontVoltage, backVoltage, frontLeftCurrent, frontRightCurrent, backLeftCurrent, backRightCurrent,
-#ifdef FEATURE_BMS
-    bmsVoltage, bmsCurrent, bmsPower,
-#endif
     rssi;
 } // namespace statistics
 
@@ -33,11 +30,6 @@ void pushStats()
         statistics::backLeftCurrent.push_back(fixCurrent(controllers.back.feedback.left.dcLink));
         statistics::backRightCurrent.push_back(fixCurrent(controllers.back.feedback.right.dcLink));
     }
-#ifdef FEATURE_BMS
-    statistics::bmsVoltage.push_back(bms::voltage);
-    statistics::bmsCurrent.push_back(bms::current);
-    statistics::bmsPower.push_back(bms::power);
-#endif
     if (wifi_stack::get_sta_status() == wifi_stack::WiFiStaStatus::CONNECTED)
     {
         if (const auto &result = wifi_stack::get_sta_ap_info(); result)

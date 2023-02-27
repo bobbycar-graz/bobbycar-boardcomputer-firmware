@@ -4,16 +4,17 @@
 #include <cstdint>
 
 // 3rdparty lib includes
-#include <TFT_eSPI.h>
+#include <tftcolors.h>
+#include <tftinterface.h>
 
-namespace bobbygui {
+namespace bobby {
 class DoubleProgressBar
 {
 public:
-    DoubleProgressBar(int x, int y, int width, int height, int min, int max, uint32_t color1=TFT_YELLOW, uint32_t color2=TFT_YELLOW);
+    DoubleProgressBar(int x, int y, int width, int height, int min, int max, uint32_t color1=espgui::TFT_YELLOW, uint32_t color2=espgui::TFT_YELLOW);
 
-    void start();
-    void redraw(int value1, int value2);
+    void start(espgui::TftInterface &tft);
+    void redraw(espgui::TftInterface &tft, int value1, int value2);
 
 private:
     const int m_x;

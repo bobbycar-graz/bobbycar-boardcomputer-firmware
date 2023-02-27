@@ -9,9 +9,9 @@
 // 3rdparty lib includes
 #include <actions/setvalueaction.h>
 #include <actions/backproxyaction.h>
-#include <icons/back.h>
 
 // local includes
+#include "icons/back.h"
 #include "utils.h"
 
 namespace espgui {
@@ -30,7 +30,7 @@ ChangeValueDisplay<HandbremseMode>::ChangeValueDisplay()
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<HandbremseMode>, StaticText<TEXT_HANDBREMS_MOSFETS_OFF>>>(HandbremseMode::MOSFETS_OFF, *this, *this, *this);
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<HandbremseMode>, StaticText<TEXT_HANDBREMS_OPENMODE>>>(HandbremseMode::OPENMODE, *this, *this, *this);
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<HandbremseMode>, StaticText<TEXT_HANDBREMS_SPEED0>>>(HandbremseMode::SPEED_0, *this, *this, *this);
-    constructMenuItem<makeComponentArgs<MenuItem, BackProxyAction, StaticText<TEXT_BACK>, StaticMenuItemIcon<&espgui::icons::back>>>(*this);
+    constructMenuItem<makeComponentArgs<MenuItem, BackProxyAction, StaticText<TEXT_BACK>, StaticMenuItemIcon<&bobbyicons::back>>>(*this);
 }
 
 void ChangeValueDisplay<HandbremseMode>::start()

@@ -9,9 +9,9 @@
 // 3rdparty lib includes
 #include <actions/setvalueaction.h>
 #include <actions/backproxyaction.h>
-#include <icons/back.h>
 
 // local includes
+#include "icons/back.h"
 #include "utils.h"
 
 namespace espgui {
@@ -41,7 +41,7 @@ ChangeValueDisplay<BobbyQuickActions>::ChangeValueDisplay()
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<BobbyQuickActions>, StaticText<TEXT_QUICKACTION_TEMPOMAT>>>(BobbyQuickActions::PWMOMAT, *this, *this, *this);
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<BobbyQuickActions>, StaticText<TEXT_QUICKACTION_COMPRESSOR>>>(BobbyQuickActions::COMPRESSOR_TOGGLE, *this, *this, *this);
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<BobbyQuickActions>, StaticText<TEXT_QUICKACTION_HUPE>>>(BobbyQuickActions::HUPE, *this, *this, *this);
-    constructMenuItem<makeComponentArgs<MenuItem, BackProxyAction, StaticText<TEXT_BACK>, StaticMenuItemIcon<&espgui::icons::back>>>(*this);
+    constructMenuItem<makeComponentArgs<MenuItem, BackProxyAction, StaticText<TEXT_BACK>, StaticMenuItemIcon<&bobbyicons::back>>>(*this);
 }
 
 void ChangeValueDisplay<BobbyQuickActions>::start()

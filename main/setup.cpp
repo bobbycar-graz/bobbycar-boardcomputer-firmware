@@ -11,16 +11,24 @@ IgnoreInputMode setup_mode{0, bobbycar::protocol::ControlType::FieldOrientedCont
 void lock()
 {
     if (currently_locked)
+    {
+        ESP_LOGI("setup", "already locked");
         return;
+    }
 
     oldMode = currentMode;
     currentMode = &setup_mode;
+
+    currently_locked = true;
 }
 
 void unlock()
 {
     if (!currently_locked)
+    {
+        ESP_LOGI("setup", "already unlocked");
         return;
+    }
 
     if (currentMode == &setup_mode)
     {
@@ -30,6 +38,8 @@ void unlock()
 
         currentMode = oldMode;
     }
+
+    currently_locked = false;
 }
 
 bool isLocked()

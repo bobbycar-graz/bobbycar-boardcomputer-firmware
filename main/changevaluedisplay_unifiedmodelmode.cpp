@@ -9,9 +9,9 @@
 // 3rdparty lib includes
 #include <actions/setvalueaction.h>
 #include <actions/backproxyaction.h>
-#include <icons/back.h>
 
 // local includes
+#include "icons/back.h"
 #include "utils.h"
 
 namespace espgui {
@@ -33,7 +33,7 @@ ChangeValueDisplay<UnifiedModelMode>::ChangeValueDisplay()
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<UnifiedModelMode>, StaticText<TEXT_FOCVOLTAGE>>>(UnifiedModelMode::FocVoltage, *this, *this, *this);
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<UnifiedModelMode>, StaticText<TEXT_FOCSPEED>>>(UnifiedModelMode::FocSpeed, *this, *this, *this);
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<UnifiedModelMode>, StaticText<TEXT_FOCTORQUE>>>(UnifiedModelMode::FocTorque, *this, *this, *this);
-    constructMenuItem<makeComponentArgs<MenuItem, BackProxyAction, StaticText<TEXT_BACK>, StaticMenuItemIcon<&espgui::icons::back>>>(*this);
+    constructMenuItem<makeComponentArgs<MenuItem, BackProxyAction, StaticText<TEXT_BACK>, StaticMenuItemIcon<&bobbyicons::back>>>(*this);
 }
 
 void ChangeValueDisplay<UnifiedModelMode>::start()

@@ -13,15 +13,15 @@
 #include <menudisplay.h>
 #include <numberparsing.h>
 #include <screenmanager.h>
-#include <tftinstance.h>
 #include <tickchrono.h>
 #include <wrappers/websocket_client.h>
 
 // local includes
-#include "bobbyerrorhandler.h"
 #include "globals.h"
+#include "guihelpers/bobbyerrorhandler.h"
 #include "newsettings.h"
 #include "ota.h"
+#include "screens.h"
 #include "typeutils.h"
 #include "utils.h"
 
@@ -770,7 +770,7 @@ std::string getLoginMessage()
 {
     using namespace espgui;
     return fmt::format(R"({{"type": "hello", "name": "{}", "res": "{}x{}", "pass": "{}", "key": "{}"}})",
-                       configs.otaUsername.value(), tft.width(), tft.height(), configs.webserverPassword.value(), configs.cloudSettings.cloudKey.value());
+                       configs.otaUsername.value(), bobby::getScreenWidth(), bobby::getScreenHeight(), configs.webserverPassword.value(), configs.cloudSettings.cloudKey.value());
 }
 
 void cloudEventHandler(void *event_handler_arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
@@ -810,7 +810,7 @@ void cloudEventHandler(void *event_handler_arg, esp_event_base_t event_base, int
             std::string id = doc["id"];
             doc.clear();
             ESP_LOGI(TAG, "popup: %s, id: %s", text.c_str(), id.c_str());
-            BobbyErrorHandler{}.errorOccurred(std::move(text));
+            bobby::BobbyErrorHandler{}.errorOccurred(std::move(text));
 
             if (id.empty())
                 return;

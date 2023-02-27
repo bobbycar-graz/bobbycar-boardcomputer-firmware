@@ -1,10 +1,6 @@
 constexpr const char * const TAG = "BOBBY";
 
-// system includes
-#include <cstdio>
-
 // esp-idf includes
-#include <esp32/pm.h>
 #include <esp_pm.h>
 #include <esp_chip_info.h>
 #include <esp_log.h>
@@ -13,15 +9,11 @@ constexpr const char * const TAG = "BOBBY";
 #include <espchrono.h>
 using namespace std::chrono_literals;
 #include <espwifistack.h>
-#include <schedulertask.h>
-#include <screenmanager.h>
 #include <tickchrono.h>
 #include <espstrutils.h>
+#include <screenmanager.h>
 
 // local includes
-#include "bobbycar-common.h"
-#include "bobbycar-serial.h"
-#include "macros_bobbycar.h"
 #include "globals.h"
 #include "screens.h"
 #include "presets.h"
@@ -31,18 +23,17 @@ using namespace std::chrono_literals;
 #else
 #include "modes/defaultmode.h"
 #endif
-#include "displays/lockscreen.h"
-#include "displays/menus/recoverymenu.h"
-#include "displays/potiscalibratedisplay.h"
-#include "displays/setup/information.h"
-#include "displays/setup/basic_buttons.h"
-#include "displays/setup/calibrate_potis.h"
-#include "displays/statusdisplay.h"
+#include "screens/lockscreen.h"
+#include "screens/recoverymenu.h"
+#include "screens/setup/information.h"
+#include "screens/setup/basic_buttons.h"
+#include "screens/setup/calibrate_potis.h"
+#include "screens/statusdisplay.h"
 #include "newsettings.h"
 #include "taskmanager.h"
 
 #define BOOT_PROGRESS(s) \
-    bootLabel.redraw(s); \
+    bobby::set_boot_msg(s); \
     ESP_LOGI("BOOT", "%s", s);
 
 namespace {
@@ -65,10 +56,10 @@ extern "C" void app_main()
 
     if (recovery)
     {
-        initScreen();
+        bobby::initScreen();
 
         ESP_LOGE(TAG, "Recovery mode (%s)", espcpputils::toString(esp_reset_reason()).c_str());
-        bootLabel.redraw("Entering recovery mode");
+        BOOT_PROGRESS("Entering recovery mode");
 
         if (const auto result = configs.init("bobbycar"); result != ESP_OK)
             ESP_LOGE(TAG, "config_init_settings() failed with %s", esp_err_to_name(result));
@@ -78,14 +69,12 @@ extern "C" void app_main()
             task.setup(recovery);
         }
 
-        espgui::switchScreen<RecoveryMenu>();
+        espgui::switchScreen<bobby::RecoveryMenu>();
 
         recovery = false;
 
         while (true)
         {
-            const auto now = espchrono::millis_clock::now();
-
             for (auto &schedulerTask : schedulerTasks)
             {
                 if (schedulerTask.isInitialized())
@@ -105,7 +94,7 @@ extern "C" void app_main()
     if (const auto result = configs.init("bobbycar"); result != ESP_OK)
         ESP_LOGE(TAG, "config_init_settings() failed with %s", esp_err_to_name(result));
 
-    initScreen();
+    bobby::initScreen();
 
     profileSettings = presets::defaultProfileSettings;
 
@@ -142,14 +131,14 @@ extern "C" void app_main()
         {
         case SetupStep::INFORMATION:
             BOOT_PROGRESS("Calibtration");
-            espgui::switchScreen<SetupInformationDisplay>();
+            espgui::switchScreen<bobby::SetupInformationDisplay>();
             break;
         case SetupStep::BASIC_BUTTONS:
             BOOT_PROGRESS("Calibtration");
-            espgui::switchScreen<SetupBasicButtonsDisplay>(true);
+            espgui::switchScreen<bobby::SetupBasicButtonsDisplay>(true);
             break;
         case SetupStep::CALIBRATE_POTIS:
-            espgui::switchScreen<SetupCalibratePotisDisplay>(true);
+            espgui::switchScreen<bobby::SetupCalibratePotisDisplay>(true);
             break;
         default:;
         }
@@ -157,13 +146,13 @@ extern "C" void app_main()
     else if (configs.lockscreen.keepLockedAfterReboot.value() && configs.lockscreen.locked.value())
     {
         BOOT_PROGRESS("Locked");
-        espgui::switchScreen<StatusDisplay>();
-        espgui::pushScreen<Lockscreen>();
+        espgui::switchScreen<bobby::StatusDisplay>();
+        espgui::pushScreen<bobby::Lockscreen>();
     }
     else
     {
         BOOT_PROGRESS("StatusDisplay")
-        espgui::switchScreen<StatusDisplay>();
+        espgui::switchScreen<bobby::StatusDisplay>();
     }
 
     esp_chip_info(&chip_info);

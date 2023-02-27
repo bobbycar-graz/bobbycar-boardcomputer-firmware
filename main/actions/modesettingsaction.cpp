@@ -17,15 +17,17 @@
 #include "modes/wheelchairmode.h"
 #endif
 #include "modes/remotecontrolmode.h"
-#include "displays/menus/defaultmodesettingsmenu.h"
-#include "displays/menus/tempomatmodesettingsmenu.h"
-#include "displays/menus/larsmmodesettingsmenu.h"
+#include "screens/defaultmodesettingsmenu.h"
+#include "screens/tempomatmodesettingsmenu.h"
+#include "screens/larsmmodesettingsmenu.h"
 #ifdef FEATURE_GAMETRAK
-#include "displays/menus/gametrakmodesettingsmenu.h"
+#include "screens/gametrakmodesettingsmenu.h"
 #endif
-#include "displays/menus/mickmodesettingsmenu.h"
-#include "displays/menus/motortestmodesettingsmenu.h"
-#include "displays/menus/remotecontrolmodesettingsmenu.h"
+#include "screens/mickmodesettingsmenu.h"
+#include "screens/motortestmodesettingsmenu.h"
+#include "screens/remotecontrolmodesettingsmenu.h"
+
+namespace bobby {
 
 void ModeSettingsAction::triggered()
 {
@@ -54,3 +56,4 @@ void ModeSettingsAction::triggered()
         //Serial.println("Unknown mode, cannot open settings for it");
     }
 }
+} // namespace bobby

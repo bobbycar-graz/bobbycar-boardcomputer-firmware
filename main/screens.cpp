@@ -1,40 +1,47 @@
 #include "screens.h"
 
 // 3rdparty lib includes
-#include <tftinstance.h>
 #include <screenmanager.h>
+#include <tftcolors.h>
+#include <tftespiimpl.h>
+#include <tftinterface.h>
 
 // local includes
-#include "esptexthelpers.h"
 #include "globals.h"
 #include "icons/logo.h"
+#include "texthelpers/esptexthelpers.h"
+
+namespace bobby {
 
 using namespace espgui;
 
-Label bootLabel{32, 250};
+espgui::Label bootLabel{32, 250};
 
 namespace {
 bool disable_screen_flip{false};
+
+espgui::TftESpiImpl tft;
+}
+
+void tft_init()
+{
+    tft.init();
 }
 
 void initScreen()
 {
     // vertical screen
     tft.init();
-    tft.fillScreen(TFT_WHITE);
-    tft.setTextColor(TFT_BLACK, TFT_WHITE);
-    tft.setTextFont(4);
+    tft.fillScreen(espgui::TFT_WHITE);
     tft.setRotation(configs.boardcomputerHardware.flipScreen.value() ? 2 : 0);
-    espgui::tft.setSwapBytes(true);
+    tft.setSwapBytes(true);
     tft.pushImage(0, 40, bobbyicons::logo.WIDTH, bobbyicons::logo.HEIGHT, bobbyicons::logo.buffer);
-    espgui::tft.setSwapBytes(false);
-    tft.drawString("Bobbycar-OS", 32, 200);
-    tft.drawString("booting...", 32, 225);
-    tft.setTextFont(2);
-    tft.drawString("last reboot reason:", 32, 275);
-    tft.drawString(espcpputils::toString(esp_reset_reason()), 32, 295);
-    tft.setTextFont(4);
-    bootLabel.start();
+    tft.setSwapBytes(false);
+    tft.drawString("Bobbycar-OS", 32, 200, espgui::TFT_BLACK, espgui::TFT_WHITE, 4);
+    tft.drawString("booting...", 32, 225, espgui::TFT_BLACK, espgui::TFT_WHITE, 4);
+    tft.drawString("last reboot reason:", 32, 275, espgui::TFT_BLACK, espgui::TFT_WHITE, 2);
+    tft.drawString(espcpputils::toString(esp_reset_reason()), 32, 295, espgui::TFT_BLACK, espgui::TFT_WHITE, 2);
+    bootLabel.start(tft);
 }
 
 void updateRotation()
@@ -43,7 +50,7 @@ void updateRotation()
     {
         tft.setRotation(configs.boardcomputerHardware.flipScreen.value() ? 2 : 0);
         if (currentDisplay)
-            currentDisplay->initScreen();
+            currentDisplay->initScreen(tft);
     }
 }
 
@@ -54,7 +61,7 @@ void updateDisplay()
 
     if (changeScreenCallback)
     {
-        changeScreenCallback();
+        changeScreenCallback(tft);
         changeScreenCallback = {};
     }
 
@@ -78,7 +85,7 @@ void updateDisplay()
 
     if (initScreenRequest && currentDisplay)
     {
-        currentDisplay->initScreen();
+        currentDisplay->initScreen(tft);
         initScreenRequest = false;
     }
 }
@@ -87,7 +94,7 @@ void redrawDisplay()
 {
     if (currentDisplay)
     {
-        currentDisplay->redraw();
+        currentDisplay->redraw(tft);
     }
 }
 
@@ -95,3 +102,19 @@ void disableScreenFlip(bool enable)
 {
     disable_screen_flip = enable;
 }
+
+void set_boot_msg(std::string_view msg)
+{
+    bootLabel.redraw(tft, msg, espgui::TFT_BLACK, espgui::TFT_WHITE, 4);
+}
+
+uint16_t getScreenWidth()
+{
+    return tft.width();
+}
+
+uint16_t getScreenHeight()
+{
+    return tft.height();
+}
+} // namespace bobby

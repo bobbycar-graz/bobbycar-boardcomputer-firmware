@@ -4,8 +4,10 @@
 #include <screenmanager.h>
 
 // local includes
-#include "displays/setup/basic_buttons.h"
-#include "displays/setup/calibrate_potis.h"
+#include "screens/setup/basic_buttons.h"
+#include "screens/setup/calibrate_potis.h"
+
+namespace bobby {
 
 PushButtonCalibrateDisplayAction::PushButtonCalibrateDisplayAction(const bool early_return) :
     m_early_return{early_return}
@@ -22,5 +24,6 @@ PushPotiCalibrateDisplayAction::PushPotiCalibrateDisplayAction(const bool early_
 
 void PushPotiCalibrateDisplayAction::triggered()
 {
-    // espgui::pushScreen<SetupCalibratePotisDisplay>(m_early_return); // commented out until implemented
+    espgui::pushScreen<SetupCalibratePotisDisplay>(m_early_return);
 }
+} // namespace bobby

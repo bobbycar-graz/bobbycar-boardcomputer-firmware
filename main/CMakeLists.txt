@@ -1,21 +1,15 @@
 set(BOBBY_HEADERS
     accessorhelpers.h
+    antbms.h
+    antbmsmanager.h
     accessors/globalaccessors.h
     accessors/settingsaccessors.h
     accessors/wifiaccessors.h
     accessors/wifiapconfigaccessors.h
     accessors/wifistaconfigaccessors.h
     actions/assertaction.h
-    actions/bluetoothbeginaction.h
-    actions/bluetoothbeginmasteraction.h
-    actions/bluetoothconnectbmsaction.h
-    actions/bluetoothdisconnectaction.h
-    actions/bluetoothendaction.h
-    actions/bluetoothflushaction.h
-    actions/bmsturnoffchargeaction.h
-    actions/bmsturnoffdischargeaction.h
-    actions/bmsturnonchargeaction.h
-    actions/bmsturnondischargeaction.h
+    actions/bmsclearscanaction.h
+    actions/bmsscanaction.h
     actions/dividebyzeroaction.h
     actions/erasenvsaction.h
     actions/ledstripanimationactions.h
@@ -23,7 +17,6 @@ set(BOBBY_HEADERS
     actions/loadsettingsaction.h
     actions/modesettingsaction.h
     actions/qraction.h
-    actions/rebootaction.h
     actions/resetnvsaction.h
     actions/savesettingsaction.h
     actions/setupactions.h
@@ -35,143 +28,25 @@ set(BOBBY_HEADERS
     actions/wifistascanclearaction.h
     battery.h
     ble_bobby.h
-    bletexthelpers.h
-    bluetooth_bobby.h
-    bluetoothmode.h
-    bluetoothtexthelpers.h
     bmsutils.h
     bobbyblinker.h
     bobbybuttons.h
-    bobbycheckbox.h
-    bobbyerrorhandler.h
     bobbyhupe.h
     bobbyquickactions.h
     bobbyschedulertask.h
     bobbytypesafeenum.h
     buildserver.h
     can.h
-    changevaluedisplay_bluetoothmode.h
     changevaluedisplay_bobbyquickactions.h
     changevaluedisplay_controlmode.h
     changevaluedisplay_controltype.h
     changevaluedisplay_larsmmode_mode.h
     changevaluedisplay_unifiedmodelmode.h
     cloud.h
-    cloudtexthelpers.h
     configutils_bobby.h
     controller.h
     debugcolorhelpers.h
     debuginputhandler.h
-    debugtexthelpers.h
-    displays/batterygraphdisplay.h
-    displays/batteryinfodisplay.h
-    displays/bmsdisplay.h
-    displays/bobbychangevaluedisplay.h
-    displays/bobbydisplay.h
-    displays/bobbydisplaywithtitle.h
-    displays/bobbygraphdisplay.h
-    displays/bobbymenudisplay.h
-    displays/bobbypopupdisplay.h
-    displays/bobbysplitgraphdisplay.h
-    displays/calibratevoltagedisplay.h
-    displays/confiscationdisplay.h
-    displays/gameoflifedisplay.h
-    displays/gametrakcalibratedisplay.h
-    displays/joystickdebugdisplay.h
-    displays/ledstripcolorsdisplay.h
-    displays/lockscreen.h
-    displays/menudisplaywithtime.cpp
-    displays/menudisplaywithtime.h
-    displays/menus/aboutmenu.h
-    displays/menus/batterydebugmenu.h
-    displays/menus/batterymenu.h
-    displays/menus/blesettingsmenu.h
-    displays/menus/bluetoothsettingsmenu.h
-    displays/menus/bmsmenu.h
-    displays/menus/boardcomputerhardwaresettingsmenu.h
-    displays/menus/buzzermenu.h
-    displays/menus/candebugmenu.h
-    displays/menus/cloudsettingsmenu.h
-    displays/menus/commanddebugmenu.h
-    displays/menus/controllerhardwaresettingsmenu.h
-    displays/menus/crashmenu.h
-    displays/menus/debugmenu.h
-    displays/menus/defaultmodesettingsmenu.h
-    displays/menus/demosmenu.h
-    displays/menus/dynamicdebugmenu.h
-    displays/menus/enablemenu.h
-    displays/menus/espnowmenu.h
-    displays/menus/espnowsettingsmenu.h
-    displays/menus/extrabuttoncalibratemenu.h
-    displays/menus/featureflagsmenu.h
-    displays/menus/feedbackdebugmenu.h
-    displays/menus/gametrakmodesettingsmenu.h
-    displays/menus/garagemenu.h
-    displays/menus/gitmenu.h
-    displays/menus/graphsmenu.h
-    displays/menus/greenpassmenu.h
-    displays/menus/handbremssettingsmenu.h
-    displays/menus/invertmenu.h
-    displays/menus/larsmmodesettingsmenu.h
-    displays/menus/ledstripmenu.h
-    displays/menus/ledstripselectblinkmenu.h
-    displays/menus/ledstripselectotamode.h
-    displays/menus/limitssettingsmenu.h
-    displays/menus/lockscreensettingsmenu.h
-    displays/menus/mainmenu.h
-    displays/menus/manageprofilesmenu.h
-    displays/menus/mickmodesettingsmenu.h
-    displays/menus/modessettingsmenu.h
-    displays/menus/mosfetsmenu.h
-    displays/menus/motorfeedbackdebugmenu.h
-    displays/menus/motorstatedebugmenu.h
-    displays/menus/motortestmodesettingsmenu.h
-    displays/menus/networksettingsmenu.h
-    displays/menus/otamenu.h
-    displays/menus/profilesmenu.h
-    displays/menus/recoverymenu.h
-    displays/menus/remotecontrolmodesettingsmenu.h
-    displays/menus/selectbuildserverbranch.h
-    displays/menus/selectbuildservermenu.h
-    displays/menus/selectmodemenu.h
-    displays/menus/selectotabuildmenu.h
-    displays/menus/settingsmenu.h
-    displays/menus/setupquickactionsmenu.h
-    displays/menus/statisticsmenu.h
-    displays/menus/taskmanagermenu.h
-    displays/menus/tempomatmodesettingsmenu.h
-    displays/menus/timersmenu.h
-    displays/menus/timesettingsmenu.h
-    displays/menus/typesafeenumchangemenu.h
-    displays/menus/udpcloudsettingsmenu.h
-    displays/menus/wifiapclientsmenu.h
-    displays/menus/wifiapsettingsmenu.h
-    displays/menus/wifistaconfigentrymenu.h
-    displays/menus/wifistaconfigsmenu.h
-    displays/menus/wifistascanentrymenu.h
-    displays/menus/wifistascanmenu.h
-    displays/menus/wifistasettingsmenu.h
-    displays/metersdisplay.h
-    displays/pingpongdisplay.h
-    displays/potiscalibratedisplay.h
-    displays/poweroffdisplay.h
-    displays/powersupplydisplay.h
-    displays/qrcodedebug.h
-    displays/qrdisplay.h
-    displays/qrimportdisplay.h
-    displays/setup/ask_calibrate_other_buttons.h
-    displays/setup/ask_setup_clouds.h
-    displays/setup/basic_buttons.h
-    displays/setup/calibrate_potis.h
-    displays/setup/final_information.h
-    displays/setup/information.h
-    displays/setup/setup_cloud.h
-    displays/speedinfodisplay.h
-    displays/spirodisplay.h
-    displays/starfielddisplay.h
-    displays/statusdisplay.h
-    displays/updatedisplay.h
-    displays/xydebugdisplay.h
     dnsannounce.h
     dpad.h
     dpad3wire.h
@@ -181,17 +56,30 @@ set(BOBBY_HEADERS
     dpad_boardcomputer_v2.h
     drivingstatistics.h
     espnowfunctions.h
-    esptexthelpers.h
     feedbackemulator.h
     feedbackparser.h
     globals.h
+    guihelpers/bobbychangevaluedisplay.h
+    guihelpers/bobbycheckbox.h
+    guihelpers/bobbycheckboxicon.h
+    guihelpers/bobbydisplay.h
+    guihelpers/bobbydisplaywithtitle.h
+    guihelpers/bobbyerrorhandler.h
+    guihelpers/bobbygraphdisplay.h
+    guihelpers/bobbymenudisplay.h
+    guihelpers/bobbypopupdisplay.h
+    guihelpers/bobbysplitgraphdisplay.h
+    guihelpers/menudisplaywithtime.cpp
+    guihelpers/menudisplaywithtime.h
     handbremse.h
     icons/alert.h
+    icons/back.h
     icons/battery.h
     icons/bluetooth.h
     icons/bms.h
     icons/bobbycar.h
     icons/buzzer.h
+    icons/checked.h
     icons/close.h
     icons/demos.h
     icons/git.h
@@ -211,11 +99,11 @@ set(BOBBY_HEADERS
     icons/shortcircuit.h
     icons/statistics.h
     icons/time.h
+    icons/unchecked.h
     icons/update.h
     icons/wifi.h
     ledstrip.h
     ledstripdefines.h
-    macros_bobbycar.h
     modeinterface.h
     modes.h
     modes/defaultmode.h
@@ -237,16 +125,119 @@ set(BOBBY_HEADERS
     qrimport.h
     rotary.h
     screens.h
+    screens/aboutmenu.h
+    screens/batterydebugmenu.h
+    screens/batterygraphdisplay.h
+    screens/batteryinfodisplay.h
+    screens/batterymenu.h
+    screens/blesettingsmenu.h
+    screens/bmsscanmenu.h
+    screens/boardcomputerhardwaresettingsmenu.h
+    screens/buzzermenu.h
+    screens/calibratevoltagedisplay.h
+    screens/candebugmenu.h
+    screens/cloudsettingsmenu.h
+    screens/commanddebugmenu.h
+    screens/confiscationdisplay.h
+    screens/controllerhardwaresettingsmenu.h
+    screens/crashmenu.h
+    screens/debugmenu.h
+    screens/defaultmodesettingsmenu.h
+    screens/demosmenu.h
+    screens/dynamicdebugmenu.h
+    screens/enablemenu.h
+    screens/espnowmenu.h
+    screens/espnowsettingsmenu.h
+    screens/extrabuttoncalibratemenu.h
+    screens/featureflagsmenu.h
+    screens/feedbackdebugmenu.h
+    screens/gameoflifedisplay.h
+    screens/gametrakcalibratedisplay.h
+    screens/gametrakmodesettingsmenu.h
+    screens/garagemenu.h
+    screens/gitmenu.h
+    screens/graphsmenu.h
+    screens/greenpassmenu.h
+    screens/handbremssettingsmenu.h
+    screens/invertmenu.h
+    screens/joystickdebugdisplay.h
+    screens/larsmmodesettingsmenu.h
+    screens/ledstripcolorsdisplay.h
+    screens/ledstripmenu.h
+    screens/ledstripselectblinkmenu.h
+    screens/ledstripselectotamode.h
+    screens/limitssettingsmenu.h
+    screens/lockscreen.h
+    screens/lockscreensettingsmenu.h
+    screens/mainmenu.h
+    screens/manageprofilesmenu.h
+    screens/metersdisplay.h
+    screens/mickmodesettingsmenu.h
+    screens/modessettingsmenu.h
+    screens/mosfetsmenu.h
+    screens/motorfeedbackdebugmenu.h
+    screens/motorstatedebugmenu.h
+    screens/motortestmodesettingsmenu.h
+    screens/networksettingsmenu.h
+    screens/otamenu.h
+    screens/pingpongdisplay.h
+    screens/poweroffdisplay.h
+    screens/powersupplydisplay.h
+    screens/profilesmenu.h
+    screens/qrcodedebug.h
+    screens/qrdisplay.h
+    screens/qrimportdisplay.h
+    screens/rebootscreen.h
+    screens/recoverymenu.h
+    screens/remotecontrolmodesettingsmenu.h
+    screens/resetnvsscreen.h
+    screens/selectbuildserverbranch.h
+    screens/selectbuildservermenu.h
+    screens/selectmodemenu.h
+    screens/selectotabuildmenu.h
+    screens/settingsmenu.h
+    screens/setup/ask_calibrate_other_buttons.h
+    screens/setup/ask_setup_clouds.h
+    screens/setup/basic_buttons.h
+    screens/setup/calibrate_potis.h
+    screens/setup/final_information.h
+    screens/setup/information.h
+    screens/setup/setup_cloud.h
+    screens/setupquickactionsmenu.h
+    screens/speedinfodisplay.h
+    screens/spirodisplay.h
+    screens/starfielddisplay.h
+    screens/statisticsmenu.h
+    screens/statusdisplay.h
+    screens/taskmanagermenu.h
+    screens/tempomatmodesettingsmenu.h
+    screens/timersmenu.h
+    screens/timesettingsmenu.h
+    screens/typesafeenumchangemenu.h
+    screens/udpcloudsettingsmenu.h
+    screens/updatedisplay.h
+    screens/wifiapclientsmenu.h
+    screens/wifiapsettingsmenu.h
+    screens/wifistaconfigentrymenu.h
+    screens/wifistaconfigsmenu.h
+    screens/wifistascanentrymenu.h
+    screens/wifistascanmenu.h
+    screens/wifistasettingsmenu.h
+    screens/xydebugdisplay.h
     serial_bobby.h
     settingspersister.h
     settingsutils.h
     setup.h
     softpwmlimiter.h
     statistics.h
-    statustexthelper.h
     taskmanager.h
     tempomat.h
+    texthelpers/bletexthelpers.h
+    texthelpers/cloudtexthelpers.h
+    texthelpers/debugtexthelpers.h
+    texthelpers/esptexthelpers.h
     texthelpers/networktexthelpers.h
+    texthelpers/statustexthelper.h
     texthelpers/wifiaptexthelpers.h
     texthelpers/wifistatexthelpers.h
     time_bobbycar.h
@@ -268,189 +259,64 @@ set(BOBBY_HEADERS
 )
 
 set(BOBBY_SOURCES
+    antbms.cpp
+    antbmsmanager.cpp
     accessors/wifistaconfigaccessors.cpp
     actions/assertaction.cpp
-    actions/bluetoothbeginaction.cpp
-    actions/bluetoothbeginmasteraction.cpp
-    actions/bluetoothconnectbmsaction.cpp
-    actions/bluetoothdisconnectaction.cpp
-    actions/bluetoothendaction.cpp
-    actions/bluetoothflushaction.cpp
-    actions/bmsturnoffchargeaction.cpp
-    actions/bmsturnoffdischargeaction.cpp
-    actions/bmsturnonchargeaction.cpp
-    actions/bmsturnondischargeaction.cpp
+    actions/bmsclearscanaction.cpp
+    actions/bmsscanaction.cpp
     actions/dividebyzeroaction.cpp
-    actions/erasenvsaction.cpp
     actions/ledstripanimationactions.cpp
     actions/ledstripblinkactions.cpp
-    actions/loadsettingsaction.cpp
     actions/modesettingsaction.cpp
     actions/qraction.cpp
-    actions/rebootaction.cpp
-    actions/resetnvsaction.cpp
-    actions/savesettingsaction.cpp
     actions/setupactions.cpp
-    actions/switchprofileaction.cpp
-    actions/tempomatmodeapplycurrentpeedaction.cpp
-    actions/updateswapfrontbackaction.cpp
-    actions/wifiscanaction.cpp
     actions/wifistascanaction.cpp
     actions/wifistascanclearaction.cpp
     battery.cpp
     ble_bobby.cpp
-    bletexthelpers.cpp
-    bluetooth_bobby.cpp
-    bluetoothmode.cpp
-    bluetoothtexthelpers.cpp
     bmsutils.cpp
     bobbyblinker.cpp
     bobbybuttons.cpp
-    bobbyerrorhandler.cpp
     bobbyhupe.cpp
     bobbyquickactions.cpp
     buildserver.cpp
     can.cpp
-    changevaluedisplay_bluetoothmode.cpp
     changevaluedisplay_bobbyquickactions.cpp
     changevaluedisplay_controlmode.cpp
     changevaluedisplay_controltype.cpp
     changevaluedisplay_larsmmode_mode.cpp
     changevaluedisplay_unifiedmodelmode.cpp
     cloud.cpp
-    cloudtexthelpers.cpp
     configwrapper_bobby.cpp
     controller.cpp
-    debugcolorhelpers.cpp
     debuginputhandler.cpp
-    debugtexthelpers.cpp
-    displays/batterygraphdisplay.cpp
-    displays/batteryinfodisplay.cpp
-    displays/bmsdisplay.cpp
-    displays/bobbychangevaluedisplay.cpp
-    displays/bobbydisplay.cpp
-    displays/bobbydisplaywithtitle.cpp
-    displays/bobbygraphdisplay.cpp
-    displays/bobbymenudisplay.cpp
-    displays/bobbypopupdisplay.cpp
-    displays/bobbysplitgraphdisplay.cpp
-    displays/calibratevoltagedisplay.cpp
-    displays/confiscationdisplay.cpp
-    displays/gameoflifedisplay.cpp
-    displays/gametrakcalibratedisplay.cpp
-    displays/joystickdebugdisplay.cpp
-    displays/ledstripcolorsdisplay.cpp
-    displays/lockscreen.cpp
-    displays/menus/aboutmenu.cpp
-    displays/menus/batterydebugmenu.cpp
-    displays/menus/batterymenu.cpp
-    displays/menus/blesettingsmenu.cpp
-    displays/menus/bluetoothsettingsmenu.cpp
-    displays/menus/bmsmenu.cpp
-    displays/menus/boardcomputerhardwaresettingsmenu.cpp
-    displays/menus/buzzermenu.cpp
-    displays/menus/candebugmenu.cpp
-    displays/menus/cloudsettingsmenu.cpp
-    displays/menus/commanddebugmenu.cpp
-    displays/menus/controllerhardwaresettingsmenu.cpp
-    displays/menus/crashmenu.cpp
-    displays/menus/debugmenu.cpp
-    displays/menus/defaultmodesettingsmenu.cpp
-    displays/menus/demosmenu.cpp
-    displays/menus/dynamicdebugmenu.cpp
-    displays/menus/enablemenu.cpp
-    displays/menus/espnowmenu.cpp
-    displays/menus/espnowsettingsmenu.cpp
-    displays/menus/extrabuttoncalibratemenu.cpp
-    displays/menus/featureflagsmenu.cpp
-    displays/menus/feedbackdebugmenu.cpp
-    displays/menus/gametrakmodesettingsmenu.cpp
-    displays/menus/garagemenu.cpp
-    displays/menus/gitmenu.cpp
-    displays/menus/graphsmenu.cpp
-    displays/menus/greenpassmenu.cpp
-    displays/menus/handbremssettingsmenu.cpp
-    displays/menus/invertmenu.cpp
-    displays/menus/larsmmodesettingsmenu.cpp
-    displays/menus/ledstripmenu.cpp
-    displays/menus/ledstripselectblinkmenu.cpp
-    displays/menus/ledstripselectotamode.cpp
-    displays/menus/limitssettingsmenu.cpp
-    displays/menus/lockscreensettingsmenu.cpp
-    displays/menus/mainmenu.cpp
-    displays/menus/manageprofilesmenu.cpp
-    displays/menus/mickmodesettingsmenu.cpp
-    displays/menus/modessettingsmenu.cpp
-    displays/menus/mosfetsmenu.cpp
-    displays/menus/motorfeedbackdebugmenu.cpp
-    displays/menus/motorstatedebugmenu.cpp
-    displays/menus/motortestmodesettingsmenu.cpp
-    displays/menus/networksettingsmenu.cpp
-    displays/menus/otamenu.cpp
-    displays/menus/profilesmenu.cpp
-    displays/menus/recoverymenu.cpp
-    displays/menus/remotecontrolmodesettingsmenu.cpp
-    displays/menus/selectbuildserverbranch.cpp
-    displays/menus/selectbuildservermenu.cpp
-    displays/menus/selectmodemenu.cpp
-    displays/menus/selectotabuildmenu.cpp
-    displays/menus/settingsmenu.cpp
-    displays/menus/setupquickactionsmenu.cpp
-    displays/menus/statisticsmenu.cpp
-    displays/menus/taskmanagermenu.cpp
-    displays/menus/tempomatmodesettingsmenu.cpp
-    displays/menus/timersmenu.cpp
-    displays/menus/timesettingsmenu.cpp
-    displays/menus/typesafeenumchangemenu.cpp
-    displays/menus/udpcloudsettingsmenu.cpp
-    displays/menus/wifiapclientsmenu.cpp
-    displays/menus/wifiapsettingsmenu.cpp
-    displays/menus/wifistaconfigentrymenu.cpp
-    displays/menus/wifistaconfigsmenu.cpp
-    displays/menus/wifistascanentrymenu.cpp
-    displays/menus/wifistascanmenu.cpp
-    displays/menus/wifistasettingsmenu.cpp
-    displays/metersdisplay.cpp
-    displays/pingpongdisplay.cpp
-    displays/potiscalibratedisplay.cpp
-    displays/poweroffdisplay.cpp
-    displays/powersupplydisplay.cpp
-    displays/qrcodedebug.cpp
-    displays/qrdisplay.cpp
-    displays/qrimportdisplay.cpp
-    displays/setup/ask_calibrate_other_buttons.cpp
-    displays/setup/ask_setup_clouds.cpp
-    displays/setup/basic_buttons.cpp
-    displays/setup/calibrate_potis.cpp
-    displays/setup/final_information.cpp
-    displays/setup/information.cpp
-    displays/setup/setup_cloud.cpp
-    displays/speedinfodisplay.cpp
-    displays/spirodisplay.cpp
-    displays/starfielddisplay.cpp
-    displays/statusdisplay.cpp
-    displays/updatedisplay.cpp
-    displays/xydebugdisplay.cpp
     dnsannounce.cpp
-    dpad.cpp
-    dpad3wire.cpp
     dpad5wire.cpp
     dpad5wire_2out.cpp
     dpad6wire.cpp
     dpad_boardcomputer_v2.cpp
     drivingstatistics.cpp
     espnowfunctions.cpp
-    esptexthelpers.cpp
     feedbackemulator.cpp
-    feedbackparser.cpp
     globals.cpp
+    guihelpers/bobbychangevaluedisplay.cpp
+    guihelpers/bobbydisplay.cpp
+    guihelpers/bobbydisplaywithtitle.cpp
+    guihelpers/bobbyerrorhandler.cpp
+    guihelpers/bobbygraphdisplay.cpp
+    guihelpers/bobbymenudisplay.cpp
+    guihelpers/bobbypopupdisplay.cpp
+    guihelpers/bobbysplitgraphdisplay.cpp
     handbremse.cpp
     icons/alert.cpp
+    icons/back.cpp
     icons/battery.cpp
     icons/bluetooth.cpp
     icons/bms.cpp
     icons/bobbycar.cpp
     icons/buzzer.cpp
+    icons/checked.cpp
     icons/close.cpp
     icons/demos.cpp
     icons/git.cpp
@@ -470,13 +336,11 @@ set(BOBBY_SOURCES
     icons/shortcircuit.cpp
     icons/statistics.cpp
     icons/time.cpp
+    icons/unchecked.cpp
     icons/update.cpp
     icons/wifi.cpp
     ledstrip.cpp
-    ledstripdefines.cpp
-    macros_bobbycar.cpp
     main.cpp
-    modeinterface.cpp
     modes.cpp
     modes/defaultmode.cpp
     modes/gametrakmode.cpp
@@ -493,24 +357,114 @@ set(BOBBY_SOURCES
     ota.cpp
     potis.cpp
     presets.cpp
-    profilesettings.cpp
     qrimport.cpp
-    rotary.cpp
     screens.cpp
+    screens/aboutmenu.cpp
+    screens/batterydebugmenu.cpp
+    screens/batterygraphdisplay.cpp
+    screens/batteryinfodisplay.cpp
+    screens/batterymenu.cpp
+    screens/blesettingsmenu.cpp
+    screens/bmsscanmenu.cpp
+    screens/boardcomputerhardwaresettingsmenu.cpp
+    screens/buzzermenu.cpp
+    screens/calibratevoltagedisplay.cpp
+    screens/candebugmenu.cpp
+    screens/cloudsettingsmenu.cpp
+    screens/confiscationdisplay.cpp
+    screens/controllerhardwaresettingsmenu.cpp
+    screens/crashmenu.cpp
+    screens/debugmenu.cpp
+    screens/defaultmodesettingsmenu.cpp
+    screens/demosmenu.cpp
+    screens/dynamicdebugmenu.cpp
+    screens/enablemenu.cpp
+    screens/espnowmenu.cpp
+    screens/espnowsettingsmenu.cpp
+    screens/extrabuttoncalibratemenu.cpp
+    screens/featureflagsmenu.cpp
+    screens/gameoflifedisplay.cpp
+    screens/garagemenu.cpp
+    screens/gitmenu.cpp
+    screens/graphsmenu.cpp
+    screens/greenpassmenu.cpp
+    screens/handbremssettingsmenu.cpp
+    screens/invertmenu.cpp
+    screens/joystickdebugdisplay.cpp
+    screens/larsmmodesettingsmenu.cpp
+    screens/ledstripcolorsdisplay.cpp
+    screens/ledstripmenu.cpp
+    screens/ledstripselectblinkmenu.cpp
+    screens/ledstripselectotamode.cpp
+    screens/limitssettingsmenu.cpp
+    screens/lockscreen.cpp
+    screens/lockscreensettingsmenu.cpp
+    screens/mainmenu.cpp
+    screens/manageprofilesmenu.cpp
+    screens/metersdisplay.cpp
+    screens/mickmodesettingsmenu.cpp
+    screens/modessettingsmenu.cpp
+    screens/mosfetsmenu.cpp
+    screens/motortestmodesettingsmenu.cpp
+    screens/networksettingsmenu.cpp
+    screens/otamenu.cpp
+    screens/pingpongdisplay.cpp
+    screens/poweroffdisplay.cpp
+    screens/powersupplydisplay.cpp
+    screens/profilesmenu.cpp
+    screens/qrcodedebug.cpp
+    screens/qrdisplay.cpp
+    screens/qrimportdisplay.cpp
+    screens/rebootscreen.cpp
+    screens/recoverymenu.cpp
+    screens/remotecontrolmodesettingsmenu.cpp
+    screens/resetnvsscreen.cpp
+    screens/selectbuildserverbranch.cpp
+    screens/selectbuildservermenu.cpp
+    screens/selectmodemenu.cpp
+    screens/selectotabuildmenu.cpp
+    screens/settingsmenu.cpp
+    screens/setup/ask_calibrate_other_buttons.cpp
+    screens/setup/ask_setup_clouds.cpp
+    screens/setup/basic_buttons.cpp
+    screens/setup/calibrate_potis.cpp
+    screens/setup/final_information.cpp
+    screens/setup/information.cpp
+    screens/setup/setup_cloud.cpp
+    screens/setupquickactionsmenu.cpp
+    screens/speedinfodisplay.cpp
+    screens/spirodisplay.cpp
+    screens/starfielddisplay.cpp
+    screens/statisticsmenu.cpp
+    screens/statusdisplay.cpp
+    screens/taskmanagermenu.cpp
+    screens/tempomatmodesettingsmenu.cpp
+    screens/timersmenu.cpp
+    screens/timesettingsmenu.cpp
+    screens/typesafeenumchangemenu.cpp
+    screens/udpcloudsettingsmenu.cpp
+    screens/updatedisplay.cpp
+    screens/wifiapclientsmenu.cpp
+    screens/wifiapsettingsmenu.cpp
+    screens/wifistaconfigentrymenu.cpp
+    screens/wifistaconfigsmenu.cpp
+    screens/wifistascanentrymenu.cpp
+    screens/wifistascanmenu.cpp
+    screens/wifistasettingsmenu.cpp
+    screens/xydebugdisplay.cpp
     serial_bobby.cpp
     settingspersister.cpp
     settingsutils.cpp
     setup.cpp
     softpwmlimiter.cpp
     statistics.cpp
-    statustexthelper.cpp
     taskmanager.cpp
     tempomat.cpp
+    texthelpers/cloudtexthelpers.cpp
     texthelpers/networktexthelpers.cpp
     texthelpers/wifiaptexthelpers.cpp
     texthelpers/wifistatexthelpers.cpp
     time_bobbycar.cpp
-    types.cpp
     udpcloud.cpp
     unifiedmodelmode.cpp
     utils.cpp
@@ -570,6 +524,7 @@ string(SUBSTRING "${GIT_REV}" 1 7 GIT_SHORT_REV)
 string(STRIP "${GIT_MESSAGE}" GIT_MESSAGE)
 string(REPLACE "\n" " " GIT_MESSAGE "${GIT_MESSAGE}")
 string(REPLACE "\"" "\\\"" GIT_MESSAGE "${GIT_MESSAGE}")
+string(REPLACE ";" " " GIT_MESSAGE "${GIT_MESSAGE}")
 string(SUBSTRING "${GIT_MESSAGE}" 0 100 GIT_MESSAGE)
 string(STRIP "${GIT_BRANCH}" GIT_BRANCH)
 
@@ -598,4 +553,5 @@ target_compile_options(${COMPONENT_TARGET}
         -DGIT_BRANCH="${GIT_BRANCH}"
         -DBOBBY_DEFAULT_USERNAME="${BOBBY_DEFAULT_USERNAME}"
         ${BOBBYCAR_BUILDFLAGS}
+        -Werror=unused-but-set-variable
 )

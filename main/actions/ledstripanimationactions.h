@@ -7,7 +7,9 @@
 #include "ledstrip.h"
 #include "ledstripdefines.h"
 #include "newsettings.h"
-#include "bobbyerrorhandler.h"
+#include "guihelpers/bobbyerrorhandler.h"
+
+namespace bobby {
 
 template<LedstripAnimation type>
 class LedStripSetAnimationActionStatic : public virtual espgui::ActionInterface
@@ -24,7 +26,13 @@ class LedStripSetAnimationAction : public virtual espgui::ActionInterface
 {
 public:
     LedStripSetAnimationAction(LedstripAnimation animation) : m_animation{animation} {};
-    void triggered() override;
+    void triggered()
+    {
+        if (auto result = configs.write_config(configs.ledstrip.animationType, m_animation); !result)
+            BobbyErrorHandler{}.errorOccurred(std::move(result).error());
+    }
 private:
     const LedstripAnimation m_animation;
 };
+
+} // namespace bobby

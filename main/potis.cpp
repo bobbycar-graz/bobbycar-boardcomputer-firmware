@@ -73,6 +73,7 @@ void readPotis()
 //              sum += analogRead(pin);
 //          return sum / sampleCount;
 //    };
+#if defined(FEATURE_ADC_IN) || defined(FEATURE_GAMETRAK)
     constexpr auto sampleMultipleTimes = [](adc_channel_t channel){
         int sum{};
         const auto sampleCount = configs.sampleCount.value();
@@ -85,6 +86,7 @@ void readPotis()
         }
         return sum / sampleCount;
     };
+#endif
 
     raw_gas = std::nullopt;
     raw_brems = std::nullopt;

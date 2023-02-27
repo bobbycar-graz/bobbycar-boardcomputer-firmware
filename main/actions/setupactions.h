@@ -3,6 +3,8 @@
 // 3rdparty lib includes
 #include <actioninterface.h>
 
+namespace bobby {
+
 class PushButtonCalibrateDisplayAction : public virtual espgui::ActionInterface
 {
 public:
@@ -22,3 +24,4 @@ public:
 private:
     const bool m_early_return;
 };
+} // namespace bobby

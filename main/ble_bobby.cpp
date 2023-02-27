@@ -8,12 +8,12 @@
 #include <wifi_bobbycar.h>
 
 // local includes
-#include "ledstrip.h"
 #include "globals.h"
+#include "ledstrip.h"
 #include "modes/defaultmode.h"
 #include "modes/remotecontrolmode.h"
-#include "utils.h"
 #include "newsettings.h"
+#include "utils.h"
 
 namespace {
 constexpr const char * const TAG = "BOBBYBLE";
@@ -55,7 +55,12 @@ void createBle()
 {
     ESP_LOGI("BOBBY", "called");
 
-    NimBLEDevice::init(configs.bluetoothName.value());
+    if (!NimBLEDevice::getInitialized())
+    {
+        ESP_LOGI("BOBBY", "Initializing BLE");
+        NimBLEDevice::init(configs.bluetoothName.value());
+        NimBLEDevice::setPower(ESP_PWR_LVL_P9);
+    }
 
     const auto serviceUuid{"0335e46c-f355-4ce6-8076-017de08cee98"};
 
@@ -94,7 +99,10 @@ void destroyBle()
 {
     ESP_LOGI("BOBBY", "called");
 
-    NimBLEDevice::deinit(true);
+    if (NimBLEDevice::getInitialized())
+    {
+        NimBLEDevice::deinit(true);
+    }
 
     pServer = {};
     pService = {};

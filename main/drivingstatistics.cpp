@@ -2,8 +2,8 @@
 
 // 3rdparty lib includes
 #include <FastLED.h>
-#include <TFT_eSPI.h>
 #include <date/date.h>
+#include <tftinterface.h>
 
 // Local
 #include "globals.h"

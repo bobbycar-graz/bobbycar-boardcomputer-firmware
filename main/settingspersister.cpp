@@ -16,9 +16,6 @@
 
 // local includes
 #include "profilesettings.h"
-#ifdef FEATURE_BLUETOOTH
-#include "bluetoothmode.h"
-#endif
 #include "unifiedmodelmode.h"
 #include "globals.h"
 
@@ -140,16 +137,6 @@ template<> struct nvsGetterHelper<LarsmModeMode> { static esp_err_t nvs_get(nvs_
         *out_value = LarsmModeMode(tempValue);
     return err;
 }};
-#ifdef FEATURE_BLUETOOTH
-template<> struct nvsGetterHelper<BluetoothMode> { static esp_err_t nvs_get(nvs_handle handle, const char* key, BluetoothMode* out_value)
-{
-    uint8_t tempValue;
-    esp_err_t err = nvs_get_u8(handle, key, &tempValue);
-    if (err == ESP_OK)
-        *out_value = BluetoothMode(tempValue);
-    return err;
-}};
-#endif
 template<> struct nvsGetterHelper<UnifiedModelMode> { static esp_err_t nvs_get(nvs_handle handle, const char* key, UnifiedModelMode* out_value)
 {
     uint8_t tempValue;
@@ -283,12 +270,6 @@ template<> struct nvsSetterHelper<LarsmModeMode> { static esp_err_t nvs_set(nvs_
 {
     return nvs_set_u8(handle, key, uint8_t(value));
 }};
-#ifdef FEATURE_BLUETOOTH
-template<> struct nvsSetterHelper<BluetoothMode> { static esp_err_t nvs_set(nvs_handle handle, const char* key, BluetoothMode value)
-{
-    return nvs_set_u8(handle, key, uint8_t(value));
-}};
-#endif
 template<> struct nvsSetterHelper<UnifiedModelMode> { static esp_err_t nvs_set(nvs_handle handle, const char* key, UnifiedModelMode value)
 {
     return nvs_set_u8(handle, key, uint8_t(value));

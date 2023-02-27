@@ -9,9 +9,9 @@
 // 3rdparty lib includes
 #include <actions/setvalueaction.h>
 #include <actions/backproxyaction.h>
-#include <icons/back.h>
 
 // local includes
+#include "icons/back.h"
 #include "utils.h"
 
 namespace espgui {
@@ -32,7 +32,7 @@ ChangeValueDisplay<bobbycar::protocol::ControlMode>::ChangeValueDisplay()
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<ControlMode>, StaticText<TEXT_VOLTAGE>>>(ControlMode::Voltage, *this, *this, *this);
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<ControlMode>, StaticText<TEXT_SPEED>>>(ControlMode::Speed, *this, *this, *this);
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<ControlMode>, StaticText<TEXT_TORQUE>>>(ControlMode::Torque, *this, *this, *this);
-    constructMenuItem<makeComponentArgs<MenuItem, BackProxyAction, StaticText<TEXT_BACK>, StaticMenuItemIcon<&espgui::icons::back>>>(*this);
+    constructMenuItem<makeComponentArgs<MenuItem, BackProxyAction, StaticText<TEXT_BACK>, StaticMenuItemIcon<&bobbyicons::back>>>(*this);
 }
 
 void ChangeValueDisplay<bobbycar::protocol::ControlMode>::start()

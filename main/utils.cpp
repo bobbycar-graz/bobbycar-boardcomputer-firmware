@@ -1,10 +1,8 @@
 #include "utils.h"
 
-// system includes
-#include <utility>
-
 // 3rdparty lib includes
-#include <tftinstance.h>
+#include <tftcolors.h>
+#include <tftinterface.h>
 
 // local includes
 #include "globals.h"
@@ -430,7 +428,7 @@ std::optional<SetupStep> checkIfInCalibration()
     return std::nullopt;
 }
 
-void drawLargeText(const std::string&& text)
+void drawLargeText(espgui::TftInterface &tft, const std::string&& text)
 {
     using namespace espgui;
 
@@ -442,8 +440,6 @@ void drawLargeText(const std::string&& text)
     int x = leftMargin + 5;
     int y = topMargin + 5;
 
-    tft.setTextColor(TFT_WHITE);
-
     for (char c : text)
     {
         if (c == '\n' || x > tft.width() - rightMargin - 10)
@@ -454,7 +450,7 @@ void drawLargeText(const std::string&& text)
 
         if (c != '\n')
         {
-            const auto addedWidth = tft.drawChar(tft.decodeUTF8(c), x, y, 2);
+            const int16_t addedWidth = tft.drawChar(tft.decodeUTF8(c), x, y, espgui::TFT_WHITE, espgui::TFT_BLACK, 2);
             x += addedWidth;
         }
 

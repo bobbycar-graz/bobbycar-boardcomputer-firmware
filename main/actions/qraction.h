@@ -7,9 +7,8 @@
 #include <actioninterface.h>
 
 // local includes
-#include "actions/qraction.h"
-#include "displays/qrdisplay.h"
-#include "displays/qrimportdisplay.h"
+#include "screens/qrdisplay.h"
+#include "screens/qrimportdisplay.h"
 
 namespace qraction {
 struct QrMenu {
@@ -26,7 +25,7 @@ public:
 
     void triggered() override
     {
-        espgui::pushScreen<QrDisplay>(m_msg);
+        espgui::pushScreen<bobby::QrDisplay>(m_msg);
     }
 private:
     std::string m_msg;
@@ -40,7 +39,16 @@ public:
 
     void triggered() override
     {
-        espgui::pushScreen<QrImportDisplay>(std::move(m_nvskey));
+        espgui::changeScreenCallback = [&](espgui::TftInterface &tft){
+            espgui::pushScreenInternal();
+
+            auto newDisplay = std::make_unique<bobby::QrImportDisplay>(std::move(m_nvskey), tft);
+            newDisplay->start();
+            newDisplay->initScreen(tft);
+            newDisplay->update();
+            newDisplay->redraw(tft);
+            espgui::currentDisplay = std::move(newDisplay);
+        };
     }
 private:
     std::string m_nvskey;

@@ -9,9 +9,9 @@
 // 3rdparty lib inclues
 #include <actions/setvalueaction.h>
 #include <actions/backproxyaction.h>
-#include <icons/back.h>
 
 // local includes
+#include "icons/back.h"
 #include "utils.h"
 
 namespace espgui {
@@ -31,7 +31,7 @@ ChangeValueDisplay<LarsmModeMode>::ChangeValueDisplay()
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<LarsmModeMode>, StaticText<TEXT_LARSMMODE2>>>(LarsmModeMode::Mode2, *this, *this, *this);
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<LarsmModeMode>, StaticText<TEXT_LARSMMODE3>>>(LarsmModeMode::Mode3, *this, *this, *this);
     constructMenuItem<makeComponentArgs<MenuItem, SetValueAction<LarsmModeMode>, StaticText<TEXT_LARSMMODE4>>>(LarsmModeMode::Mode4, *this, *this, *this);
-    constructMenuItem<makeComponentArgs<MenuItem, BackProxyAction, StaticText<TEXT_BACK>, StaticMenuItemIcon<&espgui::icons::back>>>(*this);
+    constructMenuItem<makeComponentArgs<MenuItem, BackProxyAction, StaticText<TEXT_BACK>, StaticMenuItemIcon<&bobbyicons::back>>>(*this);
 }
 
 void ChangeValueDisplay<LarsmModeMode>::start()

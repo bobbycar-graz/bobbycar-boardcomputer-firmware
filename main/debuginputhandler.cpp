@@ -8,17 +8,17 @@
 #include <esp_log.h>
 
 // 3rdparty lib includes
-#include <tftinstance.h>
-#include <esp32-hal-gpio.h>
-#include <screenmanager.h>
 #include <changevaluedisplay.h>
 #include <changevaluedisplay_string.h>
+#include <esp32-hal-gpio.h>
+#include <screenmanager.h>
 
 // local includes
-#include "globals.h"
-#include "utils.h"
 #include "bobbybuttons.h"
 #include "bobbyquickactions.h"
+#include "globals.h"
+#include "screens.h"
+#include "utils.h"
 
 namespace {
 constexpr const char * const TAG = "DEBUG";
@@ -117,7 +117,7 @@ void handleNormalChar(char c)
         {
         case 'i':
         case 'I':
-            espgui::tft.init();
+            bobby::tft_init();
             break;
         case 'p':
         case 'P':
