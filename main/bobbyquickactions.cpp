@@ -95,6 +95,9 @@ void open_garage()
         return;
     for (const auto &config : configs.wireless_door_configs)
     {
+        if (config.doorId.value().empty() || config.doorToken.value().empty())
+            continue;
+
         if (const auto error = espnow::send_espnow_message(fmt::format("BOBBYOPEN:{}:{}", config.doorId.value(), config.doorToken.value())); error != ESP_OK)
         {
             ESP_LOGE("BOBBY", "send_espnow_message() failed with: %s", esp_err_to_name(error));
