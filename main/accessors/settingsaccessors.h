@@ -221,6 +221,9 @@ template<uint8_t index>
 struct LockscreenPinDigitAccessor : public NewSettingsAccessor<int8_t> { ConfigWrapper<int8_t> &getConfig() const override { return configs.lockscreen.pin[index]; } };
 struct LockscreenKeepLockedAccessor : public NewSettingsAccessor<bool> { ConfigWrapper<bool> &getConfig() const override { return configs.lockscreen.keepLockedAfterReboot; } };
 
+// MeasurementMode
+struct MeasurementIntervalAccessor : public NewSettingsAccessor<uint8_t> { ConfigWrapper<uint8_t> &getConfig() const override { return configs.measurementMode.measurementInterval; } };
+
 // Handbremse
 struct HandbremsEnabledAccessor : public NewSettingsAccessor<bool> { ConfigWrapper<bool> &getConfig() const override { return configs.handbremse.enable; } };
 struct HandbremsModeAccessor : public NewSettingsAccessor<HandbremseMode> { ConfigWrapper<HandbremseMode> &getConfig() const override { return configs.handbremse.mode; } };

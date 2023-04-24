@@ -75,6 +75,7 @@ set(BOBBY_HEADERS
     displays/bobbysplitgraphdisplay.h
     displays/calibratevoltagedisplay.h
     displays/confiscationdisplay.h
+    displays/measurementdisplay.h
     displays/gameoflifedisplay.h
     displays/gametrakcalibratedisplay.h
     displays/joystickdebugdisplay.h
@@ -336,6 +337,7 @@ set(BOBBY_SOURCES
     displays/bobbysplitgraphdisplay.cpp
     displays/calibratevoltagedisplay.cpp
     displays/confiscationdisplay.cpp
+    displays/measurementdisplay.cpp
     displays/gameoflifedisplay.cpp
     displays/gametrakcalibratedisplay.cpp
     displays/joystickdebugdisplay.cpp
