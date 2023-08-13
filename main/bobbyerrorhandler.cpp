@@ -8,7 +8,9 @@
 
 void BobbyErrorHandler::errorOccurred(std::string &&error)
 {
-    auto newDisplay = std::make_unique<BobbyPopupDisplay>(std::move(error), std::move(espgui::currentDisplay));
-    newDisplay->initOverlay(tft);
-    espgui::currentDisplay = std::move(newDisplay);
+    espgui::changeScreenCallback = [error_ = std::move(error)](espgui::TftInterface &tft) mutable {
+        auto newDisplay = std::make_unique<BobbyPopupDisplay>(std::move(error_), std::move(espgui::currentDisplay));
+        newDisplay->initOverlay(tft);
+        espgui::currentDisplay = std::move(newDisplay);
+    };
 }

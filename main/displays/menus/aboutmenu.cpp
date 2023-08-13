@@ -58,7 +58,7 @@ AboutMenu::AboutMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,        PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string AboutMenu::text() const
+std::string AboutMenu::title() const
 {
     return TEXT_ABOUT;
 }

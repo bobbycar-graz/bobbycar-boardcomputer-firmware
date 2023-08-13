@@ -26,7 +26,7 @@ std::optional<int> sunset;
 std::optional<espchrono::DateTime> sunrise_dt;
 
 esp_chip_info_t chip_info;
-esp_pm_config_esp32_t pm_config;
+esp_pm_config_t pm_config;
 
 #ifdef GLOBALS_SOURCE
 GLOBALS_SOURCE

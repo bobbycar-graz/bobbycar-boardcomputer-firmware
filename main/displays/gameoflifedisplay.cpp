@@ -39,7 +39,7 @@ void GameOfLifeDisplay::redraw(espgui::TftInterface &tft)
     }
 
     computeCA();
-    drawGrid();
+    drawGrid(tft);
 
     *m_grid = *m_newgrid;
 
@@ -71,7 +71,7 @@ void GameOfLifeDisplay::buttonPressed(espgui::Button button)
     }
 }
 
-void GameOfLifeDisplay::drawGrid()
+void GameOfLifeDisplay::drawGrid(espgui::TftInterface &tft)
 {
     uint16_t color = espgui::TFT_WHITE;
     for (int16_t x = 1; x < GRIDX - 1; x++) {

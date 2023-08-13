@@ -17,7 +17,7 @@
 
 // esp-idf includes
 #include <esp_chip_info.h>
-#include <esp32/pm.h>
+#include <esp_pm.h>
 
 // 3rdparty lib includes
 #include <espchrono.h>
@@ -49,7 +49,7 @@ extern std::optional<int> sunset;
 extern std::optional<espchrono::DateTime> sunrise_dt;
 
 extern esp_chip_info_t chip_info;
-extern esp_pm_config_esp32_t pm_config;
+extern esp_pm_config_t pm_config;
 
 extern float avgSpeed;
 extern float avgSpeedKmh;

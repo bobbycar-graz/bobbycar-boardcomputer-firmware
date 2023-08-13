@@ -22,7 +22,7 @@ public:
 private:
 
     //Draws the grid on the display
-    void drawGrid();
+    void drawGrid(espgui::TftInterface &tft);
 
     //Initialise Grid
     void initGrid();

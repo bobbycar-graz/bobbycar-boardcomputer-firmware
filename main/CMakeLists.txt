@@ -23,7 +23,6 @@ set(BOBBY_HEADERS
     actions/loadsettingsaction.h
     actions/modesettingsaction.h
     actions/qraction.h
-    actions/rebootaction.h
     actions/resetnvsaction.h
     actions/savesettingsaction.h
     actions/setupactions.h
@@ -159,6 +158,7 @@ set(BOBBY_HEADERS
     displays/qrcodedebug.h
     displays/qrdisplay.h
     displays/qrimportdisplay.h
+    displays/rebootscreen.h
     displays/setup/ask_calibrate_other_buttons.h
     displays/setup/ask_setup_clouds.h
     displays/setup/basic_buttons.h
@@ -287,7 +287,6 @@ set(BOBBY_SOURCES
     actions/loadsettingsaction.cpp
     actions/modesettingsaction.cpp
     actions/qraction.cpp
-    actions/rebootaction.cpp
     actions/resetnvsaction.cpp
     actions/savesettingsaction.cpp
     actions/setupactions.cpp
@@ -418,6 +417,7 @@ set(BOBBY_SOURCES
     displays/qrcodedebug.cpp
     displays/qrdisplay.cpp
     displays/qrimportdisplay.cpp
+    displays/rebootscreen.cpp
     displays/setup/ask_calibrate_other_buttons.cpp
     displays/setup/ask_setup_clouds.cpp
     displays/setup/basic_buttons.cpp
