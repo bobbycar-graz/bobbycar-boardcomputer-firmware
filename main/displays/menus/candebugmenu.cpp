@@ -273,7 +273,7 @@ void CanDebugMenu::update()
     if (const auto result = twai_get_status_info(&status_info); result != ESP_OK)
     {
         ESP_LOGE(TAG, "twai_get_status_info() failed with %s", esp_err_to_name(result));
-        m_last_can_status_info = tl::make_unexpected(result);
+        m_last_can_status_info = std::unexpected(result);
     }
     else
     {

@@ -29,7 +29,7 @@ void handleOta()
 std::expected<void, std::string> triggerOta(std::string_view url)
 {
     if (!configs.feature.ota.isEnabled.value())
-        return tl::make_unexpected("OTA is not enabled!");
+        return std::unexpected("OTA is not enabled!");
 
     ESP_LOGI(TAG, "%.*s", url.size(), url.data());
 
@@ -41,14 +41,14 @@ std::expected<void, std::string> triggerOta(std::string_view url)
         if (const auto result = asyncOta->startTask(); !result)
         {
             ESP_LOGE(TAG, "starting OTA task failed: %.*s", result.error().size(), result.error().data());
-            return tl::make_unexpected(fmt::format("starting OTA task failed: {}", result.error()));
+            return std::unexpected(fmt::format("starting OTA task failed: {}", result.error()));
         }
 
         asyncOtaTaskStarted = true;
     }
 
     if (const auto result = asyncOta->trigger(url, {}, {}, {}); !result)
-        return tl::make_unexpected(std::move(result).error());
+        return std::unexpected(std::move(result).error());
 
     wifi_stack::delete_scan_result();
 

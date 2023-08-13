@@ -358,7 +358,7 @@ typename std::enable_if<
 , std::expected<void, std::string>>::type
 saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
 {
-    return tl::make_unexpected("Unsupported config type");
+    return std::unexpected("Unsupported config type");
 }
 
 template<typename T>
@@ -370,7 +370,7 @@ saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
     if (cpputils::is_in(newValue, "true", "false"))
         return configs.write_config(config, newValue == "true");
     else
-        return tl::make_unexpected(fmt::format("only true and false allowed, not {}", newValue));
+        return std::unexpected(fmt::format("only true and false allowed, not {}", newValue));
 }
 
 template<typename T>
@@ -383,7 +383,7 @@ saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
     if (auto parsed = cpputils::fromString<T>(newValue))
         return configs.write_config(config, *parsed);
     else
-        return tl::make_unexpected(fmt::format("could not parse {}", newValue));
+        return std::unexpected(fmt::format("could not parse {}", newValue));
 }
 
 template<typename T>
@@ -404,7 +404,7 @@ saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
     if (const auto parsed = wifi_stack::fromString<wifi_stack::ip_address_t>(newValue); parsed)
         return configs.write_config(config, *parsed);
     else
-        return tl::make_unexpected(parsed.error());
+        return std::unexpected(parsed.error());
 }
 
 template<typename T>
@@ -416,7 +416,7 @@ saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
     if (const auto parsed = wifi_stack::fromString<wifi_stack::mac_t>(newValue); parsed)
         return configs.write_config(config, *parsed);
     else
-        return tl::make_unexpected(parsed.error());
+        return std::unexpected(parsed.error());
 }
 
 template<typename T>
@@ -430,7 +430,7 @@ saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
     else if (const auto parsed = wifi_stack::fromString<wifi_stack::mac_t>(newValue); parsed)
         return configs.write_config(config, *parsed);
     else
-        return tl::make_unexpected(parsed.error());
+        return std::unexpected(parsed.error());
 }
 
 template<typename T>
@@ -448,7 +448,7 @@ saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
     if (auto parsed = cpputils::fromString<std::underlying_type_t<T>>(newValue))
         return configs.write_config(config, T(*parsed));
     else
-        return tl::make_unexpected(fmt::format("could not parse {}", newValue));
+        return std::unexpected(fmt::format("could not parse {}", newValue));
 }
 } // namespace
 

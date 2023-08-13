@@ -203,7 +203,7 @@ const MenuItemIcon *RandomIcon::icon() const
 std::expected<void, std::string> ToggleAccessor::setValue(bool value)
 {
     if (toggleLocked)
-        return tl::make_unexpected("cannot be changed while is locked!");
+        return std::unexpected("cannot be changed while is locked!");
     toggle = value;
     return {};
 }

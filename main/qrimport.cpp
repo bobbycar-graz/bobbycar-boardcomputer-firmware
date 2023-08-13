@@ -46,7 +46,7 @@ std::expected<std::string, esp_err_t> get_qr_code(std::string_view key)
     {
         if (result != ESP_ERR_NVS_NOT_FOUND)
             ESP_LOGW(TAG, "nvs_get_str() size-only for key %.*s failed with %s", key.size(), key.data(), esp_err_to_name(result));
-        return tl::make_unexpected(result);
+        return std::unexpected(result);
     }
 
     // empty string optimization
@@ -58,7 +58,7 @@ std::expected<std::string, esp_err_t> get_qr_code(std::string_view key)
     if (const esp_err_t result = nvs_get_str(handle, key.data(), buf.data(), &length); result != ESP_OK)
     {
         ESP_LOGW(TAG, "nvs_get_str() for key %.*s failed with %s", key.size(), key.data(), esp_err_to_name(result));
-        return tl::make_unexpected(result);
+        return std::unexpected(result);
     }
 
     if (buf.back() == '\n')
@@ -74,7 +74,7 @@ std::expected<void, esp_err_t> set_qr_code(std::string_view key, std::string_vie
     if (const esp_err_t result = nvs_set_str(handle, key.data(), qrcode.data()); result != ESP_OK)
     {
         ESP_LOGW(TAG, "nvs_set_str() for key %.*s failed with %s", key.size(), key.data(), esp_err_to_name(result));
-        return tl::make_unexpected(result);
+        return std::unexpected(result);
     }
 
     return {};
@@ -87,7 +87,7 @@ std::expected<void, esp_err_t> delete_qr_code(std::string_view key)
     if (const esp_err_t result = nvs_erase_key(handle, key.data()); result != ESP_OK)
     {
         ESP_LOGW(TAG, "nvs_erase_key() for key %.*s failed with %s", key.size(), key.data(), esp_err_to_name(result));
-        return tl::make_unexpected(result);
+        return std::unexpected(result);
     }
 
     return {};
@@ -106,7 +106,7 @@ std::expected<void, std::string> start_qr_request()
 {
     if (!http_request.constructed())
     {
-        return tl::make_unexpected("request im oarsch");
+        return std::unexpected("request im oarsch");
     }
 
     if (auto res = http_request->start(fmt::format("http://qr.bobbycar.cloud/qr/{}.qr", configs.otaUsername.value())); !res)
@@ -120,25 +120,25 @@ std::expected<std::string, std::string> check_request()
 {
     if (!http_request.constructed())
     {
-        return tl::make_unexpected("request im oarsch");
+        return std::unexpected("request im oarsch");
     }
 
     if (!http_request->finished())
     {
-        return tl::make_unexpected("request has not finished");
+        return std::unexpected("request has not finished");
     }
 
     const auto helper = cpputils::makeCleanupHelper([](){ http_request->clearFinished(); });
 
     if (const auto result = http_request->result(); !result)
     {
-        return tl::make_unexpected(result.error());
+        return std::unexpected(result.error());
     }
     else if (http_request->statusCode() != 200)
     {
         DynamicJsonDocument doc(256);
         deserializeJson(doc, http_request->takeBuffer());
-        return tl::make_unexpected(fmt::format("{} {}", http_request->statusCode(), doc["error"].as<std::string>()));
+        return std::unexpected(fmt::format("{} {}", http_request->statusCode(), doc["error"].as<std::string>()));
     }
     else
     {

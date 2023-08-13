@@ -102,7 +102,7 @@ std::expected<void, std::string> time_requestSync()
 {
     ESP_LOGI("BOBBY", "called");
     if (!sntp_restart())
-        return tl::make_unexpected("sntp_restart() failed");
+        return std::unexpected("sntp_restart() failed");
     return {};
 }
 

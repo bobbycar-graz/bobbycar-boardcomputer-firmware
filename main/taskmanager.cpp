@@ -123,7 +123,7 @@ std::expected<bool, std::string> checkInitializedByName(const std::string& name)
         if (schedulerTask.name() == name)
             return schedulerTask.isInitialized();
     }
-    return tl::make_unexpected("Task not found: " + std::string{name});
+    return std::unexpected("Task not found: " + std::string{name});
 }
 
 bool checkEnabledByName(const std::string& name) {

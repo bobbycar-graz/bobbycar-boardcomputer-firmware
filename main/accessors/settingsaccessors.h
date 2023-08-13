@@ -32,7 +32,7 @@ struct NMotMaxKmhAccessor : public virtual espgui::AccessorInterface<int16_t>
     {
         profileSettings.limits.nMotMax = convertFromKmh(value);
         if (!saveProfileSettings())
-            return tl::make_unexpected("saveProfileSettings() failed!");
+            return std::unexpected("saveProfileSettings() failed!");
         return {};
     }
 };
@@ -80,7 +80,7 @@ struct WheelDiameterInchAccessor : public virtual espgui::AccessorInterface<floa
     {
 //        profileSettings.controllerHardware.wheelDiameter = convertFromInch(value);
 //        if (!saveProfileSettings())
-//            return tl::make_unexpected("saveProfileSettings() failed!");
+//            return std::unexpected("saveProfileSettings() failed!");
 //        return {};
         return configs.write_config(configs.controllerHardware.wheelDiameter, convertFromInch(value));
     }

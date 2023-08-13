@@ -21,7 +21,7 @@ void QrImportDisplay::start()
     else
     {
         ESP_LOGE(TAG, "could not start request: %.*s", result.error().size(), result.error().data());
-        m_result = tl::make_unexpected(std::move(result).error());
+        m_result = std::unexpected(std::move(result).error());
     }
 }
 
@@ -43,7 +43,7 @@ void QrImportDisplay::update()
     {
         ESP_LOGI(TAG, "%.*s => %.*s", m_nvs_key.size(), m_nvs_key.data(), m_result->size(), m_result->data());
         if (const auto result = qrimport::set_qr_code(m_nvs_key, *m_result); !result)
-            m_result = tl::make_unexpected(fmt::format("saving qr failed: {}", esp_err_to_name(result.error())));
+            m_result = std::unexpected(fmt::format("saving qr failed: {}", esp_err_to_name(result.error())));
     }
     else
         ESP_LOGW(TAG, "failed %.*s => %.*s", m_nvs_key.size(), m_nvs_key.data(), m_result.error().size(), m_result.error().data());
