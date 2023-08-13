@@ -73,9 +73,9 @@ void StatusDisplay::initScreen(espgui::TftInterface &tft)
     tft.setTextColor(TFT_WHITE, TFT_BLACK);
 }
 
-void StatusDisplay::redraw()
+void StatusDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     {
         const auto now = espchrono::millis_clock::now();

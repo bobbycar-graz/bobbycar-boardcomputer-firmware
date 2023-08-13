@@ -48,9 +48,9 @@ void JoystickDebugDisplay::update()
         m_y = map_analog_stick(m_bremsMitte, m_bremsMin, m_bremsMax, configs.deadband.value(), *raw_brems);
 }
 
-void JoystickDebugDisplay::redraw()
+void JoystickDebugDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     if (m_x && m_y)
     {

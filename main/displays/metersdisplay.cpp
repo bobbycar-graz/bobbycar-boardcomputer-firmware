@@ -29,9 +29,9 @@ void MetersDisplay::initScreen(espgui::TftInterface &tft)
         meter.start();
 }
 
-void MetersDisplay::redraw()
+void MetersDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     m_vuMeter.redraw(avgSpeedKmh);
 

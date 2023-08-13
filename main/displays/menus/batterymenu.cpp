@@ -91,7 +91,7 @@ BatteryMenu::BatteryMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                                                    PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string BatteryMenu::text() const
+std::string BatteryMenu::title() const
 {
     return TEXT_BATTERY;
 }
@@ -109,9 +109,9 @@ void BatteryMenu::start()
     m_doubleProgressBarBatPercentage.start();
 }
 
-void BatteryMenu::redraw()
+void BatteryMenu::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     if (const auto avgVoltage = controllers.getAvgVoltage(); avgVoltage)
     {

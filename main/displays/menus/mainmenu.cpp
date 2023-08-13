@@ -124,7 +124,7 @@ MainMenu::MainMenu()
 //#endif
 }
 
-std::string MainMenu::text() const
+std::string MainMenu::title() const
 {
     return TEXT_MAINMENU;
 }

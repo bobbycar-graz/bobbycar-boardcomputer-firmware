@@ -134,7 +134,7 @@ CalibrateVoltageDisplay::CalibrateVoltageDisplay()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_VOLTAGECALIBRATION_RESET>,        ResetCalibrationAction>>();
 }
 
-std::string CalibrateVoltageDisplay::text() const
+std::string CalibrateVoltageDisplay::title() const
 {
     return TEXT_BATTERY_CALIBRATE;
 }

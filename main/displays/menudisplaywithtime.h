@@ -10,7 +10,7 @@ class MenuDisplayWithTime :
     using Base = BobbyMenuDisplay;
 
 public:
-    void start() override;
+    void initScreen(espgui::TftInterface &tft) override;
     void redraw(espgui::TftInterface &tft) override;
     espgui::Label m_label_currentTime{145, 6};
 

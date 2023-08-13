@@ -66,9 +66,9 @@ void PotisCalibrateDisplay::update()
         m_brems = std::nullopt;
 }
 
-void PotisCalibrateDisplay::redraw()
+void PotisCalibrateDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     m_labels[0].redraw(m_gas ? fmt::format("{:.02f}", *m_gas) : "?");
     m_labels[1].redraw(raw_gas ? std::to_string(*raw_gas) : "?");

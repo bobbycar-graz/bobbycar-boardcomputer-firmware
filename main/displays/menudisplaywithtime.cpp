@@ -9,17 +9,17 @@
 using namespace espgui;
 
 namespace bobbygui {
-void MenuDisplayWithTime::start()
+void MenuDisplayWithTime::initScreen(espgui::TftInterface &tft)
 {
-    Base::start();
-    m_label_currentTime.start();
+    Base::initScreen(tft);
+    m_label_currentTime.start(tft);
 }
 
 void MenuDisplayWithTime::redraw(espgui::TftInterface &tft)
 {
     Base::redraw(tft);
     tft.setTextFont(use_big_font() ? 4 : 2);
-    m_label_currentTime.redraw(fmt::format("&7Time: {}", local_clock_string()));
+    m_label_currentTime.redraw(tft, fontRenderer, fmt::format("&7Time: {}", local_clock_string()));
 }
 
 } // namespace

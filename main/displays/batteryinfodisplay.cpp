@@ -2,6 +2,7 @@
 
 // 3rdparty lib includes
 #include <screenmanager.h>
+#include <tftcolors.h>
 
 // local includes
 #include "battery.h"
@@ -18,15 +19,15 @@ void BatteryInfoDisplay::initScreen(espgui::TftInterface &tft)
     using namespace espgui;
     Base::initScreen(tft);
 
-    tft.drawRoundRect(m_offset, m_offset, tft.width() - (m_offset * 2), tft.height() - (m_offset * 2), 10, TFT_WHITE);
-    tft.drawRoundRect((tft.width() / 2) - (m_offset / 2), m_offset / 2, m_offset, m_offset / 2, 3, TFT_WHITE);
+    tft.drawRoundRect(m_offset, m_offset, tft.width() - (m_offset * 2), tft.height() - (m_offset * 2), 10, espgui::TFT_WHITE);
+    tft.drawRoundRect((tft.width() / 2) - (m_offset / 2), m_offset / 2, m_offset, m_offset / 2, 3, espgui::TFT_WHITE);
     m_lastBarCount = 0;
 }
 
-void BatteryInfoDisplay::redraw()
+void BatteryInfoDisplay::redraw(espgui::TftInterface &tft)
 {
     using namespace espgui;
-    Base::redraw();
+    Base::redraw(tft);
 
     // calculate height of space available for all bars
     const auto min_x = m_offset + 3; // leave 2 pixels + 1 pixel for border
@@ -50,7 +51,7 @@ void BatteryInfoDisplay::redraw()
             for (auto i = 0; i < 10; ++i)
             {
                 const auto y = bottomY - (i * segment_height) - segment_height;
-                tft.fillRoundRect(min_x, y, width, segment_height - 2, 10, segment_count > i ? TFT_GREEN : TFT_DARKGREY);
+                tft.fillRoundRect(min_x, y, width, segment_height - 2, 10, segment_count > i ? espgui::TFT_GREEN : espgui::TFT_DARKGREY);
             }
         }
     }

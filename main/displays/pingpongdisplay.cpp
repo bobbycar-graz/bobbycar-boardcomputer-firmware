@@ -29,9 +29,9 @@ void PingPongDisplay::initScreen(espgui::TftInterface &tft)
     midline();
 }
 
-void PingPongDisplay::redraw()
+void PingPongDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     lpaddle();
     rpaddle();

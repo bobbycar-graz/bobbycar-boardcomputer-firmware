@@ -12,7 +12,7 @@ class BatteryMenu : public BobbyMenuDisplay
 public:
     BatteryMenu();
 
-    std::string text() const override;
+    std::string title() const override;
 
     void initScreen(espgui::TftInterface &tft) override;
     void start() override;

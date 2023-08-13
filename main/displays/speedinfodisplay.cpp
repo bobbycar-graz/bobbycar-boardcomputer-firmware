@@ -25,11 +25,11 @@ void SpeedInfoDisplay::initScreen(espgui::TftInterface &tft)
     m_currentPowerLabel.start();
 }
 
-void SpeedInfoDisplay::redraw()
+void SpeedInfoDisplay::redraw(espgui::TftInterface &tft)
 {
     using namespace espgui;
 
-    Base::redraw();
+    Base::redraw(tft);
 
     tft.setTextColor(TFT_WHITE, TFT_BLACK);
     tft.setTextFont(4);

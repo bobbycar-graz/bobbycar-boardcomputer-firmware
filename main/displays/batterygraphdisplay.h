@@ -7,7 +7,7 @@ class BatteryGraphDisplay : public BobbyDisplayWithTitle {
     using Base = BobbyDisplayWithTitle;
 
 public:
-    std::string text() const override;
+    std::string title() const override;
     void initScreen(espgui::TftInterface &tft) override;
     void redraw(espgui::TftInterface &tft) override;
 

@@ -3,6 +3,7 @@ constexpr const char * const TAG = "BatteryGraphDisplay";
 
 // 3rdparty lib includes
 #include <screenmanager.h>
+#include <tftcolors.h>
 
 // local includes
 #include "battery.h"
@@ -23,7 +24,7 @@ void BatteryGraphDisplay::initScreen(espgui::TftInterface &tft)
     drawBatteryCurve();
 }
 
-std::string BatteryGraphDisplay::text() const
+std::string BatteryGraphDisplay::title() const
 {
     if (const auto avgVoltage = controllers.getAvgVoltage(); avgVoltage)
     {
@@ -32,10 +33,10 @@ std::string BatteryGraphDisplay::text() const
     return TEXT_BATTERY_GRAPH;
 }
 
-void BatteryGraphDisplay::redraw()
+void BatteryGraphDisplay::redraw(espgui::TftInterface &tft)
 {
     using namespace espgui;
-    Base::redraw();
+    Base::redraw(TFT);
 
     if (const auto avgVoltage = controllers.getAvgVoltage(); avgVoltage)
     {
@@ -49,8 +50,8 @@ void BatteryGraphDisplay::redraw()
         const uint16_t lastXOffset = onePercent * (100 - getBatteryPercentage(m_lastBatVoltage, cellType));
 
         // clear the old one and draw the new one
-        tft.fillRect(lastXOffset + 2, TOP_OFFSET, onePercent, tft.height() - TOP_OFFSET, TFT_BLACK);
-        tft.fillRect(xOffset + 2, TOP_OFFSET, onePercent, tft.height() - TOP_OFFSET, TFT_WHITE);
+        tft.fillRect(lastXOffset + 2, TOP_OFFSET, onePercent, tft.height() - TOP_OFFSET, espgui::TFT_BLACK);
+        tft.fillRect(xOffset + 2, TOP_OFFSET, onePercent, tft.height() - TOP_OFFSET, espgui::TFT_WHITE);
         m_lastBatVoltage = *avgVoltage;
         drawBatteryCurve();
     }
@@ -88,7 +89,7 @@ void BatteryGraphDisplay::drawBatteryCurve()
             const int y1 = float_map(point->minVoltage / 100.f, min_voltage, max_voltage, max_height, TOP_OFFSET);
             const int x2 = 2 + part * (points - i);
             const int y2 = float_map(point->maxVoltage / 100.f, min_voltage, max_voltage, max_height, TOP_OFFSET);
-            tft.drawLine(x1, y1, x2, y2, TFT_WHITE);
+            tft.drawLine(x1, y1, x2, y2, espgui::TFT_WHITE);
         }
     }
 }

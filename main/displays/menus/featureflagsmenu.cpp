@@ -113,7 +113,7 @@ void FeatureFlagsMenu::start()
     isDirty = false;
 }
 
-std::string FeatureFlagsMenu::text() const
+std::string FeatureFlagsMenu::title() const
 {
     return TEXT_FEATUREFLAGS;
 }

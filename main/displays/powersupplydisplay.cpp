@@ -22,9 +22,9 @@ void PowerSupplyDisplay::initScreen(espgui::TftInterface &tft)
     m_currentLabel.start();
 }
 
-void PowerSupplyDisplay::redraw()
+void PowerSupplyDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     m_voltageLabel.redraw(std::to_string(50.4) + 'V');
     m_currentLabel.redraw(std::to_string(15.1) + 'A');

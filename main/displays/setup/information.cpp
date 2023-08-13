@@ -42,11 +42,11 @@ void SetupInformationDisplay::update()
     Base::update();
 }
 
-void SetupInformationDisplay::redraw()
+void SetupInformationDisplay::redraw(espgui::TftInterface &tft)
 {
     m_init_text_progressbar.redraw(espchrono::ago(m_menu_opened_timestamp) / 50ms);
 
-    Base::redraw();
+    Base::redraw(tft);
 }
 
 void SetupInformationDisplay::buttonPressed(espgui::Button button)

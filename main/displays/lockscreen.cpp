@@ -76,7 +76,7 @@ void Lockscreen::initScreen(espgui::TftInterface &tft)
     }
 
     for (auto &label : m_labels)
-        label.start();
+        label.start(tft);
 
     tft.setTextFont(7);
 

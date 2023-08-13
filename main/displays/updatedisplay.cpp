@@ -19,7 +19,7 @@
 
 void UpdateDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen(espgui::TftInterface &tft);
+    Base::initScreen(tft);
 
     tft.setTextFont(4);
     tft.setTextColor(TFT_YELLOW);
@@ -31,17 +31,17 @@ void UpdateDisplay::initScreen(espgui::TftInterface &tft)
     tft.setTextColor(TFT_WHITE, TFT_BLACK);
 
     tft.drawString("Status:", 20, m_statusLabel.y());
-    m_statusLabel.start();
+    m_statusLabel.start(tft);
 
     tft.drawString("Progress:", 20, m_progressLabel.y());
-    m_progressLabel.start();
+    m_progressLabel.start(tft);
 
     tft.drawString("Total:", 20, m_totalLabel.y());
-    m_totalLabel.start();
+    m_totalLabel.start(tft);
 
-    m_messageLabel.start();
+    m_messageLabel.start(tft);
 
-    m_progressBar.start();
+    m_progressBar.start(tft);
 
     if (const esp_app_desc_t *app_desc = esp_ota_get_app_description())
     {
@@ -50,12 +50,12 @@ void UpdateDisplay::initScreen(espgui::TftInterface &tft)
         tft.setTextColor(TFT_WHITE, TFT_BLACK);
     }
 
-    m_newVersionLabel.start();
+    m_newVersionLabel.start(tft);
 }
 
-void UpdateDisplay::redraw()
+void UpdateDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     if (asyncOta)
     {

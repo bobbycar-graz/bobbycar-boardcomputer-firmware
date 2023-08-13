@@ -33,9 +33,9 @@ void StarfieldDisplay::initScreen(espgui::TftInterface &tft)
     //tft.fastSetup(); // Prepare plot window range for fast pixel plotting
 }
 
-void StarfieldDisplay::redraw()
+void StarfieldDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     uint8_t spawnDepthVariation = 255;
 

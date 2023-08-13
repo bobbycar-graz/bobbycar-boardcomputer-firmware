@@ -4,6 +4,8 @@
 #include <randomutils.h>
 #include <esprandom.h>
 #include <screenmanager.h>
+#include <tftinterface.h>
+#include <tftcolors.h>
 
 // local includes
 #include "screens.h"
@@ -23,16 +25,16 @@ void GameOfLifeDisplay::initScreen(espgui::TftInterface &tft)
     disableScreenFlip(true);
 
     tft.setRotation(3);
-    tft.fillScreen(TFT_BLACK);
+    tft.fillScreen(espgui::TFT_BLACK);
 }
 
-void GameOfLifeDisplay::redraw()
+void GameOfLifeDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     if (gen == 0)
     {
-        tft.fillScreen(TFT_BLACK);
+        tft.fillScreen(espgui::TFT_BLACK);
         initGrid();
     }
 
@@ -71,7 +73,7 @@ void GameOfLifeDisplay::buttonPressed(espgui::Button button)
 
 void GameOfLifeDisplay::drawGrid()
 {
-    uint16_t color = TFT_WHITE;
+    uint16_t color = espgui::TFT_WHITE;
     for (int16_t x = 1; x < GRIDX - 1; x++) {
         for (int16_t y = 1; y < GRIDY - 1; y++) {
             if (((*m_grid)[index(x,y)]) != ((*m_newgrid)[index(x,y)])) {

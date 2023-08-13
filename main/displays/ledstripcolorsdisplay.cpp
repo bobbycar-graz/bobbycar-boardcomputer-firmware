@@ -48,7 +48,7 @@ const std::array<uint16_t, 8> tft_colors = {
 };
 } // namespace
 
-std::string LedstripColorsDisplay::text() const
+std::string LedstripColorsDisplay::title() const
 {
     return TEXT_LEDSTRIPCOLORMENU;
 }
@@ -57,14 +57,12 @@ void LedstripColorsDisplay::initScreen(espgui::TftInterface &tft)
 {
     Base::initScreen(tft);
 
-    tft.setSwapBytes(true);
     tft.pushImage(70, 60, bobbyicons::bobbycar.WIDTH, bobbyicons::bobbycar.HEIGHT, bobbyicons::bobbycar.buffer);
-    tft.setSwapBytes(false);
 }
 
-void LedstripColorsDisplay::redraw()
+void LedstripColorsDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     auto y_pos = ((tft.width() - 40) / 8 + 4) + 240;
     if (last_state != state_select_color)

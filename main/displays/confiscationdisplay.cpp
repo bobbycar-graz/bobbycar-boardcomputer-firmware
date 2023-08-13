@@ -32,13 +32,11 @@ void ConfiscationDisplay::initScreen(espgui::TftInterface &tft)
 {
     Base::initScreen(tft);
 
-    tft.setSwapBytes(true);
     tft.pushImage(10, 70, bobbyicons::shortcircuit.WIDTH, bobbyicons::shortcircuit.HEIGHT, bobbyicons::shortcircuit.buffer);
-    tft.setSwapBytes(false);
 
-    m_progressBar.start();
+    m_progressBar.start(tft);
 
-    m_label.start();
+    m_label.start(tft);
 
     tft.setTextColor(TFT_WHITE, TFT_BLACK);
     tft.setTextFont(2);
@@ -51,9 +49,9 @@ void ConfiscationDisplay::initScreen(espgui::TftInterface &tft)
     tft.drawString(fmt::format("der Batterie eingeleitet (ca {:.2f}MJ)", calculateMegaJoules()), 10, y+=lineheight);
 }
 
-void ConfiscationDisplay::redraw()
+void ConfiscationDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     m_progressBar.redraw(m_progress);
 
@@ -109,7 +107,7 @@ void ConfiscationDisplay::buttonPressed(espgui::Button button)
     }
 }
 
-std::string ConfiscationDisplay::text() const
+std::string ConfiscationDisplay::title() const
 {
     return "Explosions-Modus";
 }

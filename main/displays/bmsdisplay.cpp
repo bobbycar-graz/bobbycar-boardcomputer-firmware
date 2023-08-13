@@ -42,9 +42,9 @@ void BmsDisplay::initScreen(espgui::TftInterface &tft)
     m_cycleLabel.start();
 }
 
-void BmsDisplay::redraw()
+void BmsDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     if (bluetoothSerial.hasClient())
         tft.setTextColor(TFT_GREEN, TFT_BLACK);

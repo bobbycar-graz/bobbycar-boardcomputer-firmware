@@ -62,9 +62,9 @@ void GametrakCalibrateDisplay::initScreen(espgui::TftInterface &tft)
         progressBar.start();
 }
 
-void GametrakCalibrateDisplay::redraw()
+void GametrakCalibrateDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     m_labels[0].redraw(fmt::format("{:.02f}", gametrakX));
     m_labels[1].redraw(std::to_string(raw_gametrakX));
