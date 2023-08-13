@@ -8,7 +8,6 @@
 #include <cpputils.h>
 #include <menuitem.h>
 #include <actioninterface.h>
-#include <tftinstance.h>
 #include <screenmanager.h>
 #include <actions/dummyaction.h>
 
@@ -54,30 +53,30 @@ std::string LedstripColorsDisplay::text() const
     return TEXT_LEDSTRIPCOLORMENU;
 }
 
-void LedstripColorsDisplay::initScreen()
+void LedstripColorsDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
-    espgui::tft.setSwapBytes(true);
-    espgui::tft.pushImage(70, 60, bobbyicons::bobbycar.WIDTH, bobbyicons::bobbycar.HEIGHT, bobbyicons::bobbycar.buffer);
-    espgui::tft.setSwapBytes(false);
+    tft.setSwapBytes(true);
+    tft.pushImage(70, 60, bobbyicons::bobbycar.WIDTH, bobbyicons::bobbycar.HEIGHT, bobbyicons::bobbycar.buffer);
+    tft.setSwapBytes(false);
 }
 
 void LedstripColorsDisplay::redraw()
 {
     Base::redraw();
 
-    auto y_pos = ((espgui::tft.width() - 40) / 8 + 4) + 240;
+    auto y_pos = ((tft.width() - 40) / 8 + 4) + 240;
     if (last_state != state_select_color)
     {
-        espgui::tft.fillRect(0,y_pos - 1, espgui::tft.width(), 20, TFT_BLACK);
+        tft.fillRect(0,y_pos - 1, tft.width(), 20, TFT_BLACK);
         last_state = state_select_color;
     }
 
-    espgui::tft.setTextFont(2);
-    espgui::tft.setTextColor(TFT_WHITE);
+    tft.setTextFont(2);
+    tft.setTextColor(TFT_WHITE);
 
-    espgui::tft.drawString(state_select_color ?
+    tft.drawString(state_select_color ?
                        "Please select a color!" :
                        "Please select a side!", 50, y_pos);
 
@@ -103,7 +102,7 @@ void LedstripColorsDisplay::buttonPressed(espgui::Button button)
         else
         {
             state_select_color = false;
-            espgui::tft.fillRect(0, 228, espgui::tft.width(), ((espgui::tft.width() - 40) / 8) + 4, TFT_BLACK);
+            tft.fillRect(0, 228, tft.width(), ((tft.width() - 40) / 8) + 4, TFT_BLACK);
         }
 
         break;
@@ -119,7 +118,7 @@ void LedstripColorsDisplay::buttonPressed(espgui::Button button)
             // Uncomment to close select color menu on color select
             /*
         state_select_color = false;
-        espgui::tft.fillRect(0, 228, espgui::tft.width(), ((espgui::tft.width() - 40) / 8) + 4, TFT_BLACK);
+        tft.fillRect(0, 228, tft.width(), ((tft.width() - 40) / 8) + 4, TFT_BLACK);
         */
         }
         break;
@@ -148,7 +147,7 @@ void LedstripColorsDisplay::buttonPressed(espgui::Button button)
         }
         else
         {
-            espgui::tft.fillRect(0, 228, espgui::tft.width(), ((espgui::tft.width() - 40) / 8) + 4, TFT_BLACK);
+            tft.fillRect(0, 228, tft.width(), ((tft.width() - 40) / 8) + 4, TFT_BLACK);
             clearSides();
             drawSide(static_cast<Bobbycar_Side>(selected_side), TFT_GOLD);
         }
@@ -179,7 +178,7 @@ void LedstripColorsDisplay::buttonPressed(espgui::Button button)
         }
         else
         {
-            espgui::tft.fillRect(0, 228, espgui::tft.width(), ((espgui::tft.width() - 40) / 8) + 4, TFT_BLACK);
+            tft.fillRect(0, 228, tft.width(), ((tft.width() - 40) / 8) + 4, TFT_BLACK);
             clearSides();
             drawSide(static_cast<Bobbycar_Side>(selected_side), TFT_GOLD);
         }
@@ -190,17 +189,17 @@ void LedstripColorsDisplay::buttonPressed(espgui::Button button)
 
 void LedstripColorsDisplay::drawColors()
 {
-    uint16_t width = (espgui::tft.width() - 40);
+    uint16_t width = (tft.width() - 40);
     auto cube_width = width / 8;
 
-    espgui::tft.fillRect(0, 228, espgui::tft.width(), cube_width + 4, TFT_BLACK);
-    espgui::tft.fillRect(21, 231, width - 1, cube_width - 1, TFT_WHITE);
+    tft.fillRect(0, 228, tft.width(), cube_width + 4, TFT_BLACK);
+    tft.fillRect(21, 231, width - 1, cube_width - 1, TFT_WHITE);
 
-    espgui::tft.fillRect(20 + (selected_color * cube_width - 1), 228, cube_width + 4, cube_width + 4, TFT_YELLOW);
+    tft.fillRect(20 + (selected_color * cube_width - 1), 228, cube_width + 4, cube_width + 4, TFT_YELLOW);
     for (int index = 0; index < 8; index++)
     {
         auto offset = index * (cube_width);
-        espgui::tft.fillRect(22 + offset, 232, cube_width - 4, cube_width - 4, tft_colors[index]);
+        tft.fillRect(22 + offset, 232, cube_width - 4, cube_width - 4, tft_colors[index]);
     }
 }
 
@@ -214,7 +213,7 @@ void LedstripColorsDisplay::clearSides()
 
 void LedstripColorsDisplay::drawSide(Bobbycar_Side side, unsigned int color)
 {
-    const auto middle = espgui::tft.width() / 2;
+    const auto middle = tft.width() / 2;
     const auto width = bobbyicons::bobbycar.WIDTH;
     const auto height = bobbyicons::bobbycar.HEIGHT;
     const auto left = middle - (width / 2);
@@ -224,33 +223,33 @@ void LedstripColorsDisplay::drawSide(Bobbycar_Side side, unsigned int color)
 
     switch (side) {
         case Bobbycar_Side::FRONT:
-            espgui::tft.fillRect(left, above, width, 5, color);
+            tft.fillRect(left, above, width, 5, color);
             break;
         case Bobbycar_Side::FRONT_LEFT:
-            espgui::tft.fillRect(left - 10, above + 10, 5, height / 2, color);
-            espgui::tft.fillRect(left, above, width / 2, 5, color);
+            tft.fillRect(left - 10, above + 10, 5, height / 2, color);
+            tft.fillRect(left, above, width / 2, 5, color);
             break;
         case Bobbycar_Side::LEFT:
-            espgui::tft.fillRect(left - 10, above + 10, 5, height, color);
+            tft.fillRect(left - 10, above + 10, 5, height, color);
             break;
         case Bobbycar_Side::BACK_LEFT:
-            espgui::tft.fillRect(left - 10, above + 10 + (height / 2), 5, height / 2, color);
-            espgui::tft.fillRect(left, bellow + 5, width / 2, 5, color);
+            tft.fillRect(left - 10, above + 10 + (height / 2), 5, height / 2, color);
+            tft.fillRect(left, bellow + 5, width / 2, 5, color);
             break;
         case Bobbycar_Side::BACK:
-            espgui::tft.fillRect(left, bellow + 5, width, 5, color);
+            tft.fillRect(left, bellow + 5, width, 5, color);
             break;
         case Bobbycar_Side::BACK_RIGHT:
-            espgui::tft.fillRect(right + 5, above + 10 + (height / 2), 5, height / 2, color);
-            espgui::tft.fillRect(middle, bellow + 5, width / 2, 5, color);
+            tft.fillRect(right + 5, above + 10 + (height / 2), 5, height / 2, color);
+            tft.fillRect(middle, bellow + 5, width / 2, 5, color);
             break;
         case Bobbycar_Side::RIGHT:
-            espgui::tft.fillRect(right + 5, above + 10, 5, height, color);
+            tft.fillRect(right + 5, above + 10, 5, height, color);
             break;
         case Bobbycar_Side::FRONT_RIGHT:
-            espgui::tft.fillRect(right + 5, above + 10, 5, height / 2, color);
-            espgui::tft.fillRect(middle, above, width / 2, 5, color);
+            tft.fillRect(right + 5, above + 10, 5, height / 2, color);
+            tft.fillRect(middle, above, width / 2, 5, color);
             break;
     }
-    // espgui::tft.fillCircle(espgui::tft.width() / 2, 140, 100, TFT_BLACK);
+    // tft.fillCircle(tft.width() / 2, 140, 100, TFT_BLACK);
 }

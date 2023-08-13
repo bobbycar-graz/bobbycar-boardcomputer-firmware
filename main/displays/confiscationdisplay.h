@@ -16,8 +16,8 @@ class ConfiscationDisplay : public BobbyDisplayWithTitle
 public:
     void start() override;
 
-    void initScreen() override;
-    void redraw() override;
+    void initScreen(espgui::TftInterface &tft) override;
+    void redraw(espgui::TftInterface &tft) override;
     void update() override;
     void stop() override;
 

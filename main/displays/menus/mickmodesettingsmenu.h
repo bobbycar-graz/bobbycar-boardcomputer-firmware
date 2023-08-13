@@ -8,7 +8,7 @@ class MickModeSettingsMenu : public BobbyMenuDisplay
 public:
     MickModeSettingsMenu();
 
-    std::string text() const override;
+    std::string title() const override;
 
     void back() override;
 };

@@ -14,9 +14,9 @@ public:
 
     std::string text() const override;
 
-    void initScreen() override;
+    void initScreen(espgui::TftInterface &tft) override;
     void start() override;
-    void redraw() override;
+    void redraw(espgui::TftInterface &tft) override;
     void back() override;
 
 private:

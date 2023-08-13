@@ -141,7 +141,7 @@ DefaultModeSettingsMenu::DefaultModeSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                                                                    PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string DefaultModeSettingsMenu::text() const
+std::string DefaultModeSettingsMenu::title() const
 {
     return TEXT_DEFAULTMODESETTIGNS;
 }

@@ -3,7 +3,6 @@ constexpr const char * const TAG = "BatteryGraphDisplay";
 
 // 3rdparty lib includes
 #include <screenmanager.h>
-#include <tftinstance.h>
 
 // local includes
 #include "battery.h"
@@ -18,9 +17,9 @@ namespace {
     constexpr const uint8_t TOP_OFFSET = 40;
 } // namespace
 
-void BatteryGraphDisplay::initScreen()
+void BatteryGraphDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
     drawBatteryCurve();
 }
 
@@ -76,8 +75,8 @@ void BatteryGraphDisplay::buttonPressed(espgui::Button button)
 void BatteryGraphDisplay::drawBatteryCurve()
 {
     const auto points = count_curve_points(configs.battery.cellType.value());
-    const auto max_height = espgui::tft.height() - 1;
-    const auto max_width = espgui::tft.width() - 4;
+    const auto max_height = tft.height() - 1;
+    const auto max_width = tft.width() - 4;
     const uint16_t part = max_width / points;
     const auto min_voltage = getMinBatCellVoltage(configs.battery.cellType.value());
     const auto max_voltage = getMaxBatCellVoltage(configs.battery.cellType.value());
@@ -89,7 +88,7 @@ void BatteryGraphDisplay::drawBatteryCurve()
             const int y1 = float_map(point->minVoltage / 100.f, min_voltage, max_voltage, max_height, TOP_OFFSET);
             const int x2 = 2 + part * (points - i);
             const int y2 = float_map(point->maxVoltage / 100.f, min_voltage, max_voltage, max_height, TOP_OFFSET);
-            espgui::tft.drawLine(x1, y1, x2, y2, TFT_WHITE);
+            tft.drawLine(x1, y1, x2, y2, TFT_WHITE);
         }
     }
 }

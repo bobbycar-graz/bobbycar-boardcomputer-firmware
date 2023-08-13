@@ -2,7 +2,6 @@
 
 // 3rdparty lib includes
 #include <screenmanager.h>
-#include <tftinstance.h>
 
 // local includes
 #include "battery.h"
@@ -14,10 +13,10 @@
 
 // display with big battery and ten bars (0-100%)
 
-void BatteryInfoDisplay::initScreen()
+void BatteryInfoDisplay::initScreen(espgui::TftInterface &tft)
 {
     using namespace espgui;
-    Base::initScreen();
+    Base::initScreen(tft);
 
     tft.drawRoundRect(m_offset, m_offset, tft.width() - (m_offset * 2), tft.height() - (m_offset * 2), 10, TFT_WHITE);
     tft.drawRoundRect((tft.width() / 2) - (m_offset / 2), m_offset / 2, m_offset, m_offset / 2, 3, TFT_WHITE);

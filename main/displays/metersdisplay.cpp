@@ -1,7 +1,6 @@
 #include "metersdisplay.h"
 
 // 3rdparty lib includes
-#include <tftinstance.h>
 #include <fmt/core.h>
 
 // local includes
@@ -13,9 +12,9 @@
 
 using namespace espgui;
 
-void MetersDisplay::initScreen()
+void MetersDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
     tft.fillScreen(TFT_BLACK);
 

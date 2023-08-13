@@ -2,7 +2,6 @@
 #include "joystickdebugdisplay.h"
 
 // 3rdparty lib includes
-#include <tftinstance.h>
 #include <screenmanager.h>
 
 // local includes

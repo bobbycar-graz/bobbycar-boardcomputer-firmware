@@ -8,8 +8,8 @@ class BatteryGraphDisplay : public BobbyDisplayWithTitle {
 
 public:
     std::string text() const override;
-    void initScreen() override;
-    void redraw() override;
+    void initScreen(espgui::TftInterface &tft) override;
+    void redraw(espgui::TftInterface &tft) override;
 
     void buttonPressed(espgui::Button button) override;
 

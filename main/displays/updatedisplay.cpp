@@ -8,7 +8,6 @@
 #include <esp_log.h>
 
 // 3rdparty lib includes
-#include <tftinstance.h>
 #include <screenmanager.h>
 #include <espasyncota.h>
 #include <esp_ota_ops.h>
@@ -18,26 +17,26 @@
 #include "ota.h"
 #include "newsettings.h"
 
-void UpdateDisplay::initScreen()
+void UpdateDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(espgui::TftInterface &tft);
 
-    espgui::tft.setTextFont(4);
-    espgui::tft.setTextColor(TFT_YELLOW);
+    tft.setTextFont(4);
+    tft.setTextColor(TFT_YELLOW);
 
-    espgui::tft.drawString("Update", 5, 5, 4);
+    tft.drawString("Update", 5, 5, 4);
 
-    espgui::tft.fillRect(0, 34, espgui::tft.width(), 3, TFT_WHITE);
+    tft.fillRect(0, 34, tft.width(), 3, TFT_WHITE);
 
-    espgui::tft.setTextColor(TFT_WHITE, TFT_BLACK);
+    tft.setTextColor(TFT_WHITE, TFT_BLACK);
 
-    espgui::tft.drawString("Status:", 20, m_statusLabel.y());
+    tft.drawString("Status:", 20, m_statusLabel.y());
     m_statusLabel.start();
 
-    espgui::tft.drawString("Progress:", 20, m_progressLabel.y());
+    tft.drawString("Progress:", 20, m_progressLabel.y());
     m_progressLabel.start();
 
-    espgui::tft.drawString("Total:", 20, m_totalLabel.y());
+    tft.drawString("Total:", 20, m_totalLabel.y());
     m_totalLabel.start();
 
     m_messageLabel.start();
@@ -46,9 +45,9 @@ void UpdateDisplay::initScreen()
 
     if (const esp_app_desc_t *app_desc = esp_ota_get_app_description())
     {
-        espgui::tft.setTextColor(TFT_ORANGE, TFT_BLACK);
-        espgui::tft.drawString(app_desc->version, 20, 250);
-        espgui::tft.setTextColor(TFT_WHITE, TFT_BLACK);
+        tft.setTextColor(TFT_ORANGE, TFT_BLACK);
+        tft.drawString(app_desc->version, 20, 250);
+        tft.setTextColor(TFT_WHITE, TFT_BLACK);
     }
 
     m_newVersionLabel.start();
@@ -77,9 +76,9 @@ void UpdateDisplay::redraw()
 
         if (const auto &appDesc = asyncOta->appDesc())
         {
-            espgui::tft.setTextColor(TFT_GREEN, TFT_BLACK);
+            tft.setTextColor(TFT_GREEN, TFT_BLACK);
             m_newVersionLabel.redraw(appDesc->version);
-            espgui::tft.setTextColor(TFT_WHITE, TFT_BLACK);
+            tft.setTextColor(TFT_WHITE, TFT_BLACK);
         }
         else
             m_newVersionLabel.clear();

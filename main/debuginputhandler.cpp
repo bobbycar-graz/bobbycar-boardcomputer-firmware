@@ -8,7 +8,6 @@
 #include <esp_log.h>
 
 // 3rdparty lib includes
-#include <tftinstance.h>
 #include <esp32-hal-gpio.h>
 #include <screenmanager.h>
 #include <changevaluedisplay.h>
@@ -117,7 +116,7 @@ void handleNormalChar(char c)
         {
         case 'i':
         case 'I':
-            espgui::tft.init();
+            tft.init();
             break;
         case 'p':
         case 'P':

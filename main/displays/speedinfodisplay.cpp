@@ -10,9 +10,9 @@
 #include "displays/statusdisplay.h"
 #include "drivingstatistics.h"
 
-void SpeedInfoDisplay::initScreen()
+void SpeedInfoDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
     m_labelSpeed.start();
 

@@ -1,7 +1,6 @@
 #include "screens.h"
 
 // 3rdparty lib includes
-#include <tftinstance.h>
 #include <screenmanager.h>
 
 // local includes
@@ -25,9 +24,9 @@ void initScreen()
     tft.setTextColor(TFT_BLACK, TFT_WHITE);
     tft.setTextFont(4);
     tft.setRotation(configs.boardcomputerHardware.flipScreen.value() ? 2 : 0);
-    espgui::tft.setSwapBytes(true);
+    tft.setSwapBytes(true);
     tft.pushImage(0, 40, bobbyicons::logo.WIDTH, bobbyicons::logo.HEIGHT, bobbyicons::logo.buffer);
-    espgui::tft.setSwapBytes(false);
+    tft.setSwapBytes(false);
     tft.drawString("Bobbycar-OS", 32, 200);
     tft.drawString("booting...", 32, 225);
     tft.setTextFont(2);

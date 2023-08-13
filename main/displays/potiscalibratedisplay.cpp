@@ -1,8 +1,5 @@
 #include "potiscalibratedisplay.h"
 
-// 3rdparty lib includes
-#include <tftinstance.h>
-
 // local includes
 #include "actions/switchscreenaction.h"
 #include "displays/menus/boardcomputerhardwaresettingsmenu.h"
@@ -35,15 +32,15 @@ void PotisCalibrateDisplay::start()
     m_brems = std::nullopt;
 }
 
-void PotisCalibrateDisplay::initScreen()
+void PotisCalibrateDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
-    espgui::tft.setTextFont(4);
-    espgui::tft.setTextColor(TFT_WHITE, TFT_BLACK);
+    tft.setTextFont(4);
+    tft.setTextColor(TFT_WHITE, TFT_BLACK);
 
-    espgui::tft.drawString("gas:", 25, 47);
-    espgui::tft.drawString("brems:", 25, 147);
+    tft.drawString("gas:", 25, 47);
+    tft.drawString("brems:", 25, 147);
 
     for (auto &label : m_labels)
         label.start();
@@ -76,30 +73,30 @@ void PotisCalibrateDisplay::redraw()
     m_labels[0].redraw(m_gas ? fmt::format("{:.02f}", *m_gas) : "?");
     m_labels[1].redraw(raw_gas ? std::to_string(*raw_gas) : "?");
     if (m_status == Status::GasMin)
-        espgui::tft.setTextColor(TFT_RED, TFT_BLACK);
+        tft.setTextColor(TFT_RED, TFT_BLACK);
     m_labels[2].redraw(std::to_string(m_gasMin));
     if (m_status == Status::GasMin)
-        espgui::tft.setTextColor(TFT_WHITE, TFT_BLACK);
+        tft.setTextColor(TFT_WHITE, TFT_BLACK);
     if (m_status == Status::GasMax)
-        espgui::tft.setTextColor(TFT_RED, TFT_BLACK);
+        tft.setTextColor(TFT_RED, TFT_BLACK);
     m_labels[3].redraw(std::to_string(m_gasMax));
     if (m_status == Status::GasMax)
-        espgui::tft.setTextColor(TFT_WHITE, TFT_BLACK);
+        tft.setTextColor(TFT_WHITE, TFT_BLACK);
 
     m_progressBars[0].redraw(m_gas ? *m_gas : 0);
 
     m_labels[4].redraw(m_brems ? fmt::format("{:.02f}", *m_brems) : "?");
     m_labels[5].redraw(raw_brems ? std::to_string(*raw_brems) : "?");
     if (m_status == Status::BremsMin)
-        espgui::tft.setTextColor(TFT_RED, TFT_BLACK);
+        tft.setTextColor(TFT_RED, TFT_BLACK);
     m_labels[6].redraw(std::to_string(m_bremsMin));
     if (m_status == Status::BremsMin)
-        espgui::tft.setTextColor(TFT_WHITE, TFT_BLACK);
+        tft.setTextColor(TFT_WHITE, TFT_BLACK);
     if (m_status == Status::BremsMax)
-        espgui::tft.setTextColor(TFT_RED, TFT_BLACK);
+        tft.setTextColor(TFT_RED, TFT_BLACK);
     m_labels[7].redraw(std::to_string(m_bremsMax));
     if (m_status == Status::BremsMax)
-        espgui::tft.setTextColor(TFT_WHITE, TFT_BLACK);
+        tft.setTextColor(TFT_WHITE, TFT_BLACK);
 
     m_progressBars[1].redraw(m_brems ? *m_brems : 0);
 
@@ -122,7 +119,7 @@ void PotisCalibrateDisplay::redraw()
     {
         const auto failed = !m_gas || !m_brems || (m_status == Status::Confirm && (*m_gas > 100 || *m_brems > 100));
         const auto color = failed ? TFT_DARKGREY : TFT_WHITE;
-        espgui::tft.setTextColor(color, TFT_BLACK);
+        tft.setTextColor(color, TFT_BLACK);
         m_labels[9].redraw([&](){
             switch (m_status)
             {
@@ -140,10 +137,10 @@ void PotisCalibrateDisplay::redraw()
         }());
 
         if (m_selectedButton != m_renderedButton && (m_selectedButton == 0 || m_renderedButton == 0))
-            espgui::tft.drawRect(3, 275, 100, 27, m_selectedButton == 0 ? color : TFT_BLACK);
+            tft.drawRect(3, 275, 100, 27, m_selectedButton == 0 ? color : TFT_BLACK);
     }
 
-    espgui::tft.setTextColor(TFT_WHITE, TFT_BLACK);
+    tft.setTextColor(TFT_WHITE, TFT_BLACK);
     m_labels[10].redraw([&](){
         switch (m_status)
         {
@@ -161,7 +158,7 @@ void PotisCalibrateDisplay::redraw()
     }());
 
     if (m_selectedButton != m_renderedButton && (m_selectedButton == 1 || m_renderedButton == 1))
-        espgui::tft.drawRect(123, 275, 100, 27, m_selectedButton == 1 ? TFT_WHITE : TFT_BLACK);
+        tft.drawRect(123, 275, 100, 27, m_selectedButton == 1 ? TFT_WHITE : TFT_BLACK);
 
     m_renderedButton = m_selectedButton;
 }

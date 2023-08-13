@@ -14,7 +14,7 @@ class QrCodeDebugDisplay :
 public:
     QrCodeDebugDisplay();
 
-    void initScreen() override;
+    void initScreen(espgui::TftInterface &tft) override;
 
     void buttonPressed(espgui::Button button) override;
 

@@ -8,7 +8,7 @@ class DefaultModeSettingsMenu : public BobbyMenuDisplay
 public:
     DefaultModeSettingsMenu();
 
-    std::string text() const override;
+    std::string title() const override;
 
     void back() override;
 };

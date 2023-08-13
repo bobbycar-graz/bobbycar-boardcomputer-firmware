@@ -19,8 +19,8 @@ class MetersDisplay : public BobbyDisplay
     using Base = BobbyDisplay;
 
 public:
-    void initScreen() override;
-    void redraw() override;
+    void initScreen(espgui::TftInterface &tft) override;
+    void redraw(espgui::TftInterface &tft) override;
 
     void buttonPressed(espgui::Button button) override;
 

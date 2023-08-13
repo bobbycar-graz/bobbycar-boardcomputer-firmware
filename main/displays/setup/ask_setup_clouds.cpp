@@ -14,9 +14,9 @@ namespace {
 constexpr char const askCloudText[] = "Do you want to setup cloud?\nWith this, you will be able\nto send data to graphana,\nremote control things like Buttons\nand NVS and more!\n\nPress LEFT to skip cloud.\nPress RIGHT to setup cloud.";
 } // namespace
 
-void SetupAskSetupCloudsDisplay::initScreen()
+void SetupAskSetupCloudsDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(espgui::TftInterface &tft);
 
     drawLargeText(askCloudText);
 }

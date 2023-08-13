@@ -5,7 +5,6 @@
 
 // 3rdparty lib includes
 #include <screenmanager.h>
-#include <tftinstance.h>
 
 // local includes
 #include "bobbyerrorhandler.h"

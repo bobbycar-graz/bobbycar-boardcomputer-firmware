@@ -13,9 +13,9 @@ namespace {
 constexpr char const askSetupOtherButtonsText[] = "Do you want to setup other\nbuttons?\n(Blinker, Profile Buttons, etc.)\n\nPress LEFT to skip other buttons.\nPress RIGHT to setup buttons.";
 } // namespace
 
-void SetupAskCalibrateOtherButtonsDisplay::initScreen()
+void SetupAskCalibrateOtherButtonsDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
     drawLargeText(askSetupOtherButtonsText);
 }

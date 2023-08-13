@@ -14,9 +14,9 @@ namespace {
 constexpr char const informationText[] = "Congratulations on your new\nbobbycar! This guide will help\nyou through initial setup,\ncalibrate everything and\nget you ready!";
 } // namespace
 
-void SetupInformationDisplay::initScreen()
+void SetupInformationDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
     m_init_text_progressbar.start();
 

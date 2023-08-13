@@ -12,7 +12,7 @@ class PoweroffDisplay : public BobbyDisplay
 
 public:
     void start() override;
-    void initScreen() override;
+    void initScreen(espgui::TftInterface &tft) override;
     void update() override;
     void stop() override;
 

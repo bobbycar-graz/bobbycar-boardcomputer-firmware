@@ -44,7 +44,7 @@ MotortestModeSettingsMenu::MotortestModeSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                    PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string MotortestModeSettingsMenu::text() const
+std::string MotortestModeSettingsMenu::title() const
 {
     return TEXT_MOTORTESTMODESETTINGS;
 }

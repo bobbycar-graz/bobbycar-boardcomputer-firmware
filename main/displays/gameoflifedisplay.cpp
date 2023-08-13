@@ -3,7 +3,6 @@
 // 3rdparty lib includes
 #include <randomutils.h>
 #include <esprandom.h>
-#include <tftinstance.h>
 #include <screenmanager.h>
 
 // local includes
@@ -17,14 +16,14 @@ void GameOfLifeDisplay::start()
     m_newgrid = std::make_unique<std::bitset<GRIDX*GRIDY>>();
 }
 
-void GameOfLifeDisplay::initScreen()
+void GameOfLifeDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
     disableScreenFlip(true);
 
-    espgui::tft.setRotation(3);
-    espgui::tft.fillScreen(TFT_BLACK);
+    tft.setRotation(3);
+    tft.fillScreen(TFT_BLACK);
 }
 
 void GameOfLifeDisplay::redraw()
@@ -33,7 +32,7 @@ void GameOfLifeDisplay::redraw()
 
     if (gen == 0)
     {
-        espgui::tft.fillScreen(TFT_BLACK);
+        tft.fillScreen(TFT_BLACK);
         initGrid();
     }
 
@@ -80,7 +79,7 @@ void GameOfLifeDisplay::drawGrid()
                     color = 0xFFFF; //random(0xFFFF);
                 else
                     color = 0;
-                espgui::tft.fillRect(CELLXY * x, CELLXY * y, CELLXY, CELLXY, color);
+                tft.fillRect(CELLXY * x, CELLXY * y, CELLXY, CELLXY, color);
             }
         }
     }

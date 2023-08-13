@@ -3,9 +3,6 @@
 // system includes
 #include <utility>
 
-// 3rdparty lib includes
-#include <tftinstance.h>
-
 // local includes
 #include "globals.h"
 #include "newsettings.h"

@@ -3,24 +3,23 @@
 // 3rdparty lib includes
 #include <fmt/core.h>
 #include <screenmanager.h>
-#include <tftinstance.h>
 
 // local includes
 #include "bobbybuttons.h"
 
 XYDebugDisplay::XYDebugDisplay() : m_labelCoordinates{5, 5} {}
 
-void XYDebugDisplay::initScreen()
+void XYDebugDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
-    m_labelCoordinates.start();
+    Base::initScreen(tft);
+    m_labelCoordinates.start(tft);
 }
 
-void XYDebugDisplay::redraw()
+void XYDebugDisplay::redraw(espgui::TftInterface &tft)
 {
     using namespace espgui;
 
-    Base::redraw();
+    Base::redraw(tft);
     m_labelCoordinates.redraw(fmt::format("X: {}, Y: {}", m_current_cursor.x, m_current_cursor.y));
 
     if (m_current_cursor.x != m_last_cursor.x || m_current_cursor.y != m_last_cursor.y)
@@ -55,7 +54,7 @@ void XYDebugDisplay::buttonPressed(espgui::Button button)
         }
         break;
     case BobbyButton::Right2:
-        if (m_current_cursor.x < espgui::tft.width() - 1)
+        if (m_current_cursor.x < tft.width() - 1)
         {
             ++m_current_cursor.x;
         }
@@ -67,7 +66,7 @@ void XYDebugDisplay::buttonPressed(espgui::Button button)
         }
         break;
     case BobbyButton::Down2:
-        if (m_current_cursor.y < espgui::tft.height() - 1)
+        if (m_current_cursor.y < tft.height() - 1)
         {
             ++m_current_cursor.y;
         }

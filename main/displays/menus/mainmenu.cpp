@@ -4,7 +4,6 @@
 #include <actions/pushscreenaction.h>
 #include <actions/popscreenaction.h>
 #include <icons/back.h>
-#include <tftinstance.h>
 
 // local includes
 #include "displays/menus/selectmodemenu.h"

@@ -1,7 +1,6 @@
 #include "poweroffdisplay.h"
 
 // 3rdparty lib includes
-#include <tftinstance.h>
 #include <screenmanager.h>
 
 // local includes
@@ -20,21 +19,21 @@ void PoweroffDisplay::start()
         controller.command.poweroff = true;
 }
 
-void PoweroffDisplay::initScreen()
+void PoweroffDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
-    espgui::tft.fillScreen(TFT_BLACK);
-    espgui::tft.setTextColor(TFT_YELLOW);
+    tft.fillScreen(TFT_BLACK);
+    tft.setTextColor(TFT_YELLOW);
 
-    espgui::tft.drawString("Poweroff", 5, 5, 4);
+    tft.drawString("Poweroff", 5, 5, 4);
 
-    espgui::tft.fillRect(0, 34, espgui::tft.width(), 3, TFT_WHITE);
+    tft.fillRect(0, 34, tft.width(), 3, TFT_WHITE);
 
-    espgui::tft.setTextColor(TFT_WHITE);
-    espgui::tft.drawString("Trying to turn off", 15, 50, 4);
-    espgui::tft.drawString("both controllers", 25, 75, 4);
-    espgui::tft.drawString("Please stand still...", 20, 125, 4);
+    tft.setTextColor(TFT_WHITE);
+    tft.drawString("Trying to turn off", 15, 50, 4);
+    tft.drawString("both controllers", 25, 75, 4);
+    tft.drawString("Please stand still...", 20, 125, 4);
 }
 
 void PoweroffDisplay::update()

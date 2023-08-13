@@ -10,7 +10,7 @@ class SetupFinalInformationDisplay : public virtual BobbyDisplayWithTitle
 {
     using Base = BobbyDisplayWithTitle;
 public:
-    void initScreen() override;
+    void initScreen(espgui::TftInterface &tft) override;
     void start() override;
     void stop() override;
 

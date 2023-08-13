@@ -6,7 +6,6 @@
 // 3rdparty lib includes
 #include <espwifistack.h>
 #include <fmt/core.h>
-#include <tftinstance.h>
 
 // local includes
 #include "displays/batteryinfodisplay.h"
@@ -29,9 +28,9 @@ namespace {
 constexpr const char * const TAG = "STATUS";
 } // namespace
 
-void StatusDisplay::initScreen()
+void StatusDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
     tft.setTextFont(2);
     tft.setTextColor(TFT_WHITE);

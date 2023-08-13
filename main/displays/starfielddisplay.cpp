@@ -3,7 +3,6 @@
 // 3rdparty lib includes
 #include <randomutils.h>
 #include <esprandom.h>
-#include <tftinstance.h>
 #include <screenmanager.h>
 
 // local includes
@@ -19,14 +18,14 @@ StarfieldDisplay::StarfieldDisplay() :
 {
 }
 
-void StarfieldDisplay::initScreen()
+void StarfieldDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(espgui::TftInterface &tft);
 
     disableScreenFlip(true);
 
-    espgui::tft.fillScreen(TFT_BLACK);
-    espgui::tft.setRotation(1);
+    tft.fillScreen(TFT_BLACK);
+    tft.setRotation(1);
 
     // fastSetup() must be used immediately before fastPixel() to prepare screen
     // It must be called after any other graphics drawing function call if fastPixel()
@@ -54,7 +53,7 @@ void StarfieldDisplay::redraw()
         int old_screen_y = ((int)sy[i] - 120) * 256 / sz[i] + 120;
 
         // This is a faster pixel drawing function for occassions where many single pixels must be drawn
-        espgui::tft.drawPixel(old_screen_x, old_screen_y,TFT_BLACK);
+        tft.drawPixel(old_screen_x, old_screen_y,TFT_BLACK);
 
         sz[i] -= 2;
         if (sz[i] > 1)
@@ -66,7 +65,7 @@ void StarfieldDisplay::redraw()
           {
             uint8_t r, g, b;
             r = g = b = 255 - sz[i];
-            espgui::tft.drawPixel(screen_x, screen_y, color565(r,g,b));
+            tft.drawPixel(screen_x, screen_y, color565(r,g,b));
           }
           else
             sz[i] = 0; // Out of screen, die.

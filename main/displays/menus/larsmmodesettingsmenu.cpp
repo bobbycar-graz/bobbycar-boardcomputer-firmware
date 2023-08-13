@@ -54,7 +54,7 @@ LarsmModeSettingsMenu::LarsmModeSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,          PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string LarsmModeSettingsMenu::text() const
+std::string LarsmModeSettingsMenu::title() const
 {
     return TEXT_LARSMMODESETTINGS;
 }

@@ -43,7 +43,7 @@ MickModeSettingsMenu::MickModeSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,               PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string MickModeSettingsMenu::text() const
+std::string MickModeSettingsMenu::title() const
 {
     return TEXT_MICKMODESETTINGS;
 }

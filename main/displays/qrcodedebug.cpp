@@ -2,7 +2,6 @@
 
 // 3rdparty lib includes
 #include <fmt/core.h>
-#include <tftinstance.h>
 
 // local includes
 #include "globals.h"
@@ -15,9 +14,9 @@ QrCodeDebugDisplay::QrCodeDebugDisplay()
 {
 }
 
-void QrCodeDebugDisplay::initScreen()
+void QrCodeDebugDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 }
 
 void QrCodeDebugDisplay::buttonPressed(espgui::Button button)

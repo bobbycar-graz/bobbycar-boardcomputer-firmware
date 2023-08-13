@@ -1,7 +1,6 @@
 #include "confiscationdisplay.h"
 
 // 3rdparty lib includes
-#include <tftinstance.h>
 #include <screenmanager.h>
 #include <esprandom.h>
 #include <randomutils.h>
@@ -29,27 +28,27 @@ void ConfiscationDisplay::start()
     m_nextRestart = espchrono::millis_clock::now() + std::chrono::seconds{cpputils::randomNumber(3, 7, espcpputils::esp_random_device{})};
 }
 
-void ConfiscationDisplay::initScreen()
+void ConfiscationDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
-    espgui::tft.setSwapBytes(true);
-    espgui::tft.pushImage(10, 70, bobbyicons::shortcircuit.WIDTH, bobbyicons::shortcircuit.HEIGHT, bobbyicons::shortcircuit.buffer);
-    espgui::tft.setSwapBytes(false);
+    tft.setSwapBytes(true);
+    tft.pushImage(10, 70, bobbyicons::shortcircuit.WIDTH, bobbyicons::shortcircuit.HEIGHT, bobbyicons::shortcircuit.buffer);
+    tft.setSwapBytes(false);
 
     m_progressBar.start();
 
     m_label.start();
 
-    espgui::tft.setTextColor(TFT_WHITE, TFT_BLACK);
-    espgui::tft.setTextFont(2);
+    tft.setTextColor(TFT_WHITE, TFT_BLACK);
+    tft.setTextFont(2);
 
     auto y = 235;
     constexpr auto lineheight = 15;
-    espgui::tft.drawString("Bei erneuter, widerrechtlicher", 10, y+=lineheight);
-    espgui::tft.drawString("Beschlagnahmung wird die Selbst-", 10, y+=lineheight);
-    espgui::tft.drawString("Vernichtung durch Kurzschluss", 10, y+=lineheight);
-    espgui::tft.drawString(fmt::format("der Batterie eingeleitet (ca {:.2f}MJ)", calculateMegaJoules()), 10, y+=lineheight);
+    tft.drawString("Bei erneuter, widerrechtlicher", 10, y+=lineheight);
+    tft.drawString("Beschlagnahmung wird die Selbst-", 10, y+=lineheight);
+    tft.drawString("Vernichtung durch Kurzschluss", 10, y+=lineheight);
+    tft.drawString(fmt::format("der Batterie eingeleitet (ca {:.2f}MJ)", calculateMegaJoules()), 10, y+=lineheight);
 }
 
 void ConfiscationDisplay::redraw()
@@ -58,9 +57,9 @@ void ConfiscationDisplay::redraw()
 
     m_progressBar.redraw(m_progress);
 
-    espgui::tft.setTextColor(TFT_YELLOW, TFT_BLACK);
+    tft.setTextColor(TFT_YELLOW, TFT_BLACK);
 
-    espgui::tft.setTextFont(2);
+    tft.setTextFont(2);
     m_label.redraw([](){
         if (const auto period = espchrono::millis_clock::now().time_since_epoch() % 6000ms; period < 2000ms)
             return "Halten Sie 10m Abstand.";

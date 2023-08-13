@@ -21,8 +21,8 @@ class GametrakCalibrateDisplay : public BobbyDisplay, public ConfirmActionInterf
     using Base = BobbyDisplay;
 
 public:
-    void initScreen() override;
-    void redraw() override;
+    void initScreen(espgui::TftInterface &tft) override;
+    void redraw(espgui::TftInterface &tft) override;
 
 private:
     std::array<Label, 6> m_labels {{
@@ -41,9 +41,9 @@ private:
     }};
 };
 
-void GametrakCalibrateDisplay::initScreen()
+void GametrakCalibrateDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
     tft.fillScreen(TFT_BLACK);
     tft.setTextFont(4);

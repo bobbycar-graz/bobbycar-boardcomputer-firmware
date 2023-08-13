@@ -10,8 +10,6 @@
 #include <textwithvaluehelper.h>
 #include <fmt/core.h>
 
-#include <tftinstance.h>
-
 // Local includes
 #include "utils.h"
 #include "icons/settings.h"
@@ -98,9 +96,9 @@ std::string BatteryMenu::text() const
     return TEXT_BATTERY;
 }
 
-void BatteryMenu::initScreen()
+void BatteryMenu::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
     m_batPercentBootLabel.start();
     m_batPercentNowLabel.start();
 }

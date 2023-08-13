@@ -50,7 +50,7 @@ TempomatModeSettingsMenu::TempomatModeSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,      PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string TempomatModeSettingsMenu::text() const
+std::string TempomatModeSettingsMenu::title() const
 {
     return TEXT_TEMPOMATMODESETTINGS;
 }

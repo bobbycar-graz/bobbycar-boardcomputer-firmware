@@ -5,7 +5,6 @@
 #include <esprandom.h>
 #include <randomutils.h>
 #include <screenmanager.h>
-#include <tftinstance.h>
 
 // local includes
 #include "screens.h"
@@ -14,23 +13,23 @@ namespace {
 typedef unsigned char byte;
 } // namespace
 
-void SpiroDisplay::initScreen()
+void SpiroDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
     disableScreenFlip(true);
-    espgui::tft.setRotation(3);
+    tft.setRotation(3);
 }
 
-void SpiroDisplay::redraw()
+void SpiroDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     for (int j = 0; j < std::max(1, n); j++)
     {
         if (i == 0)
         {
-            espgui::tft.fillScreen(TFT_BLACK);
+            tft.fillScreen(TFT_BLACK);
             n = cpputils::randomNumber<uint8_t>(2, 23, espcpputils::esp_random_device{});
             r = cpputils::randomNumber<uint8_t>(20, 100, espcpputils::esp_random_device{});
             colour = 0; //rainbow();
@@ -48,7 +47,7 @@ void SpiroDisplay::redraw()
             sx = std::sin(((i % 360) - 90) * DEG2RAD);
             x1 = sx * r + x0;
             yy1 = sy * r + yy0;
-            espgui::tft.drawPixel(x1, yy1, rainbow(cpputils::mapValue<uint16_t>(i%360,0,360,0,127))); //colour);
+            tft.drawPixel(x1, yy1, rainbow(cpputils::mapValue<uint16_t>(i%360,0,360,0,127))); //colour);
         }
 
         if (i == (360 * n))
@@ -70,7 +69,7 @@ void SpiroDisplay::redraw()
             sx = std::sin(((new_i % 360) - 90) * DEG2RAD);
             x1 = sx * r + x0;
             yy1 = sy * r + yy0;
-            espgui::tft.drawPixel(x1, yy1, rainbow(cpputils::mapValue<uint16_t>(new_i%360,0,360,0,127))); //colour);
+            tft.drawPixel(x1, yy1, rainbow(cpputils::mapValue<uint16_t>(new_i%360,0,360,0,127))); //colour);
         }
 
         i++;

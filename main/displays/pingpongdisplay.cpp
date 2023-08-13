@@ -3,7 +3,6 @@
 // 3rdparty lib includes
 #include <randomutils.h>
 #include <esprandom.h>
-#include <tftinstance.h>
 #include <screenmanager.h>
 
 // local includes
@@ -18,14 +17,14 @@ PingPongDisplay::PingPongDisplay() :
     calc_target_y();
 }
 
-void PingPongDisplay::initScreen()
+void PingPongDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
     disableScreenFlip(true);
 
-    espgui::tft.fillScreen(TFT_BLACK);
-    espgui::tft.setRotation(1);
+    tft.fillScreen(TFT_BLACK);
+    tft.setRotation(1);
 
     midline();
 }
@@ -68,29 +67,29 @@ void PingPongDisplay::midline()
     // If the ball is not on the line then don't redraw the line
     if ((ball_x<dashline_x-ball_w) && (ball_x > dashline_x+dashline_w)) return;
 
-    espgui::tft.startWrite();
+    tft.startWrite();
 
     // Quick way to draw a dashed line
-    espgui::tft.setAddrWindow(dashline_x, 0, dashline_w, h);
+    tft.setAddrWindow(dashline_x, 0, dashline_w, h);
 
     for (int16_t i = 0; i < dashline_n; i+=2)
     {
-        espgui::tft.pushColor(WHITE, dashline_w*dashline_h); // push dash pixels
-        espgui::tft.pushColor(BLACK, dashline_w*dashline_h); // push gap pixels
+        tft.pushColor(WHITE, dashline_w*dashline_h); // push dash pixels
+        tft.pushColor(BLACK, dashline_w*dashline_h); // push gap pixels
     }
 
-    espgui::tft.endWrite();
+    tft.endWrite();
 }
 
 void PingPongDisplay::lpaddle()
 {
     if (lpaddle_d == 1)
     {
-        espgui::tft.fillRect(lpaddle_x, lpaddle_y, paddle_w, 1, BLACK);
+        tft.fillRect(lpaddle_x, lpaddle_y, paddle_w, 1, BLACK);
     }
     else if (lpaddle_d == -1)
     {
-        espgui::tft.fillRect(lpaddle_x, lpaddle_y + paddle_h - 1, paddle_w, 1, BLACK);
+        tft.fillRect(lpaddle_x, lpaddle_y + paddle_h - 1, paddle_w, 1, BLACK);
     }
 
     lpaddle_y = lpaddle_y + lpaddle_d;
@@ -107,15 +106,15 @@ void PingPongDisplay::lpaddle()
     if (lpaddle_y + paddle_h >= h && lpaddle_d == 1) lpaddle_d = 0;
     else if (lpaddle_y <= 0 && lpaddle_d == -1) lpaddle_d = 0;
 
-    espgui::tft.fillRect(lpaddle_x, lpaddle_y, paddle_w, paddle_h, WHITE);
+    tft.fillRect(lpaddle_x, lpaddle_y, paddle_w, paddle_h, WHITE);
 }
 
 void PingPongDisplay::rpaddle()
 {
     if (rpaddle_d == 1)
-        espgui::tft.fillRect(rpaddle_x, rpaddle_y, paddle_w, 1, BLACK);
+        tft.fillRect(rpaddle_x, rpaddle_y, paddle_w, 1, BLACK);
     else if (rpaddle_d == -1)
-        espgui::tft.fillRect(rpaddle_x, rpaddle_y + paddle_h - 1, paddle_w, 1, BLACK);
+        tft.fillRect(rpaddle_x, rpaddle_y + paddle_h - 1, paddle_w, 1, BLACK);
 
     rpaddle_y = rpaddle_y + rpaddle_d;
 
@@ -133,7 +132,7 @@ void PingPongDisplay::rpaddle()
     else if (rpaddle_y <= 0 && rpaddle_d == -1)
         rpaddle_d = 0;
 
-    espgui::tft.fillRect(rpaddle_x, rpaddle_y, paddle_w, paddle_h, WHITE);
+    tft.fillRect(rpaddle_x, rpaddle_y, paddle_w, paddle_h, WHITE);
 }
 
 void PingPongDisplay::calc_target_y()
@@ -180,8 +179,8 @@ void PingPongDisplay::ball()
     }
 
     //tft.fillRect(oldball_x, oldball_y, ball_w, ball_h, BLACK);
-    espgui::tft.drawRect(oldball_x, oldball_y, ball_w, ball_h, BLACK); // Less TFT refresh aliasing than line above for large balls
-    espgui::tft.fillRect(   ball_x,    ball_y, ball_w, ball_h, WHITE);
+    tft.drawRect(oldball_x, oldball_y, ball_w, ball_h, BLACK); // Less TFT refresh aliasing than line above for large balls
+    tft.fillRect(   ball_x,    ball_y, ball_w, ball_h, WHITE);
     oldball_x = ball_x;
     oldball_y = ball_y;
 }

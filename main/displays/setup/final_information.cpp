@@ -16,9 +16,9 @@ namespace {
 constexpr char const finalInformationText[] = "Setup is done!\nIf cloud is setup, go to\nhttps://service.bobbycar.cloud/\nand register this bobbycar!\nThis is also used\nto setup udp cloud.\nPress any button to exit.";
 } // namespace
 
-void SetupFinalInformationDisplay::initScreen()
+void SetupFinalInformationDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
     drawLargeText(finalInformationText);
 }

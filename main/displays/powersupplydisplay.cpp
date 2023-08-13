@@ -1,25 +1,24 @@
 #include "powersupplydisplay.h"
 
 // 3rdparty lib includes
-#include <tftinstance.h>
 #include <screenmanager.h>
 
 // local includes
 #include "globals.h"
 
 #if defined(FEATURE_CAN) && defined(FEATURE_POWERSUPPLY)
-void PowerSupplyDisplay::initScreen()
+void PowerSupplyDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
-    espgui::tft.fillScreen(TFT_BLACK);
-    espgui::tft.setTextColor(TFT_WHITE, TFT_BLACK);
+    tft.fillScreen(TFT_BLACK);
+    tft.setTextColor(TFT_WHITE, TFT_BLACK);
 
-    espgui::tft.setTextFont(4);
+    tft.setTextFont(4);
 
-    espgui::tft.drawString("Voltage:", 0, m_voltageLabel.y());
+    tft.drawString("Voltage:", 0, m_voltageLabel.y());
     m_voltageLabel.start();
-    espgui::tft.drawString("Current:", 0, m_currentLabel.y());
+    tft.drawString("Current:", 0, m_currentLabel.y());
     m_currentLabel.start();
 }
 

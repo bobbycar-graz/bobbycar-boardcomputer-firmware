@@ -29,7 +29,7 @@ public:
 
 private:
     bool m_waitingForResult{false};
-    espgui::Label m_statuslabel{5,(espgui::tft.height() / 2)-espgui::tft.fontHeight(4)};
+    espgui::Label m_statuslabel{5,(tft.height() / 2)-tft.fontHeight(4)};
 
     std::expected<std::string, std::string> m_result;
     std::string m_nvs_key;

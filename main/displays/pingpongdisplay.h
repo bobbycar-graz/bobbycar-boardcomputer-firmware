@@ -13,8 +13,8 @@ class PingPongDisplay : public BobbyDisplay
 public:
     PingPongDisplay();
 
-    void initScreen() override;
-    void redraw() override;
+    void initScreen(espgui::TftInterface &tft) override;
+    void redraw(espgui::TftInterface &tft) override;
     void stop() override;
 
     void buttonPressed(espgui::Button button) override;

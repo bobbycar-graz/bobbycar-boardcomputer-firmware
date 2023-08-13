@@ -4,7 +4,6 @@
 #include <algorithm>
 
 // 3rdparty lib includes
-#include <tftinstance.h>
 #include <screenmanager.h>
 
 // local includes
@@ -57,18 +56,18 @@ void Lockscreen::initScreen(espgui::TftInterface &tft)
 {
     Base::initScreen(tft);
 
-    espgui::tft.fillScreen(TFT_BLACK);
-    espgui::tft.setTextFont(4);
-    espgui::tft.setTextColor(TFT_YELLOW);
+    tft.fillScreen(TFT_BLACK);
+    tft.setTextFont(4);
+    tft.setTextColor(TFT_YELLOW);
 
-    espgui::tft.drawString("Lock vehicle", 5, 5);
+    tft.drawString("Lock vehicle", 5, 5);
 
-    espgui::tft.fillRect(0, 34, espgui::tft.width(), 3, TFT_WHITE);
+    tft.fillRect(0, 34, tft.width(), 3, TFT_WHITE);
 
-    espgui::tft.setTextColor(TFT_WHITE);
-    espgui::tft.drawString("Enter code to unlock:", 0, 50);
+    tft.setTextColor(TFT_WHITE);
+    tft.drawString("Enter code to unlock:", 0, 50);
 
-    espgui::tft.setTextColor(TFT_WHITE, TFT_BLACK);
+    tft.setTextColor(TFT_WHITE, TFT_BLACK);
 
     for(int i = 0; i <= 3; i++)
     {
@@ -79,7 +78,7 @@ void Lockscreen::initScreen(espgui::TftInterface &tft)
     for (auto &label : m_labels)
         label.start();
 
-    espgui::tft.setTextFont(7);
+    tft.setTextFont(7);
 
     drawRect(m_currentIndex, 1, TFT_YELLOW);
     drawRect(m_currentIndex, 2, TFT_YELLOW);
@@ -207,5 +206,5 @@ void Lockscreen::buttonPressed(espgui::Button button)
 
 void Lockscreen::drawRect(int index, int offset, uint32_t color) const
 {
-    espgui::tft.drawRect(m_labels[index].x()-offset, m_labels[index].y()-offset, boxWidth+(offset*2), boxHeight+(offset*2), color);
+    tft.drawRect(m_labels[index].x()-offset, m_labels[index].y()-offset, boxWidth+(offset*2), boxHeight+(offset*2), color);
 }

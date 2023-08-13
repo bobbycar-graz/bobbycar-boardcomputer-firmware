@@ -5,13 +5,12 @@
 #include "displays/speedinfodisplay.h"
 #include "displays/statusdisplay.h"
 #include "screenmanager.h"
-#include "tftinstance.h"
 
 using namespace espgui;
 
-void BmsDisplay::initScreen()
+void BmsDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
     tft.fillScreen(TFT_BLACK);
     tft.setTextColor(TFT_WHITE, TFT_BLACK);
