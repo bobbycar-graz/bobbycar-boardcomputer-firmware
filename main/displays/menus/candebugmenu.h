@@ -5,11 +5,11 @@
 
 #ifdef FEATURE_CAN
 
+// system includes
+#include <expected>
+
 // esp-idf includes
 #include <driver/twai.h>
-
-// 3rdparty lib includes
-#include <tl/expected.hpp>
 
 class CanDebugMenu : public BobbyMenuDisplay
 {
@@ -25,7 +25,7 @@ public:
     void back() override;
 
 private:
-    tl::expected<twai_status_info_t, esp_err_t> m_last_can_status_info;
+    std::expected<twai_status_info_t, esp_err_t> m_last_can_status_info;
 };
 
 #endif

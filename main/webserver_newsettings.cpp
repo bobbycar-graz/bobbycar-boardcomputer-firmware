@@ -3,6 +3,7 @@
 // system includes
 #include <limits>
 #include <utility>
+#include <expected>
 
 // esp-idf includes
 #include <esp_http_server.h>
@@ -354,7 +355,7 @@ typename std::enable_if<
     !std::is_same_v<T, LedstripAnimation> &&
     !std::is_same_v<T, HandbremseMode> &&
     !std::is_same_v<T, BobbyQuickActions>
-, tl::expected<void, std::string>>::type
+, std::expected<void, std::string>>::type
 saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
 {
     return tl::make_unexpected("Unsupported config type");
@@ -363,7 +364,7 @@ saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
 template<typename T>
 typename std::enable_if<
     std::is_same_v<T, bool>
-, tl::expected<void, std::string>>::type
+, std::expected<void, std::string>>::type
 saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
 {
     if (cpputils::is_in(newValue, "true", "false"))
@@ -376,7 +377,7 @@ template<typename T>
 typename std::enable_if<
     !std::is_same_v<T, bool> &&
     std::is_integral_v<T>
-, tl::expected<void, std::string>>::type
+, std::expected<void, std::string>>::type
 saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
 {
     if (auto parsed = cpputils::fromString<T>(newValue))
@@ -388,7 +389,7 @@ saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
 template<typename T>
 typename std::enable_if<
     std::is_same_v<T, std::string>
-, tl::expected<void, std::string>>::type
+, std::expected<void, std::string>>::type
 saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
 {
     return configs.write_config(config, std::string{newValue});
@@ -397,7 +398,7 @@ saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
 template<typename T>
 typename std::enable_if<
     std::is_same_v<T, wifi_stack::ip_address_t>
-, tl::expected<void, std::string>>::type
+, std::expected<void, std::string>>::type
 saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
 {
     if (const auto parsed = wifi_stack::fromString<wifi_stack::ip_address_t>(newValue); parsed)
@@ -409,7 +410,7 @@ saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
 template<typename T>
 typename std::enable_if<
     std::is_same_v<T, wifi_stack::mac_t>
-, tl::expected<void, std::string>>::type
+, std::expected<void, std::string>>::type
 saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
 {
     if (const auto parsed = wifi_stack::fromString<wifi_stack::mac_t>(newValue); parsed)
@@ -421,7 +422,7 @@ saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
 template<typename T>
 typename std::enable_if<
     std::is_same_v<T, std::optional<wifi_stack::mac_t>>
-, tl::expected<void, std::string>>::type
+, std::expected<void, std::string>>::type
 saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
 {
     if (newValue.empty())
@@ -441,7 +442,7 @@ typename std::enable_if<
     std::is_same_v<T, LedstripAnimation> ||
     std::is_same_v<T, HandbremseMode> ||
     std::is_same_v<T, BobbyQuickActions>
-, tl::expected<void, std::string>>::type
+, std::expected<void, std::string>>::type
 saveSetting(ConfigWrapper<T> &config, std::string_view newValue)
 {
     if (auto parsed = cpputils::fromString<std::underlying_type_t<T>>(newValue))

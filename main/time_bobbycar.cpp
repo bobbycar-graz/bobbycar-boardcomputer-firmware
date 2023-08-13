@@ -1,5 +1,8 @@
 #include "time_bobbycar.h"
 
+// system includes
+#include <expected>
+
 // esp-idf includes
 #include <esp_log.h>
 #include <lwip/apps/snmp.h>
@@ -95,7 +98,7 @@ void updateTime()
     }
 }
 
-tl::expected<void, std::string> time_requestSync()
+std::expected<void, std::string> time_requestSync()
 {
     ESP_LOGI("BOBBY", "called");
     if (!sntp_restart())

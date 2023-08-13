@@ -12,9 +12,9 @@
 
 using namespace espgui;
 
-void SetupCalibratePotisDisplay::initScreen()
+void SetupCalibratePotisDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
     tft.setTextFont(4);
     tft.setTextColor(TFT_WHITE, TFT_BLACK);
@@ -58,9 +58,9 @@ void SetupCalibratePotisDisplay::update()
         m_brems = std::nullopt;
 }
 
-void SetupCalibratePotisDisplay::redraw()
+void SetupCalibratePotisDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     m_labels[0].redraw(m_gas ? fmt::format("{:.02f}", *m_gas) : "?");
     m_labels[1].redraw(raw_gas ? std::to_string(*raw_gas) : "?");
@@ -279,7 +279,7 @@ void SetupCalibratePotisDisplay::buttonPressed(espgui::Button button)
     }
 };
 
-std::string SetupCalibratePotisDisplay::text() const
+std::string SetupCalibratePotisDisplay::title() const
 {
     return "Calibrate Potis";
 }

@@ -1,10 +1,11 @@
 #pragma once
 
+// system includes
+#include <expected>
+
 // 3rd party includes
 #include <esp_log.h>
 #include <fmt/core.h>
-#include <tftinstance.h>
-#include <tl/expected.hpp>
 #include <widgets/label.h>
 
 // local includes
@@ -23,13 +24,13 @@ public:
 
     void start() override;
     void update() override;
-    void redraw() override;
+    void redraw(espgui::TftInterface &tft) override;
     void buttonPressed(espgui::Button button) override;
 
 private:
     bool m_waitingForResult{false};
     espgui::Label m_statuslabel{5,(espgui::tft.height() / 2)-espgui::tft.fontHeight(4)};
 
-    tl::expected<std::string, std::string> m_result;
+    std::expected<std::string, std::string> m_result;
     std::string m_nvs_key;
 };

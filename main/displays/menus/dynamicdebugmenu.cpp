@@ -3,6 +3,7 @@
 // system includes
 #include <string>
 #include <optional>
+#include <expected>
 
 // 3rdparty lib includes
 #include <espchrono.h>
@@ -85,7 +86,7 @@ struct ToggleAccessor : public virtual AccessorInterface<bool>
 {
 public:
     bool getValue() const override { return toggle; };
-    tl::expected<void, std::string> setValue(bool value) override;
+    std::expected<void, std::string> setValue(bool value) override;
 };
 
 using ToggleChangeValueDisplay = espgui::makeComponent<
@@ -199,7 +200,7 @@ const MenuItemIcon *RandomIcon::icon() const
     return m_icon;
 }
 
-tl::expected<void, std::string> ToggleAccessor::setValue(bool value)
+std::expected<void, std::string> ToggleAccessor::setValue(bool value)
 {
     if (toggleLocked)
         return tl::make_unexpected("cannot be changed while is locked!");

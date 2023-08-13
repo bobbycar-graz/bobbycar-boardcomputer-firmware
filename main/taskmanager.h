@@ -2,10 +2,10 @@
 
 // system includes
 #include <optional>
+#include <expected>
 
 // 3rdparty lib includes
 #include <arrayview.h>
-#include <tl/expected.hpp>
 
 // local includes
 #include "bobbyschedulertask.h"
@@ -16,7 +16,7 @@ extern const BobbySchedulerTask &drivingModeTask;
 
 void sched_pushStats(bool printTasks);
 
-tl::expected<bool, std::string> checkInitializedByName(const std::string& name);
+std::expected<bool, std::string> checkInitializedByName(const std::string& name);
 
 bool checkEnabledByName(const std::string& name);
 

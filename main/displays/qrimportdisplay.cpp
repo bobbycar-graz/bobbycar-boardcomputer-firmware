@@ -49,10 +49,10 @@ void QrImportDisplay::update()
         ESP_LOGW(TAG, "failed %.*s => %.*s", m_nvs_key.size(), m_nvs_key.data(), m_result.error().size(), m_result.error().data());
 }
 
-void QrImportDisplay::redraw()
+void QrImportDisplay::redraw(espgui::TftInterface &tft)
 {
     using namespace espgui;
-    Base::redraw();
+    Base::redraw(tft);
 
     if (m_waitingForResult)
     {

@@ -53,9 +53,9 @@ void Lockscreen::start()
     }
 }
 
-void Lockscreen::initScreen()
+void Lockscreen::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
     espgui::tft.fillScreen(TFT_BLACK);
     espgui::tft.setTextFont(4);
@@ -93,9 +93,9 @@ void Lockscreen::update()
     Base::update();
 }
 
-void Lockscreen::redraw()
+void Lockscreen::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 
     if (m_pressed || m_back_pressed)
     {

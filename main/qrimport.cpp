@@ -37,7 +37,7 @@ bool has_qr_code(std::string_view key)
     return length;
 }
 
-tl::expected<std::string, esp_err_t> get_qr_code(std::string_view key)
+std::expected<std::string, esp_err_t> get_qr_code(std::string_view key)
 {
     const auto handle = configs.nvs_handle_user;
 
@@ -67,7 +67,7 @@ tl::expected<std::string, esp_err_t> get_qr_code(std::string_view key)
     return buf; // no std::move needed as return is optimized
 }
 
-tl::expected<void, esp_err_t> set_qr_code(std::string_view key, std::string_view qrcode)
+std::expected<void, esp_err_t> set_qr_code(std::string_view key, std::string_view qrcode)
 {
     const auto handle = configs.nvs_handle_user;
 
@@ -80,7 +80,7 @@ tl::expected<void, esp_err_t> set_qr_code(std::string_view key, std::string_view
     return {};
 }
 
-tl::expected<void, esp_err_t> delete_qr_code(std::string_view key)
+std::expected<void, esp_err_t> delete_qr_code(std::string_view key)
 {
     const auto handle = configs.nvs_handle_user;
 
@@ -102,7 +102,7 @@ void setup_request()
     }
 }
 
-tl::expected<void, std::string> start_qr_request()
+std::expected<void, std::string> start_qr_request()
 {
     if (!http_request.constructed())
     {
@@ -116,7 +116,7 @@ tl::expected<void, std::string> start_qr_request()
     return{};
 }
 
-tl::expected<std::string, std::string> check_request()
+std::expected<std::string, std::string> check_request()
 {
     if (!http_request.constructed())
     {

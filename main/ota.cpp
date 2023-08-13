@@ -26,7 +26,7 @@ void handleOta()
         asyncOta->update();
 }
 
-tl::expected<void, std::string> triggerOta(std::string_view url)
+std::expected<void, std::string> triggerOta(std::string_view url)
 {
     if (!configs.feature.ota.isEnabled.value())
         return tl::make_unexpected("OTA is not enabled!");

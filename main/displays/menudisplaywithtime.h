@@ -11,7 +11,7 @@ class MenuDisplayWithTime :
 
 public:
     void start() override;
-    void redraw() override;
+    void redraw(espgui::TftInterface &tft) override;
     espgui::Label m_label_currentTime{145, 6};
 
 private:

@@ -23,17 +23,17 @@ public:
         m_early_return{early_return}
     {}
 
-    void initScreen() override;
+    void initScreen(espgui::TftInterface &tft) override;
     void start() override;
     void update() override;
-    void redraw() override;
+    void redraw(espgui::TftInterface &tft) override;
 
     void rawButtonPressed(uint8_t button) override;
     void rawButtonReleased(uint8_t button) override;
     void buttonPressed(espgui::Button button) override;
     void buttonReleased(espgui::Button button) override;
 
-    [[nodiscard]] std::string text() const override;
+    [[nodiscard]] std::string title() const override;
 private:
     const bool m_early_return;
 

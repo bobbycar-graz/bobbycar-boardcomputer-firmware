@@ -3,7 +3,7 @@
 	url = ../../0xFEEDC0DE64/espcpputils.git
 [submodule "esp-idf"]
 	path = esp-idf
-	url = ../../0xFEEDC0DE64/esp-idf.git
+	url = ../../bobbycar-graz/esp-idf.git
 [submodule "components/cpputils"]
 	path = components/cpputils
 	url = ../../0xFEEDC0DE64/cpputils.git
@@ -22,9 +22,6 @@
 [submodule "components/arduino-esp32"]
 	path = components/arduino-esp32
 	url = ../../0xFEEDC0DE64/arduino-esp32.git
-[submodule "components/expected"]
-	path = components/expected
-	url = ../../0xFEEDC0DE64/expected.git
 [submodule "components/bobbycar-protocol"]
 	path = components/bobbycar-protocol
 	url = ../../bobbycar-graz/bobbycar-protocol.git
@@ -70,6 +67,9 @@
 [submodule "esp_boost"]
 	path = esp_boost
 	url = ../../0xFEEDC0DE64/esp_boost.git
-[submodule "components/asio_web"]
-	path = components/asio_web
-	url = ../../0xFEEDC0DE64/asio_web.git
+[submodule "components/esptftlib"]
+	path = components/esptftlib
+	url = ../../0xFEEDC0DE64/esptftlib.git
+[submodule "components/espfontlib"]
+	path = components/espfontlib
+	url = ../../0xFEEDC0DE64/espfontlib.git

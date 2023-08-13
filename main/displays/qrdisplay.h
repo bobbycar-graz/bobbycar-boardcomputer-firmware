@@ -3,7 +3,8 @@
 // 3rd party includes
 #include <qrcode.h>
 #include <screenmanager.h>
-#include <tftinstance.h>
+#include <tftinterface.h>
+#include <TFT_eSPI.h>
 
 // local includes
 #include "bobbydisplay.h"
@@ -17,7 +18,7 @@ class QrDisplay : public BobbyDisplay
 public:
     explicit QrDisplay(std::string_view msg) : m_msg{msg} {}
 
-    void initScreen() override
+    void initScreen(espgui::TftInterface &tft) override
     {
         using namespace espgui;
         QRCode qrcode;

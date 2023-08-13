@@ -1,7 +1,6 @@
 #include "menudisplaywithtime.h"
 
 // 3rdparty lib includes
-#include <tftinstance.h>
 #include <fmt/core.h>
 
 // local includes
@@ -16,9 +15,9 @@ void MenuDisplayWithTime::start()
     m_label_currentTime.start();
 }
 
-void MenuDisplayWithTime::redraw()
+void MenuDisplayWithTime::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
     tft.setTextFont(use_big_font() ? 4 : 2);
     m_label_currentTime.redraw(fmt::format("&7Time: {}", local_clock_string()));
 }

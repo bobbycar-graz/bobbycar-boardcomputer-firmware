@@ -2,6 +2,7 @@
 
 // system includes
 #include <cstdint>
+#include <expected>
 
 // 3rdparty lib includes
 #include <accessorinterface.h>

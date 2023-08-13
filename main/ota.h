@@ -1,5 +1,8 @@
 #pragma once
 
+// system includes
+#include <expected>
+
 // 3rdparty lib includes
 #include <espasyncota.h>
 #include <delayedconstruction.h>
@@ -9,4 +12,4 @@ extern bool asyncOtaTaskStarted;
 
 void initOta();
 void handleOta();
-tl::expected<void, std::string> triggerOta(std::string_view url);
+std::expected<void, std::string> triggerOta(std::string_view url);

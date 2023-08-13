@@ -4,7 +4,7 @@
 #include <esp_system.h>
 
 // 3rdparty lib includes
-#include <tftinstance.h>
+#include <TFT_eSPI.h>
 
 void RebootAction::triggered()
 {

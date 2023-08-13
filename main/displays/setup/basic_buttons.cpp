@@ -18,9 +18,9 @@ constexpr char const buttonText[] = "Please press the highlighted\n buttons!";
 constexpr const char * const TAG = "SETUP-BUTTONS";
 }
 
-void SetupBasicButtonsDisplay::initScreen()
+void SetupBasicButtonsDisplay::initScreen(espgui::TftInterface &tft)
 {
-    Base::initScreen();
+    Base::initScreen(tft);
 
     drawLargeText(buttonText);
     drawButtons(m_button_cal_status);
@@ -58,9 +58,9 @@ void SetupBasicButtonsDisplay::update()
     Base::update();
 }
 
-void SetupBasicButtonsDisplay::redraw()
+void SetupBasicButtonsDisplay::redraw(espgui::TftInterface &tft)
 {
-    Base::redraw();
+    Base::redraw(tft);
 }
 
 void SetupBasicButtonsDisplay::rawButtonPressed(uint8_t button)
@@ -122,7 +122,7 @@ void SetupBasicButtonsDisplay::buttonReleased(espgui::Button button)
     // Base::buttonReleased(button);
 }
 
-std::string SetupBasicButtonsDisplay::text() const
+std::string SetupBasicButtonsDisplay::title() const
 {
     return "Calibrate Buttons";
 }

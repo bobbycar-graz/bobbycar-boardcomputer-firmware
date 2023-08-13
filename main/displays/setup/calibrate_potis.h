@@ -19,15 +19,15 @@ public:
             m_early_return{early_return}
     {}
 
-    void initScreen() override;
+    void initScreen(espgui::TftInterface &tft) override;
     void start() override;
     void update() override;
-    void redraw() override;
+    void redraw(espgui::TftInterface &tft) override;
     void stop() override;
 
     void buttonPressed(espgui::Button button) override;
 
-    [[nodiscard]] std::string text() const override;
+    [[nodiscard]] std::string title() const override;
 
 private:
     void copyFromSettings();

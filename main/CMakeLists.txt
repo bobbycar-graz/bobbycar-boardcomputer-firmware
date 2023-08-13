@@ -530,7 +530,7 @@ set(dependencies
     freertos nvs_flash esp_http_server esp_https_ota mdns app_update esp_system esp_websocket_client driver esp_adc
     arduino-esp32 ArduinoJson esp-nimble-cpp FastLED-idf TFT_eSPI QRCode-esp32
     bobbycar-protocol cpputils cxx-ring-buffer date sunset
-    espasynchttpreq espasyncota espchrono espcpputils espconfiglib esp-gui-lib esphttpdutils espwifistack expected fmt
+    espasynchttpreq espasyncota espchrono espcpputils espconfiglib esp-gui-lib esphttpdutils espwifistack fmt
 )
 
 idf_component_register(

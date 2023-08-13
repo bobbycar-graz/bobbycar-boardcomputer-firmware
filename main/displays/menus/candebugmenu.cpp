@@ -49,7 +49,7 @@ std::string toString(twai_state_t val)
 class CanStatusText : public virtual espgui::TextInterface
 {
 public:
-    explicit CanStatusText(const tl::expected<twai_status_info_t, esp_err_t> &last_can_status_info) :
+    explicit CanStatusText(const std::expected<twai_status_info_t, esp_err_t> &last_can_status_info) :
         m_last_can_status_info{last_can_status_info}
     {
     }
@@ -67,7 +67,7 @@ protected:
     virtual std::string canStatusText(const twai_status_info_t &can_status_info) const = 0;
 
 private:
-    const tl::expected<twai_status_info_t, esp_err_t> &m_last_can_status_info;
+    const std::expected<twai_status_info_t, esp_err_t> &m_last_can_status_info;
 };
 
 class CanStatusStateText : public CanStatusText

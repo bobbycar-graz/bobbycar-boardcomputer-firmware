@@ -115,7 +115,7 @@ void sched_pushStats(bool printTasks)
         ESP_LOGI(TAG, "end listing tasks");
 }
 
-tl::expected<bool, std::string> checkInitializedByName(const std::string& name)
+std::expected<bool, std::string> checkInitializedByName(const std::string& name)
 {
     for (auto &schedulerTask : schedulerTasks)
     {
