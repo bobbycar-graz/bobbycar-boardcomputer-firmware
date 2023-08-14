@@ -25,7 +25,7 @@ InvertMenu::InvertMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,             PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string InvertMenu::text() const
+std::string InvertMenu::title() const
 {
     return TEXT_SETINVERTED;
 }

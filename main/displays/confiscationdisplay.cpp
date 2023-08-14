@@ -4,6 +4,7 @@
 #include <screenmanager.h>
 #include <esprandom.h>
 #include <randomutils.h>
+#include <fontrenderer.h>
 
 // local includes
 #include "globals.h"
@@ -32,33 +33,35 @@ void ConfiscationDisplay::initScreen(espgui::TftInterface &tft)
 {
     Base::initScreen(tft);
 
+    espgui::FontRenderer fontRenderer{tft};
+
     tft.pushImage(10, 70, bobbyicons::shortcircuit.WIDTH, bobbyicons::shortcircuit.HEIGHT, bobbyicons::shortcircuit.buffer);
 
     m_progressBar.start(tft);
 
     m_label.start(tft);
 
-    tft.setTextColor(TFT_WHITE, TFT_BLACK);
-    tft.setTextFont(2);
+    fontRenderer.setTextColor(TFT_WHITE, TFT_BLACK);
+    fontRenderer.setTextFont(2);
 
     auto y = 235;
     constexpr auto lineheight = 15;
-    tft.drawString("Bei erneuter, widerrechtlicher", 10, y+=lineheight);
-    tft.drawString("Beschlagnahmung wird die Selbst-", 10, y+=lineheight);
-    tft.drawString("Vernichtung durch Kurzschluss", 10, y+=lineheight);
-    tft.drawString(fmt::format("der Batterie eingeleitet (ca {:.2f}MJ)", calculateMegaJoules()), 10, y+=lineheight);
+    tft.drawString(tft, fontRenderer, "Bei erneuter, widerrechtlicher", 10, y+=lineheight);
+    tft.drawString(tft, fontRenderer, "Beschlagnahmung wird die Selbst-", 10, y+=lineheight);
+    tft.drawString(tft, fontRenderer, "Vernichtung durch Kurzschluss", 10, y+=lineheight);
+    tft.drawString(tft, fontRenderer, fmt::format("der Batterie eingeleitet (ca {:.2f}MJ)", calculateMegaJoules()), 10, y+=lineheight);
 }
 
 void ConfiscationDisplay::redraw(espgui::TftInterface &tft)
 {
     Base::redraw(tft);
 
-    m_progressBar.redraw(m_progress);
+    m_progressBar.redraw(tft, m_progress);
 
     tft.setTextColor(TFT_YELLOW, TFT_BLACK);
 
     tft.setTextFont(2);
-    m_label.redraw([](){
+    m_label.redraw(tft, fontRenderer, [](){
         if (const auto period = espchrono::millis_clock::now().time_since_epoch() % 6000ms; period < 2000ms)
             return "Halten Sie 10m Abstand.";
         else if (period < 4000ms)

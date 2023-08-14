@@ -8,7 +8,7 @@ class BuzzerMenu : public BobbyMenuDisplay
 public:
     BuzzerMenu();
 
-    std::string text() const override;
+    std::string title() const override;
 
     void back() override;
 };

@@ -25,7 +25,7 @@ constexpr char TEXT_BACK[] = "Back";
 
 using TempomatModeCruiseMotTgtChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_NCRUISEMOTTGT>,
+    espgui::StaticTitle<TEXT_NCRUISEMOTTGT>,
     TempomatModeCruiseMotTgtAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -33,7 +33,7 @@ using TempomatModeCruiseMotTgtChangeDisplay = espgui::makeComponent<
 
 using TempomatModeModelModeChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<UnifiedModelMode>,
-    espgui::StaticText<TEXT_MODELMODE>,
+    espgui::StaticTitle<TEXT_MODELMODE>,
     TempomatModeModelModeAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>

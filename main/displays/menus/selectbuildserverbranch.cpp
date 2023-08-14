@@ -113,7 +113,7 @@ SelectBuildserverBranchMenu::SelectBuildserverBranchMenu()
     SelectBranch::start_descriptor_request(configs.otaServerUrl.value());
 }
 
-std::string SelectBuildserverBranchMenu::text() const
+std::string SelectBuildserverBranchMenu::title() const
 {
     return TEXT_SELECT_BRANCH;
 }

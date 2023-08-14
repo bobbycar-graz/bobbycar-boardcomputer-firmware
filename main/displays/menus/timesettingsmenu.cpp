@@ -70,7 +70,7 @@ public:
 
 using TimezoneOffsetChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int32_t>,
-    espgui::StaticText<TEXT_OFFSET>,
+    espgui::StaticTitle<TEXT_OFFSET>,
     TimezoneOffsetAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -78,7 +78,7 @@ using TimezoneOffsetChangeDisplay = espgui::makeComponent<
 
 using DaylightSavingModeChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<espchrono::DayLightSavingMode>,
-    espgui::StaticText<TEXT_DAYLIGHTSAVINGMODE>,
+    espgui::StaticTitle<TEXT_DAYLIGHTSAVINGMODE>,
     DaylightSavingModeAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -86,7 +86,7 @@ using DaylightSavingModeChangeDisplay = espgui::makeComponent<
 
 using TimeServerChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<std::string>,
-    espgui::StaticText<TEXT_NTPSERVER>,
+    espgui::StaticTitle<TEXT_NTPSERVER>,
     TimeServerAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -94,7 +94,7 @@ using TimeServerChangeDisplay = espgui::makeComponent<
 
 using TimeSyncModeChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<sntp_sync_mode_t>,
-    espgui::StaticText<TEXT_NTPMODE>,
+    espgui::StaticTitle<TEXT_NTPMODE>,
     TimeSyncModeAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -102,7 +102,7 @@ using TimeSyncModeChangeDisplay = espgui::makeComponent<
 
 using TimeSyncIntervalChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int32_t>,
-    espgui::StaticText<TEXT_NTPINTERVAL>,
+    espgui::StaticTitle<TEXT_NTPINTERVAL>,
     TimeSyncIntervalAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -137,7 +137,7 @@ TimeSettingsMenu::TimeSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,               PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string TimeSettingsMenu::text() const
+std::string TimeSettingsMenu::title() const
 {
     return TEXT_TIME;
 }

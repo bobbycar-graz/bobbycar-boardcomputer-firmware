@@ -5,6 +5,7 @@
 
 // 3rdparty lib includes
 #include <screenmanager.h>
+#include <fontrenderer.h>
 
 // local includes
 #include "globals.h"
@@ -56,35 +57,30 @@ void Lockscreen::initScreen(espgui::TftInterface &tft)
 {
     Base::initScreen(tft);
 
+    espgui::FontRenderer fontRenderer{tft};
+
     tft.fillScreen(TFT_BLACK);
-    tft.setTextFont(4);
-    tft.setTextColor(TFT_YELLOW);
 
-    tft.drawString("Lock vehicle", 5, 5);
+    fontRenderer.drawString("Lock vehicle", 5, 5, 4, espgui::TFT_YELLOW, espgui::TFT_BLACK);
 
-    tft.fillRect(0, 34, tft.width(), 3, TFT_WHITE);
+    tft.fillRect(0, 34, tft.width(), 3, espgui::TFT_WHITE);
 
-    tft.setTextColor(TFT_WHITE);
-    tft.drawString("Enter code to unlock:", 0, 50);
-
-    tft.setTextColor(TFT_WHITE, TFT_BLACK);
+    fontRenderer.drawString("Enter code to unlock:", 0, 50, 4, espgui::TFT_WHITE, espgui::TFT_BLACK);
 
     for(int i = 0; i <= 3; i++)
     {
-        drawRect(i, 3, TFT_WHITE);
-        drawRect(i, 4, TFT_WHITE);
+        drawRect(tft, i, 3, espgui::TFT_WHITE);
+        drawRect(tft, i, 4, espgui::TFT_WHITE);
     }
 
     for (auto &label : m_labels)
         label.start(tft);
 
-    tft.setTextFont(7);
-
-    drawRect(m_currentIndex, 1, TFT_YELLOW);
-    drawRect(m_currentIndex, 2, TFT_YELLOW);
+    drawRect(tft, m_currentIndex, 1, espgui::TFT_YELLOW);
+    drawRect(tft, m_currentIndex, 2, espgui::TFT_YELLOW);
 
     for(int i = 0; i <= m_currentIndex; i++)
-        m_labels[i].redraw(std::to_string(m_numbers[i]));
+        m_labels[i].redraw(tft, fontRenderer, std::to_string(m_numbers[i]), espgui::TFT_WHITE, espgui::TFT_BLACK, 7);
 }
 
 void Lockscreen::update()
@@ -98,8 +94,8 @@ void Lockscreen::redraw(espgui::TftInterface &tft)
 
     if (m_pressed || m_back_pressed)
     {
-        drawRect(m_currentIndex, 1, TFT_BLACK);
-        drawRect(m_currentIndex, 2, TFT_BLACK);
+        drawRect(tft, m_currentIndex, 1, TFT_BLACK);
+        drawRect(tft, m_currentIndex, 2, TFT_BLACK);
 
         if (!m_back_pressed && ++m_currentIndex>=4)
         {
@@ -123,18 +119,19 @@ LOCKSCREEN_PLUGIN_FIXES_2
 
             m_numbers = {0,0,0,0};
             m_currentIndex = 0;
-            std::for_each(std::begin(m_labels) + 1, std::end(m_labels), [](auto &label){ label.redraw("0"); });
+            std::for_each(std::begin(m_labels) + 1, std::end(m_labels),
+                          [&tft](auto &label){ label.redraw(tft, "0"); });
         }
         else if (m_back_pressed && m_currentIndex < 3)
         {
-            drawRect(m_currentIndex+1, 1, TFT_BLACK);
-            drawRect(m_currentIndex+1, 2, TFT_BLACK);
+            drawRect(tft, m_currentIndex+1, 1, TFT_BLACK);
+            drawRect(tft, m_currentIndex+1, 2, TFT_BLACK);
         }
 
-        m_labels[m_currentIndex].redraw(std::to_string(m_numbers[m_currentIndex]));
+        m_labels[m_currentIndex].redraw(tft, std::to_string(m_numbers[m_currentIndex]));
 
-        drawRect(m_currentIndex, 1, TFT_YELLOW);
-        drawRect(m_currentIndex, 2, TFT_YELLOW);
+        drawRect(tft, m_currentIndex, 1, TFT_YELLOW);
+        drawRect(tft, m_currentIndex, 2, TFT_YELLOW);
 
         m_pressed = false;
         m_back_pressed = false;
@@ -204,7 +201,7 @@ void Lockscreen::buttonPressed(espgui::Button button)
     }
 }
 
-void Lockscreen::drawRect(int index, int offset, uint32_t color) const
+void Lockscreen::drawRect(espgui::TftInterface &tft, int index, int offset, uint32_t color) const
 {
     tft.drawRect(m_labels[index].x()-offset, m_labels[index].y()-offset, boxWidth+(offset*2), boxHeight+(offset*2), color);
 }

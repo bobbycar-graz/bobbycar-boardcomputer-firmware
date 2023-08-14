@@ -25,7 +25,7 @@ EnableMenu::EnableMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,             PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string EnableMenu::text() const
+std::string EnableMenu::title() const
 {
     return TEXT_SETENABLED;
 }

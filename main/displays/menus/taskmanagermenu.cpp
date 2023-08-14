@@ -40,7 +40,7 @@ TaskmanagerMenu::TaskmanagerMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string TaskmanagerMenu::text() const
+std::string TaskmanagerMenu::title() const
 {
     return TEXT_TASKMANAGER;
 }

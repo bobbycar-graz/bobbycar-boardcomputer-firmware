@@ -32,7 +32,7 @@ DemosMenu::DemosMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,       PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string DemosMenu::text() const
+std::string DemosMenu::title() const
 {
     return TEXT_DEMOS;
 }

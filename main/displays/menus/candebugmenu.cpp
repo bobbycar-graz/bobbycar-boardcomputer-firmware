@@ -260,7 +260,7 @@ CanDebugMenu::CanDebugMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string CanDebugMenu::text() const
+std::string CanDebugMenu::title() const
 {
     return TEXT_CANDEBUG;
 }

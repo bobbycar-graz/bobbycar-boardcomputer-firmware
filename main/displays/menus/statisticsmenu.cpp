@@ -189,7 +189,7 @@ StatisticsMenu::StatisticsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,               PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string StatisticsMenu::text() const
+std::string StatisticsMenu::title() const
 {
     return TEXT_STATISTICSMENU;
 }

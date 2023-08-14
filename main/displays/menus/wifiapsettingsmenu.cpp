@@ -56,7 +56,7 @@ public:
 
 using ApSsidChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<std::string>,
-    espgui::StaticText<TEXT_SSID>,
+    espgui::StaticTitle<TEXT_SSID>,
     WifiApSsidAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -64,7 +64,7 @@ using ApSsidChangeScreen = espgui::makeComponent<
 
 using ApKeyChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<std::string>,
-    espgui::StaticText<TEXT_KEY>,
+    espgui::StaticTitle<TEXT_KEY>,
     WifiApKeyAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -72,7 +72,7 @@ using ApKeyChangeScreen = espgui::makeComponent<
 
 using ApIpChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<wifi_stack::ip_address_t>,
-    espgui::StaticText<TEXT_IP>,
+    espgui::StaticTitle<TEXT_IP>,
     WifiApIpAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -80,7 +80,7 @@ using ApIpChangeScreen = espgui::makeComponent<
 
 using ApMaskChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<wifi_stack::ip_address_t>,
-    espgui::StaticText<TEXT_MASK>,
+    espgui::StaticTitle<TEXT_MASK>,
     WifiApMaskAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -88,7 +88,7 @@ using ApMaskChangeScreen = espgui::makeComponent<
 
 using ApChannelChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
-    espgui::StaticText<TEXT_CHANNEL>,
+    espgui::StaticTitle<TEXT_CHANNEL>,
     WifiApChannelAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -96,7 +96,7 @@ using ApChannelChangeScreen = espgui::makeComponent<
 
 using ApAuthmodeChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<wifi_auth_mode_t>,
-    espgui::StaticText<TEXT_AUTHMODE>,
+    espgui::StaticTitle<TEXT_AUTHMODE>,
     WifiApAuthmodeAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -120,7 +120,7 @@ WifiApSettingsMenu::WifiApSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&icons::back>>>();
 }
 
-std::string WifiApSettingsMenu::text() const
+std::string WifiApSettingsMenu::title() const
 {
     return "AP Settings";
 }

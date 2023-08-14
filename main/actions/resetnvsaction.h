@@ -5,6 +5,7 @@
 
 // 3rdparty lib includes
 #include <actioninterface.h>
+#include <tftcolors.h>
 
 // local includes
 #include "newsettings.h"
@@ -17,14 +18,14 @@ public:
     {
         if (reboot)
         {
-            tft.fillScreen(TFT_BLACK);
-            tft.setTextColor(TFT_YELLOW);
+            tft.fillScreen(espgui::TFT_BLACK);
+            tft.setTextColor(espgui::TFT_YELLOW);
 
             tft.drawString("Reboot", 5, 5, 4);
 
-            tft.fillRect(0, 34, tft.width(), 3, TFT_WHITE);
+            tft.fillRect(0, 34, tft.width(), 3, espgui::TFT_WHITE);
 
-            tft.setTextColor(TFT_WHITE);
+            tft.setTextColor(espgui::TFT_WHITE);
             tft.drawString("Rebooting now...", 0, 50, 4);
 
             configs.reset();

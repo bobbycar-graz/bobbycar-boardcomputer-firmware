@@ -40,7 +40,7 @@ NetworkSettingsMenu::NetworkSettingsMenu()
     constructMenuItem<makeComponent<MenuItem,     StaticText<TEXT_BACK>,        PopScreenAction, StaticMenuItemIcon<&icons::back>>>();
 }
 
-std::string NetworkSettingsMenu::text() const
+std::string NetworkSettingsMenu::title() const
 {
     return "Network settings";
 }

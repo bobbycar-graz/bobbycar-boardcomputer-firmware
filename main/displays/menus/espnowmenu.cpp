@@ -65,7 +65,7 @@ EspNowMenu::EspNowMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PushScreenAction<SettingsMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string EspNowMenu::text() const
+std::string EspNowMenu::title() const
 {
     return TEXT_ESPNOW_MENU;
 }

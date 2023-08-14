@@ -44,7 +44,7 @@ GarageMenu::GarageMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string GarageMenu::text() const
+std::string GarageMenu::title() const
 {
     return TEXT_GARAGE;
 }

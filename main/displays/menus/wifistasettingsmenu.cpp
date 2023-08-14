@@ -29,7 +29,7 @@ constexpr char TEXT_BACK[] = "Back";
 
 using StaMinRssiChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int8_t>,
-    espgui::StaticText<TEXT_MIN_RSSI>,
+    espgui::StaticTitle<TEXT_MIN_RSSI>,
     WifiStaMinRssiAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -59,7 +59,7 @@ WifiStaSettingsMenu::WifiStaSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,           PopScreenAction, StaticMenuItemIcon<&icons::back>>>();
 }
 
-std::string WifiStaSettingsMenu::text() const
+std::string WifiStaSettingsMenu::title() const
 {
     return "Sta Settings";
 }

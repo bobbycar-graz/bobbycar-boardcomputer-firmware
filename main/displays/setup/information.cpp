@@ -57,7 +57,7 @@ void SetupInformationDisplay::buttonPressed(espgui::Button button)
     }
 }
 
-[[nodiscard]] std::string SetupInformationDisplay::text() const
+[[nodiscard]] std::string SetupInformationDisplay::title() const
 {
     return "First Steps";
 }

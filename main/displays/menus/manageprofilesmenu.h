@@ -24,7 +24,7 @@ public:
     void start() override;
     void stop() override;
 
-    std::string text() const override;
+    std::string title() const override;
     std::string action_text() const;
     void lock();
     void unlock();

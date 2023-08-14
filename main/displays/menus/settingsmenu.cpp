@@ -78,7 +78,7 @@ struct BackLedAccessor : public espgui::RefAccessor<bool> { bool &getRef() const
 
 using AnhaengerIdChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint16_t>,
-    espgui::StaticText<TEXT_ANHAENGER_ID>,
+    espgui::StaticTitle<TEXT_ANHAENGER_ID>,
     AnhaengerIdAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -86,7 +86,7 @@ using AnhaengerIdChangeScreen = espgui::makeComponent<
 
 using UsernameChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<std::string>,
-    espgui::StaticText<TEXT_USERNAME>,
+    espgui::StaticTitle<TEXT_USERNAME>,
     UsernameAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -139,7 +139,7 @@ SettingsMenu::SettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                          PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string SettingsMenu::text() const
+std::string SettingsMenu::title() const
 {
     return TEXT_SETTINGS;
 }

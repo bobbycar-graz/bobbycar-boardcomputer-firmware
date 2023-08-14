@@ -32,7 +32,7 @@ constexpr char TEXT_BACK[] = "Back";
 
 using CloudURLChangeScreen = espgui::makeComponent<
         BobbyChangeValueDisplay<std::string>,
-        espgui::StaticText<TEXT_CLOUDURL>,
+        espgui::StaticTitle<TEXT_CLOUDURL>,
         CloudURLAccessor,
         espgui::ConfirmActionInterface<espgui::PopScreenAction>,
         espgui::BackActionInterface<espgui::PopScreenAction>
@@ -40,7 +40,7 @@ using CloudURLChangeScreen = espgui::makeComponent<
 
 using CloudKeyChangeScreen = espgui::makeComponent<
         BobbyChangeValueDisplay<std::string>,
-        espgui::StaticText<TEXT_CLOUDKEY>,
+        espgui::StaticTitle<TEXT_CLOUDKEY>,
         CloudKeyAccessor,
         espgui::ConfirmActionInterface<espgui::PopScreenAction>,
         espgui::BackActionInterface<espgui::PopScreenAction>
@@ -48,7 +48,7 @@ using CloudKeyChangeScreen = espgui::makeComponent<
 
 using CloudTransmitTimeoutChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_CLOUDTRANSMITTIMEOUT>,
+    espgui::StaticTitle<TEXT_CLOUDTRANSMITTIMEOUT>,
     CloudTransmitTimeoutAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -65,7 +65,7 @@ public:
 
 using CloudCollectRateChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_CLOUDCOLLECTRATE>,
+    espgui::StaticTitle<TEXT_CLOUDCOLLECTRATE>,
     CloudCollectRateAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -73,7 +73,7 @@ using CloudCollectRateChangeDisplay = espgui::makeComponent<
 
 using CloudSendRateChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_CLOUDSENDRATE>,
+    espgui::StaticTitle<TEXT_CLOUDSENDRATE>,
     CloudSendRateAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -98,7 +98,7 @@ CloudSettingsMenu::CloudSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                 PushScreenAction<SettingsMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string CloudSettingsMenu::text() const
+std::string CloudSettingsMenu::title() const
 {
     return TEXT_CLOUDSETTINGS;
 }

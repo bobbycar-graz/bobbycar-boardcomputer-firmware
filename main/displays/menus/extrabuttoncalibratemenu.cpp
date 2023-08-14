@@ -242,7 +242,7 @@ void ExtraButtonCalibrateMenu::buttonPressed(espgui::Button button)
     }
 }
 
-std::string ExtraButtonCalibrateMenu::text() const
+std::string ExtraButtonCalibrateMenu::title() const
 {
     return TEXT_EXTRABUTTONCALIBRATEMENU;
 }

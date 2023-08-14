@@ -8,7 +8,7 @@ class WifiStaConfigEntryMenu : public BobbyMenuDisplay
 public:
     WifiStaConfigEntryMenu(int index);
 
-    std::string text() const override;
+    std::string title() const override;
     void back() override;
 
 private:

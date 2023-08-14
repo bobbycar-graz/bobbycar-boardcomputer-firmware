@@ -42,7 +42,7 @@ MosfetsMenu::MosfetsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,    PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string MosfetsMenu::text() const
+std::string MosfetsMenu::title() const
 {
     return TEXT_MOSFETS;
 }

@@ -23,21 +23,21 @@ constexpr char TEXT_BACK[] = "Back";
 
 using LarsmModeModelModeChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<UnifiedModelMode>,
-    espgui::StaticText<TEXT_MODELMODE>,
+    espgui::StaticTitle<TEXT_MODELMODE>,
     LarsmModeModelModeAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using LarsmModeModeChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<LarsmModeMode>,
-    espgui::StaticText<TEXT_SETMODE>,
+    espgui::StaticTitle<TEXT_SETMODE>,
     LarsmModeModeAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using LarsmModeIterationsChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
-    espgui::StaticText<TEXT_SETITERATIONS>,
+    espgui::StaticTitle<TEXT_SETITERATIONS>,
     LarsmModeIterationsAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>

@@ -37,7 +37,7 @@ LedstripOtaAnimationChangeMenu::LedstripOtaAnimationChangeMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                  PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string LedstripOtaAnimationChangeMenu::text() const
+std::string LedstripOtaAnimationChangeMenu::title() const
 {
     return TEXT_BLINKANIMATION;
 }

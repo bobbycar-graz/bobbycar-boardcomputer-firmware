@@ -23,7 +23,7 @@ constexpr char TEXT_BACK[] = "Back";
 
 using UdpCloudSendRateChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_UDPSENDRATE>,
+    espgui::StaticTitle<TEXT_UDPSENDRATE>,
     UdpCloudSendIntervalAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -31,7 +31,7 @@ using UdpCloudSendRateChangeDisplay = espgui::makeComponent<
 
 using UdpCloudHostChangeDisplay = espgui::makeComponent<
         BobbyChangeValueDisplay<std::string>,
-        espgui::StaticText<TEXT_UDPHOST>,
+        espgui::StaticTitle<TEXT_UDPHOST>,
         UdpCloudHostAccessor,
         espgui::ConfirmActionInterface<espgui::PopScreenAction>,
         espgui::BackActionInterface<espgui::PopScreenAction>
@@ -39,7 +39,7 @@ using UdpCloudHostChangeDisplay = espgui::makeComponent<
 
 using UdpCloudPortChangeDisplay = espgui::makeComponent<
         BobbyChangeValueDisplay<uint16_t>,
-        espgui::StaticText<TEXT_UDPPORT>,
+        espgui::StaticTitle<TEXT_UDPPORT>,
         UdpCloudPortAccessor,
         espgui::ConfirmActionInterface<espgui::PopScreenAction>,
         espgui::BackActionInterface<espgui::PopScreenAction>
@@ -57,7 +57,7 @@ UdpCloudSettingsMenu::UdpCloudSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                 PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string UdpCloudSettingsMenu::text() const
+std::string UdpCloudSettingsMenu::title() const
 {
     return TEXT_UDPCLOUDSETTINGS;
 }

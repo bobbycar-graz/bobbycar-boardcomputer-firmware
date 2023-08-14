@@ -27,7 +27,7 @@ constexpr char TEXT_BACK[] = "Back";
 template<typename Tvalue, const char* TEXT, typename Accessor>
 using QuickActionChangeValueDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<Tvalue>,
-    espgui::StaticText<TEXT>,
+    espgui::StaticTitle<TEXT>,
     Accessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -49,7 +49,7 @@ SetupQuickActionsMenu::SetupQuickActionsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,  PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string SetupQuickActionsMenu::text() const
+std::string SetupQuickActionsMenu::title() const
 {
     return TEXT_SETUPQUICKACTIONS;
 }

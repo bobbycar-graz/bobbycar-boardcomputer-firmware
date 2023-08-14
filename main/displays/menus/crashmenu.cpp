@@ -23,7 +23,7 @@ CrashMenu::CrashMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,            PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string CrashMenu::text() const
+std::string CrashMenu::title() const
 {
     return TEXT_CRASHMENU;
 }

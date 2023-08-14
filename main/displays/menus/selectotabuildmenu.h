@@ -10,7 +10,7 @@ class SelectBuildMenu : public BobbyMenuDisplay
 public:
     SelectBuildMenu();
 
-    std::string text() const override;
+    std::string title() const override;
 
     void update() override;
     void back() override;

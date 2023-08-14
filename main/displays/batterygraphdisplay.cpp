@@ -21,7 +21,7 @@ namespace {
 void BatteryGraphDisplay::initScreen(espgui::TftInterface &tft)
 {
     Base::initScreen(tft);
-    drawBatteryCurve();
+    drawBatteryCurve(tft);
 }
 
 std::string BatteryGraphDisplay::title() const
@@ -36,7 +36,7 @@ std::string BatteryGraphDisplay::title() const
 void BatteryGraphDisplay::redraw(espgui::TftInterface &tft)
 {
     using namespace espgui;
-    Base::redraw(TFT);
+    Base::redraw(tft);
 
     if (const auto avgVoltage = controllers.getAvgVoltage(); avgVoltage)
     {
@@ -53,7 +53,7 @@ void BatteryGraphDisplay::redraw(espgui::TftInterface &tft)
         tft.fillRect(lastXOffset + 2, TOP_OFFSET, onePercent, tft.height() - TOP_OFFSET, espgui::TFT_BLACK);
         tft.fillRect(xOffset + 2, TOP_OFFSET, onePercent, tft.height() - TOP_OFFSET, espgui::TFT_WHITE);
         m_lastBatVoltage = *avgVoltage;
-        drawBatteryCurve();
+        drawBatteryCurve(tft);
     }
     // tft.drawLine() code
 }
@@ -73,7 +73,7 @@ void BatteryGraphDisplay::buttonPressed(espgui::Button button)
     }
 }
 
-void BatteryGraphDisplay::drawBatteryCurve()
+void BatteryGraphDisplay::drawBatteryCurve(espgui::TftInterface &tft)
 {
     const auto points = count_curve_points(configs.battery.cellType.value());
     const auto max_height = tft.height() - 1;

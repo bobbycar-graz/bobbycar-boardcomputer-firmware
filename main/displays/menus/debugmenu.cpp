@@ -118,7 +118,7 @@ DebugMenu::DebugMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                 PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string DebugMenu::text() const
+std::string DebugMenu::title() const
 {
     return TEXT_DEBUG;
 }

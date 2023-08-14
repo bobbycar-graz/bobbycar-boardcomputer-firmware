@@ -10,6 +10,7 @@
 #include <actioninterface.h>
 #include <screenmanager.h>
 #include <actions/dummyaction.h>
+#include <fontrenderer.h>
 
 // local includes
 #include "utils.h"
@@ -71,16 +72,16 @@ void LedstripColorsDisplay::redraw(espgui::TftInterface &tft)
         last_state = state_select_color;
     }
 
-    tft.setTextFont(2);
-    tft.setTextColor(TFT_WHITE);
-
-    tft.drawString(state_select_color ?
-                       "Please select a color!" :
-                       "Please select a side!", 50, y_pos);
+    espgui::FontRenderer fontRenderer{tft};
+    fontRenderer.drawString(state_select_color ?
+                                "Please select a color!" :
+                                "Please select a side!", 50, y_pos,
+                            espgui::TFT_WHITE, espgui::TFT_BLACK,
+                            2);
 
     if (!already_drew_circle)
     {
-        drawSide(static_cast<Bobbycar_Side>(selected_side), TFT_GOLD);
+        drawSide(tft, static_cast<Bobbycar_Side>(selected_side), TFT_GOLD);
         already_drew_circle = true;
     }
 }
@@ -108,7 +109,7 @@ void LedstripColorsDisplay::buttonPressed(espgui::Button button)
         if(!state_select_color)
         {
             state_select_color = true;
-            drawColors();
+            drawColors(tft);
         }
         else
         {
@@ -141,13 +142,13 @@ void LedstripColorsDisplay::buttonPressed(espgui::Button button)
         /* TODO commander: move into redraw method */
         if (state_select_color)
         {
-            drawColors();
+            drawColors(tft);
         }
         else
         {
             tft.fillRect(0, 228, tft.width(), ((tft.width() - 40) / 8) + 4, TFT_BLACK);
             clearSides();
-            drawSide(static_cast<Bobbycar_Side>(selected_side), TFT_GOLD);
+            drawSide(tft, static_cast<Bobbycar_Side>(selected_side), TFT_GOLD);
         }
 
         break;
@@ -172,7 +173,7 @@ void LedstripColorsDisplay::buttonPressed(espgui::Button button)
         /* TODO commander: move into redraw method */
         if (state_select_color)
         {
-            drawColors();
+            drawColors(tft);
         }
         else
         {
@@ -185,7 +186,7 @@ void LedstripColorsDisplay::buttonPressed(espgui::Button button)
     }
 }
 
-void LedstripColorsDisplay::drawColors()
+void LedstripColorsDisplay::drawColors(espgui::TftInterface &tft)
 {
     uint16_t width = (tft.width() - 40);
     auto cube_width = width / 8;
@@ -209,7 +210,7 @@ void LedstripColorsDisplay::clearSides()
     }
 }
 
-void LedstripColorsDisplay::drawSide(Bobbycar_Side side, unsigned int color)
+void LedstripColorsDisplay::drawSide(espgui::TftInterface &tft, Bobbycar_Side side, unsigned int color)
 {
     const auto middle = tft.width() / 2;
     const auto width = bobbyicons::bobbycar.WIDTH;

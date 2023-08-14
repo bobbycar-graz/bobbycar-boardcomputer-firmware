@@ -24,7 +24,7 @@ ProfilesMenu::ProfilesMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,     PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string ProfilesMenu::text() const
+std::string ProfilesMenu::title() const
 {
     return TEXT_PROFILES;
 }

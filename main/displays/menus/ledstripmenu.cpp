@@ -54,7 +54,7 @@ constexpr char TEXT_BACK[] = "Back";
 
 using LedsCountChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_LEDSCOUNT>,
+    espgui::StaticTitle<TEXT_LEDSCOUNT>,
     LedsCountAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -62,7 +62,7 @@ using LedsCountChangeScreen = espgui::makeComponent<
 
 using CenterOffsetChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_CENTEROFFSET>,
+    espgui::StaticTitle<TEXT_CENTEROFFSET>,
     CenterOffsetAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -70,7 +70,7 @@ using CenterOffsetChangeScreen = espgui::makeComponent<
 
 using SmallOffsetChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_SMALLOFFSET>,
+    espgui::StaticTitle<TEXT_SMALLOFFSET>,
     SmallOffsetAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -78,7 +78,7 @@ using SmallOffsetChangeScreen = espgui::makeComponent<
 
 using BigOffsetChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_BIGOFFSET>,
+    espgui::StaticTitle<TEXT_BIGOFFSET>,
     BigOffsetAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -86,7 +86,7 @@ using BigOffsetChangeScreen = espgui::makeComponent<
 
 using LedStripMaxAmpereChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<float>,
-    espgui::StaticText<TEXT_LEDSTRIPCURRENTLIMIT>,
+    espgui::StaticTitle<TEXT_LEDSTRIPCURRENTLIMIT>,
     LedStripMaxAmpereAccessor,
     espgui::RatioNumberStep<float, std::ratio<1,10>>,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
@@ -95,7 +95,7 @@ using LedStripMaxAmpereChangeScreen = espgui::makeComponent<
 
 using StVOOffsetChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_STVO_FRONTOFFSET>,
+    espgui::StaticTitle<TEXT_STVO_FRONTOFFSET>,
     LedsStVOFrontOffsetAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -103,7 +103,7 @@ using StVOOffsetChangeScreen = espgui::makeComponent<
 
 using StVOLengthChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_STVO_FRONTLENGTH>,
+    espgui::StaticTitle<TEXT_STVO_FRONTLENGTH>,
     LedsStVOFrontLengthAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -111,7 +111,7 @@ using StVOLengthChangeScreen = espgui::makeComponent<
 
 using AnimationMultiplierChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_ANIMATION_MULTIPLIER>,
+    espgui::StaticTitle<TEXT_ANIMATION_MULTIPLIER>,
     AnimationMultiplierAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -119,7 +119,7 @@ using AnimationMultiplierChangeScreen = espgui::makeComponent<
 
 using LedStripBrightnessChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
-    espgui::StaticText<TEXT_LEDSTRIP_BRIGHTNESS>,
+    espgui::StaticTitle<TEXT_LEDSTRIP_BRIGHTNESS>,
     LedstripBrightnessAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -186,7 +186,7 @@ LedstripMenu::LedstripMenu()
     constructMenuItem<makeComponent<MenuItem, espgui::StaticText<TEXT_BACK>,                                            espgui::PushScreenAction<MainMenu>, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string LedstripMenu::text() const
+std::string LedstripMenu::title() const
 {
     return TEXT_LEDSTRIP;
 }

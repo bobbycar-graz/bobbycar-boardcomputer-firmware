@@ -9,6 +9,7 @@
 #include <changevaluedisplay.h>
 #include <textwithvaluehelper.h>
 #include <fmt/core.h>
+#include <tftcolors.h>
 
 // Local includes
 #include "utils.h"
@@ -52,7 +53,7 @@ class WhStatisticsText : public virtual espgui::TextInterface { public: std::str
 
 using BatteryCellSeriesChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
-    espgui::StaticText<TEXT_CELL_SERIES>,
+    espgui::StaticTitle<TEXT_CELL_SERIES>,
     BatterySeriesCellsAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -60,7 +61,7 @@ using BatteryCellSeriesChangeScreen = espgui::makeComponent<
 
 using BatteryCellParallelChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
-    espgui::StaticText<TEXT_CELL_PARALLEL>,
+    espgui::StaticTitle<TEXT_CELL_PARALLEL>,
     BatteryParallelCellsAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -68,7 +69,7 @@ using BatteryCellParallelChangeScreen = espgui::makeComponent<
 
 using BatteryWHperKMChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint16_t>,
-    espgui::StaticText<TEXT_BATTERY_WHKM>,
+    espgui::StaticTitle<TEXT_BATTERY_WHKM>,
     BatteryWHperKMAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -99,8 +100,8 @@ std::string BatteryMenu::title() const
 void BatteryMenu::initScreen(espgui::TftInterface &tft)
 {
     Base::initScreen(tft);
-    m_batPercentBootLabel.start();
-    m_batPercentNowLabel.start();
+    m_batPercentBootLabel.start(tft);
+    m_batPercentNowLabel.start(tft);
 }
 
 void BatteryMenu::start()
@@ -121,11 +122,11 @@ void BatteryMenu::redraw(espgui::TftInterface &tft)
             m_doubleProgressBarBatPercentage.redraw(batPercent, *battery::bootBatPercentage);
 
             tft.setTextFont(2);
-            tft.setTextColor(TFT_DARKGREY, TFT_BLACK);
+            tft.setTextColor(espgui::TFT_DARKGREY, espgui::TFT_BLACK);
             m_batPercentNowLabel.redraw(fmt::format("{:.2f} %", batPercent));
             m_batPercentBootLabel.redraw(fmt::format("{:.2f} %", *battery::bootBatPercentage));
             tft.setTextFont(4);
-            tft.setTextColor(TFT_WHITE, TFT_BLACK);
+            tft.setTextColor(espgui::TFT_WHITE, espgui::TFT_BLACK);
         }
     }
 }

@@ -46,70 +46,70 @@ constexpr char TEXT_BACK[] = "Back";
 
 using DefaultModeModelModeChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<UnifiedModelMode>,
-    espgui::StaticText<TEXT_MODELMODE>,
+    espgui::StaticTitle<TEXT_MODELMODE>,
     DefaultModeModelModeAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using DefaultModeSmoothingChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_SMOOTHINGVAL>,
+    espgui::StaticTitle<TEXT_SMOOTHINGVAL>,
     DefaultModeSmoothingAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using DefaultModeFwSmoothingLowerLimitChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_FWSMOOTHING_LIMIT>,
+    espgui::StaticTitle<TEXT_FWSMOOTHING_LIMIT>,
     DefaultModeEnableFieldWeakSmoothingLowerLimitAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using DefaultModeFrontPercentageChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_FRONTPERCENTAGE>,
+    espgui::StaticTitle<TEXT_FRONTPERCENTAGE>,
     DefaultModeFrontPercentageAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using DefaultModeBackPercentageChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_BACKPERCENTAGE>,
+    espgui::StaticTitle<TEXT_BACKPERCENTAGE>,
     DefaultModeBackPercentageAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using DefaultModeAddSchwelleChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_ADDSCHWELLE>,
+    espgui::StaticTitle<TEXT_ADDSCHWELLE>,
     DefaultModeAddSchwelleAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using DefaultModeGas1WertChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_ADDGASVAL>,
+    espgui::StaticTitle<TEXT_ADDGASVAL>,
     DefaultModeGas1WertAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using DefaultModeGas2WertChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_SUBGASVAL>,
+    espgui::StaticTitle<TEXT_SUBGASVAL>,
     DefaultModeGas2WertAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using DefaultModeBrems1WertChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_ADDBRAKEVAL>,
+    espgui::StaticTitle<TEXT_ADDBRAKEVAL>,
     DefaultModeBrems1WertAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using DefaultModeBrems2WertChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_SUBBRAKEVAL>,
+    espgui::StaticTitle<TEXT_SUBBRAKEVAL>,
     DefaultModeBrems2WertAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>

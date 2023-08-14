@@ -19,7 +19,7 @@ namespace {
 
     using RemoteControlModeModelModeChangeDisplay = espgui::makeComponent<
             BobbyChangeValueDisplay<UnifiedModelMode>,
-            espgui::StaticText<TEXT_MODELMODE>,
+            espgui::StaticTitle<TEXT_MODELMODE>,
             RemoteControlModeModelModeAccessor,
             espgui::ConfirmActionInterface<espgui::PopScreenAction>,
             espgui::BackActionInterface<espgui::PopScreenAction>

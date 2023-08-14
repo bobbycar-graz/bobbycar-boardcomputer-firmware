@@ -41,7 +41,7 @@ WifiStaConfigsMenu::WifiStaConfigsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,           PopScreenAction, StaticMenuItemIcon<&icons::back>>>();
 }
 
-std::string WifiStaConfigsMenu::text() const
+std::string WifiStaConfigsMenu::title() const
 {
     return "Configurations";
 }

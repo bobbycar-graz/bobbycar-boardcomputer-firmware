@@ -39,14 +39,14 @@ constexpr char TEXT_BACK[] = "Back";
 
 using WheelDiameterMmChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_WHEELDIAMETERMM>,
+    espgui::StaticTitle<TEXT_WHEELDIAMETERMM>,
     WheelDiameterMmAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using WheelDiameterInchChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<float>,
-    espgui::StaticText<TEXT_WHEELDIAMETERINCH>,
+    espgui::StaticTitle<TEXT_WHEELDIAMETERINCH>,
     WheelDiameterInchAccessor,
     espgui::RatioNumberStep<float, std::ratio<1,10>>,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
@@ -54,7 +54,7 @@ using WheelDiameterInchChangeScreen = espgui::makeComponent<
 >;
 using NumMagnetPolesChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_NUMMAGNETPOLES>,
+    espgui::StaticTitle<TEXT_NUMMAGNETPOLES>,
     NumMagnetPolesAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -62,14 +62,14 @@ using NumMagnetPolesChangeScreen = espgui::makeComponent<
 #ifdef FEATURE_CAN
 using CanTransmitTimeoutChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_CANTRANSMITTIMEOUT>,
+    espgui::StaticTitle<TEXT_CANTRANSMITTIMEOUT>,
     CanTransmitTimeoutAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using CanReceiveTimeoutChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_CANRECEIVETIMEOUT>,
+    espgui::StaticTitle<TEXT_CANRECEIVETIMEOUT>,
     CanReceiveTimeoutAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -97,7 +97,7 @@ ControllerHardwareSettingsMenu::ControllerHardwareSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,               PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string ControllerHardwareSettingsMenu::text() const
+std::string ControllerHardwareSettingsMenu::title() const
 {
     return TEXT_CONTROLLERHARDWARESETTINGS;
 }

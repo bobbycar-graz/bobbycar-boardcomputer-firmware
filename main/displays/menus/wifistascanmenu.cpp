@@ -53,7 +53,7 @@ WifiStaScanMenu::WifiStaScanMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&icons::back>>>();
 }
 
-std::string WifiStaScanMenu::text() const
+std::string WifiStaScanMenu::title() const
 {
     const auto scanStatus = wifi_stack::get_scan_status();
     auto text = fmt::format("Scan {}{}",

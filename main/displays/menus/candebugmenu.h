@@ -1,5 +1,7 @@
 #pragma once
 
+#include "sdkconfig.h"
+
 // local includes
 #include "displays/bobbymenudisplay.h"
 
@@ -18,7 +20,7 @@ class CanDebugMenu : public BobbyMenuDisplay
 public:
     CanDebugMenu();
 
-    std::string text() const override;
+    std::string title() const override;
 
     void update() override;
 

@@ -69,7 +69,7 @@ private:
 class RandomIcon : public virtual MenuItemIconInterface
 {
 public:
-    const MenuItemIcon *icon() const override;
+    const MenuItemIcon *icon(bool selected) const override;
 
 private:
     mutable std::optional<espchrono::millis_clock::time_point> m_nextUpdate;
@@ -91,7 +91,7 @@ public:
 
 using ToggleChangeValueDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<bool>,
-    espgui::StaticText<TEXT_DEBUGTOGGLEMENU>,
+    espgui::StaticTitle<TEXT_DEBUGTOGGLEMENU>,
     ToggleAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -185,7 +185,7 @@ int RandomFont::font() const
     return m_font;
 }
 
-const MenuItemIcon *RandomIcon::icon() const
+const MenuItemIcon *RandomIcon::icon(bool selected) const
 {
     const auto now = espchrono::millis_clock::now();
     if (!m_nextUpdate || now >= *m_nextUpdate)

@@ -99,7 +99,7 @@ SelectBuildMenu::SelectBuildMenu()
     }
 }
 
-std::string SelectBuildMenu::text() const
+std::string SelectBuildMenu::title() const
 {
     return TEXT_SELECTBUILD;
 }

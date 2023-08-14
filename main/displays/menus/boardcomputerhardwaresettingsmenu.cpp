@@ -76,35 +76,35 @@ public:
 
 using SampleCountChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_SAMPLECOUNT>,
+    espgui::StaticTitle<TEXT_SAMPLECOUNT>,
     SampleCountAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using GasMinChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_GASMIN>,
+    espgui::StaticTitle<TEXT_GASMIN>,
     GasMinAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using GasMaxChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_GASMAX>,
+    espgui::StaticTitle<TEXT_GASMAX>,
     GasMaxAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using BremsMinChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_BREMSMIN>,
+    espgui::StaticTitle<TEXT_BREMSMIN>,
     BremsMinAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using BremsMaxChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_BREMSMAX>,
+    espgui::StaticTitle<TEXT_BREMSMAX>,
     BremsMaxAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -114,14 +114,14 @@ using BremsMaxChangeScreen = espgui::makeComponent<
 #if defined(FEATURE_DPAD) || defined(FEATURE_DPAD_3WIRESW) || defined(FEATURE_DPAD_5WIRESW) || defined(FEATURE_DPAD_5WIRESW_2OUT) || defined (FEATURE_DPAD_6WIRESW) || defined (DPAD_BOARDCOMPUTER_V2)
 using DPadDebounceChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
-    espgui::StaticText<TEXT_DPADDEBOUNCE>,
+    espgui::StaticTitle<TEXT_DPADDEBOUNCE>,
     DPadDebounceAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using ButtonDelayChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint16_t>,
-    espgui::StaticText<TEXT_BUTTONDELAY>,
+    espgui::StaticTitle<TEXT_BUTTONDELAY>,
     ButtonDelayAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -144,42 +144,42 @@ public:
 
 using GametrakXMinChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_SETGAMETRAKXMIN>,
+    espgui::StaticTitle<TEXT_SETGAMETRAKXMIN>,
     GametrakXMinAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using GametrakXMaxChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_SETGAMETRAKXMAX>,
+    espgui::StaticTitle<TEXT_SETGAMETRAKXMAX>,
     GametrakXMaxAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using GametrakYMinChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_SETGAMETRAKYMIN>,
+    espgui::StaticTitle<TEXT_SETGAMETRAKYMIN>,
     GametrakYMinAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using GametrakYMaxChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_SETGAMETRAKYMAX>,
+    espgui::StaticTitle<TEXT_SETGAMETRAKYMAX>,
     GametrakYMaxAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using GametrakDistMinChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_SETGAMETRAKDISTMIN>,
+    espgui::StaticTitle<TEXT_SETGAMETRAKDISTMIN>,
     GametrakDistMinAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using GametrakDistMaxChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_SETGAMETRAKDISTMAX>,
+    espgui::StaticTitle<TEXT_SETGAMETRAKDISTMAX>,
     GametrakDistMaxAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -229,7 +229,7 @@ BoardcomputerHardwareSettingsMenu::BoardcomputerHardwareSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                                        PopScreenAction, StaticMenuItemIcon<&icons::back>>>();
 }
 
-std::string BoardcomputerHardwareSettingsMenu::text() const
+std::string BoardcomputerHardwareSettingsMenu::title() const
 {
     return TEXT_BOARDCOMPUTERHARDWARESETTINGS;
 }

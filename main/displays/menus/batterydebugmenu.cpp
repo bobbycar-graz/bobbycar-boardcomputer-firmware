@@ -84,7 +84,7 @@ BatteryDebugMenu::BatteryDebugMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                                                    PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string BatteryDebugMenu::text() const
+std::string BatteryDebugMenu::title() const
 {
     return TEXT_BATTERYDEBUG;
 }

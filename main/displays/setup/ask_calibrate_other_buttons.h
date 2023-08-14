@@ -12,7 +12,7 @@ public:
 
     void buttonPressed(espgui::Button button) override;
 
-    [[nodiscard]] std::string text() const override;
+    [[nodiscard]] std::string title() const override;
 private:
     bool m_next_screen{false};
 };

@@ -127,7 +127,7 @@ WifiStaConfigEntryMenu::WifiStaConfigEntryMenu(int index) :
     constructMenuItem<makeComponent<MenuItem,     StaticText<TEXT_BACK>,             PopScreenAction, StaticMenuItemIcon<&icons::back>>>();
 }
 
-std::string WifiStaConfigEntryMenu::text() const
+std::string WifiStaConfigEntryMenu::title() const
 {
     return fmt::format("Wifi Config {}", m_index + 1);
 }

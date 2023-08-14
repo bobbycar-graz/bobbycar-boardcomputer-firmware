@@ -89,7 +89,7 @@ GreenPassMenu::GreenPassMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string GreenPassMenu::text() const
+std::string GreenPassMenu::title() const
 {
     return TEXT_GREENPASS;
 }

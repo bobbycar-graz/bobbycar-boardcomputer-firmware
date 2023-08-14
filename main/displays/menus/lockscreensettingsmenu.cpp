@@ -26,7 +26,7 @@ constexpr char TEXT_BACK[] = "Back";
 
 using LockscreenPinDigit0ChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int8_t>,
-    espgui::StaticText<TEXT_PINDIGIT0>,
+    espgui::StaticTitle<TEXT_PINDIGIT0>,
     LockscreenPinDigitAccessor<0>,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -34,7 +34,7 @@ using LockscreenPinDigit0ChangeScreen = espgui::makeComponent<
 
 using LockscreenPinDigit1ChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int8_t>,
-    espgui::StaticText<TEXT_PINDIGIT1>,
+    espgui::StaticTitle<TEXT_PINDIGIT1>,
     LockscreenPinDigitAccessor<1>,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -42,7 +42,7 @@ using LockscreenPinDigit1ChangeScreen = espgui::makeComponent<
 
 using LockscreenPinDigit2ChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int8_t>,
-    espgui::StaticText<TEXT_PINDIGIT2>,
+    espgui::StaticTitle<TEXT_PINDIGIT2>,
     LockscreenPinDigitAccessor<2>,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -50,7 +50,7 @@ using LockscreenPinDigit2ChangeScreen = espgui::makeComponent<
 
 using LockscreenPinDigit3ChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int8_t>,
-    espgui::StaticText<TEXT_PINDIGIT3>,
+    espgui::StaticTitle<TEXT_PINDIGIT3>,
     LockscreenPinDigitAccessor<3>,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -69,7 +69,7 @@ LockscreenSettingsMenu::LockscreenSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                                              PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string LockscreenSettingsMenu::text() const
+std::string LockscreenSettingsMenu::title() const
 {
     return TEXT_LOCKSCREENSETTINGS;
 }

@@ -25,42 +25,42 @@ constexpr char TEXT_BACK[] = "Back";
 
 using IMotMaxChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_IMOTMAX>,
+    espgui::StaticTitle<TEXT_IMOTMAX>,
     IMotMaxAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using IDcMaxChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_IDCMAX>,
+    espgui::StaticTitle<TEXT_IDCMAX>,
     IDcMaxAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using NMotMaxKmhChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_NMOTMAXKMH>,
+    espgui::StaticTitle<TEXT_NMOTMAXKMH>,
     NMotMaxKmhAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using NMotMaxRpmChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_NMOTMAX>,
+    espgui::StaticTitle<TEXT_NMOTMAX>,
     NMotMaxRpmAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using FieldWeakMaxChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_FIELDWEAKMAX>,
+    espgui::StaticTitle<TEXT_FIELDWEAKMAX>,
     FieldWeakMaxAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using PhaseAdvMaxChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_PHASEADVMAX>,
+    espgui::StaticTitle<TEXT_PHASEADVMAX>,
     PhaseAdvMaxAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -80,7 +80,7 @@ LimitsSettingsMenu::LimitsSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                                        PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string LimitsSettingsMenu::text() const
+std::string LimitsSettingsMenu::title() const
 {
     return TEXT_LIMITSSETTINGS;
 }

@@ -54,7 +54,7 @@ RecoveryMenu::RecoveryMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_REBOOT>, RebootAction, StaticMenuItemIcon<&bobbyicons::reboot>>>();
 }
 
-std::string RecoveryMenu::text() const
+std::string RecoveryMenu::title() const
 {
     return "Recovery Menu";
 }

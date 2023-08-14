@@ -8,7 +8,7 @@ class BoardcomputerHardwareSettingsMenu : public BobbyMenuDisplay
 public:
     BoardcomputerHardwareSettingsMenu();
 
-    std::string text() const override;
+    std::string title() const override;
 
     void back() override;
 };

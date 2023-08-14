@@ -26,7 +26,7 @@ constexpr char TEXT_BACK[] = "Back";
 
 using HandBremsTriggerTimeoutChangeValueDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<uint16_t>,
-    espgui::StaticText<TEXT_HANDBREMSE_TRIGGERTIMEOUT>,
+    espgui::StaticTitle<TEXT_HANDBREMSE_TRIGGERTIMEOUT>,
     HandbremsTimeoutAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -44,7 +44,7 @@ HandbremsSettingsMenu::HandbremsSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string HandbremsSettingsMenu::text() const
+std::string HandbremsSettingsMenu::title() const
 {
     return TEXT_HANDBREMSE;
 }

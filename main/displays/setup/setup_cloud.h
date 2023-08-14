@@ -14,7 +14,7 @@ public:
 
     void back() override;
 
-    [[nodiscard]] std::string text() const override;
+    [[nodiscard]] std::string title() const override;
 private:
     const bool m_early_return;
 };

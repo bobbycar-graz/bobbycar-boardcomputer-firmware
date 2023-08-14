@@ -23,7 +23,7 @@ constexpr const char TEXT_DONE[] = "Done";
 
 using CloudUsernameChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<std::string>,
-    espgui::StaticText<TEXT_CLOUD_USERNAME>,
+    espgui::StaticTitle<TEXT_CLOUD_USERNAME>,
     UsernameAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -31,7 +31,7 @@ using CloudUsernameChangeScreen = espgui::makeComponent<
 
 using CloudURLChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<std::string>,
-    espgui::StaticText<TEXT_CLOUD_URL>,
+    espgui::StaticTitle<TEXT_CLOUD_URL>,
     CloudURLAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -39,7 +39,7 @@ using CloudURLChangeScreen = espgui::makeComponent<
 
 using CloudKeyChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<std::string>,
-    espgui::StaticText<TEXT_CLOUD_KEY>,
+    espgui::StaticTitle<TEXT_CLOUD_KEY>,
     CloudKeyAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -96,7 +96,7 @@ void SetupCloudDisplay::stop()
 void SetupCloudDisplay::back()
 {}
 
-std::string SetupCloudDisplay::text() const
+std::string SetupCloudDisplay::title() const
 {
     return "WebSocket Cloud";
 }

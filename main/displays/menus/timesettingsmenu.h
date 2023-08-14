@@ -8,7 +8,7 @@ class TimeSettingsMenu : public bobbygui::MenuDisplayWithTime
 public:
     TimeSettingsMenu();
 
-    std::string text() const override;
+    std::string title() const override;
 
     void back() override;
 };

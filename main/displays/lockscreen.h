@@ -32,7 +32,7 @@ public:
     void buttonPressed(espgui::Button button) override;
 
 private:
-    void drawRect(int index, int offset, uint32_t color) const;
+    void drawRect(espgui::TftInterface &tft, int index, int offset, uint32_t color) const;
 
     std::array<espgui::Label, 4> m_labels {{
         espgui::Label{spacing, 100}, // boxWidth, boxHeight

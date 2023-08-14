@@ -52,7 +52,7 @@ void SetupFinalInformationDisplay::buttonPressed(espgui::Button button)
     Base::buttonPressed(button);
 }
 
-std::string SetupFinalInformationDisplay::text() const
+std::string SetupFinalInformationDisplay::title() const
 {
     return "All done!";
 }

@@ -252,7 +252,7 @@ void ManageProfilesMenu::stop()
     }
 }
 
-std::string ManageProfilesMenu::text() const
+std::string ManageProfilesMenu::title() const
 {
     return TEXT_MANAGEPROFILESMENU;
 }

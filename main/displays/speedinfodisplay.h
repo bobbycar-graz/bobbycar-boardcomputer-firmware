@@ -4,6 +4,7 @@
 #include <widgets/label.h>
 #include <widgets/progressbar.h>
 #include <widgets/reverseprogressbar.h>
+#include <tftcolors.h>
 
 // local includes
 #include "bobbydisplay.h"
@@ -20,8 +21,8 @@ public:
 private:
     espgui::Label m_labelSpeed{5, 5};
 
-    espgui::ReverseProgressBar m_dischargingBar{10, 110, tft.width()/2 - 10, 25, 0, 40, TFT_GREEN};
-    espgui::ProgressBar m_chargingBar{tft.width()/2, 110, tft.width()/2 - 10, 25, 0, 40, TFT_RED};
+    espgui::ReverseProgressBar m_dischargingBar{10, 110, tft.width()/2 - 10, 25, 0, 40, espgui::TFT_GREEN};
+    espgui::ProgressBar m_chargingBar{tft.width()/2, 110, tft.width()/2 - 10, 25, 0, 40, espgui::TFT_RED};
 
 #define START_Y 150
     espgui::Label m_batteryPercentLabel{5, START_Y};

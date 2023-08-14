@@ -25,7 +25,7 @@ public:
     PotisCalibrateDisplay() = default;
     explicit PotisCalibrateDisplay(bool bootup) : m_bootup{bootup} {}
 
-    std::string text() const override;
+    std::string title() const override;
     void start() override;
     void initScreen(espgui::TftInterface &tft) override;
     void update() override;

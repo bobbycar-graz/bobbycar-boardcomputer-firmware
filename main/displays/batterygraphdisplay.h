@@ -13,7 +13,7 @@ public:
 
     void buttonPressed(espgui::Button button) override;
 
-    static void drawBatteryCurve();
+    static void drawBatteryCurve(espgui::TftInterface &tft);
 
 private:
     float m_lastBatVoltage{0};

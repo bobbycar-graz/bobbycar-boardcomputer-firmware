@@ -47,7 +47,7 @@ void SetupAskSetupCloudsDisplay::buttonPressed(espgui::Button button)
     Base::buttonPressed(button);
 }
 
-std::string SetupAskSetupCloudsDisplay::text() const
+std::string SetupAskSetupCloudsDisplay::title() const
 {
     return "Cloud Setup";
 }

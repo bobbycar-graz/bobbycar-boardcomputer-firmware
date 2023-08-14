@@ -20,7 +20,7 @@ constexpr char TEXT_BACK[] = "Back";
 
 using MotortestMultiplikatorChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
-    espgui::StaticText<TEXT_MOTORTESTMULTIPLIKATOR>,
+    espgui::StaticTitle<TEXT_MOTORTESTMULTIPLIKATOR>,
     MotortestModeMultiplikatorAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -28,7 +28,7 @@ using MotortestMultiplikatorChangeDisplay = espgui::makeComponent<
 
 using MotortestMaxPwmChangeDisplay = espgui::makeComponent<
     BobbyChangeValueDisplay<uint16_t>,
-    espgui::StaticText<TEXT_MOTORTESTMAXPWM>,
+    espgui::StaticTitle<TEXT_MOTORTESTMAXPWM>,
     MotortestMaxPwmAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>

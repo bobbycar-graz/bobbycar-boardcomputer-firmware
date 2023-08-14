@@ -101,7 +101,7 @@ WifiStaScanEntryMenu::WifiStaScanEntryMenu(const wifi_ap_record_t &info) :
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>, PopScreenAction, StaticMenuItemIcon<&icons::back>>>();
 }
 
-std::string WifiStaScanEntryMenu::text() const
+std::string WifiStaScanEntryMenu::title() const
 {
     return fmt::format("Scan entry {}", richTextEscape(std::string_view{reinterpret_cast<const char*>(m_info.ssid)}));
 }

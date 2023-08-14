@@ -26,7 +26,7 @@ constexpr char TEXT_BACK[] = "Back";
 
 using ApSsidChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<std::string>,
-    espgui::StaticText<TEXT_NAME>,
+    espgui::StaticTitle<TEXT_NAME>,
     BluetoothNameAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -44,7 +44,7 @@ BleSettingsMenu::BleSettingsMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,       PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string BleSettingsMenu::text() const
+std::string BleSettingsMenu::title() const
 {
     return TEXT_BLESETTINGS;
 }

@@ -31,7 +31,7 @@ constexpr char TEXT_BACK[] = "Back";
 struct FrontFreqAccessor : public espgui::RefAccessor<uint8_t> { uint8_t &getRef() const override { return controllers.front.command.buzzer.freq; } };
 using FrontFreqChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
-    espgui::StaticText<TEXT_FRONTFREQ>,
+    espgui::StaticTitle<TEXT_FRONTFREQ>,
     FrontFreqAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -40,7 +40,7 @@ using FrontFreqChangeScreen = espgui::makeComponent<
 struct FrontPatternAccessor : public espgui::RefAccessor<uint8_t> { uint8_t &getRef() const override { return controllers.front.command.buzzer.pattern; } };
 using FrontPatternChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
-    espgui::StaticText<TEXT_FRONTPATTERN>,
+    espgui::StaticTitle<TEXT_FRONTPATTERN>,
     FrontPatternAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -49,7 +49,7 @@ using FrontPatternChangeScreen = espgui::makeComponent<
 struct BackFreqAccessor : public espgui::RefAccessor<uint8_t> { uint8_t &getRef() const override { return controllers.back.command.buzzer.freq; } };
 using BackFreqChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
-    espgui::StaticText<TEXT_BACKFREQ>,
+    espgui::StaticTitle<TEXT_BACKFREQ>,
     BackFreqAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -58,7 +58,7 @@ using BackFreqChangeScreen = espgui::makeComponent<
 struct BackPatternAccessor : public espgui::RefAccessor<uint8_t> { uint8_t &getRef() const override { return controllers.back.command.buzzer.pattern; } };
 using BackPatternChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
-    espgui::StaticText<TEXT_BACKPATTERN>,
+    espgui::StaticTitle<TEXT_BACKPATTERN>,
     BackPatternAccessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -66,28 +66,28 @@ using BackPatternChangeScreen = espgui::makeComponent<
 
 using ReverseBeepFreq0ChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
-    espgui::StaticText<TEXT_REVERSEBEEPFREQ0>,
+    espgui::StaticTitle<TEXT_REVERSEBEEPFREQ0>,
     ReverseBeepFreq0Accessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using ReverseBeepFreq1ChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<uint8_t>,
-    espgui::StaticText<TEXT_REVERSEBEEPFREQ1>,
+    espgui::StaticTitle<TEXT_REVERSEBEEPFREQ1>,
     ReverseBeepFreq1Accessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using ReverseBeepDuration0ChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_REVERSEBEEPDURATION0>,
+    espgui::StaticTitle<TEXT_REVERSEBEEPDURATION0>,
     ReverseBeepDuration0Accessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
 >;
 using ReverseBeepDuration1ChangeScreen = espgui::makeComponent<
     BobbyChangeValueDisplay<int16_t>,
-    espgui::StaticText<TEXT_REVERSEBEEPDURATION1>,
+    espgui::StaticTitle<TEXT_REVERSEBEEPDURATION1>,
     ReverseBeepDuration1Accessor,
     espgui::ConfirmActionInterface<espgui::PopScreenAction>,
     espgui::BackActionInterface<espgui::PopScreenAction>
@@ -110,7 +110,7 @@ BuzzerMenu::BuzzerMenu()
     constructMenuItem<makeComponent<MenuItem, StaticText<TEXT_BACK>,                 PopScreenAction, StaticMenuItemIcon<&espgui::icons::back>>>();
 }
 
-std::string BuzzerMenu::text() const
+std::string BuzzerMenu::title() const
 {
     return TEXT_BUZZER;
 }

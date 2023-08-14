@@ -26,7 +26,7 @@ void JoystickDebugDisplay::start()
     copyFromSettings();
 }
 
-std::string JoystickDebugDisplay::text() const
+std::string JoystickDebugDisplay::title() const
 {
     return TEXT_JOYSTICK;
 }
